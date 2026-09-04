@@ -1,1 +1,6 @@
-²ø1šYì
+ï»¿<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <rect width="128" height="128" rx="28" fill="#071018"/>
+  <ellipse cx="64" cy="64" rx="48" ry="20" fill="none" stroke="#67ff8d" stroke-width="8" transform="rotate(-18 64 64)"/>
+  <path d="M37 36h50c12 0 20 8 20 20v12H67c-13 0-22 9-22 22v4H37z" fill="#f4f8f5"/>
+  <path d="M64 50l4 10 10 4-10 4-4 10-4-10-10-4 10-4z" fill="#67ff8d"/>
+</svg>
