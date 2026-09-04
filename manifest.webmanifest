@@ -1,0 +1,10 @@
+{
+  "name": "Próxima Era",
+  "short_name": "Próxima Era",
+  "description": "Criando o que vem depois.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071018",
+  "theme_color": "#071018",
+  "icons": []
+}

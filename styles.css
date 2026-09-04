@@ -181,3 +181,6 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .hero{padding-left:20px;padding-right:20px;padding-bottom:40px}.hero h1{font-size:53px}.hero-tagline{font-size:10px;letter-spacing:.28em}.hero-lead{font-size:17px}.hero-actions{flex-direction:column}.button{justify-content:center}.hero-metrics{gap:16px;justify-content:space-between}.hero-metrics strong{font-size:21px}.hero-metrics span{font-size:10px}.zero-wrap{min-height:390px}.zero{max-height:420px}.zero-badge{font-size:18px;top:75px;right:-2px}.planet{top:420px;right:-300px}
   .section{padding:68px 20px}.section-head{align-items:flex-start;flex-direction:column;gap:16px}.section-head>p{font-size:15px}.capabilities,.project-grid,.progress-grid{grid-template-columns:1fr}.cap-card{min-height:auto}.project-card{min-height:auto}.about{grid-template-columns:1fr;padding:72px 20px}.quote{font-size:24px}.footer{grid-template-columns:1fr;padding:45px 20px 24px}.footer-brand{grid-column:auto}.footer-bottom{flex-direction:column}.footer-links{display:grid;grid-template-columns:1fr 1fr}
 }
+
+.project-link{color:inherit;text-decoration:none}
+.project-link:focus-visible{outline:3px solid #6cff8d;outline-offset:4px}
