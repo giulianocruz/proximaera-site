@@ -216,3 +216,46 @@ button, a { -webkit-tap-highlight-color: transparent; }
 
 @media (max-width:980px){.now-grid{grid-template-columns:1fr 1fr}.origin-section{grid-template-columns:1fr;gap:45px}.origin-visual{max-width:420px}.signal-grid{grid-template-columns:1fr}.footer{grid-template-columns:1fr 1fr}.footer-bottom{grid-column:1/-1}.inner-content,.contact-layout{grid-template-columns:1fr}.detail-aside{border-left:0;border-top:1px solid #dce5e0}.inner-header nav{gap:14px}}
 @media (max-width:640px){.brand-logo{width:190px}.now-grid{grid-template-columns:1fr}.now-card p{min-height:auto}.origin-section{padding:68px 20px}.origin-facts{display:grid;grid-template-columns:1fr;width:100%}.signals{padding-left:20px;padding-right:20px}.footer{grid-template-columns:1fr}.inner-header{height:auto;min-height:76px;padding:10px 18px}.inner-header img{width:185px}.inner-header nav a:not(:last-child){display:none}.inner-hero{padding:70px 20px 55px}.project-detail-head{align-items:flex-start;flex-direction:column}.project-detail-head img{width:84px;height:84px}.inner-content,.contact-layout{padding:55px 20px}.inner-footer{padding:28px 20px;flex-direction:column}.legal-copy,.article-page{padding:55px 20px 80px}.article-list{padding:40px 20px 80px}.article-row h2{font-size:26px}.footer-legal{margin-top:8px}}
+
+/* Refinamentos UX, acessibilidade e método — 04/09/2026 */
+::selection{background:var(--green);color:#07120d}
+[id]{scroll-margin-top:96px}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid var(--green);outline-offset:4px}
+.skip-link{position:fixed;left:18px;top:12px;z-index:1000;padding:10px 14px;border-radius:10px;background:var(--green);color:#07120d;font-weight:900;transform:translateY(-160%);transition:transform .18s ease}
+.skip-link:focus{transform:translateY(0)}
+.reveal{opacity:1;transform:none}
+.js .reveal{opacity:0;transform:translateY(18px)}
+.js .reveal.visible{opacity:1;transform:none}
+.work-method{border-top:1px solid #e4ebe7}
+.method-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.method-card{position:relative;padding:30px 26px 28px;border:1px solid #dfe7e2;border-radius:18px;background:linear-gradient(160deg,#fff,#f8fbf9);min-height:245px;overflow:hidden}
+.method-card::after{content:"";position:absolute;width:120px;height:120px;border-radius:50%;right:-58px;bottom:-58px;background:rgba(97,245,139,.12)}
+.method-card>span{display:inline-grid;place-items:center;width:42px;height:42px;border-radius:50%;background:#071018;color:var(--green);font-size:11px;font-weight:900;letter-spacing:.08em}
+.method-card h3{margin:28px 0 9px;font-size:23px}.method-card p{margin:0;color:#627069;line-height:1.65}
+.signal-card:focus-visible,.project-card:focus-visible{border-color:var(--green);box-shadow:0 0 0 3px rgba(97,245,139,.16)}
+.article-page h2{line-height:1.12}.article-page blockquote{line-height:1.35;border-radius:0 14px 14px 0}
+@media (max-width:980px){.method-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.method-grid{grid-template-columns:1fr}.method-card{min-height:auto}.hero-metrics{display:grid;grid-template-columns:repeat(3,1fr);margin-top:36px}.hero-metrics span{line-height:1.25}}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.js .reveal{opacity:1;transform:none}.button:hover,.project-card:hover,.signal-card:hover{transform:none}}
+
+/* Correção de overflow em telas estreitas */
+.hero,.hero-content,.zero-wrap,.hero-metrics,.hero-metrics>div,.section-head,.section-head>div{min-width:0}
+.hero-lead,.eyebrow,.hero-metrics span,.section-head p{overflow-wrap:anywhere}
+@media (max-width:640px){
+  .hero{width:100%;max-width:100vw;overflow:hidden}
+  .hero-content{width:100%;max-width:100%}
+  .eyebrow{font-size:10px;letter-spacing:.12em;line-height:1.6}
+  .hero-metrics{width:100%;gap:10px}
+  .hero-metrics strong{font-size:20px;white-space:nowrap}
+  .hero-metrics span{font-size:9px}
+  .zero-wrap{width:100%;overflow:visible}
+  .menu-toggle{flex:0 0 auto;position:relative;z-index:2}
+  .brand{min-width:0}.brand-logo{max-width:190px}
+}
+
+.footer-brand small{color:#7f929c}
+
+
+.detail-points{display:grid;gap:10px;margin:28px 0 32px;padding:0;list-style:none}.detail-points li{position:relative;padding:13px 15px 13px 42px;border:1px solid #dce6e0;border-radius:12px;background:#fff;color:#34483e;font-weight:750}.detail-points li::before{content:'→';position:absolute;left:16px;top:12px;color:#24b862;font-weight:900}
+
+.error-main{min-height:72vh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:90px max(28px,calc((100vw - 980px)/2));background:radial-gradient(circle at 80% 30%,rgba(97,245,139,.12),transparent 28%),#071018}.error-code{font-size:clamp(90px,18vw,220px);line-height:.8;font-weight:950;letter-spacing:-.08em;color:rgba(97,245,139,.12)}.error-main h1{max-width:760px;margin:18px 0;font-size:clamp(45px,7vw,82px);line-height:.96;letter-spacing:-.05em}.error-main>p:not(.section-kicker){max-width:650px;color:#9eb0a8;font-size:18px}.error-main .hero-actions{margin-top:24px}@media(max-width:640px){.error-main{padding:70px 20px}.error-code{font-size:120px}}
