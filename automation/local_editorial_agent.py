@@ -553,11 +553,11 @@ def render_article(article, number, date_iso, slug, topic=None, articles=None):
 <meta name="theme-color" content="#071018"/><meta name="description" content="{e(meta)}"/><meta name="robots" content="index,follow,max-image-preview:large"/>
 <title>{e(title)} - Próxima Era</title><link rel="canonical" href="{url}"/><meta property="og:type" content="article"/><meta property="og:locale" content="pt_BR"/><meta property="og:title" content="{e(title)}"/><meta property="og:description" content="{e(meta)}"/><meta property="og:url" content="{url}"/><meta property="og:image" content="{BASE_URL}/assets/og-proxima-era.webp"/><meta name="twitter:card" content="summary_large_image"/>
 <link rel="icon" href="../favicon.svg" type="image/svg+xml"/><link rel="stylesheet" href="../styles.css"/><script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script></head>
-<body class="inner-page local-article"><header class="inner-header"><a href="../index.html"><img src="../assets/logo-horizontal.svg" width="270" height="60" alt="Próxima Era"/></a><nav><a href="../index.html#projetos">Projetos</a><a href="../botucatu/">Botucatu</a><a href="../sinais/">Sinais</a><a href="../contato.html">Contato</a></nav></header>
+<body class="inner-page local-article" data-topic="{e(topic_id)}" data-guide="{number:03d}"><header class="inner-header"><a href="../index.html"><img src="../assets/logo-horizontal.svg" width="270" height="60" alt="Próxima Era"/></a><nav><a href="../index.html#projetos">Projetos</a><a href="../botucatu/">Botucatu</a><a href="../sinais/">Sinais</a><a href="../contato.html">Contato</a></nav></header>
 <main><article class="article-page"><a class="back-link" href="index.html">← Botucatu em modo digital</a><span class="section-kicker">GUIA LOCAL {number:03d} · {human_date}</span>{chip}<h1>{e(title)}</h1><p class="article-lead">{e(article['lead'])}</p>{''.join(sections)}
 <section class="local-checklist"><h2>Checklist para colocar em prática</h2><ul>{checklist}</ul></section><section class="local-faq"><h2>Perguntas frequentes</h2>{faq}</section>{source_section}{related}
 <section class="local-cta"><p class="section-kicker">PRÓXIMO PASSO</p><h2>{e(article['cta_title'])}</h2><p>{e(article['cta_text'])}</p><a class="button primary" href="{contact_href}">Conversar sobre meu negócio <span>→</span></a><small>Sem compromisso: conte o contexto e a Próxima Era ajuda a organizar o próximo passo.</small></section>
-<p class="local-byline">Conteúdo do Núcleo Editorial Local da Próxima Era · Botucatu/SP.</p></article></main><footer class="inner-footer"><span>Próxima Era · Botucatu/SP · CNPJ 68.964.484/0001-22</span><div><a href="../privacidade.html">Privacidade</a><a href="../termos.html">Termos</a><a href="../contato.html">Contato</a></div></footer></body></html>'''
+<p class="local-byline">Conteúdo do Núcleo Editorial Local da Próxima Era · Botucatu/SP.</p></article></main><footer class="inner-footer"><span>Próxima Era · Botucatu/SP · CNPJ 68.964.484/0001-22</span><div><a href="../privacidade.html">Privacidade</a><a href="../termos.html">Termos</a><a href="../contato.html">Contato</a></div></footer><script src="../analytics.js" defer></script></body></html>'''
 
 
 def article_meta(article, number, date_iso, slug, topic_id):
@@ -629,6 +629,11 @@ def refresh_article_navigation(articles):
         if topic.get("cluster_id") and "local-cluster-chip" not in text:
             chip = f'<a class="local-cluster-chip" href="index.html#cluster-{html.escape(topic["cluster_id"])}">{html.escape(topic.get("cluster_label", ""))}</a>'
             text = re.sub(r'(<span class="section-kicker">GUIA LOCAL .*?</span>)', r'\1' + chip, text, count=1, flags=re.S)
+        if 'data-topic=' not in text:
+            attrs = f' data-topic="{html.escape(item.get("topic_id", ""))}" data-guide="{int(item.get("number",0)):03d}"'
+            text = text.replace('<body class="inner-page local-article">', '<body class="inner-page local-article"' + attrs + '>', 1)
+        if '../analytics.js' not in text:
+            text = text.replace('</body></html>', '<script src="../analytics.js" defer></script></body></html>', 1)
         path.write_text(text, encoding="utf-8")
 
 
