@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import argparse
 import datetime as dt
 import json
 import os
@@ -11,7 +12,12 @@ ROOT=Path('/opt/proximaera-editorial')
 PUBLIC=ROOT/'public'
 PREVIEW=ROOT/'preview.html'
 STATE=ROOT/'state.json'
-TOPIC_ID='presenca-google'
+parser=argparse.ArgumentParser()
+parser.add_argument('--topic-id',required=True)
+args=parser.parse_args()
+TOPIC_ID=args.topic_id.strip()
+if not TOPIC_ID:
+    raise SystemExit('topic_id vazio')
 
 if not PREVIEW.exists():
     raise SystemExit('preview.html não encontrado')

@@ -92,7 +92,22 @@ def normalize_metadata(article):
     return article
 
 
-def quality_errors(article):
+def semantic_forbidden_hits(text):
+    patterns = [
+        r"\b\d{1,3}\s*%", r"\bIBGE\b", r"\bPrefeitura\b",
+        r"segundo (dados|pesquisa|levantamento)", r"de acordo com (dados|pesquisa|levantamento)",
+        r"Google My Business", r"primeiros resultados", r"melhorar (sua|a) posição",
+        r"garant(?:ir|e|ia|ido|ida).{0,55}(?:primeir[oa]s? resultados|ranking|posição|faturamento|receita|conversão)",
+        r"(?:primeir[oa]s? resultados|ranking|posição|faturamento|receita|conversão).{0,55}garant(?:ir|e|ia|ido|ida)",
+        r"aumentar (a )?conversão", r"Google (dá|da) preferência", r"rastre\w*.{0,40}chamad",
+        r"palavras-chave.{0,90}nome (?:da|do|de) (?:empresa|negócio)",
+        r"nome (?:da|do|de) (?:empresa|negócio).{0,90}palavras-chave",
+        r"número de e-mail", r"clicar diretamente em seu anúncio"
+    ]
+    return [pattern for pattern in patterns if re.search(pattern, text or "", flags=re.I)]
+
+
+def quality_errors(article, topic=None):
     errors = []
     text = all_text(article)
     title = article.get("title", "").strip()
@@ -117,19 +132,16 @@ def quality_errors(article):
         errors.append(f"texto deve ter 450 a 1200 palavras; recebeu {count_words}")
     if not 2 <= botucatu_count <= 8:
         errors.append(f"Botucatu deve aparecer naturalmente de 2 a 8 vezes; apareceu {botucatu_count}")
-    forbidden = [
-        r"\b\d{1,3}\s*%", r"\bIBGE\b", r"\bPrefeitura\b",
-        r"segundo (dados|pesquisa|levantamento)", r"de acordo com (dados|pesquisa|levantamento)",
-        r"Google My Business", r"primeiros resultados", r"melhorar (sua|a) posição",
-        r"garant(?:ir|e|ia|ido|ida).{0,55}(?:primeir[oa]s? resultados|ranking|posição|faturamento|receita|conversão)", r"(?:primeir[oa]s? resultados|ranking|posição|faturamento|receita|conversão).{0,55}garant(?:ir|e|ia|ido|ida)", r"aumentar (a )?conversão",
-        r"Google (dá|da) preferência", r"rastre\w*.{0,40}chamad",
-        r"palavras-chave.{0,90}nome (?:da|do|de) (?:empresa|negócio)",
-        r"nome (?:da|do|de) (?:empresa|negócio).{0,90}palavras-chave",
-        r"número de e-mail", r"clicar diretamente em seu anúncio"
-    ]
-    hits = [pattern for pattern in forbidden if re.search(pattern, text, flags=re.I)]
+    hits = semantic_forbidden_hits(text)
     if hits:
         errors.append("há afirmação ou prática proibida pelo gate factual: " + ", ".join(hits[:3]))
+    if topic:
+        topic_hits=[p for p in topic.get("forbid_patterns",[]) if re.search(p,text,flags=re.I)]
+        if topic_hits:
+            errors.append("conteúdo saiu do trilho da pauta: " + ", ".join(topic_hits[:3]))
+        missing=[c for c in topic.get("required_concepts",[]) if c.lower() not in text.lower()]
+        if missing:
+            errors.append("faltam conceitos obrigatórios da pauta: " + ", ".join(missing))
     if re.search(r"https?://", text, flags=re.I):
         errors.append("não inserir URLs externas dentro do texto gerado")
     generated_parts = []
@@ -174,6 +186,9 @@ Retorne SOMENTE JSON:
 
 def build_section_prompt(topic, article_title, heading, index, total):
     local_rule = "Mencione Botucatu no máximo uma vez nesta seção e somente se ajudar o contexto." if index in (1, 3) else "Não é necessário mencionar Botucatu nesta seção."
+    focus_rule = "Mantenha o foco estrito no tema da seção. Não transforme o texto em tutorial de SEO local ou Perfil da Empresa no Google." if topic.get("intent") != "local-seo" else "Mantenha o foco em SEO local responsável e nos fatos permitidos."
+    guidance_list = (topic.get("plan") or {}).get("section_guidance", [])
+    guidance = guidance_list[index-1] if index-1 < len(guidance_list) else "Siga estritamente o título da seção e não acrescente táticas ou fatos de plataforma não fornecidos."
     return f"""Você escreve uma seção de um guia prático da Próxima Era.
 Artigo: {article_title}
 Tema-base: {topic['title_hint']}
@@ -183,6 +198,8 @@ Público: microempresas, comércio, prestadores de serviço e profissionais de B
 
 Escreva EXATAMENTE 2 parágrafos, juntos com 90 a 140 palavras. Seja concreto, didático e aplicável.
 {local_rule}
+{focus_rule}
+Diretriz editorial obrigatória desta seção: {guidance}
 Use somente os fatos permitidos acima para afirmações sobre Google ou outras plataformas. Se um fato não estiver sustentado, transforme-o em sugestão prática ou omita.
 Nunca recomende inserir palavras-chave extras no nome real de uma empresa. Use “Perfil da Empresa no Google”, nunca “Google My Business”.
 Não diga que o Google “dá preferência”, rastreia chamadas automaticamente ou garante primeiros resultados.
@@ -232,6 +249,7 @@ def clean_generated_text(value):
     text = html.unescape(str(value or ""))
     text = re.sub(r"<[^>]+>", " ", text)
     text = text.replace("```html", " ").replace("```", " ")
+    text = re.sub(r"\bGoogle My Business\b", "Perfil da Empresa no Google", text, flags=re.I)
     text = re.sub(r"\s+", " ", text).strip(" \t\r\n'\"")
     return text
 
@@ -352,16 +370,24 @@ def topic_meta_description(topic):
 
 
 def generate_article(topic, recent_titles):
-    outline = None
-    for outline_attempt in range(1, 3):
-        log(f"planejando estrutura — tentativa {outline_attempt}")
-        outline = ask_ollama(build_outline_prompt(topic, recent_titles), num_predict=600, timeout=240, model=OUTLINE_MODEL)
-        headings = [str(x).strip() for x in outline.get("section_headings", []) if str(x).strip()]
-        if len(headings) == 5 and len(outline.get("checklist", [])) >= 5:
-            break
-        log(f"outline incompleto: {len(headings)} seções, {len(outline.get('checklist', []))} checklist")
+    plan = topic.get("plan") if isinstance(topic.get("plan"), dict) else None
+    if plan:
+        outline = plan
+        headings = [str(x).strip() for x in plan.get("section_headings", []) if str(x).strip()]
+        if len(headings) != 5 or len(plan.get("checklist", [])) < 5:
+            raise ValueError("plano editorial determinístico incompleto")
+        log("usando plano editorial determinístico")
     else:
-        raise ValueError("outline não atingiu a estrutura mínima")
+        outline = None
+        for outline_attempt in range(1, 3):
+            log(f"planejando estrutura — tentativa {outline_attempt}")
+            outline = ask_ollama(build_outline_prompt(topic, recent_titles), num_predict=600, timeout=240, model=OUTLINE_MODEL)
+            headings = [str(x).strip() for x in outline.get("section_headings", []) if str(x).strip()]
+            if len(headings) == 5 and len(outline.get("checklist", [])) >= 5:
+                break
+            log(f"outline incompleto: {len(headings)} seções, {len(outline.get('checklist', []))} checklist")
+        else:
+            raise ValueError("outline não atingiu a estrutura mínima")
     headings = [clean_local_heading(h) for h in headings]
     article = {
         "title": str(topic.get("title_hint") or "").strip(),
@@ -375,9 +401,21 @@ def generate_article(topic, recent_titles):
         "cta_text": clean_generated_text(outline.get("cta_text", "Organize uma ação por vez e acompanhe o que melhora no atendimento e na operação.")),
     }
     article = normalize_metadata(article)
-    article["faq"] = generate_faq(topic, article["title"])
+    planned_faq = normalize_faq(outline.get("faq", [])) if plan else []
+    article["faq"] = planned_faq if len(planned_faq) == 3 else generate_faq(topic, article["title"])
+    section_fallbacks = (plan or {}).get("section_fallbacks", [])
+    prefer_editorial_fallbacks = bool((plan or {}).get("prefer_editorial_fallbacks"))
     for idx, heading in enumerate(headings, 1):
         paragraphs = []
+        if prefer_editorial_fallbacks and idx-1 < len(section_fallbacks):
+            editorial_fallback = [clean_generated_text(x) for x in section_fallbacks[idx-1] if clean_generated_text(x)]
+            fallback_text = " ".join(editorial_fallback)
+            if len(editorial_fallback) == 2 and not semantic_forbidden_hits(fallback_text) and not any(re.search(p, fallback_text, flags=re.I) for p in topic.get("forbid_patterns", [])):
+                paragraphs = editorial_fallback
+                log(f"seção {idx} usando conteúdo editorial aprovado")
+        if paragraphs:
+            article["sections"].append({"heading": heading, "paragraphs": paragraphs})
+            continue
         fallback = []
         fallback_words = 0
         for section_attempt in range(1, 3):
@@ -385,7 +423,12 @@ def generate_article(topic, recent_titles):
             try:
                 section = ask_ollama(build_section_prompt(topic, article["title"], heading, idx, 5), num_predict=380, timeout=180)
                 candidate = normalize_section_paragraphs(section)
-                section_words = len(words(" ".join(candidate))) if candidate else 0
+                section_text = " ".join(candidate)
+                section_words = len(words(section_text)) if candidate else 0
+                section_hits = semantic_forbidden_hits(section_text) + [p for p in topic.get("forbid_patterns",[]) if re.search(p, section_text, flags=re.I)]
+                if section_hits:
+                    log(f"seção {idx} reprovada semanticamente: {', '.join(section_hits[:2])}")
+                    continue
                 if section_words > fallback_words:
                     fallback, fallback_words = candidate, section_words
                 if candidate and 65 <= section_words <= 190:
@@ -396,7 +439,13 @@ def generate_article(topic, recent_titles):
                 log(f"falha na seção {idx}, tentativa {section_attempt}: {exc}")
         if not paragraphs and fallback and fallback_words >= 50:
             paragraphs = fallback
-            log(f"seção {idx} aceita pelo fallback com {fallback_words} palavras")
+            log(f"seção {idx} aceita pelo melhor rascunho limpo com {fallback_words} palavras")
+        if not paragraphs and idx-1 < len(section_fallbacks):
+            editorial_fallback = [clean_generated_text(x) for x in section_fallbacks[idx-1] if clean_generated_text(x)]
+            fallback_text = " ".join(editorial_fallback)
+            if len(editorial_fallback) == 2 and not semantic_forbidden_hits(fallback_text) and not any(re.search(p, fallback_text, flags=re.I) for p in topic.get("forbid_patterns", [])):
+                paragraphs = editorial_fallback
+                log(f"seção {idx} usando fallback editorial aprovado")
         if not paragraphs:
             raise ValueError(f"seção {idx} não pôde ser normalizada")
         article["sections"].append({"heading": heading, "paragraphs": paragraphs})
@@ -505,11 +554,9 @@ def unique_slug(title, articles):
 
 def choose_topic(topics, state):
     used = set(state.get("used_topics", []))
-    available = [topic for topic in topics if topic["id"] not in used]
+    available = [topic for topic in topics if topic.get("autopublish") is True and topic["id"] not in used]
     if not available:
-        state["cycle"] = int(state.get("cycle", 1)) + 1
-        state["used_topics"] = []
-        available = topics[:]
+        raise RuntimeError("fila de autopublicação segura concluída; adicione novas pautas curadas")
     return available[0]
 
 
@@ -538,7 +585,7 @@ def main():
         try:
             log(f"gerando pauta {topic['id']} — pipeline estruturado, tentativa {attempt}")
             article = generate_article(topic, recent_titles)
-            errors = quality_errors(article)
+            errors = quality_errors(article, topic)
             if not errors:
                 break
             log("reprovado pelo quality gate: " + " | ".join(errors))
@@ -556,7 +603,7 @@ def main():
         raise SystemExit("artigo não atingiu o padrão editorial após 2 tentativas." + detail)
     number = int(state.get("next_number", 1))
     today = dt.datetime.now(ZoneInfo("America/Sao_Paulo")).date().isoformat()
-    slug = unique_slug(article["title"], articles)
+    slug = unique_slug(topic.get("slug_hint") or article["title"], articles)
     html_doc = render_article(article, number, today, slug)
     if args.dry_run:
         preview = ROOT / "preview.html"

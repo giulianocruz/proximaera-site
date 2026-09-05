@@ -1,0 +1,8 @@
+{
+  "status": "ok",
+  "last_run": "2026-09-05T16:50:20+00:00",
+  "model": "qwen2.5:3b",
+  "articles": 2,
+  "schedule": "segunda, quarta e sexta, 07:17 (America/Sao_Paulo)",
+  "next_number": 3
+}

@@ -30,13 +30,99 @@
   },
   {
     "id": "site-ou-instagram",
-    "title_hint": "Site ou Instagram: o que uma empresa de Botucatu realmente precisa para ser encontrada",
+    "title_hint": "Site ou Instagram para empresas de Botucatu: por onde começar?",
     "intent": "presenca-digital",
     "keywords": [
       "site em Botucatu",
       "Instagram comercial",
       "presença digital"
-    ]
+    ],
+    "plan": {
+      "lead": "Site e Instagram cumprem papéis diferentes. Para um pequeno negócio, a decisão mais útil não é escolher um vencedor, mas entender qual canal precisa ser a base da presença digital e qual funciona melhor como relacionamento e descoberta. O ponto de partida é organizar informação, contato e conteúdo de forma coerente.",
+      "section_headings": [
+        "Entenda o papel de cada canal",
+        "Use o site como base própria da empresa",
+        "Use o Instagram para relacionamento e descoberta",
+        "Combine os canais sem duplicar trabalho",
+        "Escolha o próximo passo pela necessidade do cliente"
+      ],
+      "checklist": [
+        "Liste as informações que o cliente precisa encontrar antes de entrar em contato.",
+        "Defina um endereço oficial na web para apresentar serviços, contato e informações estáveis.",
+        "Use o Instagram para conteúdo recorrente, bastidores e interação quando fizer sentido para o público.",
+        "Mantenha nome, telefone, links e proposta coerentes entre os canais.",
+        "Crie caminhos claros entre Instagram, site e atendimento.",
+        "Meça contatos e dúvidas recebidas antes de investir em novas ferramentas."
+      ],
+      "faq": [
+        {
+          "question": "Uma pequena empresa precisa ter site e Instagram?",
+          "answer": "Não existe uma combinação obrigatória para todos os negócios. O importante é ter pelo menos um canal estável com informações completas e um caminho simples de contato; outros canais devem ser adicionados quando houver capacidade de mantê-los."
+        },
+        {
+          "question": "O Instagram pode substituir totalmente um site?",
+          "answer": "Para alguns negócios ele pode ser suficiente em uma fase inicial, mas é uma plataforma de terceiros e organiza informação de forma diferente de um site. Uma página própria oferece mais controle sobre estrutura, conteúdo e caminhos de contato."
+        },
+        {
+          "question": "Por onde começar com pouco orçamento?",
+          "answer": "Comece pela informação essencial e pelo canal que você consegue manter atualizado. Uma página simples e clara, combinada com atendimento organizado, costuma ser mais útil do que vários canais abandonados."
+        }
+      ],
+      "cta_title": "Organize os canais antes de adicionar mais um",
+      "cta_text": "A Próxima Era pode ajudar a transformar site, redes e atendimento em uma presença digital mais simples de entender e manter.",
+      "section_guidance": [
+        "Explique que site e Instagram cumprem papéis diferentes. Não atribua faixas etárias, perfil demográfico, algoritmo ou alcance garantido a nenhum canal.",
+        "Apresente o site como canal próprio para informações estáveis, serviços, contato e conteúdo. Não invente métricas de velocidade, SEO ou conversão.",
+        "Apresente o Instagram como canal de conteúdo, relacionamento e descoberta. Não recomende hashtags, truques de algoritmo, funções específicas ou crescimento garantido.",
+        "Mostre como reaproveitar informação e criar links claros entre site, Instagram e atendimento. Não recomendar anúncios como solução padrão.",
+        "Ajude a escolher o próximo passo a partir das dúvidas e necessidades reais do cliente. Não desviar para Google, SEO local ou outras plataformas."
+      ],
+      "section_fallbacks": [
+        [
+          "Site e Instagram resolvem problemas diferentes. O site funciona bem como endereço próprio para reunir serviços, formas de contato e informações que precisam continuar fáceis de encontrar. O Instagram é mais adequado para conteúdo recorrente, conversa e acompanhamento do dia a dia da marca.",
+          "Para uma empresa de Botucatu, a escolha não precisa ser excludente. O melhor arranjo depende de onde surgem as dúvidas dos clientes, de quanto conteúdo a empresa consegue manter e de qual canal facilita o contato. Antes de abrir mais perfis, vale organizar o que já existe."
+        ],
+        [
+          "Um site dá à empresa controle sobre a forma de apresentar serviços, contato, localização de atendimento e conteúdos mais permanentes. Ele pode ser simples: poucas páginas bem organizadas costumam ser mais úteis do que uma estrutura grande e desatualizada.",
+          "Também é um bom lugar para concentrar informações que não deveriam depender de uma sequência de publicações. Quando alguém recebe uma indicação ou procura pela marca, uma página oficial ajuda a entender rapidamente o que a empresa faz e qual é o próximo passo para falar com ela."
+        ],
+        [
+          "O Instagram pode funcionar como espaço de relacionamento e descoberta quando a empresa tem assunto, rotina e disponibilidade para publicar. Bastidores, novidades, demonstrações e respostas a dúvidas podem aproximar a marca de quem já acompanha ou recebe uma indicação.",
+          "Isso não exige transformar a operação em uma produtora de conteúdo. É melhor manter uma frequência possível e informações coerentes do que abrir uma rotina que será abandonada. O perfil deve apontar com clareza para atendimento, site ou outro próximo passo definido pela empresa."
+        ],
+        [
+          "Os canais podem compartilhar a mesma base de informação sem exigir trabalho duplicado. Uma explicação de serviço publicada no site pode virar um resumo no Instagram; uma dúvida recorrente recebida nas redes pode indicar que uma página do site precisa ser melhorada.",
+          "O importante é criar caminhos claros entre os pontos de contato. Quem chega pelo Instagram precisa saber onde encontrar detalhes ou pedir orçamento. Quem chega pelo site pode ter acesso às redes quando quiser acompanhar novidades. Cada canal cumpre sua função sem competir com o outro."
+        ],
+        [
+          "A prioridade deve vir da necessidade do cliente e da capacidade da empresa de manter o canal atualizado. Se as pessoas não entendem os serviços, talvez uma página simples seja o primeiro passo. Se a informação já está organizada, mas falta contato recorrente, uma rede social pode ganhar importância.",
+          "Com pouco orçamento, escolha uma melhoria concreta por vez. Organize informações, facilite o contato e observe quais dúvidas continuam aparecendo. A presença digital fica mais útil quando cresce a partir de problemas reais do atendimento, e não apenas porque uma nova plataforma parece obrigatória."
+        ]
+      ],
+      "prefer_editorial_fallbacks": true
+    },
+    "meta_hint": "Site ou Instagram? Entenda o papel de cada canal e como uma empresa de Botucatu pode organizar presença digital, conteúdo e atendimento sem complicação.",
+    "forbid_patterns": [
+      "\\bmillennial",
+      "\\bjovens?\\b",
+      "menos de \\d+ segundos",
+      "\\bhashtags?\\b",
+      "função de .?Recomendar",
+      "anúncios? geolocalizados?",
+      "\\bgerar leads?\\b",
+      "aumentar (?:sua |a )?(?:visibilidade|vendas|audiência|seguidores|engajamento)",
+      "Perfil da Empresa no Google",
+      "Google Maps",
+      "\\bSEO local\\b"
+    ],
+    "required_concepts": [
+      "site",
+      "Instagram",
+      "canal",
+      "contato"
+    ],
+    "slug_hint": "site-ou-instagram-empresa-botucatu",
+    "autopublish": true
   },
   {
     "id": "whatsapp-organizado",
@@ -46,17 +132,137 @@
       "WhatsApp para empresas",
       "atendimento Botucatu",
       "automação"
-    ]
+    ],
+    "meta_hint": "Guia prático para pequenos negócios de Botucatu organizarem atendimento no WhatsApp, respostas, retornos e próximos passos sem complicar a operação.",
+    "slug_hint": "organizar-atendimento-whatsapp-botucatu",
+    "autopublish": true,
+    "plan": {
+      "lead": "O WhatsApp costuma concentrar dúvidas, pedidos e retornos de clientes. Para pequenos negócios de Botucatu, o ganho não está em responder tudo mais rápido a qualquer custo, mas em criar uma rotina simples para saber quem falou, o que precisa ser feito e quando retomar cada conversa.",
+      "section_headings": [
+        "Separe conversa de tarefa",
+        "Crie um padrão mínimo de atendimento",
+        "Registre o próximo passo de cada contato",
+        "Use automação apenas onde ela reduz repetição",
+        "Revise pendências antes de encerrar o dia"
+      ],
+      "section_fallbacks": [
+        [
+          "Uma conversa no WhatsApp pode parecer resolvida mesmo quando ainda existe algo a fazer. Separe o que é mensagem do que é tarefa: orçamento para enviar, documento para conferir, retorno prometido ou confirmação pendente. Essa distinção reduz esquecimentos sem exigir um sistema complexo.",
+          "Em um pequeno negócio de Botucatu, uma lista simples de pendências já pode ajudar. O importante é não depender apenas da posição da conversa na tela. Quando existe uma ação futura, registre essa ação em um lugar que possa ser revisado."
+        ],
+        [
+          "Defina um padrão curto para abertura, coleta de informações e encerramento. Isso não significa robotizar a conversa. Serve para evitar que perguntas essenciais sejam esquecidas quando o movimento aumenta ou quando mais de uma pessoa participa do atendimento.",
+          "Um bom padrão também deixa claro o que precisa ser confirmado antes de prometer prazo ou valor. Nome, necessidade, contexto e próximo passo costumam ser mais úteis do que respostas longas. A conversa continua humana, mas a operação ganha consistência."
+        ],
+        [
+          "Toda conversa relevante deveria terminar com um próximo passo explícito. Pode ser enviar proposta, aguardar documento, retornar em determinada data ou encerrar porque não há interesse neste momento. Sem essa definição, contatos importantes ficam misturados com mensagens já concluídas.",
+          "O registro pode começar em uma planilha, agenda ou CRM simples. Escolha poucas informações: cliente, assunto, responsável, data do próximo contato e situação. O objetivo é criar memória operacional, não preencher campos que ninguém usará."
+        ],
+        [
+          "Automação ajuda quando elimina trabalho repetitivo e previsível. Exemplos seguros são lembretes internos, organização de dados já fornecidos pelo cliente ou criação de rascunhos que ainda serão revisados por uma pessoa. Não automatize decisões comerciais importantes sem supervisão.",
+          "Comece pelo ponto mais repetitivo do fluxo e teste em pequena escala. Se a automação exigir mais manutenção do que economiza tempo, ela não está resolvendo o problema certo. Processo claro vem antes de ferramenta sofisticada."
+        ],
+        [
+          "Reserve alguns minutos no fim do expediente para revisar conversas com promessa de retorno, propostas abertas e dúvidas sem resposta. Uma rotina curta e frequente funciona melhor do que tentar reconstruir a semana inteira de memória na sexta-feira.",
+          "Também observe quais perguntas aparecem com frequência. Elas podem indicar que uma mensagem padrão precisa ser melhorada, que falta informação no site ou que o processo comercial está pedindo um formulário, página ou material de apoio."
+        ]
+      ],
+      "checklist": [
+        "Liste conversas que ainda exigem uma ação futura.",
+        "Defina um padrão mínimo para coletar informações importantes.",
+        "Registre responsável e data do próximo contato.",
+        "Separe contatos ativos de conversas encerradas.",
+        "Automatize apenas tarefas repetitivas e revisáveis.",
+        "Faça uma revisão diária curta das pendências."
+      ],
+      "faq": [
+        {
+          "question": "Preciso de um CRM para começar?",
+          "answer": "Não. Uma planilha ou agenda bem mantida pode ser suficiente no início. O CRM passa a fazer mais sentido quando o volume, a equipe ou o histórico começam a exigir mais organização."
+        },
+        {
+          "question": "Resposta automática resolve atendimento?",
+          "answer": "Ela pode ajudar em partes repetitivas, mas não substitui contexto, decisão e acompanhamento. Use automação como apoio e mantenha uma pessoa responsável pelo que exige julgamento."
+        },
+        {
+          "question": "Qual é o melhor indicador para acompanhar?",
+          "answer": "Comece pelo básico: quantos contatos aguardam retorno, quantos orçamentos estão abertos e há quanto tempo cada pendência está parada. Esses sinais ajudam a encontrar gargalos reais."
+        }
+      ],
+      "cta_title": "Organize o atendimento antes de adicionar mais ferramentas",
+      "cta_text": "A Próxima Era pode ajudar a transformar conversas, retornos e orçamentos em um fluxo simples de acompanhar.",
+      "prefer_editorial_fallbacks": true
+    }
   },
   {
     "id": "automacao-escritorio",
-    "title_hint": "Automações simples que pequenas empresas podem usar no dia a dia",
+    "title_hint": "Automações simples para pequenas empresas de Botucatu começarem pelo básico",
     "intent": "automacao",
     "keywords": [
       "automação empresarial",
       "pequenas empresas Botucatu",
       "produtividade"
-    ]
+    ],
+    "meta_hint": "Ideias simples de automação para pequenas empresas de Botucatu reduzirem tarefas repetitivas, organizar informações e ganhar previsibilidade no dia a dia.",
+    "slug_hint": "automacoes-simples-pequenas-empresas-botucatu",
+    "autopublish": true,
+    "plan": {
+      "lead": "Automação não precisa começar com um projeto grande. Para pequenas empresas de Botucatu, o melhor ponto de partida costuma ser uma tarefa repetitiva, previsível e fácil de revisar. O objetivo é reduzir retrabalho e esquecimento sem criar uma operação difícil de manter.",
+      "section_headings": [
+        "Escolha uma repetição que realmente incomoda",
+        "Padronize antes de automatizar",
+        "Comece por lembretes e organização de dados",
+        "Mantenha revisão humana nas decisões",
+        "Meça se a automação simplificou a rotina"
+      ],
+      "section_fallbacks": [
+        [
+          "Procure tarefas que se repetem quase do mesmo jeito: copiar dados de um formulário, lembrar um vencimento, organizar pedidos recebidos ou preparar uma mensagem de retorno. Uma boa primeira automação resolve um incômodo frequente e tem começo e fim claros.",
+          "Evite escolher processos raros ou confusos apenas porque parecem interessantes tecnicamente. Quanto mais simples for a regra, mais fácil será perceber se a automação está ajudando e corrigir quando algo mudar."
+        ],
+        [
+          "Se cada pessoa executa a tarefa de um jeito diferente, automatizar pode apenas acelerar a desorganização. Antes, descreva em poucas etapas o que entra no processo, o que precisa ser conferido e qual resultado deve sair.",
+          "Esse pequeno padrão já revela exceções que precisam continuar manuais. Uma automação saudável não tenta esconder as exceções; ela cuida do caminho repetitivo e deixa claro quando alguém precisa assumir."
+        ],
+        [
+          "Lembretes de vencimento, consolidação de respostas de formulários, organização de arquivos e criação de listas de acompanhamento são bons exemplos de automações de baixo risco. Elas ajudam a empresa a lembrar e ordenar informações sem tomar decisões por conta própria.",
+          "Para um negócio local, isso pode liberar tempo de atividades administrativas e reduzir dependência de memória. Ainda assim, mantenha um local claro para conferir o resultado e identificar rapidamente quando uma execução falhou."
+        ],
+        [
+          "Preço, aprovação de proposta, exceção financeira, compromisso com cliente e outras decisões relevantes merecem revisão humana. A automação pode trazer dados, preparar rascunho ou sinalizar uma pendência, mas não precisa assumir toda a responsabilidade.",
+          "Essa separação protege a operação de erros silenciosos. Quanto maior o impacto de uma decisão, mais importante é registrar quem revisou e qual foi o próximo passo."
+        ],
+        [
+          "Depois de alguns dias, compare a rotina antes e depois. A tarefa ficou mais curta? Houve menos esquecimento? Alguém passou a corrigir a automação constantemente? Essas perguntas valem mais do que simplesmente contar quantas execuções ocorreram.",
+          "Se o processo ficou mais difícil de entender, simplifique. Automação útil deve reduzir carga operacional e tornar o fluxo mais previsível. Quando isso não acontece, o problema pode estar no processo escolhido, não na ferramenta."
+        ]
+      ],
+      "checklist": [
+        "Escolha uma tarefa frequente e previsível.",
+        "Descreva o processo antes de automatizá-lo.",
+        "Defina onde o resultado será conferido.",
+        "Mantenha decisões de maior impacto sob revisão humana.",
+        "Registre falhas e exceções observadas.",
+        "Revise depois de alguns dias se houve ganho real de simplicidade."
+      ],
+      "faq": [
+        {
+          "question": "Preciso contratar um sistema grande para automatizar?",
+          "answer": "Não. Muitas rotinas podem começar com recursos já existentes, planilhas, formulários ou integrações pequenas. A ferramenta deve ser proporcional ao problema."
+        },
+        {
+          "question": "O que não devo automatizar primeiro?",
+          "answer": "Evite começar por processos raros, pouco definidos ou que envolvam decisões de alto impacto. Prefira tarefas repetitivas, fáceis de conferir e com regra clara."
+        },
+        {
+          "question": "Como saber se valeu a pena?",
+          "answer": "Observe se houve menos retrabalho, menos esquecimento e menos tempo gasto com a tarefa. Se a manutenção passou a consumir mais esforço que o processo antigo, revise a solução."
+        }
+      ],
+      "cta_title": "Escolha uma automação pequena e mensurável",
+      "cta_text": "A Próxima Era pode ajudar a mapear tarefas repetitivas e identificar quais delas merecem ser automatizadas primeiro.",
+      "prefer_editorial_fallbacks": true
+    }
   },
   {
     "id": "ia-comercio-servicos",
@@ -66,7 +272,67 @@
       "inteligência artificial Botucatu",
       "IA para empresas",
       "negócios locais"
-    ]
+    ],
+    "meta_hint": "Usos práticos de IA para comércio e serviços em Botucatu, com foco em rascunhos, organização, análise e apoio à rotina sem delegar decisões importantes.",
+    "slug_hint": "ia-comercio-servicos-botucatu",
+    "autopublish": true,
+    "plan": {
+      "lead": "Inteligência artificial pode ser útil sem virar o centro do negócio. Para comércio e serviços em Botucatu, os melhores usos iniciais costumam apoiar tarefas de texto, organização e análise, sempre com revisão humana. A pergunta mais útil não é “onde colocar IA?”, mas “qual tarefa já existe e pode ficar mais simples?”.",
+      "section_headings": [
+        "Use IA para rascunhos, não para decisões finais",
+        "Transforme informação solta em material organizado",
+        "Apoie atendimento sem perder contexto humano",
+        "Proteja dados antes de experimentar ferramentas",
+        "Crie uma rotina de revisão e aprendizado"
+      ],
+      "section_fallbacks": [
+        [
+          "A IA pode ajudar a preparar rascunhos de e-mails, descrições de serviços, respostas internas, checklists e ideias de conteúdo. O valor está em reduzir o tempo da primeira versão. Antes de enviar ou publicar, revise tom, fatos e adequação ao cliente.",
+          "Evite delegar à ferramenta decisões sobre preço, crédito, compromisso contratual ou qualquer situação que exija responsabilidade clara. Quanto maior o impacto da decisão, mais importante é a revisão de uma pessoa."
+        ],
+        [
+          "Notas de reunião, perguntas frequentes, informações de produtos e procedimentos internos podem ser transformados em resumos, listas e documentos mais fáceis de consultar. Isso ajuda quando o conhecimento existe, mas está espalhado em mensagens e arquivos.",
+          "Use a IA para organizar material que a empresa já possui, sem presumir que ela conhece detalhes do negócio. Depois, confira se nada importante foi omitido ou reinterpretado de forma incorreta."
+        ],
+        [
+          "No atendimento, a IA pode sugerir uma resposta ou resumir o histórico antes de alguém continuar a conversa. Isso é diferente de deixar o cliente falando com uma automação sem supervisão. A pessoa responsável continua avaliando contexto, exceções e prioridade.",
+          "Para um negócio de Botucatu, esse apoio pode ser especialmente útil quando o mesmo tipo de dúvida aparece várias vezes. O objetivo é ganhar consistência e memória, não esconder do cliente quando uma resposta exige análise real."
+        ],
+        [
+          "Antes de copiar informações para qualquer ferramenta, verifique se há dados pessoais, contratos, senhas, documentos de clientes ou informações confidenciais. Use apenas o mínimo necessário e prefira ambientes cuja política de uso seja conhecida pela empresa.",
+          "Uma boa prática é separar exemplos fictícios para testes e dados reais para operações já aprovadas. A facilidade de colar informação em uma caixa de texto não elimina a responsabilidade sobre o conteúdo enviado."
+        ],
+        [
+          "Registre quais tarefas estão sendo apoiadas por IA e onde apareceram erros ou retrabalho. Esse histórico ajuda a decidir se a ferramenta deve continuar, mudar de função ou ser retirada do processo.",
+          "A melhor implantação é gradual: uma tarefa, um responsável e um critério de revisão. Quando a equipe entende o limite da ferramenta, a IA deixa de ser novidade e passa a ocupar um papel operacional mais claro."
+        ]
+      ],
+      "checklist": [
+        "Escolha uma tarefa existente antes de escolher a ferramenta.",
+        "Use IA para rascunhos, organização ou apoio à análise.",
+        "Revise fatos e tom antes de usar a saída.",
+        "Não envie dados sensíveis sem uma política definida.",
+        "Mantenha decisões importantes sob responsabilidade humana.",
+        "Registre erros e ganhos para decidir se o uso deve continuar."
+      ],
+      "faq": [
+        {
+          "question": "A IA pode responder clientes sozinha?",
+          "answer": "Pode existir automação de atendimento, mas para um pequeno negócio é prudente começar com apoio à pessoa responsável. Casos com contexto, exceção ou compromisso comercial merecem revisão humana."
+        },
+        {
+          "question": "Posso colocar documentos de clientes em qualquer IA?",
+          "answer": "Não é uma boa regra. Antes de enviar qualquer documento, avalie confidencialidade, dados pessoais e a política da ferramenta. Use o mínimo de informação necessário."
+        },
+        {
+          "question": "Qual é um bom primeiro uso?",
+          "answer": "Rascunhos de textos, organização de anotações e criação de checklists são exemplos de baixo risco quando alguém revisa o resultado antes de usar."
+        }
+      ],
+      "cta_title": "Comece pela tarefa, não pela ferramenta",
+      "cta_text": "A Próxima Era pode ajudar a encontrar usos de IA que façam sentido para a rotina real da empresa, com limites e revisão definidos.",
+      "prefer_editorial_fallbacks": true
+    }
   },
   {
     "id": "checklist-digital",
@@ -76,7 +342,67 @@
       "prestadores de serviço Botucatu",
       "marketing local",
       "presença online"
-    ]
+    ],
+    "meta_hint": "Checklist prático para prestadores de serviço em Botucatu organizarem presença digital, atendimento, provas do trabalho e acompanhamento de contatos.",
+    "slug_hint": "checklist-digital-prestadores-servico-botucatu",
+    "autopublish": true,
+    "plan": {
+      "lead": "Um prestador de serviço não precisa estar em todos os canais. Precisa ser fácil de entender, encontrar e contatar. Para quem atende em Botucatu, este checklist ajuda a revisar o básico da presença digital e transformar canais soltos em uma experiência mais clara para o cliente.",
+      "section_headings": [
+        "Deixe claro o que você faz e para quem",
+        "Facilite contato e próximo passo",
+        "Mostre sinais reais do seu trabalho",
+        "Organize informações iguais em todos os canais",
+        "Crie uma rotina simples de acompanhamento"
+      ],
+      "section_fallbacks": [
+        [
+          "Em poucos segundos, uma pessoa deveria conseguir entender quais serviços você oferece, em que tipo de situação pode ajudar e como funciona o atendimento. Evite descrições genéricas que poderiam servir para qualquer profissional. Clareza costuma ser mais útil do que tentar parecer maior.",
+          "Para um prestador de Botucatu, também vale informar de forma objetiva a região atendida quando isso influencia o serviço. Não invente cobertura ou endereço apenas para parecer mais local; descreva a operação como ela realmente acontece."
+        ],
+        [
+          "Telefone, WhatsApp, formulário ou outro canal principal precisam estar fáceis de localizar. Se o cliente precisa procurar demais para saber como pedir orçamento, a presença digital está criando atrito em vez de ajudar.",
+          "Defina também o que acontece depois do primeiro contato. Pode ser pedir fotos, marcar uma visita, enviar medidas ou coletar algumas informações. Explicar esse próximo passo torna o atendimento mais previsível para os dois lados."
+        ],
+        [
+          "Fotos próprias, exemplos de trabalhos, depoimentos autorizados, perguntas frequentes e explicações de processo ajudam o cliente a entender como você trabalha. Use materiais reais e atualizados, sem criar resultados ou clientes fictícios.",
+          "Nem todo serviço precisa de um grande portfólio. Às vezes, três bons exemplos com contexto são mais úteis que dezenas de imagens sem explicação. Mostre o suficiente para reduzir dúvida e ajudar a pessoa a avaliar se o serviço combina com a necessidade dela."
+        ],
+        [
+          "Nome, telefone, descrição do serviço, links e região atendida devem permanecer coerentes entre site, redes sociais e outros canais oficiais. Divergências simples podem gerar insegurança ou fazer o cliente usar um contato antigo.",
+          "Crie uma pequena lista dos lugares onde a empresa aparece e revise quando algo mudar. Essa rotina é especialmente importante para telefone, endereço, horários e links, porque são informações que costumam ser copiadas de um canal para outro."
+        ],
+        [
+          "Uma vez por semana, revise contatos aguardando retorno, orçamentos em aberto, dúvidas recorrentes e páginas que precisam de atualização. Essa disciplina ajuda a presença digital a acompanhar a operação real em vez de ficar abandonada depois da criação.",
+          "Use as dúvidas dos clientes como fonte de melhoria. Se várias pessoas perguntam a mesma coisa, talvez falte uma explicação no site, uma mensagem padrão ou uma etapa melhor definida no atendimento. O conteúdo pode nascer da própria rotina comercial."
+        ]
+      ],
+      "checklist": [
+        "Explique claramente quais serviços você presta.",
+        "Informe como e onde o atendimento acontece.",
+        "Deixe um canal principal de contato fácil de encontrar.",
+        "Mostre exemplos reais ou informações que reduzam dúvidas.",
+        "Mantenha telefone, links e descrição coerentes entre os canais.",
+        "Revise semanalmente retornos, orçamentos e dúvidas recorrentes."
+      ],
+      "faq": [
+        {
+          "question": "Preciso estar em todas as redes sociais?",
+          "answer": "Não. É melhor manter poucos canais atualizados e úteis do que abrir vários perfis sem rotina. Escolha os canais que ajudam o cliente a entender e contatar você."
+        },
+        {
+          "question": "O que devo colocar em uma página de serviço?",
+          "answer": "Explique o problema atendido, o que está incluído, como funciona o próximo passo e como entrar em contato. Exemplos e perguntas frequentes podem ajudar quando forem reais e relevantes."
+        },
+        {
+          "question": "Como criar conteúdo sem ter assunto toda semana?",
+          "answer": "Observe dúvidas, objeções e situações que aparecem no atendimento. Muitas pautas úteis já estão nas perguntas que os próprios clientes fazem."
+        }
+      ],
+      "cta_title": "Transforme o básico digital em uma rotina",
+      "cta_text": "A Próxima Era pode ajudar a revisar os pontos de contato do seu serviço e organizar uma presença digital mais simples e consistente.",
+      "prefer_editorial_fallbacks": true
+    }
   },
   {
     "id": "site-converte",
