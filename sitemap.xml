@@ -57,7 +57,7 @@
   </url>
   <url>
     <loc>https://proximaera.com.br/projetos/sofia-labs.html</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>weekly</changefreq>
   </url>
   <url>
@@ -68,6 +68,16 @@
   <url>
     <loc>https://proximaera.com.br/sinais/ia-ferramenta-nao-identidade.html</loc>
     <lastmod>2026-09-04</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://proximaera.com.br/editorial/</loc>
+    <lastmod>2026-09-05</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>https://proximaera.com.br/projetos/nova-era-editora.html</loc>
+    <lastmod>2026-09-05</lastmod>
     <changefreq>monthly</changefreq>
   </url>
 </urlset>

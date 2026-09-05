@@ -3,6 +3,7 @@ const params = new URLSearchParams(location.search);
 const origem = params.get('origem') || '';
 const tema = params.get('tema') || '';
 const guia = params.get('guia') || '';
+const assunto = params.get('assunto') || '';
 const topicLabels = {
   'presenca-google':'presença local no Google','site-ou-instagram':'site e Instagram','whatsapp-organizado':'atendimento pelo WhatsApp',
   'automacao-escritorio':'automação da rotina','ia-comercio-servicos':'uso prático de IA','checklist-digital':'organização da presença digital',
@@ -25,6 +26,8 @@ function emailFallback(data) {
   const body = `Nome: ${data.name}\n${extras}E-mail: ${data.email}\n${context}\n${data.message}`;
   location.href = 'mailto:contato@proximaera.com.br?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 }
+if (form && assunto === 'editorial') { const select=form.querySelector('[name="subject"]'); if(select){ const option=[...select.options].find(o=>o.textContent==='Projeto editorial / publicação'); if(option) select.value=option.value; } }
+
 if (form && origem === 'botucatu') {
   const select = form.querySelector('[name="subject"]');
   const message = form.querySelector('[name="message"]');
