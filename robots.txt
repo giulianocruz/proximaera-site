@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://proximaera.com.br/sitemap.xml
+Sitemap: https://proximaera.com.br/botucatu/sitemap.xml

@@ -1,0 +1,201 @@
+[
+  {
+    "id": "presenca-google",
+    "title_hint": "Como um negócio local em Botucatu pode ser encontrado no Google sem depender só de anúncios",
+    "intent": "local-seo",
+    "keywords": [
+      "negócio local Botucatu",
+      "presença digital",
+      "Google"
+    ],
+    "grounding": [
+      "Use o nome atual Perfil da Empresa no Google; não use Google My Business.",
+      "O nome do Perfil da Empresa deve refletir o nome real usado de forma consistente no mundo real; não recomende inserir palavras-chave extras no nome.",
+      "Os resultados locais do Google se baseiam principalmente em relevância, distância e destaque/popularidade.",
+      "Informações comerciais completas e precisas aumentam a probabilidade de aparecer em pesquisas locais relevantes.",
+      "O Google informa que não é possível solicitar ou pagar por uma classificação local melhor.",
+      "Manter dados atualizados, responder avaliações e adicionar fotos ou vídeos são práticas recomendadas pelo Google."
+    ],
+    "sources": [
+      {
+        "title": "Dicas para melhorar sua classificação local no Google",
+        "url": "https://support.google.com/business/answer/7091?hl=pt-BR"
+      },
+      {
+        "title": "Diretrizes para representar sua empresa no Google",
+        "url": "https://support.google.com/business/answer/3038177?hl=pt-BR"
+      }
+    ],
+    "meta_hint": "Guia prático para negócios de Botucatu melhorarem a presença no Google com informações consistentes, conteúdo útil e SEO local, sem depender só de anúncios."
+  },
+  {
+    "id": "site-ou-instagram",
+    "title_hint": "Site ou Instagram: o que uma empresa de Botucatu realmente precisa para ser encontrada",
+    "intent": "presenca-digital",
+    "keywords": [
+      "site em Botucatu",
+      "Instagram comercial",
+      "presença digital"
+    ]
+  },
+  {
+    "id": "whatsapp-organizado",
+    "title_hint": "Como organizar o atendimento pelo WhatsApp sem perder oportunidades",
+    "intent": "atendimento",
+    "keywords": [
+      "WhatsApp para empresas",
+      "atendimento Botucatu",
+      "automação"
+    ]
+  },
+  {
+    "id": "automacao-escritorio",
+    "title_hint": "Automações simples que pequenas empresas podem usar no dia a dia",
+    "intent": "automacao",
+    "keywords": [
+      "automação empresarial",
+      "pequenas empresas Botucatu",
+      "produtividade"
+    ]
+  },
+  {
+    "id": "ia-comercio-servicos",
+    "title_hint": "IA para comércio e serviços em Botucatu: usos práticos sem complicação",
+    "intent": "ia-pratica",
+    "keywords": [
+      "inteligência artificial Botucatu",
+      "IA para empresas",
+      "negócios locais"
+    ]
+  },
+  {
+    "id": "checklist-digital",
+    "title_hint": "Checklist digital para prestadores de serviço em Botucatu",
+    "intent": "checklist",
+    "keywords": [
+      "prestadores de serviço Botucatu",
+      "marketing local",
+      "presença online"
+    ]
+  },
+  {
+    "id": "site-converte",
+    "title_hint": "O que um site de empresa local precisa ter para gerar contatos",
+    "intent": "site",
+    "keywords": [
+      "site profissional Botucatu",
+      "gerar contatos",
+      "conversão"
+    ]
+  },
+  {
+    "id": "perfil-google",
+    "title_hint": "Como melhorar o Perfil da Empresa no Google para uma operação local",
+    "intent": "local-seo",
+    "keywords": [
+      "Perfil da Empresa no Google",
+      "SEO local Botucatu",
+      "empresa local"
+    ]
+  },
+  {
+    "id": "processos-planilha",
+    "title_hint": "Quando a planilha deixa de ajudar e começa a atrapalhar a gestão",
+    "intent": "gestao",
+    "keywords": [
+      "gestão empresarial",
+      "automação de processos",
+      "pequenas empresas"
+    ]
+  },
+  {
+    "id": "catalogo-digital",
+    "title_hint": "Catálogo digital, página de vendas ou loja virtual: qual caminho faz sentido para um pequeno negócio",
+    "intent": "vendas-digitais",
+    "keywords": [
+      "catálogo digital",
+      "loja virtual Botucatu",
+      "vendas online"
+    ]
+  },
+  {
+    "id": "seguranca-basica",
+    "title_hint": "Segurança digital básica para pequenas empresas: o que organizar primeiro",
+    "intent": "seguranca",
+    "keywords": [
+      "segurança digital",
+      "pequenas empresas Botucatu",
+      "backup"
+    ]
+  },
+  {
+    "id": "medir-contatos",
+    "title_hint": "Como saber se seu site realmente está trazendo clientes e contatos",
+    "intent": "metricas",
+    "keywords": [
+      "métricas de site",
+      "leads",
+      "negócio local"
+    ]
+  },
+  {
+    "id": "google-maps",
+    "title_hint": "Por que aparecer bem no mapa importa para negócios que atendem em Botucatu",
+    "intent": "local-seo",
+    "keywords": [
+      "Google Maps Botucatu",
+      "SEO local",
+      "negócio local"
+    ]
+  },
+  {
+    "id": "conteudo-local",
+    "title_hint": "Conteúdo local: como uma empresa pode ser útil antes mesmo da primeira conversa",
+    "intent": "conteudo",
+    "keywords": [
+      "conteúdo local Botucatu",
+      "marketing de conteúdo",
+      "SEO"
+    ]
+  },
+  {
+    "id": "crm-simples",
+    "title_hint": "Um CRM simples pode evitar que oportunidades se percam no WhatsApp e na memória",
+    "intent": "gestao",
+    "keywords": [
+      "CRM pequenas empresas",
+      "vendas Botucatu",
+      "organização comercial"
+    ]
+  },
+  {
+    "id": "orcamento-digital",
+    "title_hint": "Como tornar pedidos de orçamento mais fáceis para quem encontra sua empresa online",
+    "intent": "conversao",
+    "keywords": [
+      "orçamento online",
+      "empresa Botucatu",
+      "conversão"
+    ]
+  },
+  {
+    "id": "reputacao-online",
+    "title_hint": "Reputação online para negócios locais: como organizar sinais de confiança",
+    "intent": "reputacao",
+    "keywords": [
+      "reputação online",
+      "avaliações",
+      "empresa local Botucatu"
+    ]
+  },
+  {
+    "id": "produto-digital-local",
+    "title_hint": "O que um negócio tradicional pode transformar em produto ou serviço digital",
+    "intent": "produtos-digitais",
+    "keywords": [
+      "produto digital",
+      "negócios Botucatu",
+      "novas receitas"
+    ]
+  }
+]

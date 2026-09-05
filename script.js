@@ -27,3 +27,29 @@ if ('IntersectionObserver' in window) {
   }), { threshold: 0.08 });
   items.forEach(el => observer.observe(el));
 } else items.forEach(el => el.classList.add('visible'));
+
+const localFeed = document.querySelector('#local-feed[data-feed]');
+if (localFeed) {
+  fetch(localFeed.dataset.feed, { cache: 'no-store' })
+    .then(response => response.ok ? response.json() : Promise.reject(new Error('feed indisponível')))
+    .then(feed => {
+      if (!Array.isArray(feed) || !feed.length) return;
+      localFeed.replaceChildren();
+      feed.slice(0, 3).forEach(item => {
+        const card = document.createElement('a');
+        card.className = 'local-feed-card';
+        card.href = item.url;
+        const label = document.createElement('span');
+        label.textContent = `GUIA LOCAL ${String(item.number).padStart(3, '0')} · BOTUCATU`;
+        const title = document.createElement('h3');
+        title.textContent = item.title;
+        const description = document.createElement('p');
+        description.textContent = item.description;
+        const action = document.createElement('b');
+        action.textContent = 'Ler guia →';
+        card.append(label, title, description, action);
+        localFeed.append(card);
+      });
+    })
+    .catch(() => {});
+}
