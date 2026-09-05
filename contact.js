@@ -60,10 +60,6 @@ form?.addEventListener('submit', async function(e) {
     if (!r.ok || !j.ok) throw new Error(j.error || 'Falha no envio');
     setStatus('Recebemos sua mensagem. O contato já entrou na nossa central comercial.', 'success');
     this.reset();
-    if (origem === 'botucatu') {
-      const message = this.querySelector('[name="message"]');
-      if (message) message.value = 'Contato enviado pelo guia local. Você pode enviar uma nova mensagem se precisar complementar.';
-    }
   } catch (error) {
     setStatus('A central não respondeu agora. Vamos abrir seu e-mail com a mensagem pronta para você não perder o contato.', 'warning');
     setTimeout(() => emailFallback(data), 450);
