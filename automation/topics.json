@@ -26,7 +26,10 @@
         "url": "https://support.google.com/business/answer/3038177?hl=pt-BR"
       }
     ],
-    "meta_hint": "Guia prático para negócios de Botucatu melhorarem a presença no Google com informações consistentes, conteúdo útil e SEO local, sem depender só de anúncios."
+    "meta_hint": "Guia prático para negócios de Botucatu melhorarem a presença no Google com informações consistentes, conteúdo útil e SEO local, sem depender só de anúncios.",
+    "cluster_id": "presenca-local",
+    "cluster_label": "Ser encontrado em Botucatu",
+    "cluster_intro": "Presença local, Google, mapa e conteúdo útil para quem precisa descobrir a empresa."
   },
   {
     "id": "site-ou-instagram",
@@ -122,7 +125,10 @@
       "contato"
     ],
     "slug_hint": "site-ou-instagram-empresa-botucatu",
-    "autopublish": true
+    "autopublish": true,
+    "cluster_id": "atendimento-vendas",
+    "cluster_label": "Transformar atenção em contato",
+    "cluster_intro": "Site, Instagram, WhatsApp e caminhos mais claros entre interesse, conversa e orçamento."
   },
   {
     "id": "whatsapp-organizado",
@@ -192,7 +198,10 @@
       "cta_title": "Organize o atendimento antes de adicionar mais ferramentas",
       "cta_text": "A Próxima Era pode ajudar a transformar conversas, retornos e orçamentos em um fluxo simples de acompanhar. O ponto de partida pode ser pequeno, desde que resolva uma dificuldade concreta e possa ser acompanhado.",
       "prefer_editorial_fallbacks": true
-    }
+    },
+    "cluster_id": "atendimento-vendas",
+    "cluster_label": "Transformar atenção em contato",
+    "cluster_intro": "Site, Instagram, WhatsApp e caminhos mais claros entre interesse, conversa e orçamento."
   },
   {
     "id": "automacao-escritorio",
@@ -262,7 +271,10 @@
       "cta_title": "Escolha uma automação pequena e mensurável",
       "cta_text": "A Próxima Era pode ajudar a mapear tarefas repetitivas e identificar quais delas merecem ser automatizadas primeiro. O ponto de partida pode ser pequeno, desde que resolva uma dificuldade concreta e possa ser acompanhado.",
       "prefer_editorial_fallbacks": true
-    }
+    },
+    "cluster_id": "operacao-inteligente",
+    "cluster_label": "Operar melhor com tecnologia",
+    "cluster_intro": "Automação, IA, processos e organização digital sem aumentar a complexidade."
   },
   {
     "id": "ia-comercio-servicos",
@@ -332,7 +344,10 @@
       "cta_title": "Comece pela tarefa, não pela ferramenta",
       "cta_text": "A Próxima Era pode ajudar a encontrar usos de IA que façam sentido para a rotina real da empresa, com limites e revisão definidos. O ponto de partida pode ser pequeno, desde que resolva uma dificuldade concreta e possa ser acompanhado.",
       "prefer_editorial_fallbacks": true
-    }
+    },
+    "cluster_id": "operacao-inteligente",
+    "cluster_label": "Operar melhor com tecnologia",
+    "cluster_intro": "Automação, IA, processos e organização digital sem aumentar a complexidade."
   },
   {
     "id": "checklist-digital",
@@ -402,7 +417,10 @@
       "cta_title": "Transforme o básico digital em uma rotina",
       "cta_text": "A Próxima Era pode ajudar a revisar os pontos de contato do seu serviço e organizar uma presença digital mais simples e consistente. O ponto de partida pode ser pequeno, desde que resolva uma dificuldade concreta e possa ser acompanhado.",
       "prefer_editorial_fallbacks": true
-    }
+    },
+    "cluster_id": "operacao-inteligente",
+    "cluster_label": "Operar melhor com tecnologia",
+    "cluster_intro": "Automação, IA, processos e organização digital sem aumentar a complexidade."
   },
   {
     "id": "site-converte",
@@ -478,7 +496,10 @@
       "cta_text": "A Próxima Era pode ajudar a revisar a estrutura de informação e os pontos de contato de uma presença digital local, começando pelo que mais reduz dúvida para o cliente.",
       "prefer_editorial_fallbacks": true
     },
-    "autopublish": true
+    "autopublish": true,
+    "cluster_id": "atendimento-vendas",
+    "cluster_label": "Transformar atenção em contato",
+    "cluster_intro": "Site, Instagram, WhatsApp e caminhos mais claros entre interesse, conversa e orçamento."
   },
   {
     "id": "perfil-google",
@@ -575,7 +596,10 @@
       "cta_text": "A Próxima Era pode ajudar a revisar presença local, consistência de informações e caminhos de contato sem prometer atalhos ou posições que nenhuma empresa controla.",
       "prefer_editorial_fallbacks": true
     },
-    "autopublish": true
+    "autopublish": true,
+    "cluster_id": "presenca-local",
+    "cluster_label": "Ser encontrado em Botucatu",
+    "cluster_intro": "Presença local, Google, mapa e conteúdo útil para quem precisa descobrir a empresa."
   },
   {
     "id": "processos-planilha",
@@ -651,7 +675,10 @@
       "cta_text": "A Próxima Era pode ajudar a mapear um processo administrativo e identificar onde simplicidade, automação ou uma ferramenta específica realmente fazem diferença.",
       "prefer_editorial_fallbacks": true
     },
-    "autopublish": true
+    "autopublish": true,
+    "cluster_id": "operacao-inteligente",
+    "cluster_label": "Operar melhor com tecnologia",
+    "cluster_intro": "Automação, IA, processos e organização digital sem aumentar a complexidade."
   },
   {
     "id": "catalogo-digital",
@@ -727,7 +754,10 @@
       "cta_text": "A Próxima Era pode ajudar a desenhar o caminho de compra antes de escolher plataforma, evitando uma estrutura maior do que o processo realmente precisa.",
       "prefer_editorial_fallbacks": true
     },
-    "autopublish": true
+    "autopublish": true,
+    "cluster_id": "atendimento-vendas",
+    "cluster_label": "Transformar atenção em contato",
+    "cluster_intro": "Site, Instagram, WhatsApp e caminhos mais claros entre interesse, conversa e orçamento."
   },
   {
     "id": "seguranca-basica",
@@ -814,7 +844,10 @@
       "cta_text": "A Próxima Era pode ajudar a mapear ativos, acessos e rotinas digitais para que a empresa enxergue primeiro os riscos mais simples de reduzir.",
       "prefer_editorial_fallbacks": true
     },
-    "autopublish": true
+    "autopublish": true,
+    "cluster_id": "confianca-seguranca",
+    "cluster_label": "Proteger e transmitir confiança",
+    "cluster_intro": "Segurança, consistência e sinais que ajudam a empresa a funcionar com menos risco."
   },
   {
     "id": "medir-contatos",
@@ -890,7 +923,10 @@
       "cta_text": "A Próxima Era pode ajudar a definir um conjunto pequeno de métricas que conecte site, atendimento e resultado comercial sem criar um relatório impossível de manter.",
       "prefer_editorial_fallbacks": true
     },
-    "autopublish": true
+    "autopublish": true,
+    "cluster_id": "atendimento-vendas",
+    "cluster_label": "Transformar atenção em contato",
+    "cluster_intro": "Site, Instagram, WhatsApp e caminhos mais claros entre interesse, conversa e orçamento."
   },
   {
     "id": "google-maps",
@@ -986,7 +1022,10 @@
       "cta_text": "A Próxima Era pode ajudar a revisar consistência entre mapa, site e atendimento para que a presença local represente o negócio como ele realmente funciona.",
       "prefer_editorial_fallbacks": true
     },
-    "autopublish": true
+    "autopublish": true,
+    "cluster_id": "presenca-local",
+    "cluster_label": "Ser encontrado em Botucatu",
+    "cluster_intro": "Presença local, Google, mapa e conteúdo útil para quem precisa descobrir a empresa."
   },
   {
     "id": "conteudo-local",
@@ -1062,7 +1101,10 @@
       "cta_text": "A Próxima Era pode ajudar a estruturar uma pauta local baseada nas dúvidas que a empresa já recebe, conectando conteúdo, presença digital e atendimento.",
       "prefer_editorial_fallbacks": true
     },
-    "autopublish": true
+    "autopublish": true,
+    "cluster_id": "presenca-local",
+    "cluster_label": "Ser encontrado em Botucatu",
+    "cluster_intro": "Presença local, Google, mapa e conteúdo útil para quem precisa descobrir a empresa."
   },
   {
     "id": "crm-simples",
@@ -1072,7 +1114,10 @@
       "CRM pequenas empresas",
       "vendas Botucatu",
       "organização comercial"
-    ]
+    ],
+    "cluster_id": "atendimento-vendas",
+    "cluster_label": "Transformar atenção em contato",
+    "cluster_intro": "Site, Instagram, WhatsApp e caminhos mais claros entre interesse, conversa e orçamento."
   },
   {
     "id": "orcamento-digital",
@@ -1082,7 +1127,10 @@
       "orçamento online",
       "empresa Botucatu",
       "conversão"
-    ]
+    ],
+    "cluster_id": "atendimento-vendas",
+    "cluster_label": "Transformar atenção em contato",
+    "cluster_intro": "Site, Instagram, WhatsApp e caminhos mais claros entre interesse, conversa e orçamento."
   },
   {
     "id": "reputacao-online",
@@ -1092,7 +1140,10 @@
       "reputação online",
       "avaliações",
       "empresa local Botucatu"
-    ]
+    ],
+    "cluster_id": "confianca-seguranca",
+    "cluster_label": "Proteger e transmitir confiança",
+    "cluster_intro": "Segurança, consistência e sinais que ajudam a empresa a funcionar com menos risco."
   },
   {
     "id": "produto-digital-local",
@@ -1102,6 +1153,9 @@
       "produto digital",
       "negócios Botucatu",
       "novas receitas"
-    ]
+    ],
+    "cluster_id": "operacao-inteligente",
+    "cluster_label": "Operar melhor com tecnologia",
+    "cluster_intro": "Automação, IA, processos e organização digital sem aumentar a complexidade."
   }
 ]

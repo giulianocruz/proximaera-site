@@ -7,6 +7,7 @@ import os
 import re
 import unicodedata
 import urllib.request
+from urllib.parse import quote_plus
 from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 from zoneinfo import ZoneInfo
@@ -453,82 +454,188 @@ def generate_article(topic, recent_titles):
     return normalize_local_repetition(article)
 
 
-def render_article(article, number, date_iso, slug):
+def topics_map():
+    return {t.get("id"): t for t in load_json(TOPICS_FILE, []) if t.get("id")}
+
+
+def related_markup(topic_id, articles, topic_map):
+    topic = topic_map.get(topic_id, {})
+    cluster_id = topic.get("cluster_id", "")
+    cluster_label = topic.get("cluster_label", "Continue explorando")
+    candidates = [a for a in articles if a.get("topic_id") != topic_id]
+    same = [a for a in candidates if topic_map.get(a.get("topic_id"), {}).get("cluster_id") == cluster_id]
+    rest = [a for a in candidates if a not in same]
+    chosen = sorted(same, key=lambda x: (x.get("date", ""), x.get("number", 0)), reverse=True)[:3]
+    for item in sorted(rest, key=lambda x: (x.get("date", ""), x.get("number", 0)), reverse=True):
+        if len(chosen) >= 3:
+            break
+        chosen.append(item)
+    links = "".join(
+        f'<a href="{html.escape(a["slug"])}.html"><span>GUIA LOCAL {int(a["number"]):03d}</span><strong>{html.escape(a["title"])}</strong></a>'
+        for a in chosen
+    )
+    cluster_link = (
+        f'<a class="local-cluster-link" href="index.html#cluster-{html.escape(cluster_id)}">Ver trilha: {html.escape(cluster_label)} →</a>'
+        if cluster_id else ""
+    )
+    return (
+        '<section class="local-related" data-related>'
+        '<p class="section-kicker">CONTINUE POR AQUI</p>'
+        '<h2>Próximos passos para aprofundar</h2>'
+        f'<div class="local-related-grid">{links}</div>{cluster_link}</section>'
+    )
+
+
+def render_article(article, number, date_iso, slug, topic=None, articles=None):
     e = html.escape
+    topic = topic or {}
+    articles = articles or []
+    topic_id = topic.get("id", "")
+    cluster_id = topic.get("cluster_id", "")
+    cluster_label = topic.get("cluster_label", "")
     url = f"{BASE_URL}/botucatu/{slug}.html"
     title = article["title"].strip()
     meta = article["meta_description"].strip()
+    article_schema = {
+        "@type": "Article", "headline": title, "description": meta,
+        "datePublished": date_iso, "dateModified": date_iso,
+        "author": {"@type": "Organization", "name": "Próxima Era"},
+        "publisher": {"@type": "Organization", "name": "Próxima Era", "logo": {"@type": "ImageObject", "url": f"{BASE_URL}/assets/logo-horizontal.svg"}},
+        "mainEntityOfPage": url,
+        "about": {"@type": "Place", "name": "Botucatu", "address": {"@type": "PostalAddress", "addressRegion": "SP", "addressCountry": "BR"}},
+    }
+    if cluster_label:
+        article_schema["articleSection"] = cluster_label
+    if article.get("sources"):
+        article_schema["citation"] = [src.get("url") for src in article["sources"] if src.get("url")]
     schema = {
         "@context": "https://schema.org",
         "@graph": [
-            {"@type": "Article", "headline": title, "description": meta, "datePublished": date_iso, "dateModified": date_iso,
-             "author": {"@type": "Organization", "name": "Próxima Era"},
-             "publisher": {"@type": "Organization", "name": "Próxima Era", "logo": {"@type": "ImageObject", "url": f"{BASE_URL}/assets/logo-horizontal.svg"}},
-             "mainEntityOfPage": url, "about": {"@type": "Place", "name": "Botucatu", "address": {"@type": "PostalAddress", "addressRegion": "SP", "addressCountry": "BR"}}},
-            {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": item["question"], "acceptedAnswer": {"@type": "Answer", "text": item["answer"]}} for item in article["faq"]]},
+            article_schema,
+            {"@type": "FAQPage", "mainEntity": [
+                {"@type": "Question", "name": item["question"], "acceptedAnswer": {"@type": "Answer", "text": item["answer"]}}
+                for item in article["faq"]
+            ]},
             {"@type": "BreadcrumbList", "itemListElement": [
                 {"@type": "ListItem", "position": 1, "name": "Próxima Era", "item": BASE_URL + "/"},
                 {"@type": "ListItem", "position": 2, "name": "Botucatu em modo digital", "item": BASE_URL + "/botucatu/"},
-                {"@type": "ListItem", "position": 3, "name": title, "item": url}]}
-        ]
+                {"@type": "ListItem", "position": 3, "name": title, "item": url},
+            ]},
+        ],
     }
-    if article.get("sources"):
-        schema["@graph"][0]["citation"] = [src.get("url") for src in article["sources"] if src.get("url")]
     sections = []
     for section in article["sections"]:
         paragraphs = "".join(f"<p>{e(p)}</p>" for p in section["paragraphs"])
         sections.append(f"<h2>{e(section['heading'])}</h2>{paragraphs}")
     checklist = "".join(f"<li>{e(item)}</li>" for item in article["checklist"])
-    faq = "".join(f"<details><summary>{e(item['question'])}</summary><p>{e(item['answer'])}</p></details>" for item in article["faq"])
-    source_items = "".join(f'<li><a href="{e(src.get("url", ""))}" rel="noopener noreferrer">{e(src.get("title", "Fonte oficial"))}</a></li>' for src in article.get("sources", []) if src.get("url"))
-    source_section = f'<section class="local-sources"><h2>Fontes oficiais consultadas</h2><ul>{source_items}</ul><p>As fontes sustentam as afirmações factuais sobre plataformas; as recomendações práticas são editoriais da Próxima Era.</p></section>' if source_items else ""
+    faq = "".join(
+        f"<details><summary>{e(item['question'])}</summary><p>{e(item['answer'])}</p></details>"
+        for item in article["faq"]
+    )
+    source_items = "".join(
+        f'<li><a href="{e(src.get("url", ""))}" rel="noopener noreferrer">{e(src.get("title", "Fonte oficial"))}</a></li>'
+        for src in article.get("sources", []) if src.get("url")
+    )
+    source_section = (
+        f'<section class="local-sources"><h2>Fontes oficiais consultadas</h2><ul>{source_items}</ul>'
+        '<p>As fontes sustentam as afirmações factuais sobre plataformas; as recomendações práticas são editoriais da Próxima Era.</p></section>'
+        if source_items else ""
+    )
     human_date = dt.date.fromisoformat(date_iso).strftime("%d.%m.%Y")
-    return f'''<!doctype html>
-<html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
+    topic_map = topics_map()
+    related = related_markup(topic_id, articles, topic_map)
+    chip = (
+        f'<a class="local-cluster-chip" href="index.html#cluster-{e(cluster_id)}">{e(cluster_label)}</a>'
+        if cluster_id else ""
+    )
+    contact_href = f'../contato.html?origem=botucatu&tema={quote_plus(topic_id)}&guia={number:03d}'
+    return f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
 <meta name="theme-color" content="#071018"/><meta name="description" content="{e(meta)}"/><meta name="robots" content="index,follow,max-image-preview:large"/>
-<title>{e(title)} — Próxima Era</title><link rel="canonical" href="{url}"/><meta property="og:type" content="article"/><meta property="og:locale" content="pt_BR"/>
-<meta property="og:title" content="{e(title)}"/><meta property="og:description" content="{e(meta)}"/><meta property="og:url" content="{url}"/>
-<meta property="og:image" content="{BASE_URL}/assets/og-proxima-era.webp"/><meta name="twitter:card" content="summary_large_image"/>
-<link rel="icon" href="../favicon.svg" type="image/svg+xml"/><link rel="stylesheet" href="../styles.css"/>
-<script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script></head>
-<body class="inner-page local-article"><header class="inner-header"><a href="../index.html"><img src="../assets/logo-horizontal.svg" width="270" height="60" alt="Próxima Era"/></a>
-<nav><a href="../index.html#projetos">Projetos</a><a href="../botucatu/">Botucatu</a><a href="../sinais/">Sinais</a><a href="../contato.html">Contato</a></nav></header>
-<main><article class="article-page"><a class="back-link" href="index.html">← Botucatu em modo digital</a><span class="section-kicker">GUIA LOCAL {number:03d} · {human_date}</span>
-<h1>{e(title)}</h1><p class="article-lead">{e(article['lead'])}</p>{''.join(sections)}
-<section class="local-checklist"><h2>Checklist para colocar em prática</h2><ul>{checklist}</ul></section>
-<section class="local-faq"><h2>Perguntas frequentes</h2>{faq}</section>{source_section}
-<section class="local-cta"><p class="section-kicker">PRÓXIMO PASSO</p><h2>{e(article['cta_title'])}</h2><p>{e(article['cta_text'])}</p><a class="button primary" href="../contato.html">Falar com a Próxima Era <span>→</span></a></section>
-<p class="local-byline">Conteúdo do Núcleo Editorial Local da Próxima Era · Botucatu/SP.</p></article></main>
-<footer class="inner-footer"><span>Próxima Era · Botucatu/SP · CNPJ 68.964.484/0001-22</span><div><a href="../privacidade.html">Privacidade</a><a href="../termos.html">Termos</a><a href="../contato.html">Contato</a></div></footer></body></html>'''
+<title>{e(title)} - Próxima Era</title><link rel="canonical" href="{url}"/><meta property="og:type" content="article"/><meta property="og:locale" content="pt_BR"/><meta property="og:title" content="{e(title)}"/><meta property="og:description" content="{e(meta)}"/><meta property="og:url" content="{url}"/><meta property="og:image" content="{BASE_URL}/assets/og-proxima-era.webp"/><meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" href="../favicon.svg" type="image/svg+xml"/><link rel="stylesheet" href="../styles.css"/><script type="application/ld+json">{json.dumps(schema, ensure_ascii=False)}</script></head>
+<body class="inner-page local-article"><header class="inner-header"><a href="../index.html"><img src="../assets/logo-horizontal.svg" width="270" height="60" alt="Próxima Era"/></a><nav><a href="../index.html#projetos">Projetos</a><a href="../botucatu/">Botucatu</a><a href="../sinais/">Sinais</a><a href="../contato.html">Contato</a></nav></header>
+<main><article class="article-page"><a class="back-link" href="index.html">← Botucatu em modo digital</a><span class="section-kicker">GUIA LOCAL {number:03d} · {human_date}</span>{chip}<h1>{e(title)}</h1><p class="article-lead">{e(article['lead'])}</p>{''.join(sections)}
+<section class="local-checklist"><h2>Checklist para colocar em prática</h2><ul>{checklist}</ul></section><section class="local-faq"><h2>Perguntas frequentes</h2>{faq}</section>{source_section}{related}
+<section class="local-cta"><p class="section-kicker">PRÓXIMO PASSO</p><h2>{e(article['cta_title'])}</h2><p>{e(article['cta_text'])}</p><a class="button primary" href="{contact_href}">Conversar sobre meu negócio <span>→</span></a><small>Sem compromisso: conte o contexto e a Próxima Era ajuda a organizar o próximo passo.</small></section>
+<p class="local-byline">Conteúdo do Núcleo Editorial Local da Próxima Era · Botucatu/SP.</p></article></main><footer class="inner-footer"><span>Próxima Era · Botucatu/SP · CNPJ 68.964.484/0001-22</span><div><a href="../privacidade.html">Privacidade</a><a href="../termos.html">Termos</a><a href="../contato.html">Contato</a></div></footer></body></html>'''
 
 
 def article_meta(article, number, date_iso, slug, topic_id):
-    return {"number": number, "date": date_iso, "slug": slug, "topic_id": topic_id,
-            "title": article["title"].strip(), "description": article["meta_description"].strip(),
-            "url": f"{BASE_URL}/botucatu/{slug}.html"}
+    topic = topics_map().get(topic_id, {})
+    return {
+        "number": number, "date": date_iso, "slug": slug, "topic_id": topic_id,
+        "title": article["title"].strip(), "description": article["meta_description"].strip(),
+        "url": f"{BASE_URL}/botucatu/{slug}.html",
+        "cluster_id": topic.get("cluster_id", ""), "cluster_label": topic.get("cluster_label", ""),
+    }
 
 
 def render_index(articles):
-    rows = []
-    for item in sorted(articles, key=lambda x: (x["date"], x["number"]), reverse=True):
-        date_human = dt.date.fromisoformat(item["date"]).strftime("%d.%m.%Y")
-        rows.append(f'<a href="{html.escape(item["slug"])}.html" class="article-row"><span>{date_human} · GUIA LOCAL {item["number"]:03d}</span><h2>{html.escape(item["title"])}</h2><p>{html.escape(item["description"])}</p><b>Ler guia →</b></a>')
+    topic_map = topics_map()
+    order = ["presenca-local", "atendimento-vendas", "operacao-inteligente", "confianca-seguranca"]
+    groups = {cid: [] for cid in order}
+    for item in articles:
+        cid = topic_map.get(item.get("topic_id"), {}).get("cluster_id", "")
+        if cid in groups:
+            groups[cid].append(item)
+    active = [cid for cid in order if groups[cid]]
+    cards, sections = [], []
+    for cid in active:
+        topic = next((t for t in topic_map.values() if t.get("cluster_id") == cid), {})
+        label = topic.get("cluster_label", cid)
+        intro = topic.get("cluster_intro", "")
+        cards.append(
+            f'<a class="local-cluster-card" href="#cluster-{html.escape(cid)}"><span>{len(groups[cid])} guia(s)</span>'
+            f'<strong>{html.escape(label)}</strong><p>{html.escape(intro)}</p><b>Explorar trilha →</b></a>'
+        )
+        rows = []
+        for item in sorted(groups[cid], key=lambda x: (x["date"], x["number"]), reverse=True):
+            date_human = dt.date.fromisoformat(item["date"]).strftime("%d.%m.%Y")
+            rows.append(
+                f'<a href="{html.escape(item["slug"])}.html" class="article-row"><span>{date_human} · GUIA LOCAL {item["number"]:03d}</span>'
+                f'<h3>{html.escape(item["title"])}</h3><p>{html.escape(item["description"])}</p><b>Ler guia →</b></a>'
+            )
+        sections.append(
+            f'<section class="local-cluster-section" id="cluster-{html.escape(cid)}">'
+            f'<div class="local-cluster-head"><p class="section-kicker">TRILHA</p><h2>{html.escape(label)}</h2><p>{html.escape(intro)}</p></div>'
+            f'<div class="article-list">{"".join(rows)}</div></section>'
+        )
     return f'''<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/>
-<meta name="theme-color" content="#071018"/><meta name="description" content="Guias práticos da Próxima Era para presença digital, automação, IA e negócios locais em Botucatu e região."/>
-<title>Botucatu em modo digital — Próxima Era</title><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href="{BASE_URL}/botucatu/"/>
-<meta property="og:type" content="website"/><meta property="og:title" content="Botucatu em modo digital — Próxima Era"/><meta property="og:description" content="Tecnologia aplicada ao dia a dia de negócios locais."/>
-<meta property="og:url" content="{BASE_URL}/botucatu/"/><meta property="og:image" content="{BASE_URL}/assets/og-proxima-era.webp"/><meta name="twitter:card" content="summary_large_image"/>
-<link rel="icon" href="../favicon.svg" type="image/svg+xml"/><link rel="stylesheet" href="../styles.css"/></head><body class="inner-page local-hub">
+<meta name="theme-color" content="#071018"/><meta name="description" content="Guias práticos da Próxima Era para presença digital, automação, IA e negócios locais em Botucatu e região."/><title>Botucatu em modo digital - Próxima Era</title><meta name="robots" content="index,follow,max-image-preview:large"/><link rel="canonical" href="{BASE_URL}/botucatu/"/>
+<meta property="og:type" content="website"/><meta property="og:title" content="Botucatu em modo digital - Próxima Era"/><meta property="og:description" content="Tecnologia aplicada ao dia a dia de negócios locais."/><meta property="og:url" content="{BASE_URL}/botucatu/"/><meta property="og:image" content="{BASE_URL}/assets/og-proxima-era.webp"/><meta name="twitter:card" content="summary_large_image"/><link rel="icon" href="../favicon.svg" type="image/svg+xml"/><link rel="stylesheet" href="../styles.css"/></head><body class="inner-page local-hub">
 <header class="inner-header"><a href="../index.html"><img src="../assets/logo-horizontal.svg" width="270" height="60" alt="Próxima Era"/></a><nav><a href="../index.html#projetos">Projetos</a><a href="../botucatu/">Botucatu</a><a href="../sinais/">Sinais</a><a href="../contato.html">Contato</a></nav></header>
-<main><section class="inner-hero"><p class="section-kicker">BOTUCATU EM MODO DIGITAL</p><h1>Tecnologia útil para negócios daqui.</h1><p>Guias práticos sobre presença digital, automação, inteligência artificial, atendimento e organização para empresas e profissionais de Botucatu e região.</p></section>
-<section class="local-principles"><div><strong>LOCAL</strong><span>Contexto de quem atende e vende na região.</span></div><div><strong>PRÁTICO</strong><span>Ações aplicáveis, sem jargão desnecessário.</span></div><div><strong>SEM INVENÇÃO</strong><span>Sem estatísticas locais ou promessas sem fonte.</span></div></section>
-<section class="article-list">{''.join(rows) if rows else '<p class="local-empty">Primeiro guia em preparação. Sinal recebido.</p>'}</section></main>
+<main><section class="inner-hero"><p class="section-kicker">BOTUCATU EM MODO DIGITAL</p><h1>Tecnologia útil para negócios daqui.</h1><p>Escolha o problema que mais se parece com o seu momento e siga uma trilha prática. O conteúdo nasce da realidade de pequenos negócios, sem promessa fácil e sem jargão desnecessário.</p></section>
+<section class="local-principles"><div><strong>LOCAL</strong><span>Contexto de quem atende e vende na região.</span></div><div><strong>PRÁTICO</strong><span>Decisões e rotinas que cabem em operações pequenas.</span></div><div><strong>SEM INVENÇÃO</strong><span>Fatos de plataformas só entram quando há fonte.</span></div></section>
+<section class="local-cluster-grid">{"".join(cards)}</section>{"".join(sections)}
+<section class="local-diagnostic"><p class="section-kicker">NÃO SABE POR ONDE COMEÇAR?</p><h2>Conte onde sua operação está travando.</h2><p>Site, atendimento, Google, automação ou organização interna: descreva o problema em poucas linhas. A conversa começa pelo contexto, não por um pacote pronto.</p><a class="button primary" href="../contato.html?origem=botucatu&tema=diagnostico">Quero organizar o próximo passo →</a></section></main>
 <footer class="inner-footer"><span>Próxima Era · Botucatu/SP · CNPJ 68.964.484/0001-22</span><div><a href="../privacidade.html">Privacidade</a><a href="../termos.html">Termos</a><a href="../contato.html">Contato</a></div></footer></body></html>'''
+
+
+def refresh_article_navigation(articles):
+    topic_map = topics_map()
+    for item in articles:
+        path = PUBLIC / f'{item["slug"]}.html'
+        if not path.exists():
+            continue
+        text = path.read_text(encoding="utf-8")
+        topic = topic_map.get(item.get("topic_id"), {})
+        related = related_markup(item.get("topic_id", ""), articles, topic_map)
+        if re.search(r'<section class="local-related" data-related>.*?</section>', text, flags=re.S):
+            text = re.sub(r'<section class="local-related" data-related>.*?</section>', related, text, flags=re.S)
+        else:
+            text = text.replace('<section class="local-cta">', related + '<section class="local-cta">', 1)
+        href = f'../contato.html?origem=botucatu&tema={quote_plus(item.get("topic_id", ""))}&guia={int(item.get("number", 0)):03d}'
+        text = text.replace('href="../contato.html">Falar com a Próxima Era', f'href="{href}">Conversar sobre meu negócio')
+        if topic.get("cluster_id") and "local-cluster-chip" not in text:
+            chip = f'<a class="local-cluster-chip" href="index.html#cluster-{html.escape(topic["cluster_id"])}">{html.escape(topic.get("cluster_label", ""))}</a>'
+            text = re.sub(r'(<span class="section-kicker">GUIA LOCAL .*?</span>)', r'\1' + chip, text, count=1, flags=re.S)
+        path.write_text(text, encoding="utf-8")
 
 
 def write_public_indexes(articles, state):
     PUBLIC.mkdir(parents=True, exist_ok=True)
     (PUBLIC / "index.html").write_text(render_index(articles), encoding="utf-8")
+    refresh_article_navigation(articles)
     feed = [{"title": a["title"], "description": a["description"], "url": a["url"], "date": a["date"], "number": a["number"]} for a in sorted(articles, key=lambda x: (x["date"], x["number"]), reverse=True)[:12]]
     save_json(PUBLIC / "feed.json", feed)
     rss_items = "".join(f"<item><title>{xml_escape(a['title'])}</title><link>{a['url']}</link><guid>{a['url']}</guid><pubDate>{dt.datetime.fromisoformat(a['date']+'T12:00:00+00:00').strftime('%a, %d %b %Y %H:%M:%S +0000')}</pubDate><description>{xml_escape(a['description'])}</description></item>" for a in feed)
@@ -605,7 +712,7 @@ def main():
     number = int(state.get("next_number", 1))
     today = dt.datetime.now(ZoneInfo("America/Sao_Paulo")).date().isoformat()
     slug = unique_slug(topic.get("slug_hint") or article["title"], articles)
-    html_doc = render_article(article, number, today, slug)
+    html_doc = render_article(article, number, today, slug, topic, articles)
     if args.dry_run:
         preview = ROOT / "preview.html"
         preview.write_text(html_doc, encoding="utf-8")
