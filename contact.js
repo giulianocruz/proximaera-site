@@ -23,7 +23,7 @@ function emailFallback(data) {
   const context = data.origem ? `\nOrigem: ${data.origem}${data.guia ? ` / Guia ${data.guia}` : ''}${data.tema ? ` / ${data.tema}` : ''}\n` : '';
   const extras = `${data.company ? `Empresa: ${data.company}\n` : ''}${data.phone ? `Telefone: ${data.phone}\n` : ''}`;
   const body = `Nome: ${data.name}\n${extras}E-mail: ${data.email}\n${context}\n${data.message}`;
-  location.href = 'mailto:proximaeradigital@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  location.href = 'mailto:contato@proximaera.com.br?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 }
 if (form && origem === 'botucatu') {
   const select = form.querySelector('[name="subject"]');

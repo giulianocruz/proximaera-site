@@ -7,7 +7,7 @@ Landing page inicial da marca **Próxima Era**, criada a partir da identidade ap
 - Site estático e responsivo.
 - Sem dependências, build ou serviços pagos.
 - Logo e mascote são desenhados em CSS/SVG para manter o projeto leve.
-- Contato provisório: `proximaeradigital@gmail.com`.
+- Contato provisório: `contato@proximaera.com.br`.
 - Domínio definitivo: `proximaera.com.br`.
 
 ## Arquivos
