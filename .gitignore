@@ -1,2 +1,5 @@
 ﻿
 preview-*.png
+
+automation/__pycache__/
+*.pyc
