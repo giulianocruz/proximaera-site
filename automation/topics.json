@@ -137,7 +137,7 @@
     "slug_hint": "organizar-atendimento-whatsapp-botucatu",
     "autopublish": true,
     "plan": {
-      "lead": "O WhatsApp costuma concentrar dúvidas, pedidos e retornos de clientes. Para pequenos negócios de Botucatu, o ganho não está em responder tudo mais rápido a qualquer custo, mas em criar uma rotina simples para saber quem falou, o que precisa ser feito e quando retomar cada conversa.",
+      "lead": "O WhatsApp costuma concentrar dúvidas, pedidos e retornos de clientes. Para pequenos negócios de Botucatu, o ganho não está em responder tudo mais rápido a qualquer custo, mas em criar uma rotina simples para saber quem falou, o que precisa ser feito e quando retomar cada conversa. O foco é criar uma operação que continue funcionando quando o movimento aumenta, sem perder clareza para o cliente nem controle para quem atende.",
       "section_headings": [
         "Separe conversa de tarefa",
         "Crie um padrão mínimo de atendimento",
@@ -147,24 +147,24 @@
       ],
       "section_fallbacks": [
         [
-          "Uma conversa no WhatsApp pode parecer resolvida mesmo quando ainda existe algo a fazer. Separe o que é mensagem do que é tarefa: orçamento para enviar, documento para conferir, retorno prometido ou confirmação pendente. Essa distinção reduz esquecimentos sem exigir um sistema complexo.",
-          "Em um pequeno negócio de Botucatu, uma lista simples de pendências já pode ajudar. O importante é não depender apenas da posição da conversa na tela. Quando existe uma ação futura, registre essa ação em um lugar que possa ser revisado."
+          "Uma conversa no WhatsApp pode parecer resolvida mesmo quando ainda existe algo a fazer. Separe o que é mensagem do que é tarefa: orçamento para enviar, documento para conferir, retorno prometido ou confirmação pendente. Essa distinção reduz esquecimentos sem exigir um sistema complexo. Na prática, isso evita o clássico cenário em que o cliente recebeu uma resposta rápida, mas o orçamento, a confirmação ou o retorno combinado nunca aconteceu.",
+          "Em um pequeno negócio de Botucatu, uma lista simples de pendências já pode ajudar. O importante é não depender apenas da posição da conversa na tela. Quando existe uma ação futura, registre essa ação em um lugar que possa ser revisado. O ganho aparece quando qualquer pendência pode ser localizada sem depender de lembrar em qual conversa ela ficou escondida."
         ],
         [
-          "Defina um padrão curto para abertura, coleta de informações e encerramento. Isso não significa robotizar a conversa. Serve para evitar que perguntas essenciais sejam esquecidas quando o movimento aumenta ou quando mais de uma pessoa participa do atendimento.",
-          "Um bom padrão também deixa claro o que precisa ser confirmado antes de prometer prazo ou valor. Nome, necessidade, contexto e próximo passo costumam ser mais úteis do que respostas longas. A conversa continua humana, mas a operação ganha consistência."
+          "Defina um padrão curto para abertura, coleta de informações e encerramento. Isso não significa robotizar a conversa. Serve para evitar que perguntas essenciais sejam esquecidas quando o movimento aumenta ou quando mais de uma pessoa participa do atendimento. Esse padrão também ajuda a perceber quando o atendimento está pedindo informação demais logo no início e afasta uma conversa que poderia ser simples.",
+          "Um bom padrão também deixa claro o que precisa ser confirmado antes de prometer prazo ou valor. Nome, necessidade, contexto e próximo passo costumam ser mais úteis do que respostas longas. A conversa continua humana, mas a operação ganha consistência. A regra é coletar apenas o necessário para entender a demanda e deixar o próximo passo evidente, sem transformar o WhatsApp em formulário burocrático."
         ],
         [
-          "Toda conversa relevante deveria terminar com um próximo passo explícito. Pode ser enviar proposta, aguardar documento, retornar em determinada data ou encerrar porque não há interesse neste momento. Sem essa definição, contatos importantes ficam misturados com mensagens já concluídas.",
-          "O registro pode começar em uma planilha, agenda ou CRM simples. Escolha poucas informações: cliente, assunto, responsável, data do próximo contato e situação. O objetivo é criar memória operacional, não preencher campos que ninguém usará."
+          "Toda conversa relevante deveria terminar com um próximo passo explícito. Pode ser enviar proposta, aguardar documento, retornar em determinada data ou encerrar porque não há interesse neste momento. Sem essa definição, contatos importantes ficam misturados com mensagens já concluídas. Quando o volume crescer, esse registro passa a formar um histórico comercial: quem pediu orçamento, quem aguardou, quem avançou e quais assuntos aparecem com mais frequência.",
+          "O registro pode começar em uma planilha, agenda ou CRM simples. Escolha poucas informações: cliente, assunto, responsável, data do próximo contato e situação. O objetivo é criar memória operacional, não preencher campos que ninguém usará. Esse histórico vale mais do que ter dezenas de etiquetas se ninguém souber o que cada uma significa ou se elas não levarem a uma ação concreta."
         ],
         [
-          "Automação ajuda quando elimina trabalho repetitivo e previsível. Exemplos seguros são lembretes internos, organização de dados já fornecidos pelo cliente ou criação de rascunhos que ainda serão revisados por uma pessoa. Não automatize decisões comerciais importantes sem supervisão.",
-          "Comece pelo ponto mais repetitivo do fluxo e teste em pequena escala. Se a automação exigir mais manutenção do que economiza tempo, ela não está resolvendo o problema certo. Processo claro vem antes de ferramenta sofisticada."
+          "Automação ajuda quando elimina trabalho repetitivo e previsível. Exemplos seguros são lembretes internos, organização de dados já fornecidos pelo cliente ou criação de rascunhos que ainda serão revisados por uma pessoa. Não automatize decisões comerciais importantes sem supervisão. Uma boa automação interna também deve ser reversível: se ela falhar, a equipe precisa conseguir enxergar a pendência e continuar o atendimento manualmente.",
+          "Comece pelo ponto mais repetitivo do fluxo e teste em pequena escala. Se a automação exigir mais manutenção do que economiza tempo, ela não está resolvendo o problema certo. Processo claro vem antes de ferramenta sofisticada. Antes de automatizar mensagens para o cliente, teste primeiro alertas e organização nos bastidores; o risco de uma resposta inadequada cai bastante."
         ],
         [
-          "Reserve alguns minutos no fim do expediente para revisar conversas com promessa de retorno, propostas abertas e dúvidas sem resposta. Uma rotina curta e frequente funciona melhor do que tentar reconstruir a semana inteira de memória na sexta-feira.",
-          "Também observe quais perguntas aparecem com frequência. Elas podem indicar que uma mensagem padrão precisa ser melhorada, que falta informação no site ou que o processo comercial está pedindo um formulário, página ou material de apoio."
+          "Reserve alguns minutos no fim do expediente para revisar conversas com promessa de retorno, propostas abertas e dúvidas sem resposta. Uma rotina curta e frequente funciona melhor do que tentar reconstruir a semana inteira de memória na sexta-feira. Cinco ou dez minutos de revisão diária costumam revelar conversas paradas, promessas vencidas e propostas que merecem uma retomada objetiva.",
+          "Também observe quais perguntas aparecem com frequência. Elas podem indicar que uma mensagem padrão precisa ser melhorada, que falta informação no site ou que o processo comercial está pedindo um formulário, página ou material de apoio. Com o tempo, essas revisões mostram onde melhorar o site, a proposta comercial ou a coleta de informações, porque o atendimento passa a produzir sinais úteis para o negócio."
         ]
       ],
       "checklist": [
@@ -190,7 +190,7 @@
         }
       ],
       "cta_title": "Organize o atendimento antes de adicionar mais ferramentas",
-      "cta_text": "A Próxima Era pode ajudar a transformar conversas, retornos e orçamentos em um fluxo simples de acompanhar.",
+      "cta_text": "A Próxima Era pode ajudar a transformar conversas, retornos e orçamentos em um fluxo simples de acompanhar. O ponto de partida pode ser pequeno, desde que resolva uma dificuldade concreta e possa ser acompanhado.",
       "prefer_editorial_fallbacks": true
     }
   },
@@ -207,7 +207,7 @@
     "slug_hint": "automacoes-simples-pequenas-empresas-botucatu",
     "autopublish": true,
     "plan": {
-      "lead": "Automação não precisa começar com um projeto grande. Para pequenas empresas de Botucatu, o melhor ponto de partida costuma ser uma tarefa repetitiva, previsível e fácil de revisar. O objetivo é reduzir retrabalho e esquecimento sem criar uma operação difícil de manter.",
+      "lead": "Automação não precisa começar com um projeto grande. Para pequenas empresas de Botucatu, o melhor ponto de partida costuma ser uma tarefa repetitiva, previsível e fácil de revisar. O objetivo é reduzir retrabalho e esquecimento sem criar uma operação difícil de manter. O foco é criar uma operação que continue funcionando quando o movimento aumenta, sem perder clareza para o cliente nem controle para quem atende.",
       "section_headings": [
         "Escolha uma repetição que realmente incomoda",
         "Padronize antes de automatizar",
@@ -217,24 +217,24 @@
       ],
       "section_fallbacks": [
         [
-          "Procure tarefas que se repetem quase do mesmo jeito: copiar dados de um formulário, lembrar um vencimento, organizar pedidos recebidos ou preparar uma mensagem de retorno. Uma boa primeira automação resolve um incômodo frequente e tem começo e fim claros.",
-          "Evite escolher processos raros ou confusos apenas porque parecem interessantes tecnicamente. Quanto mais simples for a regra, mais fácil será perceber se a automação está ajudando e corrigir quando algo mudar."
+          "Procure tarefas que se repetem quase do mesmo jeito: copiar dados de um formulário, lembrar um vencimento, organizar pedidos recebidos ou preparar uma mensagem de retorno. Uma boa primeira automação resolve um incômodo frequente e tem começo e fim claros. Uma forma simples de priorizar é perguntar quantas vezes a tarefa acontece por semana, quanto atrapalha quando é esquecida e quão fácil seria conferir o resultado.",
+          "Evite escolher processos raros ou confusos apenas porque parecem interessantes tecnicamente. Quanto mais simples for a regra, mais fácil será perceber se a automação está ajudando e corrigir quando algo mudar. Se a resposta for 'acontece sempre, incomoda bastante e é fácil de revisar', provavelmente existe um bom candidato para o primeiro teste."
         ],
         [
-          "Se cada pessoa executa a tarefa de um jeito diferente, automatizar pode apenas acelerar a desorganização. Antes, descreva em poucas etapas o que entra no processo, o que precisa ser conferido e qual resultado deve sair.",
-          "Esse pequeno padrão já revela exceções que precisam continuar manuais. Uma automação saudável não tenta esconder as exceções; ela cuida do caminho repetitivo e deixa claro quando alguém precisa assumir."
+          "Se cada pessoa executa a tarefa de um jeito diferente, automatizar pode apenas acelerar a desorganização. Antes, descreva em poucas etapas o que entra no processo, o que precisa ser conferido e qual resultado deve sair. Escrever o processo em linguagem comum também ajuda a descobrir passos desnecessários: muitas vezes a melhor melhoria vem antes de qualquer integração ou código.",
+          "Esse pequeno padrão já revela exceções que precisam continuar manuais. Uma automação saudável não tenta esconder as exceções; ela cuida do caminho repetitivo e deixa claro quando alguém precisa assumir. Só depois de o fluxo fazer sentido vale escolher a ferramenta, porque tecnologia não corrige automaticamente uma regra que já nasceu confusa."
         ],
         [
-          "Lembretes de vencimento, consolidação de respostas de formulários, organização de arquivos e criação de listas de acompanhamento são bons exemplos de automações de baixo risco. Elas ajudam a empresa a lembrar e ordenar informações sem tomar decisões por conta própria.",
-          "Para um negócio local, isso pode liberar tempo de atividades administrativas e reduzir dependência de memória. Ainda assim, mantenha um local claro para conferir o resultado e identificar rapidamente quando uma execução falhou."
+          "Lembretes de vencimento, consolidação de respostas de formulários, organização de arquivos e criação de listas de acompanhamento são bons exemplos de automações de baixo risco. Elas ajudam a empresa a lembrar e ordenar informações sem tomar decisões por conta própria. Outro bom começo é gerar uma visão única de pendências: vencimentos, pedidos, respostas de formulário ou tarefas que hoje ficam espalhadas por e-mail, WhatsApp e memória.",
+          "Para um negócio local, isso pode liberar tempo de atividades administrativas e reduzir dependência de memória. Ainda assim, mantenha um local claro para conferir o resultado e identificar rapidamente quando uma execução falhou. O objetivo não é criar um painel sofisticado, e sim reduzir o número de lugares que precisam ser consultados para saber o que exige atenção."
         ],
         [
-          "Preço, aprovação de proposta, exceção financeira, compromisso com cliente e outras decisões relevantes merecem revisão humana. A automação pode trazer dados, preparar rascunho ou sinalizar uma pendência, mas não precisa assumir toda a responsabilidade.",
-          "Essa separação protege a operação de erros silenciosos. Quanto maior o impacto de uma decisão, mais importante é registrar quem revisou e qual foi o próximo passo."
+          "Preço, aprovação de proposta, exceção financeira, compromisso com cliente e outras decisões relevantes merecem revisão humana. A automação pode trazer dados, preparar rascunho ou sinalizar uma pendência, mas não precisa assumir toda a responsabilidade. Defina também quais situações obrigam a interrupção automática do fluxo, como valor fora do padrão, dado ausente ou pedido que envolva compromisso não previsto.",
+          "Essa separação protege a operação de erros silenciosos. Quanto maior o impacto de uma decisão, mais importante é registrar quem revisou e qual foi o próximo passo. Uma automação madura sabe quando parar e pedir decisão humana; ela não tenta parecer inteligente justamente nas exceções mais arriscadas."
         ],
         [
-          "Depois de alguns dias, compare a rotina antes e depois. A tarefa ficou mais curta? Houve menos esquecimento? Alguém passou a corrigir a automação constantemente? Essas perguntas valem mais do que simplesmente contar quantas execuções ocorreram.",
-          "Se o processo ficou mais difícil de entender, simplifique. Automação útil deve reduzir carga operacional e tornar o fluxo mais previsível. Quando isso não acontece, o problema pode estar no processo escolhido, não na ferramenta."
+          "Depois de alguns dias, compare a rotina antes e depois. A tarefa ficou mais curta? Houve menos esquecimento? Alguém passou a corrigir a automação constantemente? Essas perguntas valem mais do que simplesmente contar quantas execuções ocorreram. Além de tempo, observe legibilidade: outra pessoa consegue entender o processo e assumir se necessário? Há registro do que aconteceu quando algo falha?",
+          "Se o processo ficou mais difícil de entender, simplifique. Automação útil deve reduzir carga operacional e tornar o fluxo mais previsível. Quando isso não acontece, o problema pode estar no processo escolhido, não na ferramenta. Se a automação só funciona enquanto uma pessoa específica lembra de seus detalhes, ela ainda não reduziu dependência; apenas mudou o lugar onde a dependência mora."
         ]
       ],
       "checklist": [
@@ -260,7 +260,7 @@
         }
       ],
       "cta_title": "Escolha uma automação pequena e mensurável",
-      "cta_text": "A Próxima Era pode ajudar a mapear tarefas repetitivas e identificar quais delas merecem ser automatizadas primeiro.",
+      "cta_text": "A Próxima Era pode ajudar a mapear tarefas repetitivas e identificar quais delas merecem ser automatizadas primeiro. O ponto de partida pode ser pequeno, desde que resolva uma dificuldade concreta e possa ser acompanhado.",
       "prefer_editorial_fallbacks": true
     }
   },
@@ -277,7 +277,7 @@
     "slug_hint": "ia-comercio-servicos-botucatu",
     "autopublish": true,
     "plan": {
-      "lead": "Inteligência artificial pode ser útil sem virar o centro do negócio. Para comércio e serviços em Botucatu, os melhores usos iniciais costumam apoiar tarefas de texto, organização e análise, sempre com revisão humana. A pergunta mais útil não é “onde colocar IA?”, mas “qual tarefa já existe e pode ficar mais simples?”.",
+      "lead": "Inteligência artificial pode ser útil sem virar o centro do negócio. Para comércio e serviços em Botucatu, os melhores usos iniciais costumam apoiar tarefas de texto, organização e análise, sempre com revisão humana. A pergunta mais útil não é “onde colocar IA?”, mas “qual tarefa já existe e pode ficar mais simples?”. O foco é criar uma operação que continue funcionando quando o movimento aumenta, sem perder clareza para o cliente nem controle para quem atende.",
       "section_headings": [
         "Use IA para rascunhos, não para decisões finais",
         "Transforme informação solta em material organizado",
@@ -287,24 +287,24 @@
       ],
       "section_fallbacks": [
         [
-          "A IA pode ajudar a preparar rascunhos de e-mails, descrições de serviços, respostas internas, checklists e ideias de conteúdo. O valor está em reduzir o tempo da primeira versão. Antes de enviar ou publicar, revise tom, fatos e adequação ao cliente.",
-          "Evite delegar à ferramenta decisões sobre preço, crédito, compromisso contratual ou qualquer situação que exija responsabilidade clara. Quanto maior o impacto da decisão, mais importante é a revisão de uma pessoa."
+          "A IA pode ajudar a preparar rascunhos de e-mails, descrições de serviços, respostas internas, checklists e ideias de conteúdo. O valor está em reduzir o tempo da primeira versão. Antes de enviar ou publicar, revise tom, fatos e adequação ao cliente. Um bom teste é comparar o rascunho da IA com o que a empresa realmente diria ao cliente: se exige muita correção factual ou de tom, talvez aquela tarefa ainda não seja um bom uso.",
+          "Evite delegar à ferramenta decisões sobre preço, crédito, compromisso contratual ou qualquer situação que exija responsabilidade clara. Quanto maior o impacto da decisão, mais importante é a revisão de uma pessoa. A economia de tempo deve vir da primeira versão mais organizada, não de aceitar respostas sem leitura porque foram produzidas rapidamente."
         ],
         [
-          "Notas de reunião, perguntas frequentes, informações de produtos e procedimentos internos podem ser transformados em resumos, listas e documentos mais fáceis de consultar. Isso ajuda quando o conhecimento existe, mas está espalhado em mensagens e arquivos.",
-          "Use a IA para organizar material que a empresa já possui, sem presumir que ela conhece detalhes do negócio. Depois, confira se nada importante foi omitido ou reinterpretado de forma incorreta."
+          "Notas de reunião, perguntas frequentes, informações de produtos e procedimentos internos podem ser transformados em resumos, listas e documentos mais fáceis de consultar. Isso ajuda quando o conhecimento existe, mas está espalhado em mensagens e arquivos. Esse tipo de organização também pode revelar lacunas no próprio conhecimento interno: se ninguém sabe qual versão de um procedimento está correta, a IA apenas torna a inconsistência mais visível.",
+          "Use a IA para organizar material que a empresa já possui, sem presumir que ela conhece detalhes do negócio. Depois, confira se nada importante foi omitido ou reinterpretado de forma incorreta. Antes de resumir ou reutilizar informação, defina qual documento, pessoa ou sistema continua sendo a fonte oficial quando houver divergência."
         ],
         [
-          "No atendimento, a IA pode sugerir uma resposta ou resumir o histórico antes de alguém continuar a conversa. Isso é diferente de deixar o cliente falando com uma automação sem supervisão. A pessoa responsável continua avaliando contexto, exceções e prioridade.",
-          "Para um negócio de Botucatu, esse apoio pode ser especialmente útil quando o mesmo tipo de dúvida aparece várias vezes. O objetivo é ganhar consistência e memória, não esconder do cliente quando uma resposta exige análise real."
+          "No atendimento, a IA pode sugerir uma resposta ou resumir o histórico antes de alguém continuar a conversa. Isso é diferente de deixar o cliente falando com uma automação sem supervisão. A pessoa responsável continua avaliando contexto, exceções e prioridade. Crie respostas-base para situações recorrentes e use a IA para adaptar contexto e tom, em vez de deixá-la inventar políticas, prazos ou condições comerciais.",
+          "Para um negócio de Botucatu, esse apoio pode ser especialmente útil quando o mesmo tipo de dúvida aparece várias vezes. O objetivo é ganhar consistência e memória, não esconder do cliente quando uma resposta exige análise real. Quando uma conversa envolver reclamação, negociação, dados sensíveis ou exceção, transfira rapidamente para uma pessoa com autonomia para resolver o caso."
         ],
         [
-          "Antes de copiar informações para qualquer ferramenta, verifique se há dados pessoais, contratos, senhas, documentos de clientes ou informações confidenciais. Use apenas o mínimo necessário e prefira ambientes cuja política de uso seja conhecida pela empresa.",
-          "Uma boa prática é separar exemplos fictícios para testes e dados reais para operações já aprovadas. A facilidade de colar informação em uma caixa de texto não elimina a responsabilidade sobre o conteúdo enviado."
+          "Antes de copiar informações para qualquer ferramenta, verifique se há dados pessoais, contratos, senhas, documentos de clientes ou informações confidenciais. Use apenas o mínimo necessário e prefira ambientes cuja política de uso seja conhecida pela empresa. Também vale registrar quais ferramentas são autorizadas e quais tipos de informação podem ou não ser enviados, para que cada colaborador não crie sua própria regra de segurança.",
+          "Uma boa prática é separar exemplos fictícios para testes e dados reais para operações já aprovadas. A facilidade de colar informação em uma caixa de texto não elimina a responsabilidade sobre o conteúdo enviado. Essa orientação precisa ser simples o suficiente para ser seguida no dia a dia, especialmente quando a facilidade de copiar e colar pode incentivar atalhos."
         ],
         [
-          "Registre quais tarefas estão sendo apoiadas por IA e onde apareceram erros ou retrabalho. Esse histórico ajuda a decidir se a ferramenta deve continuar, mudar de função ou ser retirada do processo.",
-          "A melhor implantação é gradual: uma tarefa, um responsável e um critério de revisão. Quando a equipe entende o limite da ferramenta, a IA deixa de ser novidade e passa a ocupar um papel operacional mais claro."
+          "Registre quais tarefas estão sendo apoiadas por IA e onde apareceram erros ou retrabalho. Esse histórico ajuda a decidir se a ferramenta deve continuar, mudar de função ou ser retirada do processo. Escolha uma medida concreta para cada experimento: minutos economizados, quantidade de retrabalho, número de correções ou qualidade percebida pela pessoa responsável.",
+          "A melhor implantação é gradual: uma tarefa, um responsável e um critério de revisão. Quando a equipe entende o limite da ferramenta, a IA deixa de ser novidade e passa a ocupar um papel operacional mais claro. Se o uso não produz ganho verificável depois de algumas semanas, retire-o sem apego; IA deve ocupar um papel porque ajuda a operação, não porque está na moda."
         ]
       ],
       "checklist": [
@@ -330,7 +330,7 @@
         }
       ],
       "cta_title": "Comece pela tarefa, não pela ferramenta",
-      "cta_text": "A Próxima Era pode ajudar a encontrar usos de IA que façam sentido para a rotina real da empresa, com limites e revisão definidos.",
+      "cta_text": "A Próxima Era pode ajudar a encontrar usos de IA que façam sentido para a rotina real da empresa, com limites e revisão definidos. O ponto de partida pode ser pequeno, desde que resolva uma dificuldade concreta e possa ser acompanhado.",
       "prefer_editorial_fallbacks": true
     }
   },
@@ -347,7 +347,7 @@
     "slug_hint": "checklist-digital-prestadores-servico-botucatu",
     "autopublish": true,
     "plan": {
-      "lead": "Um prestador de serviço não precisa estar em todos os canais. Precisa ser fácil de entender, encontrar e contatar. Para quem atende em Botucatu, este checklist ajuda a revisar o básico da presença digital e transformar canais soltos em uma experiência mais clara para o cliente.",
+      "lead": "Um prestador de serviço não precisa estar em todos os canais. Precisa ser fácil de entender, encontrar e contatar. Para quem atende em Botucatu, este checklist ajuda a revisar o básico da presença digital e transformar canais soltos em uma experiência mais clara para o cliente. O foco é criar uma operação que continue funcionando quando o movimento aumenta, sem perder clareza para o cliente nem controle para quem atende.",
       "section_headings": [
         "Deixe claro o que você faz e para quem",
         "Facilite contato e próximo passo",
@@ -357,24 +357,24 @@
       ],
       "section_fallbacks": [
         [
-          "Em poucos segundos, uma pessoa deveria conseguir entender quais serviços você oferece, em que tipo de situação pode ajudar e como funciona o atendimento. Evite descrições genéricas que poderiam servir para qualquer profissional. Clareza costuma ser mais útil do que tentar parecer maior.",
-          "Para um prestador de Botucatu, também vale informar de forma objetiva a região atendida quando isso influencia o serviço. Não invente cobertura ou endereço apenas para parecer mais local; descreva a operação como ela realmente acontece."
+          "Em poucos segundos, uma pessoa deveria conseguir entender quais serviços você oferece, em que tipo de situação pode ajudar e como funciona o atendimento. Evite descrições genéricas que poderiam servir para qualquer profissional. Clareza costuma ser mais útil do que tentar parecer maior. Uma boa descrição também evita prometer tudo para todos: dizer o que você não faz, quando relevante, pode poupar conversas desalinhadas e deixar o posicionamento mais confiável.",
+          "Para um prestador de Botucatu, também vale informar de forma objetiva a região atendida quando isso influencia o serviço. Não invente cobertura ou endereço apenas para parecer mais local; descreva a operação como ela realmente acontece. Pense como alguém que recebeu seu nome por indicação e ainda não conhece seu trabalho; a página precisa responder às primeiras dúvidas sem exigir uma conversa para cada informação básica."
         ],
         [
-          "Telefone, WhatsApp, formulário ou outro canal principal precisam estar fáceis de localizar. Se o cliente precisa procurar demais para saber como pedir orçamento, a presença digital está criando atrito em vez de ajudar.",
-          "Defina também o que acontece depois do primeiro contato. Pode ser pedir fotos, marcar uma visita, enviar medidas ou coletar algumas informações. Explicar esse próximo passo torna o atendimento mais previsível para os dois lados."
+          "Telefone, WhatsApp, formulário ou outro canal principal precisam estar fáceis de localizar. Se o cliente precisa procurar demais para saber como pedir orçamento, a presença digital está criando atrito em vez de ajudar. Se houver mais de um canal de contato, indique qual é o preferencial e o que o cliente deve enviar para receber uma resposta útil, como medidas, fotos ou contexto do serviço.",
+          "Defina também o que acontece depois do primeiro contato. Pode ser pedir fotos, marcar uma visita, enviar medidas ou coletar algumas informações. Explicar esse próximo passo torna o atendimento mais previsível para os dois lados. Isso diminui idas e voltas e permite que o atendimento comece com informação suficiente para decidir o próximo passo."
         ],
         [
-          "Fotos próprias, exemplos de trabalhos, depoimentos autorizados, perguntas frequentes e explicações de processo ajudam o cliente a entender como você trabalha. Use materiais reais e atualizados, sem criar resultados ou clientes fictícios.",
-          "Nem todo serviço precisa de um grande portfólio. Às vezes, três bons exemplos com contexto são mais úteis que dezenas de imagens sem explicação. Mostre o suficiente para reduzir dúvida e ajudar a pessoa a avaliar se o serviço combina com a necessidade dela."
+          "Fotos próprias, exemplos de trabalhos, depoimentos autorizados, perguntas frequentes e explicações de processo ajudam o cliente a entender como você trabalha. Use materiais reais e atualizados, sem criar resultados ou clientes fictícios. Ao mostrar um trabalho, explique brevemente o problema atendido, o tipo de solução e o contexto permitido pelo cliente; a prova fica mais informativa do que uma imagem solta.",
+          "Nem todo serviço precisa de um grande portfólio. Às vezes, três bons exemplos com contexto são mais úteis que dezenas de imagens sem explicação. Mostre o suficiente para reduzir dúvida e ajudar a pessoa a avaliar se o serviço combina com a necessidade dela. Quando não for possível publicar casos por confidencialidade, use explicações de processo, perguntas frequentes e critérios de atendimento para demonstrar profissionalismo sem expor ninguém."
         ],
         [
-          "Nome, telefone, descrição do serviço, links e região atendida devem permanecer coerentes entre site, redes sociais e outros canais oficiais. Divergências simples podem gerar insegurança ou fazer o cliente usar um contato antigo.",
-          "Crie uma pequena lista dos lugares onde a empresa aparece e revise quando algo mudar. Essa rotina é especialmente importante para telefone, endereço, horários e links, porque são informações que costumam ser copiadas de um canal para outro."
+          "Nome, telefone, descrição do serviço, links e região atendida devem permanecer coerentes entre site, redes sociais e outros canais oficiais. Divergências simples podem gerar insegurança ou fazer o cliente usar um contato antigo. Inclua nessa lista também domínio, e-mail profissional, formulários e diretórios relevantes; pequenas mudanças de telefone ou horário podem permanecer antigas em lugares esquecidos.",
+          "Crie uma pequena lista dos lugares onde a empresa aparece e revise quando algo mudar. Essa rotina é especialmente importante para telefone, endereço, horários e links, porque são informações que costumam ser copiadas de um canal para outro. Uma revisão trimestral desses pontos reduz a chance de o cliente encontrar informações contraditórias e melhora a própria organização interna da empresa."
         ],
         [
-          "Uma vez por semana, revise contatos aguardando retorno, orçamentos em aberto, dúvidas recorrentes e páginas que precisam de atualização. Essa disciplina ajuda a presença digital a acompanhar a operação real em vez de ficar abandonada depois da criação.",
-          "Use as dúvidas dos clientes como fonte de melhoria. Se várias pessoas perguntam a mesma coisa, talvez falte uma explicação no site, uma mensagem padrão ou uma etapa melhor definida no atendimento. O conteúdo pode nascer da própria rotina comercial."
+          "Uma vez por semana, revise contatos aguardando retorno, orçamentos em aberto, dúvidas recorrentes e páginas que precisam de atualização. Essa disciplina ajuda a presença digital a acompanhar a operação real em vez de ficar abandonada depois da criação. Transforme as dúvidas recorrentes em uma pequena fila editorial: uma resposta curta pode virar FAQ; uma objeção frequente pode virar artigo; um erro de briefing pode virar checklist.",
+          "Use as dúvidas dos clientes como fonte de melhoria. Se várias pessoas perguntam a mesma coisa, talvez falte uma explicação no site, uma mensagem padrão ou uma etapa melhor definida no atendimento. O conteúdo pode nascer da própria rotina comercial. Assim, presença digital deixa de ser atividade separada da operação e passa a registrar o que a empresa aprende ao atender clientes reais."
         ]
       ],
       "checklist": [
@@ -400,7 +400,7 @@
         }
       ],
       "cta_title": "Transforme o básico digital em uma rotina",
-      "cta_text": "A Próxima Era pode ajudar a revisar os pontos de contato do seu serviço e organizar uma presença digital mais simples e consistente.",
+      "cta_text": "A Próxima Era pode ajudar a revisar os pontos de contato do seu serviço e organizar uma presença digital mais simples e consistente. O ponto de partida pode ser pequeno, desde que resolva uma dificuldade concreta e possa ser acompanhado.",
       "prefer_editorial_fallbacks": true
     }
   },
@@ -411,8 +411,74 @@
     "keywords": [
       "site profissional Botucatu",
       "gerar contatos",
-      "conversão"
-    ]
+      "empresa local"
+    ],
+    "meta_hint": "Guia para empresas de Botucatu organizarem um site que explique serviços, reduza dúvidas e facilite pedidos de contato sem depender de efeitos ou promessas.",
+    "slug_hint": "site-empresa-local-gerar-contatos-botucatu",
+    "required_concepts": [
+      "site",
+      "contato",
+      "serviço",
+      "cliente"
+    ],
+    "plan": {
+      "lead": "Um site de empresa local não precisa impressionar por quantidade de páginas. Precisa responder às dúvidas certas na ordem certa. Para um negócio de Botucatu, isso significa explicar com clareza o que faz, para quem o serviço serve, como funciona o atendimento e qual é o próximo passo. Design ajuda, mas só depois que a informação está organizada.",
+      "section_headings": [
+        "Explique a proposta antes de pedir atenção",
+        "Transforme serviços em respostas para dúvidas reais",
+        "Faça o contato parecer um próximo passo simples",
+        "Use sinais de confiança sem fabricar autoridade",
+        "Meça o que acontece depois da visita"
+      ],
+      "section_fallbacks": [
+        [
+          "A primeira tela deve ajudar alguém que chegou por busca, indicação ou link a entender rapidamente onde está. Nome da empresa, atividade principal, região atendida quando relevante e uma frase concreta sobre o serviço costumam ser mais úteis que slogans abstratos. Se a pessoa precisa rolar várias vezes para descobrir o que você faz, o site começou exigindo esforço demais.",
+          "Pense no visitante que recebeu seu nome em uma conversa e abriu o site para confirmar se vale entrar em contato. Ele não conhece sua história completa nem sua terminologia interna. O texto precisa funcionar para esse olhar inicial: direto, específico e compatível com a operação real. Depois, identidade visual e personalidade podem enriquecer a experiência sem esconder a informação essencial."
+        ],
+        [
+          "Uma página de serviço fica melhor quando parte da situação do cliente, não apenas de uma lista de características. Explique qual problema costuma levar alguém a procurar aquele serviço, o que normalmente está incluído, quais informações ajudam a avaliar a demanda e o que pode variar. Isso reduz perguntas básicas e prepara uma conversa comercial mais produtiva.",
+          "Evite publicar uma descrição tão genérica que serviria para qualquer concorrente. Se você atende presencialmente em Botucatu, por exemplo, diga como funciona essa dinâmica quando ela influencia prazo, visita ou coleta de informações. Se o trabalho é remoto, deixe isso igualmente claro. A precisão ajuda o cliente a decidir se a empresa combina com a necessidade dele antes de ocupar tempo do atendimento."
+        ],
+        [
+          "O botão de contato não deve ser o fim da estratégia; ele precisa indicar o que acontece depois. “Pedir orçamento” pode abrir uma conversa, mas uma pequena frase explicando quais dados enviar torna o próximo passo mais confortável. Em alguns serviços, fotos ajudam. Em outros, medidas, endereço de atendimento, prazo desejado ou uma descrição breve já são suficientes para começar.",
+          "Também vale escolher um canal principal. Quando telefone, WhatsApp, formulário, direct e e-mail aparecem com o mesmo peso, o cliente pode não saber qual realmente é acompanhado. Mantenha alternativas quando fizer sentido, mas sinalize o caminho preferencial. O objetivo é diminuir incerteza e fazer o contato chegar com contexto suficiente para receber uma resposta útil."
+        ],
+        [
+          "Confiança pode vir de elementos simples e verificáveis: CNPJ quando pertinente, cidade de atuação, formas claras de contato, política de privacidade, fotos próprias, explicação de processo, casos autorizados e depoimentos reais. Nenhum desses itens precisa ser exagerado. Eles funcionam melhor quando confirmam que existe uma operação concreta por trás da página.",
+          "Evite selos inventados, números sem fonte, contadores de clientes que ninguém consegue comprovar ou depoimentos genéricos. Para uma empresa pequena, transparência pode ser mais convincente do que tentar parecer uma organização muito maior. Mostrar limites, etapas e expectativas ajuda inclusive a atrair conversas mais alinhadas com o que você realmente consegue entregar."
+        ],
+        [
+          "Depois de publicar, observe mais do que visitas. Registre quantos contatos vieram pelo site, quais páginas foram mencionadas, que dúvidas ainda aparecem e quantas conversas chegam sem informação suficiente. Esses sinais mostram se a página está cumprindo sua função de preparar o atendimento. Uma visita que esclarece o cliente pode ser mais útil que muitas visitas sem intenção.",
+          "Faça uma revisão mensal curta. Verifique links, telefone, serviços, prazos mencionados, formulários e chamadas para ação. Compare as perguntas recebidas com o conteúdo existente. Se a mesma dúvida aparece toda semana, talvez o site precise responder melhor. Assim, a página deixa de ser projeto encerrado e passa a aprender junto com a operação comercial."
+        ]
+      ],
+      "checklist": [
+        "Explique atividade, público e região de atendimento logo no início.",
+        "Crie páginas de serviço baseadas em dúvidas reais.",
+        "Escolha um canal principal e explique o próximo passo.",
+        "Use apenas provas e informações que possam ser verificadas.",
+        "Registre a origem e a qualidade dos contatos recebidos.",
+        "Revise mensalmente dados, links, dúvidas recorrentes e chamadas para ação."
+      ],
+      "faq": [
+        {
+          "question": "Um site pequeno pode ser suficiente?",
+          "answer": "Sim. Para muitos negócios locais, poucas páginas bem organizadas podem cumprir melhor o objetivo do que uma estrutura extensa e desatualizada. Comece pelo que o cliente realmente precisa entender."
+        },
+        {
+          "question": "Preciso mostrar preço no site?",
+          "answer": "Depende do serviço e da forma de orçamento. Quando o valor varia, pode ser mais útil explicar o que influencia a proposta e quais informações são necessárias para calcular."
+        },
+        {
+          "question": "Como saber se o site está ajudando?",
+          "answer": "Acompanhe contatos originados pela página, dúvidas que diminuíram, páginas consultadas antes do pedido e a qualidade das informações que chegam ao atendimento."
+        }
+      ],
+      "cta_title": "Faça o site trabalhar junto com o atendimento",
+      "cta_text": "A Próxima Era pode ajudar a revisar a estrutura de informação e os pontos de contato de uma presença digital local, começando pelo que mais reduz dúvida para o cliente.",
+      "prefer_editorial_fallbacks": true
+    },
+    "autopublish": true
   },
   {
     "id": "perfil-google",
@@ -422,7 +488,94 @@
       "Perfil da Empresa no Google",
       "SEO local Botucatu",
       "empresa local"
-    ]
+    ],
+    "meta_hint": "Guia para empresas locais organizarem o Perfil da Empresa no Google com dados corretos, categoria adequada, avaliações, fotos e rotina de atualização.",
+    "slug_hint": "perfil-empresa-google-operacao-local-botucatu",
+    "required_concepts": [
+      "Perfil da Empresa",
+      "Google",
+      "informações",
+      "cliente"
+    ],
+    "grounding": [
+      "O Perfil da Empresa no Google é destinado a negócios qualificados que interagem presencialmente com clientes, em local físico ou área de atendimento.",
+      "O Google orienta a representar a empresa como ela existe no mundo real, com nome consistente, endereço ou área de cobertura corretos e categorias adequadas.",
+      "Informações completas e precisas ajudam o Google a relacionar a empresa a pesquisas locais relevantes.",
+      "Os resultados locais são associados principalmente a relevância, distância e destaque/popularidade; não é possível pagar ao Google por uma classificação local melhor.",
+      "O Perfil permite manter dados de contato e horário, publicar fotos e vídeos e responder avaliações."
+    ],
+    "sources": [
+      {
+        "title": "Crie seu Perfil da Empresa no Google",
+        "url": "https://support.google.com/business/answer/7039811?hl=pt-BR"
+      },
+      {
+        "title": "Diretrizes para representar sua empresa no Google",
+        "url": "https://support.google.com/business/answer/3038177?hl=pt-BR"
+      },
+      {
+        "title": "Dicas para melhorar sua classificação local no Google",
+        "url": "https://support.google.com/business/answer/7091?hl=pt-BR"
+      }
+    ],
+    "plan": {
+      "lead": "Para uma empresa que atende clientes presencialmente, o Perfil da Empresa no Google pode ser um dos pontos mais visíveis da presença local. O trabalho não começa tentando “enganar o algoritmo”. Começa representando a operação com precisão: nome real, categoria adequada, região de atendimento, contatos, horários e informações que ajudem uma pessoa a decidir se aquela empresa resolve o que ela procura.",
+      "section_headings": [
+        "Confirme se o perfil representa a operação real",
+        "Complete os dados que ajudam o cliente a decidir",
+        "Escolha categoria e área de atendimento com precisão",
+        "Trate avaliações e fotos como parte do atendimento",
+        "Crie uma rotina de manutenção em vez de procurar atalhos"
+      ],
+      "section_fallbacks": [
+        [
+          "Antes de otimizar qualquer coisa, confira se a empresa se qualifica para o Perfil e se a ficha representa a operação real. Negócios com local físico ou que atendem clientes em uma área de serviço podem se enquadrar, desde que sigam as regras da plataforma. Para quem trabalha em Botucatu, isso significa descrever corretamente se o cliente vai até a empresa ou se a equipe se desloca até ele.",
+          "O nome deve acompanhar a forma como a empresa é reconhecida no mundo real. Acrescentar termos apenas para tentar aparecer em mais buscas pode criar inconsistência e vai contra a orientação do Google. A mesma lógica vale para endereço, telefone e identidade: o perfil deve confirmar a empresa que o cliente encontrará fora da tela, não construir uma versão artificial dela."
+        ],
+        [
+          "Horário, telefone, site, endereço ou área de cobertura precisam estar corretos porque são informações usadas para tomar decisões imediatas. Um perfil desatualizado pode levar alguém a ligar para um número antigo, chegar em horário incorreto ou esperar um tipo de atendimento que a empresa não oferece. A qualidade começa no operacional, não em uma técnica de SEO.",
+          "Revise também descrição, serviços, links e outros campos disponíveis para a categoria. Evite transformar a descrição em uma sequência de palavras-chave. Escreva como se estivesse explicando a empresa para alguém que ainda não a conhece: o que faz, em que situação ajuda, como atende e qual é o próximo passo. Clareza comercial e precisão local trabalham juntas."
+        ],
+        [
+          "A categoria deve descrever o negócio principal com o menor número necessário de opções coerentes. Escolher categorias demais para tentar cobrir qualquer pesquisa pode diluir a representação da empresa. Se houver atividades secundárias reais, elas podem ser registradas quando forem compatíveis com a operação, mas o perfil precisa continuar fácil de entender.",
+          "Para empresas de serviço, a área atendida também merece cuidado. Não use cidades distantes apenas para parecer maior. Informe onde a empresa realmente consegue atender de forma regular. Em Botucatu e região, esse detalhe ajuda a alinhar expectativa antes do contato e evita gerar conversas que não podem ser atendidas por deslocamento, prazo ou modelo operacional."
+        ],
+        [
+          "Avaliações são sinais públicos da experiência de clientes e merecem resposta profissional, inclusive quando a crítica é desconfortável. A resposta não precisa discutir nem revelar detalhes do atendimento. Ela pode reconhecer a situação, orientar um canal de continuidade e mostrar que existe uma empresa acompanhando o que acontece. Responder com consistência vale mais que frases copiadas sem contexto.",
+          "Fotos e vídeos próprios também ajudam a pessoa a entender ambiente, produtos, equipe ou forma de trabalho, conforme o tipo de negócio. Atualize quando houver mudança relevante e evite imagens que criem uma expectativa diferente da realidade. Em vez de pensar apenas em “alimentar o perfil”, use mídia para responder visualmente a dúvidas que o cliente costuma ter."
+        ],
+        [
+          "O Google informa que não existe pagamento para comprar uma posição local melhor. Por isso, desconfie de propostas que prometem lugar fixo no mapa como se fosse espaço reservado. O trabalho sustentável é manter informações corretas, representar bem o negócio e acompanhar como clientes encontram e usam a ficha.",
+          "Crie uma revisão mensal e uma revisão extraordinária sempre que mudar horário, telefone, endereço, serviço ou forma de atendimento. Registre o que foi alterado para poder relacionar mudanças a dúvidas ou contatos recebidos. O objetivo não é mexer no perfil o tempo todo; é evitar que uma vitrine importante da empresa fique diferente da operação real."
+        ]
+      ],
+      "checklist": [
+        "Confirme se a empresa é elegível e representa a operação real.",
+        "Use o nome real da empresa, sem acrescentar termos artificiais.",
+        "Revise telefone, horário, site, endereço ou área de atendimento.",
+        "Escolha categorias coerentes com a atividade principal.",
+        "Responda avaliações com profissionalismo e atualize mídias reais.",
+        "Faça revisão mensal e sempre que houver mudança operacional."
+      ],
+      "faq": [
+        {
+          "question": "Posso colocar palavras-chave no nome para aparecer mais?",
+          "answer": "O Google orienta que o nome represente a empresa como ela é reconhecida no mundo real. Acrescentar termos artificiais pode criar inconsistência e não é uma prática recomendada."
+        },
+        {
+          "question": "Toda empresa pode ter Perfil da Empresa no Google?",
+          "answer": "Não. A elegibilidade depende do tipo de operação e do contato presencial com clientes. Negócios exclusivamente on-line podem não se qualificar para esse produto."
+        },
+        {
+          "question": "É possível pagar para ficar em primeiro no mapa?",
+          "answer": "O Google informa que não é possível solicitar ou pagar por uma classificação local melhor. Anúncios são um produto separado e não equivalem a comprar posição orgânica local."
+        }
+      ],
+      "cta_title": "Organize o perfil como parte da operação",
+      "cta_text": "A Próxima Era pode ajudar a revisar presença local, consistência de informações e caminhos de contato sem prometer atalhos ou posições que nenhuma empresa controla.",
+      "prefer_editorial_fallbacks": true
+    },
+    "autopublish": true
   },
   {
     "id": "processos-planilha",
@@ -432,17 +585,149 @@
       "gestão empresarial",
       "automação de processos",
       "pequenas empresas"
-    ]
+    ],
+    "meta_hint": "Sinais de que planilhas já não sustentam a operação e como pequenas empresas podem migrar processos aos poucos sem trocar simplicidade por complexidade.",
+    "slug_hint": "quando-planilha-atrapalha-gestao-pequena-empresa",
+    "required_concepts": [
+      "planilha",
+      "processo",
+      "informação",
+      "gestão"
+    ],
+    "plan": {
+      "lead": "Planilha é uma ferramenta excelente enquanto consegue ser simples, confiável e compreendida por quem usa. O problema começa quando ela vira ao mesmo tempo banco de dados, agenda, CRM, financeiro e memória da empresa. Para uma pequena operação, a decisão de mudar não deve nascer de vergonha de usar planilha, mas de sinais concretos de perda de controle, retrabalho ou risco. Em empresas de Botucatu com equipe enxuta, esse limite costuma aparecer quando a mesma informação precisa ser conferida em vários lugares antes de qualquer decisão.",
+      "section_headings": [
+        "Reconheça quando a planilha virou gargalo",
+        "Defina qual informação precisa ser fonte oficial",
+        "Separe processo de ferramenta",
+        "Migre um fluxo por vez",
+        "Evite trocar uma planilha confusa por um sistema maior ainda"
+      ],
+      "section_fallbacks": [
+        [
+          "Alguns sinais aparecem antes de qualquer grande problema: várias cópias do mesmo arquivo, colunas que só uma pessoa entende, fórmulas quebradas, linhas duplicadas, informações que precisam ser conferidas em mensagens e planilhas diferentes. Outro alerta é quando a equipe deixa de confiar no arquivo e começa a manter controles paralelos “por segurança”.",
+          "O ponto não é a quantidade de abas. Uma planilha com muitas abas pode funcionar se o processo estiver claro. O problema é quando ninguém sabe qual versão vale, quem deve atualizar, quais campos são obrigatórios e o que acontece quando falta informação. Quando o controle exige explicação constante para não dar errado, já existe custo operacional escondido."
+        ],
+        [
+          "Antes de pensar em software, escolha quais dados realmente precisam de uma fonte oficial. Para vendas, pode ser situação da oportunidade e próximo contato. Para financeiro, vencimento, valor, natureza e liquidação. Para contratos, vigência e responsável. Definir esses poucos dados evita que a migração tente carregar tudo o que foi acumulado sem utilidade.",
+          "Também estabeleça quem é responsável por manter cada informação e em que momento ela muda. Um sistema não resolve sozinho a pergunta “quem atualiza isso?”. Se ninguém assumir o dado, a nova ferramenta ficará tão desatualizada quanto a planilha antiga. Governança simples vale mais que tecnologia sofisticada."
+        ],
+        [
+          "Desenhe o processo em linguagem comum: o que inicia, quem recebe, qual decisão acontece, quais informações entram e como sabemos que terminou. Essa descrição revela se o problema está realmente na planilha ou em uma rotina que nunca foi definida. Às vezes, excluir etapas e padronizar nomes resolve mais do que comprar uma ferramenta.",
+          "Em uma empresa pequena de Botucatu, por exemplo, um fluxo comercial pode ser apenas: contato recebido, necessidade entendida, proposta enviada, retorno agendado e resultado registrado. Se isso já funciona de forma previsível, a ferramenta pode ser escolhida para apoiar o processo. Se nem essa sequência está clara, automatizar primeiro apenas tornará a confusão mais rápida."
+        ],
+        [
+          "A melhor migração costuma começar pelo fluxo que mais dói e que possui fronteiras claras. Em vez de transferir financeiro, vendas, estoque, contratos e tarefas de uma vez, escolha um processo e mantenha um período curto de conferência. Defina também como será feito o retorno caso a nova solução não funcione como esperado.",
+          "Leve apenas os dados necessários para continuar a operação. Histórico pode ser arquivado separadamente quando não precisa permanecer editável. Isso reduz sujeira, acelera conferência e evita que anos de colunas improvisadas determinem a estrutura do novo sistema. Migração é oportunidade de simplificar, não obrigação de reproduzir todos os hábitos antigos."
+        ],
+        [
+          "Um software com vinte módulos não é automaticamente melhor que uma planilha com cinco colunas. Considere custo, manutenção, treinamento, acesso, backup, integração e facilidade de corrigir erros. Se a equipe precisa alimentar muitos campos que nunca são consultados, o sistema criou trabalho em vez de eliminá-lo.",
+          "Depois da mudança, avalie indicadores simples: diminuiu a duplicidade? Está mais fácil encontrar pendências? Houve menos retrabalho? Outra pessoa consegue assumir o processo? A informação ficou mais confiável? Se essas respostas não melhoraram, volte ao desenho do fluxo. A ferramenta deve servir à gestão; a gestão não deve existir para alimentar a ferramenta."
+        ]
+      ],
+      "checklist": [
+        "Liste os sinais de perda de controle na planilha atual.",
+        "Escolha quais dados precisam ser fonte oficial.",
+        "Defina responsáveis e momentos de atualização.",
+        "Desenhe o processo antes de escolher software.",
+        "Migre um fluxo por vez e preserve possibilidade de retorno.",
+        "Meça se confiabilidade e simplicidade realmente melhoraram."
+      ],
+      "faq": [
+        {
+          "question": "Existe um tamanho de empresa em que planilha deixa de funcionar?",
+          "answer": "Não há um número universal. O limite aparece quando o processo perde confiabilidade, exige controles paralelos ou depende demais de conhecimento individual."
+        },
+        {
+          "question": "Preciso migrar todo o histórico?",
+          "answer": "Nem sempre. Dados necessários para continuidade merecem prioridade; históricos antigos podem ser arquivados quando não precisam continuar operacionais."
+        },
+        {
+          "question": "ERP é sempre o próximo passo?",
+          "answer": "Não. Dependendo do problema, um CRM simples, um sistema financeiro específico ou uma automação pequena pode resolver melhor. A ferramenta deve acompanhar o processo real."
+        }
+      ],
+      "cta_title": "Troque a ferramenta só depois de entender o gargalo",
+      "cta_text": "A Próxima Era pode ajudar a mapear um processo administrativo e identificar onde simplicidade, automação ou uma ferramenta específica realmente fazem diferença.",
+      "prefer_editorial_fallbacks": true
+    },
+    "autopublish": true
   },
   {
     "id": "catalogo-digital",
-    "title_hint": "Catálogo digital, página de vendas ou loja virtual: qual caminho faz sentido para um pequeno negócio",
+    "title_hint": "Catálogo digital, página de vendas ou loja virtual: qual faz sentido para um pequeno negócio?",
     "intent": "vendas-digitais",
     "keywords": [
       "catálogo digital",
       "loja virtual Botucatu",
       "vendas online"
-    ]
+    ],
+    "meta_hint": "Entenda quando usar catálogo digital, página de vendas ou loja virtual e escolha a estrutura pela operação, pelo atendimento e pelo tipo de compra do cliente.",
+    "slug_hint": "catalogo-pagina-vendas-loja-virtual-pequeno-negocio",
+    "required_concepts": [
+      "catálogo",
+      "página de vendas",
+      "loja virtual",
+      "cliente"
+    ],
+    "plan": {
+      "lead": "Nem todo negócio que quer vender pela internet precisa começar por uma loja virtual completa. Às vezes, o cliente precisa apenas consultar opções e chamar no WhatsApp. Em outros casos, uma página bem explicada vende um único serviço ou produto. A escolha certa depende do número de itens, da forma de pagamento, da logística e de quanto atendimento humano faz parte da decisão. Para empresas de Botucatu, essa escolha também deve considerar se retirada, entrega ou atendimento local fazem parte do fechamento.",
+      "section_headings": [
+        "Comece pelo jeito como a compra acontece hoje",
+        "Use catálogo quando o atendimento ainda fecha a venda",
+        "Use página de vendas quando existe uma oferta principal",
+        "Adote loja virtual quando a operação comporta autonomia",
+        "Escolha pelo custo de manter, não só pelo custo de criar"
+      ],
+      "section_fallbacks": [
+        [
+          "Antes de escolher plataforma, acompanhe algumas vendas reais. O cliente pede muitas explicações? Precisa enviar medida, foto ou contexto? O preço muda conforme a situação? A compra exige disponibilidade confirmada? Essas respostas mostram quanto da venda pode ser feita de forma autônoma e quanto ainda depende de conversa.",
+          "Também observe quantidade de produtos e frequência de mudança. Um negócio de Botucatu com poucos itens e estoque informal pode não ganhar nada ao criar uma estrutura complexa de e-commerce. Se o processo atual ainda depende de confirmação humana, o canal digital deve organizar essa conversa, não fingir que ela desapareceu."
+        ],
+        [
+          "Catálogo digital funciona bem quando a principal necessidade é apresentar opções de forma organizada. Ele pode reunir foto, nome, descrição, variação, faixa de preço ou orientação para orçamento e um caminho claro para contato. É especialmente útil quando o fechamento ainda acontece por WhatsApp, telefone ou atendimento presencial.",
+          "O catálogo precisa ser fácil de manter. Produto indisponível, preço antigo ou descrição incompleta cria atrito rapidamente. Defina quem atualiza e com que frequência. Também organize categorias pensando em como o cliente procura, não apenas em como o estoque é chamado internamente. Um catálogo bom reduz perguntas repetidas e prepara a conversa seguinte."
+        ],
+        [
+          "Uma página de vendas faz sentido quando existe uma oferta principal que merece explicação completa: um serviço, pacote, evento, assinatura ou produto específico. Nesse formato, o conteúdo pode apresentar problema atendido, para quem serve, o que está incluído, dúvidas frequentes, condições e próximo passo sem dividir atenção entre dezenas de itens.",
+          "Ela não precisa usar fórmulas agressivas. Para um pequeno negócio, clareza sobre entrega, preço quando aplicável, prazo, limite e contato costuma gerar uma experiência mais confiável. A página também é útil para campanhas porque concentra a mensagem e facilita entender qual oferta originou o contato."
+        ],
+        [
+          "Loja virtual passa a fazer mais sentido quando catálogo, preço, estoque, pagamento e entrega podem seguir regras relativamente previsíveis. O cliente deve conseguir escolher, pagar e receber confirmação sem depender de uma conversa manual em cada pedido. Isso exige mais do que instalar uma plataforma: a operação precisa sustentar o que a interface promete.",
+          "Antes de abrir carrinho, defina atualização de estoque, formas de pagamento, política de troca, cálculo de entrega, emissão fiscal quando aplicável, atendimento pós-venda e tratamento de pedidos com problema. Se esses pontos ainda são resolvidos caso a caso, comece menor. A loja pode ser uma etapa de maturidade, não o primeiro requisito para vender online."
+        ],
+        [
+          "Compare custo de implantação com custo de manutenção. Uma solução barata para criar pode sair cara se exigir atualização diária que ninguém fará, integrações frágeis ou retrabalho entre plataforma e operação. O melhor canal é aquele que a empresa consegue manter correto em semanas normais e também nos períodos de maior movimento.",
+          "Crie uma revisão depois de trinta dias. Quantas pessoas usaram o canal? Que dúvidas continuaram? Houve pedidos com informação errada? O atendimento ficou mais simples ou passou a corrigir problemas da plataforma? Escolher entre catálogo, página e loja não é decisão definitiva: a estrutura pode evoluir conforme a operação prova que precisa de mais autonomia."
+        ]
+      ],
+      "checklist": [
+        "Observe como a compra acontece antes de escolher ferramenta.",
+        "Conte produtos, variações e frequência de atualização.",
+        "Use catálogo quando o atendimento ainda participa do fechamento.",
+        "Use página de vendas para uma oferta principal bem definida.",
+        "Só adote loja virtual quando pagamento, estoque e entrega forem sustentáveis.",
+        "Revise manutenção, erros e impacto no atendimento após a implantação."
+      ],
+      "faq": [
+        {
+          "question": "Posso vender online só com catálogo e WhatsApp?",
+          "answer": "Sim, quando o processo comercial ainda precisa de conversa e a empresa consegue manter o catálogo atualizado. O importante é deixar preço, disponibilidade e próximo passo tão claros quanto possível."
+        },
+        {
+          "question": "Quando uma loja virtual começa a valer a pena?",
+          "answer": "Quando existe volume ou variedade que justifica autonomia e a operação consegue sustentar estoque, pagamento, entrega e pós-venda com regras claras."
+        },
+        {
+          "question": "Página de vendas serve apenas para infoproduto?",
+          "answer": "Não. Ela pode apresentar qualquer oferta principal que precise de explicação concentrada, incluindo serviços, pacotes e produtos físicos específicos."
+        }
+      ],
+      "cta_title": "Digitalize a venda no tamanho da operação",
+      "cta_text": "A Próxima Era pode ajudar a desenhar o caminho de compra antes de escolher plataforma, evitando uma estrutura maior do que o processo realmente precisa.",
+      "prefer_editorial_fallbacks": true
+    },
+    "autopublish": true
   },
   {
     "id": "seguranca-basica",
@@ -452,7 +737,84 @@
       "segurança digital",
       "pequenas empresas Botucatu",
       "backup"
-    ]
+    ],
+    "meta_hint": "Guia prático para pequenas empresas organizarem acessos, senhas, backups, dispositivos e resposta a incidentes sem transformar segurança em projeto impossível.",
+    "slug_hint": "seguranca-digital-basica-pequenas-empresas-botucatu",
+    "required_concepts": [
+      "segurança",
+      "acesso",
+      "backup",
+      "dados"
+    ],
+    "grounding": [
+      "A ANPD mantém guia e checklist de segurança da informação voltados a agentes de tratamento de pequeno porte.",
+      "O guia orientativo trata segurança da informação como proteção da confidencialidade, integridade e disponibilidade das informações e incentiva gerenciamento de riscos.",
+      "Pequenos agentes continuam responsáveis por adotar medidas compatíveis com os riscos dos dados pessoais que tratam."
+    ],
+    "sources": [
+      {
+        "title": "Guia de segurança da informação para agentes de tratamento de pequeno porte — ANPD",
+        "url": "https://www.gov.br/anpd/pt-br/centrais-de-conteudo/materiais-educativos-e-publicacoes/guia-orientativo-sobre-seguranca-da-informacao-para-agentes-de-tratamento-de-pequeno-porte"
+      }
+    ],
+    "plan": {
+      "lead": "Segurança digital em uma pequena empresa não começa comprando uma ferramenta cara. Começa sabendo quais contas existem, quem tem acesso, onde os dados ficam, como recuperar arquivos e o que fazer quando algo parece errado. Para negócios de Botucatu que operam com equipe enxuta, essa organização básica reduz dependência de memória e evita que uma senha ou computador concentre risco demais. Em Botucatu ou em qualquer outra operação local, contas digitais e dados continuam sendo ativos essenciais mesmo quando a equipe é pequena.",
+      "section_headings": [
+        "Faça um inventário simples de contas e dados",
+        "Reduza acessos desnecessários e fortaleça autenticação",
+        "Trate backup como capacidade de recuperação",
+        "Atualize dispositivos e separe o que é pessoal do que é da empresa",
+        "Defina o que fazer quando ocorrer um incidente"
+      ],
+      "section_fallbacks": [
+        [
+          "Liste as contas que sustentam a operação: e-mail, domínio, redes sociais, bancos, sistemas, nuvem, hospedagem, emissão fiscal e ferramentas de atendimento. Para cada uma, registre responsável, e-mail de recuperação e forma de acesso. Não coloque senhas em uma planilha aberta; o objetivo do inventário é saber o que existe e quem deve responder por aquilo.",
+          "Faça o mesmo com dados importantes: cadastro de clientes, contratos, propostas, arquivos financeiros, documentos fiscais e materiais de trabalho. Saber onde cada tipo de informação está armazenado ajuda a perceber cópias desnecessárias, pastas pessoais usadas como arquivo oficial e dependências que só aparecem quando alguém perde acesso ou troca de computador."
+        ],
+        [
+          "Cada pessoa deve ter apenas os acessos necessários para executar sua função. Contas compartilhadas podem parecer práticas no início, mas dificultam saber quem fez uma alteração e complicam o desligamento de acessos. Quando a ferramenta permitir, prefira usuários individuais e revise permissões quando alguém muda de função ou deixa de trabalhar com a empresa.",
+          "Use autenticação em dois fatores nas contas mais importantes e senhas únicas, especialmente em e-mail, hospedagem, banco e serviços que permitem redefinir outras credenciais. O e-mail merece atenção especial porque frequentemente funciona como chave de recuperação para vários sistemas. Uma senha reutilizada ali pode ampliar o impacto de um único vazamento."
+        ],
+        [
+          "Backup não é apenas copiar arquivos; é conseguir recuperar a operação. Defina o que precisa ser copiado, com que frequência e onde a cópia ficará. Se o backup está sempre conectado ao mesmo computador e sofre o mesmo problema que os arquivos originais, ele oferece menos proteção do que parece.",
+          "Teste a restauração periodicamente com um arquivo ou conjunto pequeno. Essa prática revela senhas esquecidas, cópias incompletas e procedimentos que ninguém conhece. Para uma pequena empresa, o teste pode ser simples, mas deve responder à pergunta essencial: se este equipamento ou serviço parar hoje, o que precisamos para continuar trabalhando amanhã?"
+        ],
+        [
+          "Mantenha sistema operacional, navegador, aplicativos e dispositivos de rede atualizados de acordo com os mecanismos disponíveis. Equipamentos antigos que não recebem mais atualização merecem avaliação porque podem virar ponto frágil. Também evite instalar programas de origem duvidosa apenas para resolver uma necessidade rápida.",
+          "Quando possível, separe contas e arquivos pessoais dos corporativos. Um notebook usado para trabalho pode precisar de usuário específico, bloqueio de tela e regras de instalação mais cuidadosas. Em uma empresa pequena, essa separação também facilita transferência de responsabilidade: o ativo continua pertencendo à operação mesmo quando muda a pessoa que o utiliza."
+        ],
+        [
+          "Defina um roteiro curto para incidentes: quem deve ser avisado, quais acessos podem ser bloqueados, onde estão os contatos dos provedores e como preservar informações sobre o ocorrido. Em caso de conta invadida, perda de dispositivo ou envio indevido de dados, improvisar sob pressão aumenta a chance de apagar evidências ou demorar para conter o problema.",
+          "Depois do incidente, registre o que aconteceu, como foi percebido, quais sistemas foram afetados e o que precisa mudar. Dependendo da situação e dos dados envolvidos, podem existir obrigações adicionais de avaliação e comunicação. O guia da ANPD para agentes de pequeno porte é uma boa referência inicial, mas situações relevantes merecem análise adequada ao caso concreto."
+        ]
+      ],
+      "checklist": [
+        "Liste contas, responsáveis e mecanismos de recuperação.",
+        "Identifique onde ficam dados e documentos importantes.",
+        "Use usuários individuais, senhas únicas e autenticação em dois fatores quando disponível.",
+        "Mantenha backups e teste se é possível restaurá-los.",
+        "Atualize dispositivos e reduza mistura entre uso pessoal e corporativo.",
+        "Tenha um roteiro simples para contenção, registro e revisão de incidentes."
+      ],
+      "faq": [
+        {
+          "question": "Uma empresa muito pequena precisa se preocupar com segurança?",
+          "answer": "Sim. O tamanho reduz recursos, mas não elimina dependência de e-mail, banco, documentos e dados de clientes. O primeiro nível de proteção pode ser simples e proporcional à operação."
+        },
+        {
+          "question": "Guardar tudo na nuvem já é backup?",
+          "answer": "Não necessariamente. É preciso entender histórico, exclusão, sincronização e possibilidade de restauração. Um erro ou exclusão pode se propagar se não houver estratégia de recuperação."
+        },
+        {
+          "question": "Qual conta merece prioridade?",
+          "answer": "E-mail corporativo, banco, hospedagem, domínio e sistemas com dados importantes costumam merecer atenção elevada porque podem permitir acesso a outros serviços ou interromper a operação."
+        }
+      ],
+      "cta_title": "Segurança começa pela organização do básico",
+      "cta_text": "A Próxima Era pode ajudar a mapear ativos, acessos e rotinas digitais para que a empresa enxergue primeiro os riscos mais simples de reduzir.",
+      "prefer_editorial_fallbacks": true
+    },
+    "autopublish": true
   },
   {
     "id": "medir-contatos",
@@ -462,7 +824,73 @@
       "métricas de site",
       "leads",
       "negócio local"
-    ]
+    ],
+    "meta_hint": "Aprenda a medir se o site ajuda o negócio olhando origem, qualidade e andamento dos contatos, não apenas visitas, curtidas ou números isolados.",
+    "slug_hint": "como-medir-contatos-site-negocio-local",
+    "required_concepts": [
+      "site",
+      "contato",
+      "origem",
+      "resultado"
+    ],
+    "plan": {
+      "lead": "Um site pode receber visitas e ainda assim não ajudar o negócio. Também pode ter pouco tráfego e gerar conversas valiosas. Para uma pequena empresa, medir resultado começa ligando a página ao atendimento: de onde veio o contato, o que a pessoa procurava, qual página ajudou e o que aconteceu depois. O objetivo é enxergar o caminho comercial, não colecionar métricas desconectadas. Em Botucatu, essa leitura ajuda especialmente quando indicação, busca local e atendimento presencial se misturam na mesma jornada.",
+      "section_headings": [
+        "Defina o que conta como contato útil",
+        "Registre a origem sem complicar o atendimento",
+        "Conecte páginas a ações importantes",
+        "Avalie qualidade, não apenas quantidade",
+        "Faça uma revisão mensal e escolha uma melhoria"
+      ],
+      "section_fallbacks": [
+        [
+          "Antes de abrir qualquer painel, defina quais ações importam para a empresa. Pode ser mensagem no WhatsApp, formulário enviado, ligação, pedido de orçamento, agendamento ou compra. Nem toda interação tem o mesmo valor. Um clique em telefone que vira conversa pode ser mais relevante que centenas de visitas que não avançam.",
+          "Descreva também o que torna um contato útil. Ele precisa estar na região atendida? Procurar um serviço que a empresa realmente oferece? Informar dados mínimos para avaliação? Esse critério evita comemorar volume que só aumenta trabalho. Para um negócio local de Botucatu, qualidade pode estar muito ligada a adequação de serviço e capacidade real de atendimento."
+        ],
+        [
+          "Crie uma forma simples de registrar origem: site, busca, indicação, Instagram, anúncio, Radar, cliente antigo ou outro canal relevante. Se o atendimento acontece pelo WhatsApp, a pergunta “como encontrou a gente?” pode complementar o que a ferramenta de análise não consegue identificar. O registro não precisa ser perfeito para começar a revelar padrões.",
+          "Quando usar campanhas ou links específicos, padronize nomes para não criar dez versões da mesma origem. O importante é conseguir comparar períodos. Se cada pessoa escreve uma fonte diferente, o relatório vira limpeza de dados. Uma lista pequena e estável costuma gerar decisões melhores que um sistema detalhado que ninguém alimenta."
+        ],
+        [
+          "Escolha algumas ações para acompanhar no site: clique no contato principal, envio de formulário, acesso a página de orçamento ou outra etapa que represente intenção. Depois, olhe quais páginas aparecem antes dessas ações. Isso ajuda a descobrir conteúdos que realmente preparam o cliente e páginas que recebem visitas mas deixam a jornada sem próximo passo.",
+          "Não transforme qualquer clique em “conversão”. Ler endereço, abrir menu ou rolar página pode ser útil para diagnóstico, mas não equivale a oportunidade comercial. Separe comportamento de resultado. Essa distinção deixa o relatório mais honesto e evita ajustar o site para aumentar um número que não muda o negócio."
+        ],
+        [
+          "Compare quantidade com qualidade. Dez contatos podem parecer melhores que três, mas a conclusão muda se os dez estão fora do escopo e os três viraram propostas alinhadas. Acompanhe pelo menos situação do contato: novo, qualificado, proposta, ganho, perdido ou encerrado por falta de aderência. Não é necessário um CRM complexo para fazer essa leitura inicial.",
+          "Observe também dúvidas recorrentes vindas de determinada página. Se as pessoas chegam pedindo algo que não é oferecido, talvez o texto esteja ambíguo ou atraindo uma intenção errada. Métrica útil produz pergunta operacional: “o que devemos explicar melhor?”, “qual canal merece atenção?” ou “qual serviço está atraindo demanda compatível?”."
+        ],
+        [
+          "Uma vez por mês, reúna poucos números: contatos por origem, contatos qualificados, propostas, resultados e principais dúvidas. Compare com o mês anterior sem tirar conclusão de uma variação pequena isolada. Mudanças de oferta, sazonalidade, disponibilidade e divulgação podem alterar o cenário, então registre o contexto junto com os números.",
+          "Termine a revisão escolhendo uma melhoria. Pode ser reescrever uma página, simplificar formulário, destacar um serviço, ajustar um link ou organizar melhor o registro comercial. No mês seguinte, observe se o comportamento mudou. Medição começa a gerar valor quando vira ciclo de aprendizado, não quando produz apenas um painel bonito."
+        ]
+      ],
+      "checklist": [
+        "Defina quais ações representam contato ou oportunidade.",
+        "Crie critérios mínimos para considerar um contato útil.",
+        "Padronize poucas categorias de origem.",
+        "Acompanhe quais páginas antecedem ações importantes.",
+        "Registre andamento comercial além da quantidade de contatos.",
+        "Faça uma revisão mensal e escolha uma melhoria para testar."
+      ],
+      "faq": [
+        {
+          "question": "Número de visitas é uma boa métrica?",
+          "answer": "É uma medida de alcance, mas não responde sozinha se o site ajuda o negócio. Combine visitas com ações de contato e andamento comercial."
+        },
+        {
+          "question": "Preciso de uma ferramenta avançada de analytics?",
+          "answer": "Não para começar. Ferramentas ajudam, mas uma disciplina simples de origem e resultado dos contatos já produz informações importantes."
+        },
+        {
+          "question": "Como medir um contato que começou online e fechou presencialmente?",
+          "answer": "Registre a origem no atendimento e mantenha o histórico da oportunidade até o resultado. Assim o fechamento continua associado ao canal que iniciou a conversa."
+        }
+      ],
+      "cta_title": "Meça o caminho até a conversa, não apenas a visita",
+      "cta_text": "A Próxima Era pode ajudar a definir um conjunto pequeno de métricas que conecte site, atendimento e resultado comercial sem criar um relatório impossível de manter.",
+      "prefer_editorial_fallbacks": true
+    },
+    "autopublish": true
   },
   {
     "id": "google-maps",
@@ -472,7 +900,93 @@
       "Google Maps Botucatu",
       "SEO local",
       "negócio local"
-    ]
+    ],
+    "meta_hint": "Entenda o papel do Google Maps para negócios locais e como manter Perfil da Empresa, área de atendimento, contato e informações coerentes com a operação real.",
+    "slug_hint": "google-maps-negocios-botucatu",
+    "required_concepts": [
+      "Google Maps",
+      "Perfil da Empresa",
+      "Botucatu",
+      "contato"
+    ],
+    "grounding": [
+      "O Perfil da Empresa no Google pode aparecer na Pesquisa e no Maps para negócios qualificados com atendimento presencial ou em área local.",
+      "O Google orienta manter endereço ou área de cobertura, telefone, horário e demais informações comerciais precisas.",
+      "Os resultados locais consideram principalmente relevância, distância e destaque/popularidade.",
+      "Empresas de serviço local devem representar corretamente onde atendem e, em algumas situações, não devem exibir endereço residencial."
+    ],
+    "sources": [
+      {
+        "title": "Sobre o Perfil da Empresa e o perfil da marca no Google",
+        "url": "https://support.google.com/business/answer/16394780?hl=pt-BR"
+      },
+      {
+        "title": "Diretrizes para representar sua empresa no Google",
+        "url": "https://support.google.com/business/answer/3038177?hl=pt-BR"
+      },
+      {
+        "title": "Dicas para melhorar sua classificação local no Google",
+        "url": "https://support.google.com/business/answer/7091?hl=pt-BR"
+      }
+    ],
+    "plan": {
+      "lead": "Para negócios que dependem de proximidade, visita ou deslocamento até o cliente, o mapa não é apenas uma ilustração. Ele participa da decisão: mostra onde a empresa está, se atende naquela região, como entrar em contato e que sinais públicos existem sobre a operação. Em Botucatu, representar essa realidade com precisão é mais útil do que tentar parecer presente em lugares onde a empresa não consegue atender.",
+      "section_headings": [
+        "Entenda o mapa como parte da decisão local",
+        "Represente endereço ou área de atendimento corretamente",
+        "Mantenha dados coerentes entre mapa, site e atendimento",
+        "Use avaliações e fotos para reduzir incerteza",
+        "Conecte descoberta local a um próximo passo claro"
+      ],
+      "section_fallbacks": [
+        [
+          "Uma pessoa pode chegar ao mapa pesquisando pelo nome da empresa, por uma categoria ou por uma necessidade próxima. Nesse momento, ela costuma avaliar informações rápidas antes de decidir se abre o site, liga, pede rota ou procura outra opção. Por isso, presença local não é apenas “estar cadastrado”; é apresentar dados suficientes para a pessoa entender se aquele negócio é uma alternativa real.",
+          "O Google explica que os resultados locais estão ligados principalmente a relevância, distância e destaque. Nenhuma empresa controla sozinha esses fatores. O trabalho possível é representar corretamente a operação, manter informações completas e facilitar a decisão do cliente. Prometer posição fixa no mapa ignora justamente a parte que depende do contexto de cada busca."
+        ],
+        [
+          "Se o cliente visita um estabelecimento, o endereço precisa corresponder ao local real de atendimento. Se a empresa vai até o cliente, a configuração de área de serviço deve refletir essa dinâmica e seguir as regras da plataforma. Não use endereço virtual ou localização improvisada apenas para criar aparência de presença física.",
+          "Para um prestador que atende Botucatu e algumas cidades próximas, vale descrever a área de forma compatível com a capacidade de deslocamento. Informar uma região enorme pode gerar chamadas que não serão atendidas e prejudicar a experiência comercial. Localização útil começa por alinhar expectativa, não por maximizar o número de cidades associadas ao perfil."
+        ],
+        [
+          "Telefone, horário, site, nome e forma de atendimento devem permanecer coerentes entre Perfil da Empresa, site, redes e materiais institucionais. Quando um canal mostra um número e outro exibe informação diferente, o cliente passa a gastar energia tentando descobrir qual versão é correta.",
+          "Crie uma lista de pontos onde essas informações aparecem e revise quando houver alteração. Uma mudança de horário especial, telefone ou endereço deve ser tratada como mudança operacional que precisa se propagar. Essa disciplina simples também ajuda a empresa internamente, porque reduz cadastros esquecidos e contatos chegando por caminhos desatualizados."
+        ],
+        [
+          "Avaliações públicas ajudam quem ainda não conhece a empresa a perceber experiências anteriores, mas não devem ser tratadas como disputa de quantidade. Responda com educação, contexto suficiente e sem expor dados pessoais. Críticas podem revelar problemas reais de comunicação ou operação; elogios podem indicar aspectos que valem ser mantidos.",
+          "Fotos próprias podem esclarecer fachada, acesso, ambiente, equipe, produtos ou tipo de trabalho, de acordo com o negócio. Atualize quando a realidade mudar. Em vez de publicar imagens apenas para manter atividade, pergunte que dúvida aquela foto resolve para alguém que está avaliando se deve visitar, chamar ou pedir orçamento."
+        ],
+        [
+          "Depois que a pessoa encontra a empresa no mapa, ela precisa saber o que fazer. Site, telefone, rota, agendamento ou outro canal principal deve estar correto e levar a uma experiência compatível com o perfil. Se o site esconde contato ou descreve serviços diferentes, a descoberta local perde continuidade.",
+          "Acompanhe quais tipos de contato aparecem e quais dúvidas se repetem. Se muitas pessoas perguntam sobre cobertura, horário ou localização, reveja essas informações nos canais públicos. O mapa é uma porta de entrada; o valor para o negócio aparece quando essa porta conduz a uma conversa que a operação consegue atender bem."
+        ]
+      ],
+      "checklist": [
+        "Confirme se o perfil representa uma operação local elegível.",
+        "Revise endereço ou área de atendimento conforme a realidade.",
+        "Mantenha telefone, horário, site e nome consistentes.",
+        "Responda avaliações sem expor informações pessoais.",
+        "Use fotos próprias para esclarecer dúvidas relevantes.",
+        "Confirme que mapa, site e atendimento levem ao mesmo próximo passo."
+      ],
+      "faq": [
+        {
+          "question": "Preciso ter loja física para aparecer no Google Maps?",
+          "answer": "Não em todos os casos. Empresas que atendem clientes em uma área de serviço podem ser elegíveis, desde que cumpram as regras do Perfil da Empresa."
+        },
+        {
+          "question": "Posso cadastrar várias cidades mesmo sem atender normalmente nelas?",
+          "answer": "A área informada deve representar a operação real. Associar regiões que a empresa não consegue atender tende a criar expectativa errada e não é uma boa prática."
+        },
+        {
+          "question": "Muitas avaliações significam uma posição melhor?",
+          "answer": "Não existe relação automática. O Google descreve vários fatores para resultados locais; avaliações são apenas parte de uma presença pública que deve ser gerenciada de forma legítima."
+        }
+      ],
+      "cta_title": "Faça a descoberta local terminar em um contato possível",
+      "cta_text": "A Próxima Era pode ajudar a revisar consistência entre mapa, site e atendimento para que a presença local represente o negócio como ele realmente funciona.",
+      "prefer_editorial_fallbacks": true
+    },
+    "autopublish": true
   },
   {
     "id": "conteudo-local",
@@ -482,7 +996,73 @@
       "conteúdo local Botucatu",
       "marketing de conteúdo",
       "SEO"
-    ]
+    ],
+    "meta_hint": "Como transformar dúvidas reais de clientes em conteúdo local útil para Botucatu, criando páginas que informam, fortalecem a marca e facilitam o primeiro contato.",
+    "slug_hint": "conteudo-local-empresas-botucatu",
+    "required_concepts": [
+      "conteúdo",
+      "Botucatu",
+      "cliente",
+      "dúvida"
+    ],
+    "plan": {
+      "lead": "Conteúdo local não precisa ser uma sequência de textos com o nome da cidade repetido. Ele funciona melhor quando responde a perguntas que surgem antes do contato e adiciona contexto que só faz sentido para quem atende aquela região. Para uma empresa de Botucatu, isso significa transformar dúvidas reais, critérios de escolha e situações do atendimento em páginas que ajudam alguém antes mesmo de pedir orçamento.",
+      "section_headings": [
+        "Comece pelas perguntas que já chegam ao atendimento",
+        "Use contexto local apenas quando ele muda a decisão",
+        "Crie conteúdo que prepare a primeira conversa",
+        "Conecte cada artigo a páginas úteis da empresa",
+        "Mantenha uma pauta pequena e baseada em aprendizado real"
+      ],
+      "section_fallbacks": [
+        [
+          "Abra o histórico de atendimento e anote perguntas que aparecem mais de uma vez: prazo, área atendida, diferença entre opções, preparação necessária, documentação, manutenção ou como funciona o orçamento. Essas perguntas já carregam intenção real porque foram feitas por pessoas que estavam avaliando um serviço.",
+          "Transforme uma dúvida por vez em uma página completa. Em vez de escrever “cinco dicas” genéricas, explique o contexto, as alternativas, o que pode variar e qual informação ajuda a decidir. Esse tipo de texto continua útil mesmo para quem ainda não conhece a empresa e pode reduzir repetição no atendimento."
+        ],
+        [
+          "Botucatu deve aparecer quando a localização muda o conteúdo: área de atendimento, deslocamento, perfil do serviço, disponibilidade presencial ou contexto de uma busca local. Não force referências à cidade em todos os parágrafos. O leitor percebe quando a localização foi colocada apenas para tentar influenciar o mecanismo de busca.",
+          "Se o assunto seria exatamente igual em qualquer lugar do país, trate-o como guia geral e faça apenas a conexão local necessária. Quando houver um aspecto específico da operação em Botucatu, descreva a realidade da empresa sem inventar estatísticas, bairros, eventos ou comportamentos que não foram verificados. Relevância local vem de contexto verdadeiro, não de decoração textual."
+        ],
+        [
+          "Um bom artigo deixa o leitor mais preparado para conversar. Ele pode explicar como comparar duas soluções, quais informações levar para um orçamento, quando determinado serviço não é indicado ou que sinais mostram que existe um problema. Ao chegar ao atendimento, a pessoa já possui vocabulário e expectativa mais alinhados.",
+          "Isso também protege tempo comercial. Conteúdo não serve apenas para atrair tráfego; pode filtrar demandas inadequadas e responder dúvidas básicas antes da conversa. Para um pequeno negócio, esse ganho operacional é importante porque marketing e atendimento geralmente disputam o tempo das mesmas poucas pessoas."
+        ],
+        [
+          "Evite artigos isolados. Quando mencionar um serviço, aponte para a página que o explica. Quando falar de atendimento, deixe claro como entrar em contato. Um guia sobre site pode levar a outro sobre medir contatos; um texto sobre presença local pode se conectar ao Perfil da Empresa. Esses caminhos ajudam o leitor a aprofundar a dúvida sem voltar ao menu toda hora.",
+          "Os links internos também devem ter lógica editorial. Não coloque dez chamadas comerciais dentro do mesmo texto. Uma ou duas conexões úteis e um próximo passo claro costumam ser suficientes. A marca ganha confiança quando o artigo parece ter sido escrito para resolver uma questão e não apenas para empurrar o visitante para um formulário."
+        ],
+        [
+          "Mantenha uma fila curta de temas e revise mensalmente. Novas dúvidas do atendimento entram; assuntos repetidos saem; páginas antigas podem ser atualizadas quando o processo muda. Esse ciclo evita publicar por obrigação e mantém o conteúdo ligado à evolução real do negócio.",
+          "A Próxima Era adotou essa lógica na área “Botucatu em modo digital”: cada guia precisa justificar sua existência pela utilidade, não pela quantidade. Para qualquer empresa local, a mesma disciplina funciona melhor que uma fábrica de textos. Se não existe uma pergunta concreta para responder, talvez ainda não exista uma boa pauta."
+        ]
+      ],
+      "checklist": [
+        "Liste dúvidas repetidas do atendimento e do orçamento.",
+        "Escolha uma pergunta específica para cada conteúdo.",
+        "Use contexto de Botucatu somente quando for verdadeiro e relevante.",
+        "Explique critérios, alternativas e próximo passo sem prometer resultado.",
+        "Crie links internos para páginas que realmente ajudam o leitor.",
+        "Revise mensalmente a fila e atualize textos quando a operação mudar."
+      ],
+      "faq": [
+        {
+          "question": "Preciso publicar todos os dias para ter resultado orgânico?",
+          "answer": "Não existe uma frequência universal. Para uma empresa local, consistência e utilidade tendem a ser mais sustentáveis que volume de textos sem propósito."
+        },
+        {
+          "question": "Vale criar uma página para cada bairro ou cidade?",
+          "answer": "Só quando existe conteúdo realmente diferente e uma operação que atende aquela localidade. Duplicar o mesmo texto trocando o nome do lugar produz pouca utilidade para o leitor."
+        },
+        {
+          "question": "De onde tirar pauta sem inventar assunto?",
+          "answer": "Atendimento, propostas, dúvidas de clientes, erros recorrentes e decisões de compra são boas fontes. O conteúdo pode nascer diretamente do que a empresa aprende trabalhando."
+        }
+      ],
+      "cta_title": "Transforme atendimento em conhecimento público útil",
+      "cta_text": "A Próxima Era pode ajudar a estruturar uma pauta local baseada nas dúvidas que a empresa já recebe, conectando conteúdo, presença digital e atendimento.",
+      "prefer_editorial_fallbacks": true
+    },
+    "autopublish": true
   },
   {
     "id": "crm-simples",

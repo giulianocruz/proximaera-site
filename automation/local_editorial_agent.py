@@ -128,8 +128,9 @@ def quality_errors(article, topic=None):
         errors.append("checklist precisa de pelo menos 5 itens")
     if len(faq) != 3:
         errors.append("FAQ precisa ter exatamente 3 perguntas")
-    if not 450 <= count_words <= 1200:
-        errors.append(f"texto deve ter 450 a 1200 palavras; recebeu {count_words}")
+    min_words = 700 if (topic or {}).get("autopublish") else 450
+    if not min_words <= count_words <= 1200:
+        errors.append(f"texto deve ter {min_words} a 1200 palavras; recebeu {count_words}")
     if not 2 <= botucatu_count <= 8:
         errors.append(f"Botucatu deve aparecer naturalmente de 2 a 8 vezes; apareceu {botucatu_count}")
     hits = semantic_forbidden_hits(text)

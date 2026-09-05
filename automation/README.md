@@ -21,3 +21,11 @@ Objetivo: construir autoridade orgânica em Botucatu/SP com conteúdo útil sobr
 ## Produção
 Cron ativo em `America/Sao_Paulo`: segunda, quarta e sexta às 07:17.
 Conteúdo persistente: `/opt/proximaera-editorial/public`.
+
+## Padrão editorial v2
+- Publicação automática exige no mínimo 700 palavras úteis e no máximo 1.200.
+- A fila de produção usa conteúdo-base curado, não redação livre da IA.
+- Cada guia deve conter problema real, critério de decisão, aplicação prática e forma de acompanhar o efeito.
+- Menções a Botucatu precisam ser naturais e ligadas ao contexto operacional.
+- Temas dependentes de plataforma, segurança ou regulação recebem fontes oficiais explícitas.
+- O agente não cria uma nova pauta quando a fila aprovada termina.
