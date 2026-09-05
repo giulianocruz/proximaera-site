@@ -289,3 +289,11 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .local-diagnostic{max-width:924px;margin:56px auto 20px;padding:34px;border-radius:20px;background:linear-gradient(135deg,rgba(97,245,139,.1),rgba(255,255,255,.035));border:1px solid rgba(97,245,139,.22);color:#fff}.local-diagnostic h2{color:#fff;margin:8px 0 10px}.local-diagnostic>p:not(.section-kicker){max-width:690px;color:#a7b8b0;line-height:1.65}.local-diagnostic .button{margin-top:12px}
 .local-cta small{display:block;margin-top:14px;color:#7f958a;font-size:11px;line-height:1.5}.contact-context{display:flex;flex-direction:column;gap:5px;margin-bottom:18px;padding:15px 17px;border-radius:12px;border:1px solid #cfe8d7;background:#edf7f0;color:#294437}.contact-context strong{font-size:12px}.contact-context span{font-size:12px;line-height:1.5;color:#617169}
 @media(max-width:760px){.local-cluster-grid{grid-template-columns:1fr;padding:0 20px}.local-cluster-section{padding:38px 20px 10px}.local-related-grid{grid-template-columns:1fr}.local-diagnostic{margin:42px 20px 16px;padding:24px}.local-cluster-card{padding:21px}}
+
+/* Formulário comercial com captura segura */
+.optional{font-size:10px;font-weight:700;color:#829189;margin-left:5px;text-transform:uppercase;letter-spacing:.08em}
+.hp-field{position:absolute!important;left:-10000px!important;width:1px!important;height:1px!important;overflow:hidden!important}
+.contact-status{min-height:22px;margin:8px 0 0!important;font-size:13px!important;font-weight:750;line-height:1.5!important}
+.contact-status[data-kind="success"]{color:#187442!important}.contact-status[data-kind="warning"]{color:#9a5c00!important}.contact-status[data-kind="info"]{color:#65756d!important}
+.contact-form button[disabled]{opacity:.58;cursor:wait;transform:none!important}
+.contact-form .form-note a{font-weight:800;text-decoration:underline;text-underline-offset:3px}
