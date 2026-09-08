@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#061018" />
+  <title>Venda mais — Próxima Era</title>
+  <meta name="description" content="Descubra o que está travando suas vendas e encontre uma solução prática da Próxima Era para conseguir clientes, apresentar melhor seu negócio e fechar mais oportunidades." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://proximaera.com.br/vender/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:site_name" content="Próxima Era" />
+  <meta property="og:title" content="O que está impedindo você de vender mais?" />
+  <meta property="og:description" content="Faça um diagnóstico rápido e descubra a próxima ação para o seu negócio." />
+  <meta property="og:url" content="https://proximaera.com.br/vender/" />
+  <meta property="og:image" content="https://proximaera.com.br/assets/og-proxima-era.webp" />
+  <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="styles.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script defer src="app.js"></script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Venda mais — Próxima Era","url":"https://proximaera.com.br/vender/","description":"Diagnóstico comercial e soluções digitais para pequenos negócios e profissionais autônomos.","isPartOf":{"@type":"WebSite","name":"Próxima Era","url":"https://proximaera.com.br/"}}</script>
+</head>
+<body>
+  <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+  <header class="site-header">
+    <a class="brand" href="../" aria-label="Próxima Era — início">
+      <img src="../assets/logo-horizontal.svg" width="250" height="56" alt="Próxima Era" />
+    </a>
+    <nav class="top-nav" aria-label="Navegação">
+      <a href="#solucoes">Soluções</a>
+      <a href="#como-funciona">Como funciona</a>
+      <a href="#diagnostico" class="nav-cta">Diagnóstico grátis</a>
+    </nav>
+  </header>
+
+  <main id="conteudo">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">PRÓXIMA ERA • SOLUÇÕES COMERCIAIS</p>
+        <h1>O que está impedindo você de <span>vender mais?</span></h1>
+        <p class="lead">Escolha a dor que mais incomoda hoje. Nós mostramos uma solução prática, com preço direto e sem enrolação.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#diagnostico">Descobrir meu gargalo →</a>
+          <a class="button ghost" href="#solucoes">Ver soluções</a>
+        </div>
+        <div class="trust-row">
+          <span>✓ Diagnóstico gratuito</span>
+          <span>✓ Soluções a partir de R$ 19,90</span>
+          <span>✓ Pagamento via Pix</span>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="signal-card signal-a"><small>GARGALO</small><strong>Cliente pede preço e some</strong><span>→ Fechar melhor</span></div>
+        <div class="signal-card signal-b"><small>GARGALO</small><strong>Meu negócio parece amador</strong><span>→ Profissionalizar</span></div>
+        <img src="../assets/zero-hero.webp" width="467" height="700" alt="" />
+      </div>
+    </section>
+
+    <section class="pain-section" id="diagnostico">
+      <div class="section-head">
+        <p class="eyebrow">COMECE AQUI</p>
+        <h2>Qual dessas frases mais parece com o seu momento?</h2>
+        <p>Não precisa entender de marketing. Clique no problema mais urgente.</p>
+      </div>
+      <div class="pain-grid" role="list">
+        <button class="pain-card" data-pain="clientes"><span>01</span><strong>Preciso de clientes</strong><small>Tenho um bom serviço, mas pouca gente chega até mim.</small></button>
+        <button class="pain-card" data-pain="sumiram"><span>02</span><strong>Pedem preço e somem</strong><small>Eu mando orçamento, mas a conversa esfria.</small></button>
+        <button class="pain-card" data-pain="amador"><span>03</span><strong>Meu negócio parece amador</strong><small>Dependo só de Instagram, WhatsApp ou indicação.</small></button>
+        <button class="pain-card" data-pain="divulgar"><span>04</span><strong>Não sei divulgar</strong><small>Não sei o que postar nem como apresentar meu serviço.</small></button>
+        <button class="pain-card" data-pain="cobranca"><span>05</span><strong>Tenho clientes que não pagam</strong><small>Preciso organizar cobranças sem criar conflito.</small></button>
+        <button class="pain-card" data-pain="comecar"><span>06</span><strong>Quero começar a vender</strong><small>Quero oferecer algo, mas não sei como estruturar.</small></button>
+      </div>
+
+      <div class="result-panel" id="resultPanel" hidden aria-live="polite">
+        <div class="result-score"><span>SEU PRÓXIMO PASSO</span><strong id="resultTitle"></strong></div>
+        <p id="resultCopy"></p>
+        <ul id="resultBullets"></ul>
+        <div class="result-offer">
+          <div><small>RECOMENDADO PARA VOCÊ</small><strong id="resultProduct"></strong><span id="resultPrice"></span></div>
+          <button class="button primary buy-trigger" id="resultBuy">Quero resolver isso →</button>
+        </div>
+        <button class="text-button" id="changePain">← escolher outro problema</button>
+      </div>
+    </section>
+
+    <section class="solutions" id="solucoes">
+      <div class="section-head inverse">
+        <p class="eyebrow">SOLUÇÕES EXPRESS</p>
+        <h2>Compre a solução. Não a complicação.</h2>
+        <p>Produtos simples para pequenos negócios, autônomos e quem precisa colocar uma ideia comercial para funcionar.</p>
+      </div>
+      <div class="product-grid">
+        <article class="product-card featured">
+          <span class="badge">MAIS COMPLETO</span>
+          <p class="product-kicker">PRESENÇA PROFISSIONAL</p>
+          <h3>Página Express</h3>
+          <p>Uma página profissional para apresentar seu negócio, serviços, localização e canais de contato.</p>
+          <ul><li>Visual profissional</li><li>Celular primeiro</li><li>WhatsApp, Instagram e localização</li><li>Estrutura comercial pronta</li></ul>
+          <div class="price"><small>por</small><strong>R$ 79,90</strong></div>
+          <button class="button primary buy-trigger" data-product="pagina">Quero minha página →</button>
+        </article>
+        <article class="product-card">
+          <p class="product-kicker">PROSPECÇÃO</p>
+          <h3>Primeiros Clientes</h3>
+          <p>Kit prático para organizar sua abordagem e começar a prospectar com mais confiança.</p>
+          <ul><li>Mensagens de abordagem</li><li>Follow-ups</li><li>Modelo de proposta</li><li>Precificação básica</li></ul>
+          <div class="price"><small>por</small><strong>R$ 29,90</strong></div>
+          <button class="button secondary buy-trigger" data-product="clientes">Quero esse kit →</button>
+        </article>
+        <article class="product-card">
+          <p class="product-kicker">CONVERSÃO</p>
+          <h3>Fecha Venda</h3>
+          <p>Modelos e estrutura para apresentar preço, proposta e próximos passos sem improvisar.</p>
+          <ul><li>Modelo de proposta</li><li>Mensagens de follow-up</li><li>Respostas a objeções</li><li>Roteiro de fechamento</li></ul>
+          <div class="price"><small>por</small><strong>R$ 19,90</strong></div>
+          <button class="button secondary buy-trigger" data-product="fecha">Quero fechar melhor →</button>
+        </article>
+        <article class="product-card">
+          <p class="product-kicker">DIVULGAÇÃO</p>
+          <h3>Divulgação Express</h3>
+          <p>Um pacote para parar de travar na hora de divulgar seu trabalho nas redes.</p>
+          <ul><li>30 ideias de conteúdo</li><li>Textos de divulgação</li><li>Bio comercial</li><li>Chamadas para ação</li></ul>
+          <div class="price"><small>por</small><strong>R$ 19,90</strong></div>
+          <button class="button secondary buy-trigger" data-product="divulgacao">Quero divulgar melhor →</button>
+        </article>
+        <article class="product-card">
+          <p class="product-kicker">COBRANÇA</p>
+          <h3>Cobrança Profissional</h3>
+          <p>Organize lembretes e mensagens de cobrança com firmeza, clareza e respeito.</p>
+          <ul><li>Sequência de cobrança</li><li>Mensagens prontas</li><li>Controle simples</li><li>Modelo de acordo</li></ul>
+          <div class="price"><small>por</small><strong>R$ 19,90</strong></div>
+          <button class="button secondary buy-trigger" data-product="cobranca">Quero organizar cobranças →</button>
+        </article>
+        <article class="product-card">
+          <p class="product-kicker">COMEÇAR</p>
+          <h3>Comece a Vender</h3>
+          <p>Kit de partida para estruturar uma oferta, preço, divulgação e apresentação comercial.</p>
+          <ul><li>Ideias de serviços</li><li>Precificação</li><li>Oferta e apresentação</li><li>Materiais comerciais</li></ul>
+          <div class="price"><small>por</small><strong>R$ 29,90</strong></div>
+          <button class="button secondary buy-trigger" data-product="comecar">Quero começar →</button>
+        </article>
+      </div>
+      <p class="disclaimer">As soluções fornecem ferramentas, materiais e estrutura comercial. Não prometemos faturamento, número de clientes ou resultado financeiro garantido.</p>
+    </section>
+
+    <section class="how" id="como-funciona">
+      <div class="section-head">
+        <p class="eyebrow">SEM COMPLICAÇÃO</p>
+        <h2>Você escolhe. Paga. A gente começa.</h2>
+      </div>
+      <div class="steps">
+        <article><span>1</span><h3>Escolha a solução</h3><p>Use o diagnóstico ou vá direto ao produto que resolve sua dor.</p></article>
+        <article><span>2</span><h3>Faça o Pix</h3><p>O pagamento é gerado na própria página, sem depender de conversa no WhatsApp.</p></article>
+        <article><span>3</span><h3>Receba o próximo passo</h3><p>Seu pedido entra na central comercial da Próxima Era para entrega e acompanhamento.</p></article>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <p class="eyebrow">PRÓXIMA ERA</p>
+      <h2>Você não precisa resolver tudo hoje.<br><span>Precisa resolver o próximo gargalo.</span></h2>
+      <a class="button primary" href="#diagnostico">Descobrir meu próximo passo →</a>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div><img src="../assets/logo-horizontal.svg" width="210" height="48" alt="Próxima Era" /><p>Criando o que vem depois.</p></div>
+    <div><strong>Próxima Era</strong><a href="../">Site institucional</a><a href="../contato.html">Contato</a><a href="../privacidade.html">Privacidade</a></div>
+    <div><strong>Empresa</strong><span>Botucatu/SP</span><span>CNPJ 68.964.484/0001-22</span><a href="mailto:contato@proximaera.com.br">contato@proximaera.com.br</a></div>
+  </footer>
+
+  <div class="modal" id="checkoutModal" hidden>
+    <div class="modal-backdrop" data-close-modal></div>
+    <section class="checkout" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="modal-close" data-close-modal aria-label="Fechar">×</button>
+      <div id="checkoutFormStep">
+        <p class="eyebrow">FINALIZAR PEDIDO</p>
+        <h2 id="checkoutTitle">Seu pedido</h2>
+        <div class="checkout-product"><strong id="checkoutProduct"></strong><span id="checkoutPrice"></span></div>
+        <form id="orderForm">
+          <label>Seu nome<input name="name" autocomplete="name" required /></label>
+          <label>Seu e-mail<input name="email" type="email" autocomplete="email" required /></label>
+          <label>WhatsApp <small>(opcional)</small><input name="phone" autocomplete="tel" inputmode="tel" /></label>
+          <label class="consent"><input name="consent" type="checkbox" required /><span>Concordo em enviar estes dados para que a Próxima Era identifique e acompanhe meu pedido.</span></label>
+          <button class="button primary full" type="submit">Gerar meu Pix →</button>
+          <p class="form-status" id="orderStatus"></p>
+        </form>
+      </div>
+      <div id="pixStep" hidden>
+        <p class="eyebrow">PAGAMENTO VIA PIX</p>
+        <h2>Falta só o pagamento.</h2>
+        <div class="pix-summary"><strong id="pixProduct"></strong><span id="pixAmount"></span></div>
+        <div id="qrCode" class="qr"></div>
+        <button class="pix-copy" id="copyPixCode"><span>Pix Copia e Cola</span><strong>Copiar código</strong></button>
+        <details><summary>Prefere usar a chave Pix?</summary><div class="pix-key"><code>68.964.484/0001-22</code><button id="copyPixKey">Copiar chave</button></div></details>
+        <p class="pix-note">Depois de pagar, clique abaixo. Seu pedido já terá sido registrado na nossa central comercial.</p>
+        <a class="button primary full" id="confirmPayment" href="mailto:contato@proximaera.com.br">Já fiz o Pix — enviar comprovante →</a>
+        <button class="text-button" id="backToProducts">← escolher outro produto</button>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
