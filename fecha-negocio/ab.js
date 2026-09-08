@@ -11,4 +11,8 @@
   };
   const v=variants[key];
   if(v){h1.innerHTML=v.h;lead.textContent=v.l;cta.textContent=v.c;document.body.dataset.heroVariant=key;}
+  const cityKey=(q.get('utm_term')||'').toLowerCase().replace(/[^a-z]/g,'');
+  const cities={botucatu:'Botucatu',bauru:'Bauru',avare:'Avaré',sorocaba:'Sorocaba'};
+  const badge=document.getElementById('regionBadge');
+  if(badge&&cities[cityKey]){badge.textContent=`Atendimento online para ${cities[cityKey]} e região`;document.body.dataset.region=cityKey;}
 })();
