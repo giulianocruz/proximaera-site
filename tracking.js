@@ -8,9 +8,7 @@
     try{saved[k]=sessionStorage.getItem('pe_'+k)||''}catch{saved[k]=v||''}
   }
   try{
-    if(!sessionStorage.getItem('pe_entry_path')){
-      sessionStorage.setItem('pe_entry_path',location.pathname+location.search);
-    }
+    if(!sessionStorage.getItem('pe_entry_path')) sessionStorage.setItem('pe_entry_path',location.pathname+location.search);
   }catch{}
   let entry='';
   try{entry=sessionStorage.getItem('pe_entry_path')||location.pathname}catch{entry=location.pathname}
@@ -18,20 +16,25 @@
   try{if(document.referrer) ref=new URL(document.referrer).hostname}catch{}
   const source=saved.utm_source||ref;
   const campaign=saved.utm_campaign||'';
-  const context=[
-    'Origem: '+source,
-    campaign&&('Campanha: '+campaign),
-    'Entrada: '+entry,
-    'Pagina: '+location.pathname
-  ].filter(Boolean).join(' | ');
+  const parts=location.pathname.split('/').filter(Boolean);
+  const topic=(parts[0]==='guias'?'guia:':'sales:')+(parts.at(-1)||parts[0]||'home');
+  const context=['Origem: '+source,campaign&&('Campanha: '+campaign),'Entrada: '+entry,'Pagina: '+location.pathname].filter(Boolean).join(' | ');
+  const send=event=>fetch('/api/analytics',{
+    method:'POST',headers:{'content-type':'application/json'},credentials:'omit',keepalive:true,
+    body:JSON.stringify({event,topic,guide:source,path:location.pathname,referrerHost:ref,source,medium:saved.utm_medium,campaign,content:saved.utm_content,term:saved.utm_term,entry})
+  }).catch(()=>{});
+  const once=(kind,fn)=>{
+    const key='pe:'+kind+':'+location.pathname+':'+campaign;
+    try{if(sessionStorage.getItem(key))return;sessionStorage.setItem(key,'1')}catch{}
+    fn();
+  };
+  once('view',()=>send('view'));
   document.querySelectorAll('a[href*="wa.me/"]').forEach(a=>{
     try{
-      const u=new URL(a.href);
-      const base=u.searchParams.get('text')||'';
-      if(!base.includes('Origem:')){
-        u.searchParams.set('text',base+'\n\n'+context);
-      }
+      const u=new URL(a.href),base=u.searchParams.get('text')||'';
+      if(!base.includes('Origem:'))u.searchParams.set('text',base+'\n\n'+context);
       a.href=u.toString();
     }catch{}
+    a.addEventListener('click',()=>once('cta',()=>send('cta')));
   });
 })();
