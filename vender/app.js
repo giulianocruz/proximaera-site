@@ -131,7 +131,7 @@ function crc16(payload) {
 }
 
 function pixPayload(amount, txid) {
-  const gui = emv('00', 'BR.GOV.BCB.PIX');
+  const gui = emv('00', 'br.gov.bcb.pix');
   const key = emv('01', PIX_KEY);
   const merchantAccount = emv('26', gui + key);
   const additional = emv('62', emv('05', txid.slice(0, 25)));
