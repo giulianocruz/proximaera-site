@@ -47,6 +47,8 @@ const PAINS = {
 };
 
 const PIX_KEY = '68964484000122';
+const PIX_KEY_DISPLAY = '68.964.484/0001-22';
+const PIX_PROVIDER = 'Mercado Pago';
 const MERCHANT_NAME = 'PROXIMA DIGITAL';
 const MERCHANT_CITY = 'BOTUCATU';
 let selectedProduct = null;
@@ -135,7 +137,6 @@ function pixPayload(amount, txid) {
   const additional = emv('62', emv('05', txid.slice(0, 25)));
   const base = [
     emv('00', '01'),
-    emv('01', '12'),
     merchantAccount,
     emv('52', '0000'),
     emv('53', '986'),
@@ -166,7 +167,7 @@ async function registerOrder(data) {
         phone: data.phone,
         company: '',
         subject: `Pedido ${data.orderId} — ${data.product.name}`,
-        message: `Novo pedido originado em /vender/.\nProduto: ${data.product.name}\nValor: ${money(data.product.price)}\nCódigo: ${data.product.code}\nPedido: ${data.orderId}\nOrigem: landing comercial Próxima Era`,
+        message: `Novo pedido originado em /vender/.\nProduto: ${data.product.name}\nValor: ${money(data.product.price)}\nCódigo: ${data.product.code}\nPedido: ${data.orderId}\nPagamento: Pix CNPJ ${PIX_KEY_DISPLAY} — ${PIX_PROVIDER}\nOrigem: landing comercial Próxima Era`,
         website: '',
         origem: 'vender',
         tema: data.product.code,
@@ -185,6 +186,16 @@ function renderPix(order) {
   field('pixAmount', money(order.product.price));
   document.getElementById('checkoutFormStep').hidden = true;
   document.getElementById('pixStep').hidden = false;
+
+  let providerLine = document.getElementById('pixProvider');
+  if (!providerLine) {
+    providerLine = document.createElement('p');
+    providerLine.id = 'pixProvider';
+    providerLine.className = 'pix-note';
+    document.querySelector('.pix-summary')?.insertAdjacentElement('afterend', providerLine);
+  }
+  providerLine.textContent = `Recebedor: Próxima Digital • Pix CNPJ ${PIX_KEY_DISPLAY} • ${PIX_PROVIDER}`;
+
   const qr = document.getElementById('qrCode');
   qr.innerHTML = '';
   if (window.QRCode) {
@@ -193,7 +204,7 @@ function renderPix(order) {
     qr.innerHTML = '<p style="color:#111;text-align:center;max-width:220px">Use o botão “Pix Copia e Cola” abaixo.</p>';
   }
   const subject = `Comprovante ${order.orderId} — ${order.product.name}`;
-  const body = `Olá, fiz o Pix do pedido ${order.orderId}.\n\nProduto: ${order.product.name}\nValor: ${money(order.product.price)}\nNome: ${order.name}\nE-mail: ${order.email}\n\nVou anexar o comprovante nesta mensagem.`;
+  const body = `Olá, fiz o Pix do pedido ${order.orderId}.\n\nProduto: ${order.product.name}\nValor: ${money(order.product.price)}\nPagamento: Pix ${PIX_PROVIDER} / CNPJ ${PIX_KEY_DISPLAY}\nNome: ${order.name}\nE-mail: ${order.email}\n\nVou anexar o comprovante nesta mensagem.`;
   document.getElementById('confirmPayment').href = `mailto:contato@proximaera.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
