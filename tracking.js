@@ -18,7 +18,7 @@
   const campaign=saved.utm_campaign||'';
   const parts=location.pathname.split('/').filter(Boolean);
   const topic=(parts[0]==='guias'?'guia:':'sales:')+(parts.at(-1)||parts[0]||'home');
-  const context=['Origem: '+source,campaign&&('Campanha: '+campaign),'Entrada: '+entry,'Pagina: '+location.pathname].filter(Boolean).join(' | ');
+  const context=['Origem: '+source,campaign&&('Campanha: '+campaign),saved.utm_content&&('Criativo: '+saved.utm_content),'Entrada: '+entry,'Pagina: '+location.pathname].filter(Boolean).join(' | ');
   const send=event=>fetch('/api/analytics',{
     method:'POST',headers:{'content-type':'application/json'},credentials:'omit',keepalive:true,
     body:JSON.stringify({event,topic,guide:source,path:location.pathname,referrerHost:ref,source,medium:saved.utm_medium,campaign,content:saved.utm_content,term:saved.utm_term,entry})
