@@ -1,11 +1,11 @@
 const WHATSAPP='5514920077743';
 const PRODUCTS={
   pagina:{name:'Página Fecha Negócio',price:79.90,action:'page',url:'../fecha-negocio/'},
-  clientes:{name:'Primeiros Clientes',price:29.90,action:'whatsapp'},
-  fecha:{name:'Fecha Venda',price:19.90,action:'whatsapp'},
-  divulgacao:{name:'Divulgação Express',price:19.90,action:'whatsapp'},
-  cobranca:{name:'Cobrança Profissional',price:19.90,action:'whatsapp'},
-  comecar:{name:'Comece a Vender',price:29.90,action:'whatsapp'}
+  clientes:{name:'Primeiros Clientes',price:29.90,action:'page',url:'../primeiros-clientes/'},
+  fecha:{name:'Fecha Venda',price:19.90,action:'page',url:'../fecha-venda/'},
+  divulgacao:{name:'Divulgação Express',price:19.90,action:'page',url:'../divulgacao-express/'},
+  cobranca:{name:'Cobrança Profissional',price:19.90,action:'page',url:'../cobranca-profissional/'},
+  comecar:{name:'Comece a Vender',price:29.90,action:'page',url:'../comece-a-vender/'}
 };
 const PAINS={
   clientes:{title:'Você precisa organizar sua prospecção.',copy:'Se pouca gente chega até você, o primeiro passo é criar uma rotina simples para encontrar, abordar e acompanhar potenciais clientes.',bullets:['Mensagens de abordagem','Follow-up sem improviso','Modelo de proposta','Base simples de precificação'],product:'clientes'},
