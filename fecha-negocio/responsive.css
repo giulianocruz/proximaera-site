@@ -24,3 +24,10 @@ img,svg,video,canvas{max-width:100%}
   .final-cta,.footer{width:100%;min-width:0}
 }
 @media(max-width:420px){.top-cta{display:none}.brand img{width:158px}.site-header{justify-content:flex-start}.hero h1{font-size:40px}}
+.quick-box{display:flex;flex-direction:column;gap:14px}
+.quick-box>p{margin:0;color:#98a9b3}
+.quick-steps{display:grid;gap:10px;margin:4px 0 6px}
+.quick-steps span{display:flex;align-items:center;gap:10px;padding:12px 13px;border:1px solid rgba(255,255,255,.1);border-radius:12px;background:#07131b;color:#d5e0e5;font-size:13px}
+.quick-steps b{display:grid;place-items:center;flex:0 0 28px;width:28px;height:28px;border-radius:9px;background:#eafff0;color:#0b7d42}
+.quick-box small{color:#8ea0aa;text-align:center}
+.whatsapp-cta{margin-top:4px}
