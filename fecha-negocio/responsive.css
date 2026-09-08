@@ -1,0 +1,26 @@
+html,body{max-width:100%;overflow-x:hidden}
+.hero-copy,.hero-demo,.offer-copy,.lead-box,.section-head{min-width:0;max-width:100%}
+.browser,.demo-page,.lead-box,.offer{min-width:0;max-width:100%}
+img,svg,video,canvas{max-width:100%}
+@media(max-width:640px){
+  .site-header{padding-left:20px;padding-right:20px;gap:12px}
+  .brand{min-width:0;flex:1}.brand img{width:150px;max-width:100%}
+  .top-cta{white-space:nowrap;flex:0 0 auto;font-size:10px;padding:9px 11px}
+  .hero{width:100%;min-width:0;grid-template-columns:minmax(0,1fr);padding:48px 20px 70px;gap:54px}
+  .hero-copy,.hero-demo{width:100%;min-width:0}
+  .hero h1{font-size:clamp(38px,11.5vw,44px);line-height:.96;letter-spacing:-.045em;max-width:100%;overflow-wrap:normal}
+  .lead{font-size:17px;max-width:100%}
+  .hero-price strong{font-size:36px}
+  .hero-actions{display:grid;grid-template-columns:1fr;width:100%;gap:10px}
+  .hero-actions .button{width:100%;white-space:normal;text-align:center;padding-left:16px;padding-right:16px}
+  .trust-row{width:100%}
+  .browser{width:100%;transform:none}
+  .demo-main{padding:34px 20px 26px}.demo-main h2{font-size:28px;max-width:100%}
+  .demo-cards{grid-template-columns:1fr;gap:8px;padding:14px}.demo-cards span{padding:14px 10px}
+  .demo-tag{position:relative;right:auto;bottom:auto;margin:12px 0 0;width:100%}
+  .pain,.deliverables,.process,.faq,.offer{width:100%;min-width:0;padding-left:20px;padding-right:20px}
+  .offer{grid-template-columns:minmax(0,1fr)}
+  .lead-box{padding:22px 18px}
+  .final-cta,.footer{width:100%;min-width:0}
+}
+@media(max-width:420px){.top-cta{display:none}.brand img{width:158px}.site-header{justify-content:flex-start}.hero h1{font-size:40px}}
