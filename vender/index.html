@@ -17,7 +17,6 @@
   <meta property="og:image" content="https://proximaera.com.br/assets/og-proxima-era.webp" />
   <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="styles.css" />
-  <script defer src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script defer src="app.js"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebPage","name":"Venda mais — Próxima Era","url":"https://proximaera.com.br/vender/","description":"Diagnóstico comercial e soluções digitais para pequenos negócios e profissionais autônomos.","isPartOf":{"@type":"WebSite","name":"Próxima Era","url":"https://proximaera.com.br/"}}</script>
 </head>
@@ -47,7 +46,7 @@
         <div class="trust-row">
           <span>✓ Diagnóstico gratuito</span>
           <span>✓ Soluções a partir de R$ 19,90</span>
-          <span>✓ Pagamento via Pix</span>
+          <span>✓ Atendimento rápido</span>
         </div>
       </div>
       <div class="hero-visual" aria-hidden="true">
@@ -94,9 +93,9 @@
         <article class="product-card featured">
           <span class="badge">MAIS COMPLETO</span>
           <p class="product-kicker">PRESENÇA PROFISSIONAL</p>
-          <h3>Página Express</h3>
-          <p>Uma página profissional para apresentar seu negócio, serviços, localização e canais de contato.</p>
-          <ul><li>Visual profissional</li><li>Celular primeiro</li><li>WhatsApp, Instagram e localização</li><li>Estrutura comercial pronta</li></ul>
+          <h3>Página Fecha Negócio</h3>
+          <p>Uma página profissional para apresentar seu negócio, serviços e contatos. Você vê pronta e só paga depois de aprovar.</p>
+          <ul><li>Visual profissional</li><li>Celular primeiro</li><li>WhatsApp, Instagram e localização</li><li>Você aprova antes de pagar</li></ul>
           <div class="price"><small>por</small><strong>R$ 79,90</strong></div>
           <button class="button primary buy-trigger" data-product="pagina">Quero minha página →</button>
         </article>
@@ -147,12 +146,12 @@
     <section class="how" id="como-funciona">
       <div class="section-head">
         <p class="eyebrow">SEM COMPLICAÇÃO</p>
-        <h2>Você escolhe. Paga. A gente começa.</h2>
+        <h2>Você escolhe. Chama. A gente resolve.</h2>
       </div>
       <div class="steps">
         <article><span>1</span><h3>Escolha a solução</h3><p>Use o diagnóstico ou vá direto ao produto que resolve sua dor.</p></article>
-        <article><span>2</span><h3>Faça o Pix</h3><p>O pagamento é gerado na própria página, sem depender de conversa no WhatsApp.</p></article>
-        <article><span>3</span><h3>Receba o próximo passo</h3><p>Seu pedido entra na central comercial da Próxima Era para entrega e acompanhamento.</p></article>
+        <article><span>2</span><h3>Fale com a Próxima Era</h3><p>O botão já abre o WhatsApp com a solução escolhida e a mensagem pronta.</p></article>
+        <article><span>3</span><h3>Comece sem burocracia</h3><p>Confirmamos o que você precisa, combinamos a entrega e seguimos pelo canal mais simples.</p></article>
       </div>
     </section>
 
@@ -166,38 +165,9 @@
   <footer class="footer">
     <div><img src="../assets/logo-horizontal.svg" width="210" height="48" alt="Próxima Era" /><p>Criando o que vem depois.</p></div>
     <div><strong>Próxima Era</strong><a href="../">Site institucional</a><a href="../contato.html">Contato</a><a href="../privacidade.html">Privacidade</a></div>
-    <div><strong>Empresa</strong><span>Botucatu/SP</span><span>CNPJ 68.964.484/0001-22</span><a href="mailto:contato@proximaera.com.br">contato@proximaera.com.br</a></div>
+    <div><strong>Empresa</strong><span>Botucatu/SP</span><span>CNPJ 68.964.484/0001-22</span><a href="mailto:contato@proximaera.com.br">contato@proximaera.com.br</a><a href="https://wa.me/5514920077743?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20de%20solu%C3%A7%C3%B5es%20da%20Pr%C3%B3xima%20Era%20e%20preciso%20de%20ajuda%20para%20escolher." target="_blank" rel="noopener">WhatsApp comercial</a></div>
   </footer>
 
-  <div class="modal" id="checkoutModal" hidden>
-    <div class="modal-backdrop" data-close-modal></div>
-    <section class="checkout" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
-      <button class="modal-close" data-close-modal aria-label="Fechar">×</button>
-      <div id="checkoutFormStep">
-        <p class="eyebrow">FINALIZAR PEDIDO</p>
-        <h2 id="checkoutTitle">Seu pedido</h2>
-        <div class="checkout-product"><strong id="checkoutProduct"></strong><span id="checkoutPrice"></span></div>
-        <form id="orderForm">
-          <label>Seu nome<input name="name" autocomplete="name" required /></label>
-          <label>Seu e-mail<input name="email" type="email" autocomplete="email" required /></label>
-          <label>WhatsApp <small>(opcional)</small><input name="phone" autocomplete="tel" inputmode="tel" /></label>
-          <label class="consent"><input name="consent" type="checkbox" required /><span>Concordo em enviar estes dados para que a Próxima Era identifique e acompanhe meu pedido.</span></label>
-          <button class="button primary full" type="submit">Gerar meu Pix →</button>
-          <p class="form-status" id="orderStatus"></p>
-        </form>
-      </div>
-      <div id="pixStep" hidden>
-        <p class="eyebrow">PAGAMENTO VIA PIX</p>
-        <h2>Falta só o pagamento.</h2>
-        <div class="pix-summary"><strong id="pixProduct"></strong><span id="pixAmount"></span></div>
-        <div id="qrCode" class="qr"></div>
-        <button class="pix-copy" id="copyPixCode"><span>Pix Copia e Cola</span><strong>Copiar código</strong></button>
-        <details><summary>Prefere usar a chave Pix?</summary><div class="pix-key"><code>68.964.484/0001-22</code><button id="copyPixKey">Copiar chave</button></div></details>
-        <p class="pix-note">Depois de pagar, clique abaixo. Seu pedido já terá sido registrado na nossa central comercial.</p>
-        <a class="button primary full" id="confirmPayment" href="mailto:contato@proximaera.com.br">Já fiz o Pix — enviar comprovante →</a>
-        <button class="text-button" id="backToProducts">← escolher outro produto</button>
-      </div>
-    </section>
-  </div>
+  <a class="floating-wa" href="https://wa.me/5514920077743?text=Ol%C3%A1%21%20Vim%20pela%20p%C3%A1gina%20de%20solu%C3%A7%C3%B5es%20da%20Pr%C3%B3xima%20Era%20e%20preciso%20de%20ajuda%20para%20escolher." target="_blank" rel="noopener" aria-label="Falar com a Próxima Era no WhatsApp">WhatsApp</a>
 </body>
 </html>
