@@ -27,6 +27,7 @@
   <script defer src="/tracking.js"></script>
   <link rel="stylesheet" href="styles.css" />
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"Próxima Era","url":"https://proximaera.com.br/","email":"contato@proximaera.com.br","taxID":"68.964.484/0001-22","foundingDate":"2026-09-04","logo":"https://proximaera.com.br/assets/logo-horizontal.svg","address":{"@type":"PostalAddress","addressLocality":"Botucatu","addressRegion":"SP","addressCountry":"BR"},"areaServed":{"@type":"City","name":"Botucatu","containedInPlace":{"@type":"State","name":"São Paulo"}},"slogan":"Criando o que vem depois."}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Vocês atendem só em Botucatu?","acceptedAnswer":{"@type":"Answer","text":"Não. A Próxima Era está baseada em Botucatu/SP, mas desenvolve projetos digitais para clientes de outras cidades."}},{"@type":"Question","name":"Preciso saber qual tecnologia quero usar?","acceptedAnswer":{"@type":"Answer","text":"Não. Começamos pelo problema, pelo público e pelo resultado esperado. A tecnologia vem depois."}},{"@type":"Question","name":"Vocês fazem só sites?","acceptedAnswer":{"@type":"Answer","text":"Não. Trabalhamos com presença digital, produtos digitais, automações e IA, além da frente editorial. Nem todo problema precisa virar um software grande."}},{"@type":"Question","name":"Quanto custa para começar?","acceptedAnswer":{"@type":"Answer","text":"A Página Fecha Negócio tem oferta a partir de R$ 79,90. Projetos personalizados são avaliados separadamente conforme o escopo."}},{"@type":"Question","name":"Como eu peço um projeto?","acceptedAnswer":{"@type":"Answer","text":"Você pode chamar no WhatsApp ou usar o formulário. Conte o que quer resolver, o que já existe hoje e qual resultado espera alcançar."}}]}</script>
 </head>
 <body>
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
@@ -42,7 +43,7 @@
       <a href="botucatu/">Botucatu</a>
       <a href="#sobre">Sobre</a>
       <a href="contato.html">Contato</a>
-      <a class="nav-cta" href="contato.html?assunto=projeto">Tenho um problema para resolver</a>
+      <a class="nav-cta" href="contato.html?assunto=projeto" data-track="nav-projeto">Tenho um problema para resolver</a>
     </nav>
   </header>
 
@@ -56,7 +57,7 @@
         <p class="hero-tagline">PRODUTO PRIMEIRO. TECNOLOGIA A SERVIÇO DO RESULTADO.</p>
         <p class="hero-lead">Construímos, operamos e validamos produtos digitais próprios e soluções para negócios — do primeiro protótipo à receita real.</p>
         <div class="hero-actions">
-          <a class="button primary" href="#solucoes">Veja como podemos ajudar <span>→</span></a>
+          <a class="button primary" href="#solucoes" data-track="hero-solucoes">Veja como podemos ajudar <span>→</span></a>
           <a class="button ghost" href="https://wa.me/5514920077743?text=Oi%2C%20vim%20pelo%20site%20da%20Pr%C3%B3xima%20Era%20e%20quero%20tirar%20uma%20ideia%20do%20papel." target="_blank" rel="noopener" data-track="whatsapp-hero">Conversar no WhatsApp</a>
         </div>
         <div class="hero-metrics">
@@ -88,19 +89,19 @@
         <p>Nosso portfólio só faz sentido quando ajuda alguém a vender, organizar, publicar ou construir melhor.</p>
       </div>
       <div class="solution-grid">
-        <a class="solution-card reveal" href="https://radar.elitewp.com.br" target="_blank" rel="noopener">
+        <a class="solution-card reveal" data-track="solucao-radar" href="https://radar.elitewp.com.br" target="_blank" rel="noopener">
           <span class="solution-number">01</span><small>COMERCIAL</small><h3>Quero encontrar mais clientes.</h3>
           <p>Use dados empresariais e inteligência comercial para transformar busca em prospecção organizada.</p><b>Abrir Radar</b>
         </a>
-        <a class="solution-card reveal solution-card-offer" href="fecha-negocio/">
+        <a class="solution-card reveal solution-card-offer" href="fecha-negocio/" data-track="solucao-pagina">
           <span class="solution-number">02</span><small>OFERTA DIRETA</small><h3>Quero uma página profissional para vender.</h3>
           <p>Uma página objetiva para apresentar seu serviço, gerar confiança e levar o cliente para o WhatsApp. Oferta a partir de R$ 79,90.</p><b>Conhecer a Página Fecha Negócio</b>
         </a>
-        <a class="solution-card reveal" href="editorial/">
+        <a class="solution-card reveal" href="editorial/" data-track="solucao-editorial">
           <span class="solution-number">03</span><small>CONTEÚDO & EDITORIAL</small><h3>Quero transformar conhecimento em produto.</h3>
           <p>Pesquisa, estruturação, curadoria e produção editorial apoiadas por tecnologia sem abrir mão de qualidade.</p><b>Conhecer o método</b>
         </a>
-        <a class="solution-card reveal" href="contato.html?assunto=novo-projeto">
+        <a class="solution-card reveal" href="contato.html?assunto=novo-projeto" data-track="solucao-sob-medida">
           <span class="solution-number">04</span><small>NOVOS NEGÓCIOS</small><h3>Tenho um problema que ainda não tem produto.</h3>
           <p>Exploramos a oportunidade, construímos uma primeira versão e medimos se ela merece evoluir.</p><b>Conversar com a Próxima Era</b>
         </a>
@@ -115,7 +116,7 @@
       </div>
       <div class="conversion-actions reveal">
         <a class="button primary" href="https://wa.me/5514920077743?text=Oi%2C%20vim%20pelo%20site%20da%20Pr%C3%B3xima%20Era%20e%20quero%20conversar%20sobre%20um%20projeto." target="_blank" rel="noopener" data-track="whatsapp-home">Falar no WhatsApp <span>→</span></a>
-        <a class="button soft" href="contato.html?assunto=projeto">Prefiro explicar por escrito</a>
+        <a class="button soft" href="contato.html?assunto=projeto" data-track="contato-escrito">Prefiro explicar por escrito</a>
         <small>Atendimento a partir de Botucatu/SP, com projetos digitais para qualquer lugar.</small>
       </div>
     </section>
@@ -126,9 +127,9 @@
         <p>Alguns projetos da Próxima Era já podem ser abertos, testados e avaliados agora.</p>
       </div>
       <div class="proof-grid">
-        <a class="proof-card reveal" href="https://radar.elitewp.com.br" target="_blank" rel="noopener"><span>EM PRODUÇÃO</span><h3>Radar</h3><p>Busca empresarial e inteligência comercial para transformar dados em prospecção.</p><b>Abrir Radar ↗</b></a>
-        <a class="proof-card reveal" href="https://chamasofia.com.br" target="_blank" rel="noopener"><span>EM PRODUÇÃO</span><h3>Chama Sofia</h3><p>Conteúdo, comunidade e produtos digitais reunidos em uma experiência própria.</p><b>Visitar Chama Sofia ↗</b></a>
-        <a class="proof-card reveal proof-card-accent" href="fecha-negocio/"><span>OFERTA ATIVA</span><h3>Página Fecha Negócio</h3><p>Uma página profissional objetiva, pensada para apresentar serviços e gerar contato.</p><b>Conhecer a oferta →</b></a>
+        <a class="proof-card reveal" data-track="prova-radar" href="https://radar.elitewp.com.br" target="_blank" rel="noopener"><span>EM PRODUÇÃO</span><h3>Radar</h3><p>Busca empresarial e inteligência comercial para transformar dados em prospecção.</p><b>Abrir Radar ↗</b></a>
+        <a class="proof-card reveal" data-track="prova-chamasofia" href="https://chamasofia.com.br" target="_blank" rel="noopener"><span>EM PRODUÇÃO</span><h3>Chama Sofia</h3><p>Conteúdo, comunidade e produtos digitais reunidos em uma experiência própria.</p><b>Visitar Chama Sofia ↗</b></a>
+        <a class="proof-card reveal proof-card-accent" href="fecha-negocio/" data-track="prova-pagina"><span>OFERTA ATIVA</span><h3>Página Fecha Negócio</h3><p>Uma página profissional objetiva, pensada para apresentar serviços e gerar contato.</p><b>Conhecer a oferta →</b></a>
       </div>
     </section>
 
@@ -198,13 +199,29 @@
 
     <section class="section signals" id="sinais"><div class="section-head inverse reveal"><div><p class="section-kicker">SINAIS DA PRÓXIMA ERA</p><h2>O que estamos aprendendo pelo caminho.</h2></div><p>Notas curtas sobre tecnologia, construção de produtos, bastidores e novos experimentos.</p></div><div class="signal-grid"><a class="signal-card reveal" href="sinais/primeira-transmissao.html"><span>TRANSMISSÃO 001</span><h3>Uma empresa pode nascer antes de estar pronta.</h3><p>Por que decidimos colocar a Próxima Era no mundo enquanto ainda estamos construindo.</p><b>Ler sinal →</b></a><a class="signal-card reveal" href="sinais/projeto-precisa-provar.html"><span>TRANSMISSÃO 002</span><h3>O que um projeto precisa provar para continuar existindo?</h3><p>Uso, aprendizado e sustentabilidade como sinais para decidir onde continuar investindo.</p><b>Ler sinal →</b></a><a class="signal-card reveal" href="sinais/ia-ferramenta-nao-identidade.html"><span>TRANSMISSÃO 003</span><h3>IA como ferramenta, não como identidade.</h3><p>Por que a tecnologia pode ser decisiva por dentro sem dominar a proposta do produto.</p><b>Ler sinal →</b></a></div><a class="signals-all reveal" href="sinais/">Ver todos os sinais →</a></section>
 
+    <section class="faq-section" id="duvidas" aria-labelledby="faq-title">
+      <div class="faq-intro reveal">
+        <p class="section-kicker">ANTES DE COMEÇAR</p>
+        <h2 id="faq-title">Dúvidas comuns, respostas sem enrolação.</h2>
+        <p>Se você ainda não sabe exatamente o que precisa, tudo bem. O ponto de partida pode ser simplesmente o problema.</p>
+        <a class="button primary" href="https://wa.me/5514920077743?text=Oi%2C%20vim%20pelo%20site%20da%20Pr%C3%B3xima%20Era%20e%20tenho%20uma%20d%C3%BAvida%20sobre%20um%20projeto." target="_blank" rel="noopener" data-track="faq-whatsapp">Perguntar no WhatsApp <span>→</span></a>
+      </div>
+      <div class="faq-list reveal">
+        <details><summary>Vocês atendem só em Botucatu?</summary><p>Não. A Próxima Era está baseada em Botucatu/SP, mas desenvolve projetos digitais para clientes de outras cidades.</p></details>
+        <details><summary>Preciso saber qual tecnologia quero usar?</summary><p>Não. Começamos pelo problema, pelo público e pelo resultado esperado. A tecnologia vem depois.</p></details>
+        <details><summary>Vocês fazem só sites?</summary><p>Não. Trabalhamos com presença digital, produtos digitais, automações e IA, além da frente editorial. Nem todo problema precisa virar um software grande.</p></details>
+        <details><summary>Quanto custa para começar?</summary><p>A Página Fecha Negócio tem oferta a partir de R$ 79,90. Projetos personalizados são avaliados separadamente conforme o escopo.</p></details>
+        <details><summary>Como eu peço um projeto?</summary><p>Você pode chamar no WhatsApp ou usar o formulário. Conte o que quer resolver, o que já existe hoje e qual resultado espera alcançar.</p></details>
+      </div>
+    </section>
+
     <section class="about" id="sobre">
       <div class="about-copy reveal">
         <p class="section-kicker">SOBRE A PRÓXIMA ERA</p>
         <h2>O futuro não vem pronto.</h2>
         <p>A Próxima Era é o guarda-chuva de projetos que unem tecnologia, conteúdo, inteligência artificial, produtos digitais, games e novos negócios.</p>
         <p>Não estamos presos a uma tecnologia, mercado ou formato. Criamos, testamos, aprendemos e levamos adiante o que merece existir.</p>
-        <a class="button primary" href="contato.html">Vamos criar algo novo <span>→</span></a>
+        <a class="button primary" href="contato.html" data-track="sobre-contato">Vamos criar algo novo <span>→</span></a>
       </div>
       <blockquote class="quote reveal"><span>"</span>Grandes ideias também podem vir de outro mundo.<small>— ZERO</small></blockquote>
       <div class="about-visual reveal"><img src="assets/zero-planeta.webp" width="413" height="620" loading="lazy" alt="Zero sentado ao lado de um planeta envolvido por uma órbita verde luminosa" /></div>
@@ -213,7 +230,7 @@
 
   <footer class="footer">
     <div class="footer-brand"><a href="index.html"><img class="footer-logo" src="assets/logo-horizontal.svg" width="270" height="60" alt="Próxima Era" /></a><p>Ideias de outro mundo.</p><small>Operada por 68.964.484 Giuliano Cesar da Cruz — CNPJ 68.964.484/0001-22.</small></div>
-    <div class="footer-links"><strong>EXPLORAR</strong><a href="#projetos">Projetos</a><a href="editorial/">Editorial</a><a href="#agora">Agora</a><a href="botucatu/">Botucatu</a><a href="sinais/">Sinais</a><a href="#sobre">Sobre</a></div>
+    <div class="footer-links"><strong>EXPLORAR</strong><a href="#projetos">Projetos</a><a href="editorial/">Editorial</a><a href="#agora">Agora</a><a href="botucatu/">Botucatu</a><a href="sinais/">Sinais</a><a href="#duvidas">Dúvidas</a><a href="#sobre">Sobre</a></div>
     <div class="footer-contact"><strong>CONTATO</strong><span>Botucatu — SP</span><a href="mailto:contato@proximaera.com.br">contato@proximaera.com.br</a><a href="contato.html">Enviar uma mensagem</a></div>
     <div class="footer-legal"><a href="privacidade.html">Privacidade</a><a href="termos.html">Termos de uso</a></div>
     <div class="footer-bottom"><span>© 2026 Próxima Era. Todos os direitos reservados.</span><span>Tecnologia hoje. Um futuro em construção.</span></div>
