@@ -1,5 +1,6 @@
 const form = document.getElementById('leadForm');
 const statusEl = document.getElementById('formStatus');
+const getSession = key => { try { return sessionStorage.getItem(key) || ''; } catch { return ''; } };
 
 function setStatus(message, kind='info') {
   if (!statusEl) return;
@@ -21,7 +22,13 @@ form?.addEventListener('submit', async event => {
     website: '',
     origem: 'fecha-negocio',
     tema: 'PAGINA-FECHA-NEGOCIO',
-    guia: ''
+    guia: '',
+    acquisition: {
+      topicId:'sales:fecha-negocio', guide:(getSession('pe_source')||getSession('pe_utm_source')||'direto').slice(0,20),
+      path:'/fecha-negocio/', source:getSession('pe_source')||getSession('pe_utm_source')||'',
+      medium:getSession('pe_utm_medium')||'', campaign:getSession('pe_utm_campaign')||'',
+      content:getSession('pe_utm_content')||'', term:getSession('pe_utm_term')||'', entry:getSession('pe_entry_path')||'/fecha-negocio/'
+    }
   };
 
   button.disabled = true;

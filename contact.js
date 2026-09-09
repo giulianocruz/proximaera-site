@@ -4,6 +4,15 @@ const origem = params.get('origem') || '';
 const tema = params.get('tema') || '';
 const guia = params.get('guia') || '';
 const assunto = params.get('assunto') || '';
+const getSession = key => { try { return sessionStorage.getItem(key) || ''; } catch { return ''; } };
+const referrerHost = (() => { try { return document.referrer ? new URL(document.referrer).hostname : ''; } catch { return ''; } })();
+const acquisition = {
+  topicId:getSession('pe_last_topic') || 'sales:contact', guide:getSession('pe_source') || getSession('pe_utm_source') || referrerHost || 'direto',
+  path:getSession('pe_last_cta_path') || location.pathname, referrerHost,
+  source:getSession('pe_source') || getSession('pe_utm_source'), medium:getSession('pe_utm_medium'), campaign:getSession('pe_utm_campaign'),
+  content:getSession('pe_utm_content'), term:getSession('pe_utm_term'), entry:getSession('pe_entry_path') || location.pathname,
+  cta:getSession('pe_last_cta')
+};
 const topicLabels = {
   'presenca-google':'presença local no Google','site-ou-instagram':'site e Instagram','whatsapp-organizado':'atendimento pelo WhatsApp',
   'automacao-escritorio':'automação da rotina','ia-comercio-servicos':'uso prático de IA','checklist-digital':'organização da presença digital',
@@ -54,7 +63,7 @@ form?.addEventListener('submit', async function(e) {
   const data = {
     name:String(f.get('name') || '').trim(), company:String(f.get('company') || '').trim(), phone:String(f.get('phone') || '').trim(),
     email:String(f.get('email') || '').trim(), subject:String(f.get('subject') || '').trim(), message:String(f.get('message') || '').trim(),
-    website:String(f.get('website') || '').trim(), origem, tema, guia
+    website:String(f.get('website') || '').trim(), origem, tema, guia, acquisition
   };
   button.disabled = true; button.textContent = 'Enviando…'; setStatus('Registrando seu contato com segurança…');
   try {
