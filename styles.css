@@ -375,3 +375,17 @@ a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,te
 .faq-list details p{margin:0;padding:0 58px 24px 20px;color:#5b6d63;line-height:1.72;max-width:800px}.faq-list details:hover summary{color:#176f39}
 @media(max-width:900px){.faq-section{grid-template-columns:1fr;gap:38px}.faq-intro{position:static}.faq-intro>p:not(.section-kicker){max-width:720px}}
 @media(max-width:620px){.faq-section{padding:62px 20px;gap:30px}.faq-intro h2{font-size:39px}.faq-intro .button{width:100%;justify-content:center}.faq-list summary{padding:21px 52px 21px 15px;font-size:16px}.faq-list summary::after{right:14px;top:16px}.faq-list details p{padding:0 15px 21px;font-size:15px}}
+
+/* Home compacta: menos repetição e exploração por swipe no mobile */
+.origin-cta{margin-top:26px}.origin-section[id="sobre"]{scroll-margin-top:82px}
+@media(max-width:620px){
+  .work-method{padding-top:58px;padding-bottom:58px}.work-method .section-head{margin-bottom:20px}
+  .work-method .method-grid{display:block}.work-method .method-card{display:grid;grid-template-columns:46px 1fr;grid-template-areas:"num title" "num copy";column-gap:14px;row-gap:3px;min-height:0;padding:19px 0;border:0;border-top:1px solid #dce5e0;border-radius:0;background:transparent;overflow:visible}
+  .work-method .method-card:last-child{border-bottom:1px solid #dce5e0}.work-method .method-card::after{display:none}.work-method .method-card>span{grid-area:num;width:40px;height:40px}.work-method .method-card h3{grid-area:title;margin:1px 0 2px;font-size:20px}.work-method .method-card p{grid-area:copy;margin:0;font-size:14px;line-height:1.55}
+  .project-grid,.signal-grid,.local-feed-grid{display:flex!important;gap:14px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-inline:contain;padding:2px 20px 18px 0;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+  .project-grid::-webkit-scrollbar,.signal-grid::-webkit-scrollbar,.local-feed-grid::-webkit-scrollbar{display:none}
+  .project-card,.signal-card,.local-feed-card{flex:0 0 min(82vw,320px);scroll-snap-align:start;scroll-snap-stop:always}
+  .project-card{min-height:300px}.signal-card{min-height:295px}.local-feed-card{min-height:285px}
+  .universe,.signals,.local-home{overflow:hidden}
+  .origin-cta{width:100%;justify-content:center}.origin-section{padding-top:62px;padding-bottom:62px}
+}
