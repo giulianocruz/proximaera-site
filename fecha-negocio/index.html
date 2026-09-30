@@ -60,9 +60,9 @@
       <div class="hero-demo" id="demonstracao" aria-label="Demonstração interativa de uma página comercial">
         <div class="demo-heading"><div><span class="demo-eyebrow">VISUALIZE ANTES DE DECIDIR</span><strong>Assim sua empresa pode se apresentar.</strong></div><span class="demo-live"><i></i> DEMONSTRAÇÃO</span></div>
         <div class="preview-switcher" role="group" aria-label="Escolha um tipo de negócio">
-          <button type="button" data-template="beauty" class="is-active" aria-pressed="true">Beleza</button>
-          <button type="button" data-template="service" aria-pressed="false">Serviços</button>
-          <button type="button" data-template="consult" aria-pressed="false">Consultoria</button>
+          <button type="button" data-template="beauty" data-track="demo-seletor-beleza" class="is-active" aria-pressed="true">Beleza</button>
+          <button type="button" data-template="service" data-track="demo-seletor-servicos" aria-pressed="false">Serviços</button>
+          <button type="button" data-template="consult" data-track="demo-seletor-consultoria" aria-pressed="false">Consultoria</button>
         </div>
         <div class="browser" data-template-theme="beauty">
           <div class="browser-top"><i></i><i></i><i></i><span data-demo-url>studioaurora.exemplo</span><span class="demo-device">PRÉVIA DE SITE</span></div>
@@ -71,6 +71,10 @@
             <div class="demo-main"><small data-demo-kicker>BELEZA E AUTOCUIDADO</small><h2 data-demo-title>Realce sua beleza. Reserve seu momento.</h2><p data-demo-description>Atendimento personalizado, serviços apresentados com carinho e agendamento sem complicação.</p><span class="demo-cta-mock">Agendar pelo WhatsApp <span aria-hidden="true">↗</span></span></div>
             <div class="demo-cards"><span data-demo-service-1>Cabelo</span><span data-demo-service-2>Estética</span><span data-demo-service-3>Manicure</span></div>
           </div>
+        </div>
+        <div class="full-preview-bar">
+          <div><span class="full-preview-label">NAVEGUE COMO SE FOSSE SEU CLIENTE</span><strong>Abra o exemplo completo e explore todas as seções.</strong></div>
+          <a class="full-preview-button" data-demo-full data-track="abrir-modelo-completo" href="modelos/?segment=beleza">Explorar página completa <span aria-hidden="true">↗</span></a>
         </div>
         <div class="demo-footnote"><span>Exemplo ilustrativo: nomes, textos e identidade mudam conforme seu negócio.</span><a href="https://wa.me/5514996428874?text=Ol%C3%A1%21%20Quero%20uma%20P%C3%A1gina%20Fecha%20Neg%C3%B3cio%20Profissional%20por%20R%24%2079%2C90.%20Vi%20o%20exemplo%20no%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer" data-track="whatsapp-demo">Quero uma página assim ↗</a></div>
       </div>
@@ -88,12 +92,18 @@
 
     <section class="examples light" id="exemplos">
       <div class="section-head"><div><p class="eyebrow">UM PROJETO, MUITAS POSSIBILIDADES</p><h2>O seu negócio tem personalidade. Sua página também.</h2></div><p>Selecione um exemplo e veja a demonstração se transformar. Estes são conceitos ilustrativos, não depoimentos de clientes.</p></div>
-      <div class="example-grid">
-        <button type="button" class="example-card example-beauty" data-preview="beauty"><span class="example-index">01 / BELEZA</span><span class="example-icon">✳</span><strong>Studio Aurora</strong><small>Agendamentos, serviços e identidade delicada</small><span class="example-view">Ver demonstração <span aria-hidden="true">↗</span></span></button>
-        <button type="button" class="example-card example-service" data-preview="service"><span class="example-index">02 / SERVIÇOS</span><span class="example-icon">⌁</span><strong>Ramos Elétrica</strong><small>Orçamentos rápidos e atendimento direto</small><span class="example-view">Ver demonstração <span aria-hidden="true">↗</span></span></button>
-        <button type="button" class="example-card example-consult" data-preview="consult"><span class="example-index">03 / CONSULTORIA</span><span class="example-icon">◇</span><strong>Vértice Consultoria</strong><small>Apresentação de especialidades e contato</small><span class="example-view">Ver demonstração <span aria-hidden="true">↗</span></span></button>
+      <div class="example-grid" aria-label="Selecione um setor para ver a prévia">
+        <button type="button" class="example-card example-beauty" data-preview="beauty" data-track="card-exemplo-beleza"><span class="example-index">01 / BELEZA</span><span class="example-icon">✳</span><strong>Studio Aurora</strong><small>Agendamentos, serviços e identidade delicada</small><span class="example-view">Ver demonstração <span aria-hidden="true">↗</span></span></button>
+        <button type="button" class="example-card example-service" data-preview="service" data-track="card-exemplo-servicos"><span class="example-index">02 / SERVIÇOS</span><span class="example-icon">⌁</span><strong>Ramos Elétrica</strong><small>Orçamentos rápidos e atendimento direto</small><span class="example-view">Ver demonstração <span aria-hidden="true">↗</span></span></button>
+        <button type="button" class="example-card example-consult" data-preview="consult" data-track="card-exemplo-consultoria"><span class="example-index">03 / CONSULTORIA</span><span class="example-icon">◇</span><strong>Vértice Consultoria</strong><small>Apresentação de especialidades e contato</small><span class="example-view">Ver demonstração <span aria-hidden="true">↗</span></span></button>
       </div>
-      <p class="examples-note">As três marcas acima são fictícias, criadas apenas para demonstrar possibilidades de apresentação.</p>
+      <div class="example-deep-links" aria-label="Exemplos navegáveis">
+        <span>Veja cada exemplo funcionando:</span>
+        <a href="modelos/?segment=beleza" data-track="modelo-completo-beleza">Beleza ↗</a>
+        <a href="modelos/?segment=servicos" data-track="modelo-completo-servicos">Serviços ↗</a>
+        <a href="modelos/?segment=consultoria" data-track="modelo-completo-consultoria">Consultoria ↗</a>
+      </div>
+      <p class="examples-note">Exemplos e nomes fictícios, produzidos para demonstrar possibilidades de personalização.</p>
     </section>
 
     <section class="plans light" id="planos" aria-labelledby="titulo-planos">

@@ -52,6 +52,16 @@
     }
     for(let i=0;i<3;i++)if(cells.items[i])cells.items[i].textContent=s.items[i];
     canvas.setAttribute('data-template-theme',s.theme);
+    const complete=document.querySelector("[data-demo-full]");
+    if(complete){
+      const slug=name==='service'?'servicos':name==='consult'?'consultoria':'beleza';
+      const dest=new URL('modelos/?segment='+slug,location.href);
+      const qp=new URLSearchParams(location.search);
+      for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']){
+        if(qp.has(key))dest.searchParams.set(key,qp.get(key));
+      }
+      complete.href=dest.href;
+    }
     document.querySelectorAll('.preview-switcher [data-template]').forEach(btn=>{
       const chosen=btn.dataset.template===name;
       btn.classList.toggle('is-active',chosen);
