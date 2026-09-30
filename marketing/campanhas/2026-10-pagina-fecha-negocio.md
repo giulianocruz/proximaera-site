@@ -10,7 +10,7 @@
 - Objetivo: Tráfego, com otimização para visualizações da página de destino, **se a interface disponibilizar**.
 - Nome: `PE | Página Fecha Negócio | Tráfego | 2026-10`.
 - 1 campanha, 1 conjunto, 1 anúncio principal; adaptar criativo a Feed (1080×1350) e Stories/Reels (1080×1920).
-- Recorte inicial a testar: Botucatu/SP + 40 km, todos os gêneros, adultos 24–55. Ajustar se público for restrito.
+- Abrangência geográfica: **Brasil inteiro**, sem limitar a Botucatu/SP ou ao interior paulista; o site presta atendimento nacional. Todos os gêneros, adultos 24–55 como ponto de partida ajustável pela plataforma, sem pulverizar a verba entre estados/cidades.
 - Orçamento: começar com média R$ 5/dia **somente quando houver disponibilidade de caixa**.
 - Teto de experimento: R$ 35 acumulados; **não usar orçamento diário sozinho como proteção**, pois a Meta pode variar o gasto. Configurar limite rígido pertinente e conferir as campanhas que o compartilham. Pausar manualmente se o controle não estiver disponível.
 - Antes de ativar, auditar e pausar as campanhas antigas que **não devam permanecer ativas**; preservar histórico, não excluir.
@@ -22,7 +22,7 @@
 
 **WhatsApp da empresa:** +55 14 99642-8874 (`https://wa.me/5514996428874`).
 
-A URL com UTM aponta para uma variação do cabeçalho com o preço Profissional e CTA direto para o WhatsApp. A variação foi preparada em `fecha-negocio/experiment.js` em 30/09/2026. **Deploy em produção ainda não confirmado**; verificar se o arquivo público contém `anuncio_profissional` antes da ativação. Preserve a home orgânica e o Free.
+A campanha usa segmentação nacional; evitar promessas de atendimento exclusivamente local no criativo. A URL com UTM aponta para uma variação do cabeçalho com o preço Profissional e CTA direto para o WhatsApp. A variação foi preparada em `fecha-negocio/experiment.js` em 30/09/2026. **Deploy em produção ainda não confirmado**; verificar se o arquivo público contém `anuncio_profissional` antes da ativação. Preserve a home orgânica e o Free.
 
 O rastreamento existente em `/tracking.js` registra UTMs, visualização, cliques e insere contexto na mensagem WhatsApp. Um clique de WhatsApp não é necessariamente mensagem enviada nem venda: conferir conversas recebidas manualmente.
 
