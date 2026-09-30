@@ -62,7 +62,16 @@ O rastreamento existente em `/tracking.js` registra UTMs, visualização, clique
 
 **Sem investimento automático:** aumentar, reativar ou renovar somente após conferência do orçamento e das conversões. Evitar concorrência de múltiplas campanhas com verba muito pequena.
 
-## 6. Situação técnica em 30/09/2026
+## 6. Aprendizado comercial e prevenção de inadimplência
+
+- Histórico relatado pelo proprietário: **R$ 21 de mídia geraram uma negociação pelo plano de R$ 367**, mas a cliente deixou de responder depois de a página estar pronta e **nenhum recebimento foi confirmado**. Não registrar essa oportunidade como venda paga nem como retorno sobre mídia.
+- Etapas do CRM: **Contato → Qualificado → Prévia preparada → Prévia aprovada → Pagamento confirmado → Publicado/Entregue**.
+- Oferecer **prévia de aprovação** com acesso limitado; não liberar a página definitiva, domínio oficial, código/arquivos finais ou publicação irreversível antes de receber. Se houver necessidade de trabalhos personalizados significativos, negociar escopo e sinal por escrito antes, sem alterar a promessa de pagamento após aprovação do plano padrão sem atualizar a oferta.
+- Acompanhar separadamente o custo por lead, o custo por cliente **efetivamente pago**, a receita recebida e as horas de produção.
+- Ao preparar a campanha, o editor da Meta mostrou um rascunho com **R$ 10/dia**, teto possível exibido **R$ 17,50 em um dia**, e WhatsApp vinculado **EliteWP +55 14 92007-7743**. Corrigir o orçamento e a identidade/número de WhatsApp antes de publicar; o telefone correto é **+55 14 99642-8874**.
+- Verificação do repositório em 30/09/2026: os links do index da página no GitHub ainda apontavam ao número antigo, enquanto a página **já publicada** apontava ao novo. Os **sete links no repositório foram corrigidos** e a redação do fluxo de aprovação/pagamento esclarecida; **deploy da versão do repositório ainda não confirmado**.
+
+## 7. Situação técnica em 30/09/2026
 
 - O site público já contém WhatsApp +55 14 99642-8874 e rastreamento UTM.
 - A variação paga `anuncio_profissional` foi commitada no repositório, mas não identificada ainda na cópia pública de `experiment.js`.
