@@ -79,3 +79,14 @@ O rastreamento existente em `/tracking.js` registra UTMs, visualização, clique
 - Telas de 320, 390, 820 e 1440 px validadas sem rolagem horizontal. A variação UTM, o GA4 e a alternância dos exemplos foram testados em produção.
 - Backups pré-release na VPS: `/opt/proximaera/backups/fecha-negocio-before-b3d2532-20260930.tar.gz` e `/opt/proximaera/backups/fecha-negocio-before-0706189-20260930.tar.gz`.
 - O Gerenciador de Anúncios estava aberto no navegador remoto; **a campanha nova continua não veiculada até revisão de WhatsApp vinculado, limite de gasto e forma de pagamento**.
+
+
+## 8. Demonstrações completas e checagem de produção (30/09/2026)
+
+- A Página Fecha Negócio agora oferece navegação em **três modelos completos fictícios**, sem apresentá-los como clientes reais: [Beleza](https://proximaera.com.br/fecha-negocio/modelos/?segment=beleza), [Serviços](https://proximaera.com.br/fecha-negocio/modelos/?segment=servicos) e [Consultoria](https://proximaera.com.br/fecha-negocio/modelos/?segment=consultoria).
+- As demonstrações são personalizadas por tema e conteúdo, são `noindex` para evitar indexar clientes fictícios e mantêm CTA explícito para o WhatsApp comercial **+55 14 99642-8874**. O botão interno simulado do exemplo leva a uma explicação, não a uma agenda ou venda falsa.
+- A landing principal possui um CTA **Explorar página completa**, atualizado conforme o setor selecionado, além de links diretos para os três modelos na seção de exemplos.
+- UTMs presentes na chegada são transportadas ao abrir o exemplo completo, e voltam com o visitante à landing. O rastreamento legado recebe identificadores dos novos CTAs; cliques não substituem mensuração de conversas e vendas pagas.
+- Commit: `ef1a93efb039f244e6e6b5fa57b5905965a85f93`. Deploy na VPS `proximaera-site`, com backup pré-publicação em `/opt/proximaera/backups/fecha-negocio-before-ef1a93e-20260930.tar.gz`.
+- Testes reais do domínio realizados em celular 320/390 px, tablet 820 px e desktop 1440 px; links de navegação cruzada, segmentos, WhatsApp, responsividade e erros de JavaScript conferidos. **Os oito cenários dos modelos passaram**, incluindo preservação de UTMs. Respostas HTTP 304 são cache normal e não falhas.
+- **A publicação da página não publica anúncios**. Configuração e ativação do Meta Ads permanecem separadas, dependentes da conferência do orçamento e do WhatsApp vinculado.
