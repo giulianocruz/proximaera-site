@@ -213,3 +213,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #61
  .mobile-buy{transition:transform .2s ease,opacity .2s ease,visibility .2s ease}
  body.hero-cta-in-view .mobile-buy{transform:translateY(115%);opacity:0;visibility:hidden;pointer-events:none}
 }
+
+/* Contraste dos cartões ilustrativos e hierarquia do plano patrocinado. */
+.example-card small{color:inherit!important;letter-spacing:0!important;font-weight:550!important;opacity:.76}
+@media(max-width:740px){.plan-grid>.plan-card.featured{order:-1}}
