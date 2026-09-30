@@ -22,7 +22,7 @@
 
 **WhatsApp da empresa:** +55 14 99642-8874 (`https://wa.me/5514996428874`).
 
-A campanha usa segmentação nacional; evitar promessas de atendimento exclusivamente local no criativo. A URL com UTM aponta para uma variação do cabeçalho com o preço Profissional e CTA direto para o WhatsApp. A variação foi preparada em `fecha-negocio/experiment.js` em 30/09/2026. **Deploy em produção ainda não confirmado**; verificar se o arquivo público contém `anuncio_profissional` antes da ativação. Preserve a home orgânica e o Free.
+A campanha usa segmentação nacional; evitar promessas de atendimento exclusivamente local no criativo. A URL com UTM aponta para uma variação do cabeçalho com o preço Profissional e CTA direto para o WhatsApp. A variação foi preparada em `fecha-negocio/experiment.js` em 30/09/2026. **Deploy da landing confirmado em produção em 30/09/2026** (release `0706189`; variação `anuncio_profissional` verificada por teste de navegador). O Free foi preservado como alternativa, com Profissional em destaque.
 
 O rastreamento existente em `/tracking.js` registra UTMs, visualização, cliques e insere contexto na mensagem WhatsApp. Um clique de WhatsApp não é necessariamente mensagem enviada nem venda: conferir conversas recebidas manualmente.
 
@@ -74,5 +74,8 @@ O rastreamento existente em `/tracking.js` registra UTMs, visualização, clique
 ## 7. Situação técnica em 30/09/2026
 
 - O site público já contém WhatsApp +55 14 99642-8874 e rastreamento UTM.
-- A variação paga `anuncio_profissional` foi commitada no repositório, mas não identificada ainda na cópia pública de `experiment.js`.
-- O Gerenciador de Anúncios estava aberto no navegador remoto; **não foi possível validar de forma segura todo o limite de gastos, a configuração e o criativo na interface; campanha nova não foi veiculada**.
+- A variação paga `anuncio_profissional` está ativa e foi verificada em produção com a URL de UTM; não significa que a campanha da Meta tenha sido publicada.
+- A landing foi redesenhada com demo interativa de três segmentos fictícios, oferta Pro de R$ 79,90 na primeira dobra, revisão de transparência do pagamento, WhatsApp +55 14 99642-8874 e rastreamento de CTAs distintos. Sem promessas de resultados nem depoimentos fictícios.
+- Telas de 320, 390, 820 e 1440 px validadas sem rolagem horizontal. A variação UTM, o GA4 e a alternância dos exemplos foram testados em produção.
+- Backups pré-release na VPS: `/opt/proximaera/backups/fecha-negocio-before-b3d2532-20260930.tar.gz` e `/opt/proximaera/backups/fecha-negocio-before-0706189-20260930.tar.gz`.
+- O Gerenciador de Anúncios estava aberto no navegador remoto; **a campanha nova continua não veiculada até revisão de WhatsApp vinculado, limite de gasto e forma de pagamento**.
