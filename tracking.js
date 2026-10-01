@@ -30,10 +30,12 @@
     try{if(sessionStorage.getItem(key))return;sessionStorage.setItem(key,'1')}catch{}
     fn();
   };
-  const recordView=()=>once('view',()=>send('view'));
-  const engage=()=>{ if(document.visibilityState==='visible') recordView(); };
-  for(const ev of ['pointerdown','keydown','touchstart','scroll']) window.addEventListener(ev,engage,{once:true,passive:ev==='scroll'||ev==='touchstart'});
-  setTimeout(engage,15000);
+  // Conta a chegada assim que a página fica visível, mesmo quando o visitante não interage.
+  // A chave de sessão existente evita duplicatas por página e campanha.
+  const recordView=()=>{ if(document.visibilityState==='visible') once('view',()=>send('view')); };
+  recordView();
+  document.addEventListener('visibilitychange',recordView);
+  window.addEventListener('pageshow',recordView);
   document.querySelectorAll('[data-track],a[href*="wa.me/"]').forEach(a=>{
     const label=(a.dataset.track||'whatsapp').trim().slice(0,42);
     if(a.matches('a[href*="wa.me/"]')){
