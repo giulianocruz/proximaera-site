@@ -147,3 +147,116 @@
     });
   });
 })();
+
+/* Próxima Era Analytics v2 — sessão, engajamento e profundidade.
+   Complementa o funil existente; pagamento continua confirmado apenas pelo backend.
+*/
+(()=>{
+  if(navigator.webdriver||/Lighthouse|HeadlessChrome/i.test(navigator.userAgent))return;
+  const offer=window.PE_OFFER||{};
+  const isOffer=location.pathname.startsWith('/ofertas/')&&!location.pathname.startsWith('/ofertas/pedido');
+  const slug=isOffer?(location.pathname.split('/').filter(Boolean)[1]||'oferta'):'';
+  const topic=isOffer?'offer:'+slug:'sales:'+(location.pathname.split('/').filter(Boolean).at(-1)||'home');
+  const store={
+    get:(scope,key)=>{try{return scope.getItem(key)||''}catch{return''}},
+    set:(scope,key,value)=>{try{scope.setItem(key,value)}catch{}}
+  };
+  const id=()=>{
+    try{return crypto.randomUUID()}catch{return Date.now().toString(36)+Math.random().toString(36).slice(2)}
+  };
+  let visitorId=store.get(localStorage,'pe_visitor_id');
+  if(!/^[a-z0-9-]{12,64}$/i.test(visitorId)){visitorId=id();store.set(localStorage,'pe_visitor_id',visitorId);}
+  let sessionId=store.get(sessionStorage,'pe_session_id');
+  if(!/^[a-z0-9-]{12,64}$/i.test(sessionId)){sessionId=id();store.set(sessionStorage,'pe_session_id',sessionId);}
+  const q=new URLSearchParams(location.search);
+  for(const key of ['fbclid','gclid','gbraid','wbraid','msclkid']){
+    const v=q.get(key);
+    if(v)store.set(sessionStorage,'pe_'+key,v.slice(0,220));
+  }
+  const acquisition=()=>{try{return window.PETracking?.acquisition?.()||{}}catch{return{}}};
+  const variant=String(offer.variant||document.body?.dataset?.offerVariant||slug||'default').slice(0,80);
+  const priceCents=Number.isFinite(Number(offer.priceCents))?Math.max(0,Math.round(Number(offer.priceCents))):null;
+  const deviceType=matchMedia('(max-width: 760px)').matches?'mobile':matchMedia('(max-width: 1100px)').matches?'tablet':'desktop';
+  const referrerHost=(()=>{try{return document.referrer?new URL(document.referrer).hostname:''}catch{return''}})();
+  const startedAt=Date.now();
+  let engagedSeconds=0,maxScroll=0,lastActivity=Date.now(),lastTick=performance.now(),sentStart=false;
+  const thresholds=[25,50,75,90,100],seenScroll=new Set();
+  const active=()=>document.visibilityState==='visible'&&(Date.now()-lastActivity)<30000;
+  const base=(event,extra={})=>{
+    const a=acquisition();
+    return {
+      event,topic,guide:String(a.source||'').slice(0,20),path:location.pathname,referrerHost,
+      source:a.source||'',medium:a.medium||'',campaign:a.campaign||'',content:a.content||'',term:a.term||'',
+      entry:a.entry||'',visitId:a.visitId||'',reference:a.reference||'',
+      visitorId,sessionId,landingVariant:variant,offerPriceCents:priceCents,
+      engagedSeconds:Math.round(engagedSeconds),sessionSeconds:Math.round((Date.now()-startedAt)/1000),
+      maxScroll:Math.round(maxScroll),deviceType,viewportW:innerWidth,viewportH:innerHeight,
+      fbclid:store.get(sessionStorage,'pe_fbclid'),gclid:store.get(sessionStorage,'pe_gclid'),
+      gbraid:store.get(sessionStorage,'pe_gbraid'),wbraid:store.get(sessionStorage,'pe_wbraid'),
+      msclkid:store.get(sessionStorage,'pe_msclkid'),...extra
+    };
+  };
+  const send=(event,extra={},beacon=false)=>{
+    const body=JSON.stringify(base(event,extra));
+    try{
+      if(beacon&&navigator.sendBeacon){
+        navigator.sendBeacon('/api/analytics',new Blob([body],{type:'application/json'}));
+        return;
+      }
+      fetch('/api/analytics',{method:'POST',headers:{'content-type':'application/json'},credentials:'omit',keepalive:true,body}).catch(()=>{});
+    }catch{}
+  };
+  const touch=()=>{lastActivity=Date.now();};
+  ['pointerdown','touchstart','keydown','scroll'].forEach(name=>addEventListener(name,touch,{passive:true}));
+  const updateScroll=()=>{
+    const doc=document.documentElement,den=Math.max(1,doc.scrollHeight-innerHeight);
+    const pct=Math.min(100,Math.max(0,((scrollY||doc.scrollTop)/den)*100));
+    if(pct>maxScroll)maxScroll=pct;
+    for(const t of thresholds){
+      if(pct>=t&&!seenScroll.has(t)){
+        seenScroll.add(t);
+        send('scroll_'+t,{scrollThreshold:t});
+      }
+    }
+  };
+  addEventListener('scroll',updateScroll,{passive:true});addEventListener('resize',updateScroll,{passive:true});
+  setTimeout(updateScroll,350);
+  const start=()=>{
+    if(sentStart||document.visibilityState!=='visible')return;
+    sentStart=true;send('session_start');
+  };
+  start();addEventListener('pageshow',start);document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'){touch();start();lastTick=performance.now();}});
+  const timer=setInterval(()=>{
+    const now=performance.now(),delta=Math.min(20,Math.max(0,(now-lastTick)/1000));lastTick=now;
+    if(active())engagedSeconds+=delta;
+    updateScroll();
+    if(document.visibilityState==='visible')send('session_update');
+  },15000);
+  const ctas=[...document.querySelectorAll('[data-track],[data-buy],a[href="#checkout"],.choice-button,.top-cta')];
+  if('IntersectionObserver'in window&&ctas.length){
+    const seen=new WeakSet();
+    const io=new IntersectionObserver(entries=>{
+      for(const e of entries){
+        if(!e.isIntersecting||seen.has(e.target))continue;
+        seen.add(e.target);
+        const el=e.target,label=String(el.dataset?.analyticsId||el.dataset?.track||el.textContent||'cta').trim().replace(/\s+/g,' ').slice(0,80);
+        send('cta_view',{cta:label});
+        io.unobserve(el);
+      }
+    },{threshold:.55});
+    ctas.forEach(el=>io.observe(el));
+  }
+  document.querySelectorAll('video').forEach((video,index)=>{
+    let completed=false;
+    video.addEventListener('play',()=>send('video_play',{video:String(video.dataset?.analyticsId||video.currentSrc||'video-'+(index+1)).slice(0,160)}),{once:true});
+    video.addEventListener('ended',()=>{if(!completed){completed=true;send('video_complete',{video:String(video.dataset?.analyticsId||video.currentSrc||'video-'+(index+1)).slice(0,160)});}});
+  });
+  const finish=()=>{
+    clearInterval(timer);
+    const now=performance.now(),delta=Math.min(20,Math.max(0,(now-lastTick)/1000));
+    if(active())engagedSeconds+=delta;
+    updateScroll();send('session_update',{final:true},true);
+  };
+  addEventListener('pagehide',finish,{once:true});
+  addEventListener('beforeunload',finish,{once:true});
+})();
