@@ -257,6 +257,9 @@
     if(!el)return;
     const label=String(el.dataset?.analyticsId||el.dataset?.track||el.textContent||'cta').trim().replace(/\s+/g,' ').slice(0,80);
     send('cta',{cta:label,analyticsV2:true});
+    if(el.matches('[data-buy],a[href="#checkout"]')||el.closest('[data-buy],a[href="#checkout"]')){
+      send('checkout_start',{cta:label,stage:'checkout_open',analyticsV2:true});
+    }
   },{passive:true});
 
   document.querySelectorAll('video').forEach((video,index)=>{
