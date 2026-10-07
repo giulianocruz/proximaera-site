@@ -176,6 +176,12 @@
   const acquisition=()=>{try{return window.PETracking?.acquisition?.()||{}}catch{return{}}};
   const variant=String(offer.variant||document.body?.dataset?.offerVariant||slug||'default').slice(0,80);
   const priceCents=Number.isFinite(Number(offer.priceCents))?Math.max(0,Math.round(Number(offer.priceCents))):null;
+  const originalAcquisition=window.PETracking?.acquisition;
+  if(window.PETracking&&typeof originalAcquisition==='function'){
+    window.PETracking.acquisition=()=>({
+      ...originalAcquisition(),visitorId,sessionId,landingVariant:variant,offerPriceCents:priceCents
+    });
+  }
   const deviceType=matchMedia('(max-width: 760px)').matches?'mobile':matchMedia('(max-width: 1100px)').matches?'tablet':'desktop';
   const referrerHost=(()=>{try{return document.referrer?new URL(document.referrer).hostname:''}catch{return''}})();
   const startedAt=Date.now();
@@ -246,6 +252,13 @@
     },{threshold:.55});
     ctas.forEach(el=>io.observe(el));
   }
+  document.addEventListener('click',event=>{
+    const el=event.target instanceof Element?event.target.closest('[data-track],[data-buy],a[href="#checkout"],.choice-button,.top-cta,.offer-intent-bar .button'):null;
+    if(!el)return;
+    const label=String(el.dataset?.analyticsId||el.dataset?.track||el.textContent||'cta').trim().replace(/\s+/g,' ').slice(0,80);
+    send('cta',{cta:label,analyticsV2:true});
+  },{passive:true});
+
   document.querySelectorAll('video').forEach((video,index)=>{
     let completed=false;
     video.addEventListener('play',()=>send('video_play',{video:String(video.dataset?.analyticsId||video.currentSrc||'video-'+(index+1)).slice(0,160)}),{once:true});
