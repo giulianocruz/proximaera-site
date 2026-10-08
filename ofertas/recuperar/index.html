@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Recuperar pedido | Próxima Era Ofertas</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#071a40">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="stylesheet" href="/ofertas/offer.css?v=20261006-recover1">
+  <style>
+    .recovery-form select {
+      display:block;width:100%;max-width:100%;margin-top:.45rem;
+      padding:12px 14px;border-radius:12px;box-sizing:border-box;
+      border:1px solid rgba(173,210,255,.30);
+      background:#101f40;color:#f3f8ff;font:inherit;
+    }
+    .recovery-form select:focus-visible{outline:2px solid #6fe2ff;outline-offset:2px}
+  </style>
+</head>
+<body class="order-page">
+  <header class="topbar order-topbar">
+    <a class="brand-lockup" href="/" aria-label="Próxima Era Ofertas">
+      <span class="brand-mark" aria-hidden="true"><img src="/favicon.svg" alt=""></span>
+      <span class="brand-words"><strong>PRÓXIMA <b>ERA</b></strong><small>OFERTAS DIGITAIS</small></span>
+    </a>
+  </header>
+  <main class="order-shell">
+    <section class="order-card recovery-card">
+      <div class="order-state-icon">↺</div>
+      <span class="kicker">RECUPERAR PEDIDO</span>
+      <h1>Perdeu a página do pedido?</h1>
+      <p class="recovery-intro">Selecione a oferta e informe o mesmo e-mail e WhatsApp usados na compra. Se o pedido for localizado, você volta ao acompanhamento.</p>
+      <form class="recovery-form" data-recovery-form>
+        <label>Qual oferta você comprou?
+          <select name="offer" required>
+            <option value="">Selecione sua oferta</option>
+            <option value="google-ai-pro">Google AI Pro</option>
+            <option value="canva-pro">Canva Pro</option>
+            <option value="combo-criador">Combo Criador — Google AI + Canva</option>
+          </select>
+        </label>
+        <label>E-mail<input name="email" type="email" autocomplete="email" required></label>
+        <label>WhatsApp<input name="phone" inputmode="tel" autocomplete="tel" required></label>
+        <button class="button primary" type="submit">Recuperar meu pedido</button>
+        <p class="form-status" data-recovery-status role="status" aria-live="polite"></p>
+      </form>
+      <a class="button ghost order-back" data-back-to-offer href="/">Voltar à oferta</a>
+      <p class="order-help">Por segurança, os dados precisam coincidir com os informados no checkout.</p>
+    </section>
+  </main>
+  <script src="/ofertas/recover.js?v=20261008-multioferta1"></script>
+</body>
+</html>
