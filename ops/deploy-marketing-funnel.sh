@@ -73,6 +73,18 @@ grep -Fq '/tracking.js?v=20261008-ga4' "$TMP/ofertas/combo-criador/index.html"
 grep -Fq '/ofertas/order-status.js?v=20261008-purchase' "$TMP/ofertas/pedido/index.html"
 grep -Fq 'value="combo-criador"' "$TMP/ofertas/recuperar/index.html"
 echo "Preflight passed."
+echo "Comparing package against live production:"
+for file in ${FILES[@]}; do
+  if [[ ! -f "$ROOT/$file" ]]; then
+    echo "MISSING_IN_PRODUCTION $file" >&2
+    exit 1
+  fi
+  if cmp -s "$TMP/$file" "$ROOT/$file"; then
+    echo "ALREADY_CURRENT $file"
+  else
+    echo "DEPLOY_PENDING $file"
+  fi
+done
 
 if [[ "$MODE" == "--check" ]]; then
   echo "Read-only check completed; production unchanged."
@@ -112,6 +124,10 @@ echo "$COMMIT" >"$BACKUP/deployed-commit.txt"
 echo "Publishing nine specific files with automatic rollback"
 for file in ${FILES[@]}; do
   target="$ROOT/$file"
+  if cmp -s "$TMP/$file" "$target"; then
+    echo "Skipping unchanged $file"
+    continue
+  fi
   temp_target="$target.pe-marketing-new-$$"
   cp -- "$TMP/$file" "$temp_target"
   chown --reference="$target" "$temp_target"
