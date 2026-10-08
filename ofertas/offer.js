@@ -379,9 +379,10 @@
       if(!response.ok) throw new Error(result.error||'Não foi possível criar o pedido.');
       if(result.orderUrl){
         try{localStorage.setItem('pe_pending_order_'+cfg.slug,JSON.stringify({url:result.orderUrl,at:Date.now()}));}catch{}
-        try{window.PETracking?.send?.('pix_generated',('offer:'+cfg.slug).slice(0,80));}catch{}
-        try{if(typeof window.gtag==='function')window.gtag('event','pix_generated',{currency:'BRL',value:checkoutTotalCents()/100});}catch{}
-        trackOfferEvent('AddPaymentInfo',{value:checkoutTotalCents()/100,currency:'BRL',content_name:checkoutTitle(),content_ids:[cfg.slug],content_type:'product'});
+        // A URL do pedido prova somente que o pedido foi criado; o Pix sera
+        // confirmado na pagina de acompanhamento, quando o backend retornar o codigo.
+        try{window.PETracking?.send?.('order_created',('offer:'+cfg.slug).slice(0,80));}catch{}
+        try{if(typeof window.gtag==='function')window.gtag('event','order_created',{currency:'BRL',value:checkoutTotalCents()/100});}catch{}
         location.href=result.orderUrl;return;
       }
       status.textContent='Pedido criado. Preparando o Pix...';

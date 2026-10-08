@@ -6,6 +6,50 @@
   const amount=q("[data-order-amount]"),eta=q("[data-order-eta]"),orderId=q("[data-order-id]"),wa=q("[data-order-whatsapp]"),copyOrder=q("[data-copy-order-link]"),icon=q("[data-state-icon]");
   const pixPanel=q("[data-pix-panel]"),pixQr=q("[data-pix-qr]"),pixCode=q("[data-pix-code]"),pixExpiration=q("[data-pix-expiration]"),copyPix=q("[data-copy-pix]");
   const money=cents=>new Intl.NumberFormat("pt-BR",{style:"currency",currency:"BRL"}).format(Number(cents||0)/100);
+  // Eventos de pagamento so sao enviados se o backend entregar dados reais do Pix.
+  const pendingPixEvents=new Set();
+  function trackPix(o){
+    if(!o?.id||!o.pix||!["created","awaiting_payment"].includes(o.status))return;
+    if(!o.pix.code&&!o.pix.qrBase64&&!o.pix.ticketUrl)return;
+    const id=String(o.id), key="pe_pix_"+id, value=Number(o.amountCents||0)/100;
+    const done=suffix=>{try{return localStorage.getItem(key+suffix)==="1"}catch{return false}};
+    const mark=suffix=>{try{localStorage.setItem(key+suffix,"1")}catch{}};
+    const firstParty=()=>{
+      if(done("_operational")||typeof window.PETracking?.send!=="function")return;
+      try{
+        window.PETracking.send("pix_generated",("offer:"+String(o.offer||"pedido")).slice(0,80));
+        mark("_operational");
+      }catch{}
+    };
+    const ga=()=>{
+      if(done("_ga4")||typeof window.gtag!=="function")return;
+      try{
+        window.gtag("event","add_payment_info",{currency:"BRL",value,payment_type:"pix",
+          items:[{item_id:String(o.offer||"oferta"),item_name:o.title||"Oferta digital",price:value,quantity:1}]});
+        window.gtag("event","pix_generated",{currency:"BRL",value,payment_type:"pix"});
+        mark("_ga4");
+      }catch{}
+    };
+    const meta=()=>{
+      if(done("_meta")||typeof window.fbq!=="function")return;
+      try{
+        window.fbq("track","AddPaymentInfo",{value,currency:"BRL",content_name:o.title,
+          content_ids:[String(o.offer||"oferta")],content_type:"product"},{eventID:key});
+        mark("_meta");
+      }catch{}
+    };
+    const deliver=(suffix,event,ready,send)=>{
+      if(done(suffix))return;
+      if(ready()){send();return}
+      const pending=key+suffix;
+      if(pendingPixEvents.has(pending))return;
+      pendingPixEvents.add(pending);
+      window.addEventListener(event,()=>{pendingPixEvents.delete(pending);send()},{once:true});
+    };
+    firstParty();
+    deliver("_ga4","pe:ga-ready",()=>typeof window.gtag==="function",ga);
+    deliver("_meta","pe:meta-ready",()=>typeof window.fbq==="function",meta);
+  }
   function trackPurchase(o){
     // Apenas um estado de pagamento confirmado, obtido do backend, e considerado venda.
     if(!["paid","fulfillment","completed"].includes(o.status)||!o.id)return;
@@ -70,6 +114,7 @@
       icon.textContent=["paid","fulfillment","completed"].includes(o.status)?"✓":o.status==="canceled"?"×":"•••";
       document.body.dataset.orderStatus=o.status||"";
       paintPix(o);
+      trackPix(o);
       trackPurchase(o);
       if(['paid','fulfillment','completed','canceled'].includes(o.status)){
         try{if(o.offer)localStorage.removeItem('pe_pending_order_'+o.offer);}catch{}

@@ -6,12 +6,15 @@ const vm=require('node:vm');
 const offer=fs.readFileSync(process.argv[2]||'ofertas/offer.js','utf8');
 const order=fs.readFileSync(process.argv[3]||'ofertas/order-status.js','utf8');
 assert.match(offer,/gaEventNames=\{ViewContent:'view_item',InitiateCheckout:'begin_checkout',AddPaymentInfo:'add_payment_info'\}/);
-assert.match(offer,/PETracking\?\.send\?\.\('pix_generated'/);
+assert.match(offer,/PETracking\?\.send\?\.\('order_created'/);
+assert.doesNotMatch(offer,/PETracking\?\.send\?\.\('pix_generated'/);
+assert.match(order,/function trackPix\(o\)/);
+assert.match(order,/PETracking\.send\("pix_generated"/);
 assert.match(offer,/recuperar\/\?offer=/);
 assert.match(order,/window\.addEventListener\('pe:ga-ready',fireGa/);
 assert.match(order,/window\.addEventListener\('pe:meta-ready',fireMeta/);
 assert.match(order,/transaction_id:orderId/);
-function createContext(){
+function createContext(overrides={}){
   const local=new Map(),listeners=new Map(),pending=[];
   const tags={};
   const make=()=>({hidden:true,textContent:'',dataset:{},style:{},value:'',
@@ -22,7 +25,7 @@ function createContext(){
     dispatchEvent(type){for(const cb of listeners.get(type)||[])cb()},
   };
   const o={id:'ORDER-ONE',title:'Combo Criador',offer:'combo-criador',
-    amountCents:6990,status:'paid',pix:null,fulfillmentUrl:null};
+    amountCents:6990,status:'paid',pix:null,fulfillmentUrl:null,...overrides};
   const ctx={
     window,document:doc,URLSearchParams,
     location:{search:'?id=ORDER-ONE',href:'https://proximaera.com.br/ofertas/pedido/?id=ORDER-ONE'},
@@ -62,5 +65,32 @@ function createContext(){
   await new Promise(r=>setImmediate(r));
   assert.equal(ga.filter(a=>a[1]==='purchase').length,1);
   assert.equal(meta.filter(a=>a[1]==='Purchase').length,1);
-  console.log('PASS: GA4 canonical events, Pix events, contextual recovery, consent-delayed purchase, provider deduplication');
+  const pixCtx=createContext({id:'ORDER-PIX',status:'awaiting_payment',pix:null});
+  await new Promise(r=>setImmediate(r));
+  assert.equal(pixCtx.local.has('pe_pix_ORDER-PIX_operational'),false,
+    'order without actual Pix must not report generated Pix');
+  const ops=[],pixGa=[],pixMeta=[];
+  pixCtx.window.PETracking={send:(...args)=>ops.push(args)};
+  pixCtx.o.pix={code:'TEST-PIX-CODE'};
+  const poll1=pixCtx.pending.shift();assert.equal(typeof poll1,'function');
+  await poll1();await new Promise(r=>setImmediate(r));
+  assert.equal(ops.filter(a=>a[0]==='pix_generated').length,1,
+    'real Pix code must trigger first party event once');
+  assert.equal(pixCtx.local.has('pe_pix_ORDER-PIX_ga4'),false,
+    'do not mark GA4 Pix event before consent');
+  pixCtx.window.gtag=(...args)=>pixGa.push(args);
+  pixCtx.window.fbq=(...args)=>pixMeta.push(args);
+  pixCtx.window.dispatchEvent('pe:ga-ready');
+  pixCtx.window.dispatchEvent('pe:meta-ready');
+  assert.equal(pixGa.filter(a=>a[1]==='pix_generated').length,1);
+  assert.equal(pixGa.filter(a=>a[1]==='add_payment_info').length,1);
+  assert.equal(pixMeta.filter(a=>a[1]==='AddPaymentInfo').length,1);
+  assert.equal(pixGa.filter(a=>a[1]==='purchase').length,0,
+    'awaiting Pix must never count as a purchase');
+  const poll2=pixCtx.pending.shift();if(poll2)await poll2();
+  await new Promise(r=>setImmediate(r));
+  assert.equal(ops.filter(a=>a[0]==='pix_generated').length,1);
+  assert.equal(pixGa.filter(a=>a[1]==='pix_generated').length,1);
+  assert.equal(pixMeta.filter(a=>a[1]==='AddPaymentInfo').length,1);
+  console.log('PASS: payment event only after Pix exists, delayed consent, no fake purchase, deduplication');
 })().catch(e=>{console.error(e);process.exitCode=1});
