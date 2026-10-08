@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Acompanhar pedido | Próxima Era Ofertas</title>
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="theme-color" content="#071a40">
+  <link rel="icon" href="/favicon.svg">
+  <link rel="stylesheet" href="/ofertas/offer.css">
+</head>
+<body class="order-page">
+  <header class="topbar order-topbar">
+    <a class="brand-lockup" href="/" aria-label="Próxima Era Ofertas">
+      <span class="brand-mark" aria-hidden="true"><img src="/favicon.svg" alt=""></span>
+      <span class="brand-words"><strong>PRÓXIMA <b>ERA</b></strong><small>OFERTAS DIGITAIS</small></span>
+    </a>
+  </header>
+  <main class="order-shell">
+    <section class="order-card">
+      <div class="order-state-icon" data-state-icon>•••</div>
+      <span class="kicker">ACOMPANHAMENTO DO PEDIDO</span>
+      <h1 data-order-title>Carregando seu pedido...</h1>
+      <p class="order-id" data-order-id></p>
+      <div class="order-status-box">
+        <span>Status</span><strong data-order-status>Consultando</strong>
+        <small data-order-message>Aguarde enquanto consultamos o status mais recente.</small>
+      </div>
+      <div class="pix-panel" data-pix-panel hidden>
+        <div class="pix-qr-wrap"><img data-pix-qr alt="QR Code Pix" hidden></div>
+        <div class="pix-copy">
+          <span>Pix Copia e Cola</span>
+          <textarea data-pix-code readonly rows="4"></textarea>
+          <button type="button" class="button primary" data-copy-pix>Copiar código Pix</button>
+          <small data-pix-expiration></small>
+        </div>
+      </div>
+      <div class="order-summary">
+        <div><span>Valor</span><strong data-order-amount>—</strong></div>
+        <div><span>Prazo de ativação</span><strong data-order-eta>—</strong></div>
+      </div>
+      <a class="button primary order-whatsapp" data-order-whatsapp hidden target="_blank" rel="noopener">Continuar ativação no WhatsApp →</a>
+      <button class="button ghost order-copy-link" type="button" data-copy-order-link>Copiar link deste pedido</button>
+      <a class="button ghost order-recover" href="/ofertas/recuperar/">Recuperar pedido com e-mail + WhatsApp</a>
+      <a class="button ghost order-back" href="/ofertas/google-ai-pro/">Voltar para a oferta</a>
+      <p class="order-help">Guarde este link. Se fechar a página, você também pode recuperar o pedido usando o mesmo e-mail e WhatsApp informados no checkout.</p>
+    </section>
+  </main>
+  <script src="/tracking.js?v=20261008-ga4"></script>
+  <script src="/ofertas/order-status.js?v=20261008-purchase"></script>
+</body>
+</html>
