@@ -1,0 +1,43 @@
+name: Marketing Funnel CI
+on:
+  push:
+    branches: [main]
+    paths:
+      - tracking.js
+      - ofertas/**
+      - tests/**
+      - ops/deploy-marketing-funnel.sh
+      - .github/workflows/marketing-funnel.yml
+  pull_request:
+    paths:
+      - tracking.js
+      - ofertas/**
+      - tests/**
+      - ops/deploy-marketing-funnel.sh
+      - .github/workflows/marketing-funnel.yml
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax
+        run: |
+          node --check tracking.js
+          node --check ofertas/offer.js
+          node --check ofertas/order-status.js
+          node --check ofertas/recover.js
+      - name: Consent and Meta Pixel
+        run: node tests/tracking-offers-consent.test.cjs tracking.js
+      - name: Confirmed Pix and payment
+        run: node tests/offer-funnel.test.cjs ofertas/offer.js ofertas/order-status.js
+      - name: Deploy script syntax
+        run: bash -n ops/deploy-marketing-funnel.sh
