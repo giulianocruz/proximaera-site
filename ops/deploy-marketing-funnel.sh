@@ -40,7 +40,21 @@ cleanup() {
 }
 trap cleanup EXIT
 command -v curl >/dev/null
-command -v node >/dev/null
+# The VPS has no host Node binary. Test with an already-pulled, isolated image.
+run_node() {
+  if command -v node >/dev/null 2>&1; then
+    node "$@"
+    return
+  fi
+  command -v docker >/dev/null || { echo "Neither host Node.js nor Docker is available." >&2; return 127; }
+  local image="n8nio/n8n:2.10.2"
+  docker image inspect "$image" >/dev/null 2>&1 || { echo "QA image $image missing; no implicit pulls." >&2; return 127; }
+  docker run --rm --pull=never --network=none --read-only --cap-drop=ALL \
+    --security-opt=no-new-privileges --user 0:0 \
+    --mount "type=bind,source=$TMP,target=$TMP,readonly" \
+    --mount "type=bind,source=$ROOT,target=$ROOT,readonly" \
+    --entrypoint=node "$image" "$@"
+}
 command -v tar >/dev/null
 
 echo "Fetching pinned commit $COMMIT"
@@ -48,12 +62,12 @@ for file in ${FILES[@]} ${TESTS[@]}; do
   mkdir -p "$TMP/$(dirname "$file")"
   curl --fail --silent --show-error --location --max-time 25 "$RAW/$file" -o "$TMP/$file"
 done
-node --check "$TMP/tracking.js"
-node --check "$TMP/ofertas/offer.js"
-node --check "$TMP/ofertas/order-status.js"
-node --check "$TMP/ofertas/recover.js"
-node "$TMP/tests/tracking-offers-consent.test.cjs" "$TMP/tracking.js"
-node "$TMP/tests/offer-funnel.test.cjs" "$TMP/ofertas/offer.js" "$TMP/ofertas/order-status.js"
+run_node --check "$TMP/tracking.js"
+run_node --check "$TMP/ofertas/offer.js"
+run_node --check "$TMP/ofertas/order-status.js"
+run_node --check "$TMP/ofertas/recover.js"
+run_node "$TMP/tests/tracking-offers-consent.test.cjs" "$TMP/tracking.js"
+run_node "$TMP/tests/offer-funnel.test.cjs" "$TMP/ofertas/offer.js" "$TMP/ofertas/order-status.js"
 for file in ${FILES[@]}; do test -s "$TMP/$file"; done
 grep -Fq '/tracking.js?v=20261008-ga4' "$TMP/ofertas/combo-criador/index.html"
 grep -Fq '/ofertas/order-status.js?v=20261008-purchase' "$TMP/ofertas/pedido/index.html"
@@ -87,10 +101,10 @@ for file in ${FILES[@]}; do
   mv -f -- "$temp_target" "$target"
   cmp -s "$TMP/$file" "$target"
 done
-node --check "$ROOT/tracking.js"
-node --check "$ROOT/ofertas/offer.js"
-node --check "$ROOT/ofertas/order-status.js"
-node --check "$ROOT/ofertas/recover.js"
+run_node --check "$ROOT/tracking.js"
+run_node --check "$ROOT/ofertas/offer.js"
+run_node --check "$ROOT/ofertas/order-status.js"
+run_node --check "$ROOT/ofertas/recover.js"
 DONE=1
 echo "DEPLOY OK. Backup: $BACKUP/originals.tar.gz"
 echo "Next: verify GA4 and the Pix checkout with real approved orders."
