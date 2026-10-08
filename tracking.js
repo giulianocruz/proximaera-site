@@ -7,6 +7,8 @@
   /* GA4 property utilizada pela pagina /fecha-negocio/.
      Nas ofertas, a tag so e carregada mediante consentimento. */
   const peOfferGaId='G-RR7D4MYJZ8';
+  // Pixel pertencente a conta de anuncios Giuliano Da Cruz (Meta).
+  const peOfferMetaId='1534363811135198';
   let peOfferGaLoaded=false;
   function peLoadOfferGa(){
     if(peOfferGaLoaded||!location.pathname.startsWith('/ofertas/'))return;
@@ -64,7 +66,7 @@
     if(choice==='denied')return;
     peConsentBanner(hasPixel?id:'');
   };
-  setTimeout(()=>window.PEConfigureMetaPixel?.(window.PE_OFFER?.metaPixelId||window.PE_META_PIXEL_ID||''),0);
+  setTimeout(()=>window.PEConfigureMetaPixel?.(window.PE_OFFER?.metaPixelId||window.PE_META_PIXEL_ID||(location.pathname.startsWith('/ofertas/')?peOfferMetaId:'')),0);
   const q=new URLSearchParams(location.search);
   const keys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
   const read=(key)=>{try{return sessionStorage.getItem(key)||''}catch{return ''}};
