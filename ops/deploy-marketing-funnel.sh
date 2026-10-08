@@ -10,7 +10,7 @@ if [[ "$MODE" != "--check" && "$MODE" != "--apply" ]]; then
   exit 2
 fi
 ROOT="/opt/proximaera/site"
-COMMIT="2c9d877575d1fc68fbaa7f8f3f5564010bf9d330"
+COMMIT="9cbc51a86004a571af1d666a369c317c18f127a5"
 RAW="https://raw.githubusercontent.com/giulianocruz/proximaera-site/$COMMIT"
 FILES=(
   tracking.js
