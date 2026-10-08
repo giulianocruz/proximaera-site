@@ -85,6 +85,24 @@ if [[ "$(id -u)" -ne 0 ]]; then
 fi
 for file in ${FILES[@]}; do test -f "$ROOT/$file"; done
 
+# Reject an unexpectedly modified production tree. Several agents may deploy
+# independently; never overwrite newer versions without an explicit review.
+cat >"$TMP/expected-production.sha256" <<'PRODUCTION_BASELINE'
+274177d75973041fae4bef0dfb83c1188ca86173563b1519af2485f8879b8b2f  tracking.js
+ddbec808638d0669f2dc52c1d4203dad279fceb9bb43214f51b64899629eff59  ofertas/offer.js
+df56234a8bd6115ea496751e2b3b62d81b3f4a8190bb9b2f4dcd76ddd4017680  ofertas/order-status.js
+a5253f3784ded74dc27c1b0c48ed804cfc2e1daa16abd2450335db4c55dd7db3  ofertas/recover.js
+fee7d85af5ec7bc681af5c7219eaa919a1628d618ba47adbc6a04f12034582b1  ofertas/recuperar/index.html
+83509f395adee498b43ad14674b9b7ccd38494a6d6c204eab15dcda7701ab529  ofertas/google-ai-pro/index.html
+06fb71e71e0cef0c341d1527bff33c2780ee8b363a9b3f658236688d5124063a  ofertas/canva-pro/index.html
+4f38a9acff2c1fd9564b7aca4441141a857623c1a26f391324bb97461a4b9e87  ofertas/combo-criador/index.html
+5e53f4f59a39b24e2f85f6c5b85ca2fce1d366cea3a3eabf053534d5302db147  ofertas/pedido/index.html
+PRODUCTION_BASELINE
+if ! (cd "$ROOT" && sha256sum --check --status "$TMP/expected-production.sha256"); then
+  echo "Production drift detected. Refusing to overwrite changes from another agent." >&2
+  exit 1
+fi
+
 BACKUP="/opt/proximaera/backups/marketing-$(date -u +%Y%m%dT%H%M%SZ)"
 mkdir -p "$BACKUP"
 tar -czf "$BACKUP/originals.tar.gz" -C "$ROOT" ${FILES[@]}
