@@ -29,3 +29,9 @@ Quando o DNS de `proximaera.com.br` estiver propagado, apontar o domínio para o
 3. Apontar `proximaera.com.br` e `www.proximaera.com.br`.
 4. Criar endereço público `contato@proximaera.com.br`.
 5. Substituir os status de projetos pelos dados reais conforme a operação evoluir.
+
+## Radar — produto Próxima Era
+
+- Página institucional: /radar/ (radar/index.html).
+- O botão de uso aponta para o app legado em https://elitewp.com.br/radar até a migração segura das sessões e pagamentos.
+- A rota comercial no domínio Próxima Era é estática; nunca substituir arbitrariamente o app autenticado por iframe ou proxy sem revisar cookies, OAuth, CSRF e callbacks.
