@@ -1,0 +1,32 @@
+name: Radar Proxima Era Product Page
+on:
+  pull_request:
+    paths:
+      - 'radar/**'
+      - 'index.html'
+      - 'projetos/radar.html'
+      - 'sitemap.xml'
+      - 'tests/radar-product.test.cjs'
+      - '.github/workflows/radar-product.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'radar/**'
+      - 'index.html'
+      - 'projetos/radar.html'
+      - 'sitemap.xml'
+      - 'tests/radar-product.test.cjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  product-page:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Product ownership, links and public claims
+        run: node tests/radar-product.test.cjs
