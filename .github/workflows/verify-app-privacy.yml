@@ -1,0 +1,39 @@
+name: Boleto Rush site pages — public URL verification
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'aplicativos/**'
+      - 'assets/apps/**'
+      - '.github/workflows/verify-app-privacy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate deployed-source documents
+        run: |
+          set -euo pipefail
+          grep -Fq 'Boleto Rush!' aplicativos/index.html
+          grep -Fq 'Google Mobile Ads SDK' aplicativos/boleto-rush/privacidade.html
+          grep -Fq 'contato@proximaera.com.br' aplicativos/boleto-rush/privacidade.html
+          test -s assets/apps/boleto-rush-icon.png
+          test -s assets/apps/boleto-rush-banner.jpg
+          bash -n ops/deploy-boleto-rush-privacy.sh
+      - name: Check production URLs (informational; never assert deploy)
+        shell: bash
+        run: |
+          set +e
+          for path in '/aplicativos/' '/aplicativos/boleto-rush/privacidade.html'; do
+            url="https://proximaera.com.br$path"
+            code=$(curl --location --max-time 15 --silent --output /tmp/app-page.html --write-out '%{http_code}' "$url")
+            echo "PUBLIC_STATUS=$code URL=$url"
+            if [ "$code" = "200" ]; then
+              if grep -Fq 'Boleto Rush!' /tmp/app-page.html; then echo "Boleto Rush content found"; else echo "WARNING: Boleto Rush content not found"; fi
+            fi
+          done
