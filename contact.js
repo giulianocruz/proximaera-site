@@ -34,13 +34,15 @@ function fallbackMessage(data) {
   return `[Próxima Era] ${data.subject}\nNome: ${data.name}\n${extras}E-mail: ${data.email}\n${context}\n${data.message}`;
 }
 
-function showFallbackOptions(data) {
+function showFallbackOptions(data, manual = false) {
   const status = document.getElementById('contactStatus');
   if (!status) return;
   status.replaceChildren();
-  status.dataset.kind = 'warning';
+  status.dataset.kind = manual ? 'info' : 'warning';
   const text = document.createElement('span');
-  text.textContent = 'A central comercial está indisponível. Sua mensagem não foi registrada automaticamente. Escolha um canal para enviá-la: ';
+  text.textContent = manual
+    ? 'Sua mensagem está preparada, mas ainda não foi enviada. Escolha WhatsApp ou e-mail e confirme o envio no aplicativo escolhido: '
+    : 'A central comercial está indisponível. Sua mensagem não foi registrada automaticamente. Escolha um canal para enviá-la: ';
   status.append(text);
   const appendLink = (href, label) => {
     const link = document.createElement('a');
@@ -96,6 +98,12 @@ form?.addEventListener('submit', async function(e) {
     email:String(f.get('email') || '').trim(), subject:String(f.get('subject') || '').trim(), message:String(f.get('message') || '').trim(),
     website:String(f.get('website') || '').trim(), origem, tema, guia, acquisition
   };
+  // O ERP implantado ainda não oferece /api/public-contact. Não anunciar captura automática.
+  // Somente habilitar após validar a API e marcar <html data-contact-crm="enabled">.
+  if (document.documentElement.dataset.contactCrm !== 'enabled') {
+    showFallbackOptions(data, true);
+    return;
+  }
   button.disabled = true; button.textContent = 'Enviando…'; setStatus('Registrando seu contato com segurança…');
   try {
     const r = await fetch('/api/contact', {method:'POST', headers:{'content-type':'application/json'}, body:JSON.stringify(data)});
