@@ -9,8 +9,9 @@ Site público: https://proximaera.com.br/ · Repositório: `giulianocruz/proxima
 - **Portfólio:** `/aplicativos/` mostra Boleto Rush!, MyEggs, República dos Malandros e Brasil em Apuros com estágios transparentes. Não inventar links de instalação/publicação.
 - **JavaScript:** corrigidas em produção duas chamadas GA4 malformadas em 42 páginas, preservando o HTML de cada página. Backup em `/opt/proximaera/backups/ga-inline-*/originals.tar.gz`.
 - **Validação visual:** 4 páginas × 2 larguras (390 px e 1366 px), 8/8 sem erros JS, imagens quebradas ou rolagem horizontal. Menu móvel da home foi acionado com sucesso.
-- **Contato:** a versão do Admin implantada não possui `/api/public-contact`: `POST /api/contact` retorna HTTP 404. A rota existe no GitHub de `proximaera-admin`, mas não no build em execução. **Pendente:** [proximaera-admin #6](https://github.com/giulianocruz/proximaera-admin/issues/6). Não afirmar captura automática de leads até a correção.
-- **Contingência de contato:** `contact.js` apresenta links explícitos de WhatsApp/e-mail quando o backend falha, sem descartar a mensagem nem simular sucesso. Comportamentos de erro e sucesso testados em navegador com requisições interceptadas (sem criar leads falsos).
+- **Contato comercial — funcional sem API:** o formulário em produção utiliza por padrão **envio assistido**: botão `Preparar mensagem`, dados preservados e links preparados para WhatsApp/e-mail; o visitante confirma o envio no aplicativo escolhido. Não tenta `POST /api/contact` nem simula registro no CRM. O modo automático só pode ser reativado após validação do backend, pelo atributo explícito `data-contact-crm="enabled"` no elemento HTML.
+- **Integração automática de leads — pendência administrativa separada:** a versão do Admin implantada (ERP Core 0.1.8) não possui `/api/public-contact` nem as funções do DB da rota existente no repositório mais recente. [proximaera-admin #6](https://github.com/giulianocruz/proximaera-admin/issues/6). Não atualizar o ERP inteiro sem migração segura.
+- **Validação de publicação:** sitemap público com 49/49 URLs respondendo corretamente, sem redirecionamentos; 8/8 testes HTTP, 8/8 verificações de viewport e teste real de preparo de mensagem (nenhum POST ao CRM; sem leads artificiais).
 
 ## Desenvolvimento e testes
 
@@ -31,10 +32,12 @@ A produção contém personalizações que não estão no repositório. **Nunca 
 
 Procedimento padrão: comparar arquivo a arquivo → testes/dry-run → backup verificável em `/opt/proximaera/backups/` → alteração mínima e atômica → validar HTTP, navegação, scripts e contatos → manter rollback. As rotinas anteriores de publicação de Radar e das políticas Boleto Rush estão em `ops/`.
 
-## Próxima ação para concluir
+## Critério de entrega e próximas ações
 
-1. Resolver a integração automática do formulário no Admin por release controlada e teste end-to-end, conforme a issue #6. Não atualizar o ERP inteiro às cegas.
-2. Conciliar diferenças de rota, contato e conteúdo entre produção e repositório sem perder personalizações.
-3. Validar novamente navegação mobile e fluxos comerciais; então considerar a versão institucional entregue e avançar ao projeto Chama Sofia.
+**Versão institucional mínima viável/publicável:** operacional para apresentação de portfólio e recebimento de mensagens por WhatsApp ou e-mail. O formulário não captura leads automaticamente no ERP, e isso deve permanecer explícito.
+
+1. **Próximo projeto da fila:** Chama Sofia, depois Umbandando. Evitar prolongar indefinidamente o polimento deste site.
+2. **Melhoria posterior e independente:** [restaurar a integração CRM (issue #6)](https://github.com/giulianocruz/proximaera-admin/issues/6) por release testada e reversível; não bloquear os serviços comerciais básicos pela indisponibilidade desse módulo.
+3. **Antes de grandes publicações futuras:** conciliar diferenças de rota, telefone e conteúdo entre produção e GitHub, preservando personalizações do servidor.
 
 **Fora do escopo:** Sistema Imagem (já entregue), Keli Hofbauer (pausada até pagamento) e demais sites de clientes. Próxima Era Commander é um projeto separado.
