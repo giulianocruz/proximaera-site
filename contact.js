@@ -28,12 +28,43 @@ function setStatus(message, kind='info') {
   el.dataset.kind = kind;
 }
 
-function emailFallback(data) {
-  const subject = '[Próxima Era] ' + data.subject;
+function fallbackMessage(data) {
   const context = data.origem ? `\nOrigem: ${data.origem}${data.guia ? ` / Guia ${data.guia}` : ''}${data.tema ? ` / ${data.tema}` : ''}\n` : '';
   const extras = `${data.company ? `Empresa: ${data.company}\n` : ''}${data.phone ? `Telefone: ${data.phone}\n` : ''}`;
-  const body = `Nome: ${data.name}\n${extras}E-mail: ${data.email}\n${context}\n${data.message}`;
-  location.href = 'mailto:contato@proximaera.com.br?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+  return `[Próxima Era] ${data.subject}\nNome: ${data.name}\n${extras}E-mail: ${data.email}\n${context}\n${data.message}`;
+}
+
+function showFallbackOptions(data) {
+  const status = document.getElementById('contactStatus');
+  if (!status) return;
+  status.replaceChildren();
+  status.dataset.kind = 'warning';
+  const text = document.createElement('span');
+  text.textContent = 'A central comercial está indisponível. Sua mensagem não foi registrada automaticamente. Escolha um canal para enviá-la: ';
+  status.append(text);
+  const appendLink = (href, label) => {
+    const link = document.createElement('a');
+    link.href = href;
+    link.textContent = label;
+    link.style.fontWeight = '900';
+    link.style.textDecoration = 'underline';
+    link.style.marginLeft = '8px';
+    status.append(link);
+  };
+  const message = fallbackMessage(data);
+  const whatsapp = document.querySelector('.contact-aside a[href*="wa.me/"]');
+  if (whatsapp) {
+    try {
+      const url = new URL(whatsapp.href);
+      if (url.protocol === 'https:' && url.hostname === 'wa.me') {
+        url.searchParams.set('text', message);
+        appendLink(url.toString(), 'Enviar pelo WhatsApp');
+      }
+    } catch {}
+  }
+  appendLink('mailto:contato@proximaera.com.br?subject=' +
+    encodeURIComponent('[Próxima Era] ' + data.subject) +
+    '&body=' + encodeURIComponent(message), 'Enviar por e-mail');
 }
 if (form && assunto === 'editorial') { const select=form.querySelector('[name="subject"]'); if(select){ const option=[...select.options].find(o=>o.textContent==='Projeto editorial / publicação'); if(option) select.value=option.value; } }
 
@@ -73,8 +104,7 @@ form?.addEventListener('submit', async function(e) {
     setStatus('Recebemos sua mensagem. O contato já entrou na nossa central comercial.', 'success');
     this.reset();
   } catch (error) {
-    setStatus('A central não respondeu agora. Vamos abrir seu e-mail com a mensagem pronta para você não perder o contato.', 'warning');
-    setTimeout(() => emailFallback(data), 450);
+    showFallbackOptions(data);
   } finally {
     button.disabled = false; button.textContent = 'Enviar mensagem →';
   }
