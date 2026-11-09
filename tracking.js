@@ -4,18 +4,28 @@
 (()=>{
   if(navigator.webdriver||/Lighthouse|HeadlessChrome/i.test(navigator.userAgent))return;
   let peActivePixel='';
-  /* GA4 property utilizada pela pagina /fecha-negocio/.
-     Nas ofertas, a tag so e carregada mediante consentimento. */
+  // Uma unica politica de consentimento atende ofertas e a pagina Fecha Negocio.
+  const peIsOffer=location.pathname.startsWith('/ofertas/');
+  const peIsFechaNegocio=location.pathname.startsWith('/fecha-negocio/');
+  const peHasMarketingTags=peIsOffer||peIsFechaNegocio;
   const peOfferGaId='G-RR7D4MYJZ8';
-  // Pixel pertencente a conta de anuncios Giuliano Da Cruz (Meta).
+  // Pixel da conta proprietaria, sem disparos antes do aceite.
   const peOfferMetaId='1534363811135198';
   let peOfferGaLoaded=false;
   function peLoadOfferGa(){
-    if(peOfferGaLoaded||!location.pathname.startsWith('/ofertas/'))return;
+    if(peOfferGaLoaded||!peHasMarketingTags)return;
     if(peMarketingChoice()!=='granted')return;
     peOfferGaLoaded=true;
     window.dataLayer=window.dataLayer||[];
     if(typeof window.gtag!=='function')window.gtag=function(){window.dataLayer.push(arguments)};
+    window.gtag('consent','default',{
+      ad_storage:'denied',ad_user_data:'denied',
+      ad_personalization:'denied',analytics_storage:'denied'
+    });
+    window.gtag('consent','update',{
+      ad_storage:'granted',ad_user_data:'granted',
+      ad_personalization:'granted',analytics_storage:'granted'
+    });
     window.gtag('js',new Date());
     window.gtag('config',peOfferGaId,{send_page_view:true});
     const script=document.createElement('script');
@@ -55,18 +65,17 @@
   window.PEConfigureMetaPixel=(rawId)=>{
     const id=String(rawId||'').trim();
     const hasPixel=/^\d{6,25}$/.test(id);
-    const isOffer=location.pathname.startsWith('/ofertas/');
-    if(!hasPixel&&!isOffer)return;
+    if(!hasPixel&&!peHasMarketingTags)return;
     const choice=peMarketingChoice();
     if(choice==='granted'){
       if(hasPixel)peLoadMetaPixel(id);
-      if(isOffer)peLoadOfferGa();
+      peLoadOfferGa();
       return;
     }
     if(choice==='denied')return;
     peConsentBanner(hasPixel?id:'');
   };
-  setTimeout(()=>window.PEConfigureMetaPixel?.(window.PE_OFFER?.metaPixelId||window.PE_META_PIXEL_ID||(location.pathname.startsWith('/ofertas/')?peOfferMetaId:'')),0);
+  setTimeout(()=>window.PEConfigureMetaPixel?.(window.PE_OFFER?.metaPixelId||window.PE_META_PIXEL_ID||(peHasMarketingTags?peOfferMetaId:'')),0);
   const q=new URLSearchParams(location.search);
   const keys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
   const read=(key)=>{try{return sessionStorage.getItem(key)||''}catch{return ''}};
@@ -141,7 +150,7 @@
   document.addEventListener('visibilitychange',()=>{recordView();recordOfferView();});
   window.addEventListener('pageshow',()=>{recordView();recordOfferView();});
   const gaEvent=(label,group)=>{
-    if(typeof window.gtag!=='function')return;
+    if(peMarketingChoice()!=='granted'||typeof window.gtag!=='function')return;
     try{window.gtag('event',label,{campaign_name:campaign,method:group,transport_type:'beacon'});}catch{}
   };
   document.querySelectorAll('[data-track],a[href*="wa.me/"]').forEach(el=>{
@@ -167,6 +176,10 @@
         once('whatsapp:'+label,()=>{
           send('whatsapp',eventTopic);
           gaEvent('click_whatsapp','intent');
+          // Clique e intencao comercial, nao venda ou lead confirmado.
+          if(peIsFechaNegocio&&peMarketingChoice()==='granted'&&typeof window.fbq==='function'){
+            try{window.fbq('trackCustom','WhatsAppClick',{content_name:'Pagina Fecha Negocio'});}catch{}
+          }
         });
       }else if(label.startsWith('modelo-')||label.includes('exemplo')||label.includes('demonstracao')){
         once('demo:'+label,()=>gaEvent('view_demo','engagement'));
