@@ -179,7 +179,7 @@
           gaEvent('click_whatsapp','intent');
           // Clique é intenção de contato, não lead confirmado nem venda.
           if(peIsFechaNegocio&&peMarketingChoice()==='granted'&&peActivePixel&&typeof window.fbq==='function'){
-            try{window.fbq('trackCustom','WhatsAppClick',{page:location.pathname,cta:label});}catch{}
+            try{window.fbq('trackCustom','WhatsAppClick',{content_name:'Pagina Fecha Negocio',page:location.pathname,cta:label});}catch{}
           }
         });
       }else if(label.startsWith('modelo-')||label.includes('exemplo')||label.includes('demonstracao')){
