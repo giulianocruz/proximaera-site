@@ -2,10 +2,10 @@
 /* Valida o conteúdo público publicado; não envia contatos ou eventos de conversão. */
 const assert=require('node:assert/strict');
 const crypto=require('node:crypto');
-const release='20261109T180941Z';
+const release='20261109T183008Z';
 const base='https://proximaera.com.br';
 const files=[
- {path:'/tracking.js',sha:'1eb5c3c6d57a1c5c9320e475ea1823302fdfaf22350e2925606ff31e23e1c0f2'},
+ {path:'/tracking.js',sha:'fb2d4ed51e59ac38516c539680b153b3adc051322eb05820194a610cb283fc1d'},
  {path:'/fecha-negocio/',sha:'d5de335e1f24d5152fe5bb4a7cb6c218b1f6ffaf1df0e323b2a0c9c4e5ddacf1'},
  {path:'/privacidade.html',sha:'08b24fe7f1b405ba7df22b4223de914e125a608696eb8c76be9ba431721afa0e'}
 ];

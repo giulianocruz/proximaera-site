@@ -73,6 +73,16 @@ assert.equal(pixelCount(home),0,'no pixel injected on institutional home by the 
 const landingHtml=fs.readFileSync('fecha-negocio/index.html','utf8');
 assert.doesNotMatch(landingHtml,/<script[^>]+src="https:\/\/www\.googletagmanager\.com\/gtag\/js/, 'no eager GA4 on landing');
 assert.match(landingHtml,/src="\/tracking\.js"/,'marketing tracker is present');
+const diagnosticDenied=simulate('denied','/diagnostico-gratuito/');
+assert.equal(gaCount(diagnosticDenied),0,'diagnostic: denied consent blocks GA4');
+assert.equal(pixelCount(diagnosticDenied),0,'diagnostic: denied consent blocks Meta Pixel');
+const diagnosticPending=simulate(undefined,'/diagnostico-gratuito/');
+assert.equal(gaCount(diagnosticPending),0,'diagnostic: no GA4 before consent');
+assert.equal(pixelCount(diagnosticPending),0,'diagnostic: no Meta Pixel before consent');
+assert.equal(diagnosticPending.banners.length,1,'diagnostic: show consent banner');
+diagnosticPending.banners[0].children[1].children[0].onclick();
+assert.equal(gaCount(diagnosticPending),1,'diagnostic: GA4 only after consent');
+assert.equal(pixelCount(diagnosticPending),1,'diagnostic: Meta Pixel only after consent');
 const fechaNo=simulate('denied','/fecha-negocio/');
 assert.equal(gaCount(fechaNo),0);
 assert.equal(pixelCount(fechaNo),0);
