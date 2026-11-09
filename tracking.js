@@ -4,6 +4,7 @@
 (()=>{
   if(navigator.webdriver||/Lighthouse|HeadlessChrome/i.test(navigator.userAgent))return;
   let peActivePixel='';
+  const peMarketingPage=location.pathname.startsWith('/ofertas/')||/^\/fecha-negocio(?:\/|$)/.test(location.pathname);
   /* GA4 property utilizada pela pagina /fecha-negocio/.
      Nas ofertas, a tag so e carregada mediante consentimento. */
   const peOfferGaId='G-RR7D4MYJZ8';
@@ -11,7 +12,7 @@
   const peOfferMetaId='1534363811135198';
   let peOfferGaLoaded=false;
   function peLoadOfferGa(){
-    if(peOfferGaLoaded||!location.pathname.startsWith('/ofertas/'))return;
+    if(peOfferGaLoaded||!peMarketingPage)return;
     if(peMarketingChoice()!=='granted')return;
     peOfferGaLoaded=true;
     window.dataLayer=window.dataLayer||[];
@@ -43,7 +44,7 @@
     if(document.querySelector('[data-pe-marketing-consent]'))return;
     const box=document.createElement('aside');box.dataset.peMarketingConsent='1';
     box.style.cssText='position:fixed;left:16px;right:16px;bottom:14px;z-index:120;max-width:720px;margin:auto;padding:14px 16px;border:1px solid rgba(130,220,255,.22);border-radius:16px;background:rgba(5,18,43,.97);color:#eef7ff;box-shadow:0 18px 50px rgba(0,0,0,.38);font:13px/1.45 system-ui,sans-serif';
-    const text=document.createElement('div');text.innerHTML='<strong style="display:block;margin-bottom:3px">Medição de marketing</strong><span style="opacity:.78">Com sua permissão, usamos Google Analytics 4 para medir navegação e Meta Pixel (quando configurado) para avaliar anúncios. O registro de pedidos funciona mesmo se você recusar.</span>';
+    const text=document.createElement('div');text.innerHTML='<strong style="display:block;margin-bottom:3px">Medição de marketing</strong><span style="opacity:.78">Com sua permissão, usamos Google Analytics 4 e Meta Pixel para medir visitas e interações com anúncios. Recusar não impede o contato pelo WhatsApp. O registro de pedidos funciona mesmo se você recusar.</span>';
     const actions=document.createElement('div');actions.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin-top:10px';
     const accept=document.createElement('button');accept.type='button';accept.textContent='Aceitar marketing';accept.style.cssText='border:0;border-radius:999px;padding:9px 14px;font-weight:800;cursor:pointer;background:#6fe2ff;color:#06162d';
     const deny=document.createElement('button');deny.type='button';deny.textContent='Agora não';deny.style.cssText='border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:9px 14px;font-weight:700;cursor:pointer;background:transparent;color:#eef7ff';
@@ -55,18 +56,17 @@
   window.PEConfigureMetaPixel=(rawId)=>{
     const id=String(rawId||'').trim();
     const hasPixel=/^\d{6,25}$/.test(id);
-    const isOffer=location.pathname.startsWith('/ofertas/');
-    if(!hasPixel&&!isOffer)return;
+    if(!hasPixel&&!peMarketingPage)return;
     const choice=peMarketingChoice();
     if(choice==='granted'){
       if(hasPixel)peLoadMetaPixel(id);
-      if(isOffer)peLoadOfferGa();
+      if(peMarketingPage)peLoadOfferGa();
       return;
     }
     if(choice==='denied')return;
     peConsentBanner(hasPixel?id:'');
   };
-  setTimeout(()=>window.PEConfigureMetaPixel?.(window.PE_OFFER?.metaPixelId||window.PE_META_PIXEL_ID||(location.pathname.startsWith('/ofertas/')?peOfferMetaId:'')),0);
+  setTimeout(()=>window.PEConfigureMetaPixel?.(window.PE_OFFER?.metaPixelId||window.PE_META_PIXEL_ID||(peMarketingPage?peOfferMetaId:'')),0);
   const q=new URLSearchParams(location.search);
   const keys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
   const read=(key)=>{try{return sessionStorage.getItem(key)||''}catch{return ''}};
@@ -101,13 +101,14 @@
   }
   const pieces=location.pathname.split('/').filter(Boolean);
   const topic=(pieces[0]==='guias'?'guia:':'sales:')+(pieces.at(-1)||pieces[0]||'home');
+  // A mensagem no WhatsApp recebe apenas a atribuição necessária, sem
+  // repassar fbclid, parâmetros arbitrários ou a URL de entrada inteira.
+  const safeTag=value=>String(value||'').replace(/[\r\n|]/g,' ').trim().slice(0,80);
   const context=[
-    'Origem: '+source,
-    campaign&&('Campanha: '+campaign),
-    saved.utm_content&&('Criativo: '+saved.utm_content),
-    'Referência: '+reference,
-    'Entrada: '+entry,
-    'Pagina: '+location.pathname
+    'Origem: '+safeTag(source),
+    campaign&&('Campanha: '+safeTag(campaign)),
+    saved.utm_content&&('Criativo: '+safeTag(saved.utm_content)),
+    'Referência: '+reference
   ].filter(Boolean).join(' | ');
   const payload=(event,eventTopic)=>JSON.stringify({
     event,topic:eventTopic,guide:source,path:location.pathname,referrerHost:ref,
@@ -167,6 +168,10 @@
         once('whatsapp:'+label,()=>{
           send('whatsapp',eventTopic);
           gaEvent('click_whatsapp','intent');
+          // Clique é intenção de contato, não lead confirmado nem venda.
+          if(peMarketingChoice()==='granted' && peActivePixel && typeof window.fbq==='function'){
+            try{window.fbq('trackCustom','WhatsAppClick',{page:location.pathname,cta:label});}catch{}
+          }
         });
       }else if(label.startsWith('modelo-')||label.includes('exemplo')||label.includes('demonstracao')){
         once('demo:'+label,()=>gaEvent('view_demo','engagement'));
