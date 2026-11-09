@@ -2,12 +2,12 @@
 /* Valida o conteúdo público publicado; não envia contatos ou eventos de conversão. */
 const assert=require('node:assert/strict');
 const crypto=require('node:crypto');
-const release='20261109T170930Z';
+const release='20261109T172837Z';
 const base='https://proximaera.com.br';
 const files=[
  {path:'/tracking.js',sha:'c82fc0d3caaf05534f0d4c3b5aff54580666066198c9d8ecd3a1fa23b8858b9a'},
  {path:'/fecha-negocio/',sha:'7137c3463db53b4d9640caee187197a271792ff310e658cb9ccaf3d2f08e1463'},
- {path:'/privacidade.html',sha:'792e8b3071856f8ce29fa43fcbd625a437576567ee32e20a7b52bab75bfb0784'}
+ {path:'/privacidade.html',sha:'08b24fe7f1b405ba7df22b4223de914e125a608696eb8c76be9ba431721afa0e'}
 ];
 async function fetchFile(item){
  const url=base+item.path+(item.path.includes('?')?'&':'?')+'pe_release='+release;
