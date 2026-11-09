@@ -32,7 +32,7 @@ async function main() {
         `Overflow horizontal em ${width}px: ${initial.bodyWidth} > ${initial.viewport}`);
       assert.deepEqual(initial.brokenImages, [], `Imagens quebradas em ${width}px`);
       assert.ok(initial.title.includes('R$ 79,90'), 'Variante UTM de preco nao ativou');
-      assert.match(initial.heroLink, /^https:\/\/wa\.me\/5514996428874/);
+      assert.match(initial.heroLink, /^https:\/\/wa\.me\/5514998193831/);
       await page.click('[data-template="service"]');
       const service = await page.evaluate(() => ({
         theme: document.querySelector('.browser')?.dataset.templateTheme,

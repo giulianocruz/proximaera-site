@@ -38,7 +38,7 @@ test('todos os CTAs de WhatsApp levam ao numero comercial correto e sao rastreav
   for (const [, href] of links) {
     const url = new URL(href.replaceAll('&amp;', '&'));
     assert.equal(url.hostname, 'wa.me');
-    assert.equal(url.pathname, '/5514996428874');
+    assert.equal(url.pathname, '/5514998193831');
     assert.ok(url.searchParams.get('text')?.trim(), 'CTA sem mensagem predefinida');
     const tag = links.find(x => x[1] === href)[0];
     assert.match(tag, /data-track="[^"]+"/i, 'CTA sem identificador de conversao');

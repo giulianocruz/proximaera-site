@@ -2,11 +2,11 @@
 /* Valida o conteúdo público publicado; não envia contatos ou eventos de conversão. */
 const assert=require('node:assert/strict');
 const crypto=require('node:crypto');
-const release='20261109T172837Z';
+const release='20261109T180941Z';
 const base='https://proximaera.com.br';
 const files=[
- {path:'/tracking.js',sha:'c82fc0d3caaf05534f0d4c3b5aff54580666066198c9d8ecd3a1fa23b8858b9a'},
- {path:'/fecha-negocio/',sha:'7137c3463db53b4d9640caee187197a271792ff310e658cb9ccaf3d2f08e1463'},
+ {path:'/tracking.js',sha:'1eb5c3c6d57a1c5c9320e475ea1823302fdfaf22350e2925606ff31e23e1c0f2'},
+ {path:'/fecha-negocio/',sha:'d5de335e1f24d5152fe5bb4a7cb6c218b1f6ffaf1df0e323b2a0c9c4e5ddacf1'},
  {path:'/privacidade.html',sha:'08b24fe7f1b405ba7df22b4223de914e125a608696eb8c76be9ba431721afa0e'}
 ];
 async function fetchFile(item){
@@ -24,6 +24,8 @@ async function fetchFile(item){
  const [tracker,landing,privacy]=await Promise.all(files.map(fetchFile));
  assert.doesNotMatch(landing,/src="https:\/\/www\.googletagmanager\.com\/gtag\/js/i);
  assert.match(landing,/data-track="whatsapp-hero-profissional"/);
+ assert.match(landing,/https:\/\/wa\.me\/5514998193831/);
+ assert.doesNotMatch(landing,/5514996428874/);
  assert.match(landing,/R\$ 79,90/);
  assert.match(tracker,/peIsFechaNegocio/);
  assert.match(tracker,/WhatsAppClick/);

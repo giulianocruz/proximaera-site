@@ -16,7 +16,7 @@ function run(consent){
   if(consent)local.set('pe_marketing_consent',consent);
   const clickEvents=new Map();
   const anchor={
-    href:'https://wa.me/5514996428874?text=Quero%20minha%20pagina',
+    href:'https://wa.me/5514998193831?text=Quero%20minha%20pagina',
     dataset:{track:'whatsapp-hero-profissional'},
     matches(s){return s==='a[href*="wa.me/"]'},
     addEventListener(k,fn){clickEvents.set(k,fn)}
