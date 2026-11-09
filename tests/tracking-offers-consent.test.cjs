@@ -93,4 +93,7 @@ assert.equal(Array.from(consents[0])[1],'default');
 assert.equal(Array.from(consents[1])[1],'update');
 assert.equal(Array.from(consents[0])[2].analytics_storage,'denied');
 assert.equal(Array.from(consents[1])[2].analytics_storage,'granted');
+assert.equal(source.includes('const safeTag='),true,'UTM values sanitized before WhatsApp');
+assert.equal(source.includes("'Entrada: '+entry"),false,'WhatsApp message does not leak full entry URL');
+assert.equal(source.includes("content_name:'Pagina Fecha Negocio',page:location.pathname,cta:label"),true,'Meta custom event identifies CTA');
 console.log('PASS: offers and Fecha Negocio consent gating, no eager GA4, v2 consent');
