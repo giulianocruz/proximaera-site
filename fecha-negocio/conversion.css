@@ -236,3 +236,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #61
  .example-deep-links{gap:9px;padding:14px;margin-top:15px}
  .example-deep-links span{display:block;flex-basis:100%}
 }
+
+/* Oferta legível em telas compactas (320–360 px): preço e condição em linhas próprias. */
+@media(max-width:360px){
+  .hero-price{grid-template-columns:minmax(0,1fr);align-items:start;gap:4px}
+  .hero-price small,.hero-price strong,.hero-price span{grid-column:1;grid-row:auto;max-width:100%}
+  .hero-price strong{font-size:40px;line-height:1.1;margin-top:2px}
+  .hero-price span{font-size:12px;line-height:1.45;margin:0}
+}
