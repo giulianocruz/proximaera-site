@@ -100,7 +100,7 @@
   const origin=document.getElementById('solicitar-site');
   if(origin){
     const msg='Olá! Gostei do exemplo '+s.brand+' na Página Fecha Negócio. Gostaria de conversar sobre uma página para meu negócio.';
-    const url=new URL('https://wa.me/5514996428874');
+    const url=new URL('https://wa.me/5514998193831');
     url.searchParams.set('text',msg);
     origin.href=url.href;
   }
