@@ -47,6 +47,23 @@
     return lines.join('\n');
   }
 
+  // Conserva apenas UTMs permitidas ao navegar para os planos; nunca repassa PII ou fbclid.
+  (()=>{
+    const params=new URLSearchParams(window.location.search);
+    const keys=['utm_source','utm_medium','utm_campaign','utm_content'];
+    const clean=new URLSearchParams();
+    for(const key of keys){
+      const value=tag(params.get(key));
+      if(value)clean.set(key,value);
+    }
+    clean.set('utm_referral','diagnostico_gratuito');
+    const next=document.querySelector?.('a[data-track="diagnostico-ver-planos"]');
+    if(next){
+      const original=next.getAttribute('href')||'../fecha-negocio/';
+      const separator=original.includes('?')?'&':'?';
+      next.setAttribute('href',original+separator+clean.toString());
+    }
+  })();
   form.addEventListener('submit',event=>{
     event.preventDefault();
     if(!form.reportValidity())return;
