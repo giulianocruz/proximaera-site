@@ -38,3 +38,23 @@
   document.documentElement.dataset.heroVariant=variant;
   try{sessionStorage.setItem('pe_hero_variant',variant)}catch{}
 })();
+
+/* Mantém atribuição da campanha ao escolher o diagnóstico a partir do hero.
+   Só transporta valores de UTM permitidos, nunca identificadores nem dados pessoais. */
+(()=>{
+  const next=document.querySelector('[data-track="primeiro-contato-diagnostico"]');
+  if(!next)return;
+  const names=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  const current=new URLSearchParams(location.search);
+  const hasCampaign=names.some(key=>current.has(key));
+  const dest=new URL(next.getAttribute('href'),location.href);
+  if(hasCampaign){
+    for(const key of names){
+      dest.searchParams.delete(key);
+      const value=String(current.get(key)||'').replace(/[^a-zA-Z0-9_.-]/g,'').slice(0,60);
+      if(value)dest.searchParams.set(key,value);
+    }
+  }
+  dest.searchParams.set('utm_referral','fecha_negocio');
+  next.setAttribute('href',dest.pathname+dest.search);
+})();

@@ -26,7 +26,8 @@ async function main() {
         viewport: document.documentElement.clientWidth,
         brokenImages: [...document.images].filter(i => i.complete && !i.naturalWidth).map(i => i.src),
         title: document.querySelector('h1')?.innerText || '',
-        heroLink: document.querySelector('.hero-actions .button.primary')?.href || ''
+        heroLink: document.querySelector('.hero-actions .button.primary')?.href || '',
+        diagnosticLink: document.querySelector('[data-track="primeiro-contato-diagnostico"]')?.href || ''
       }));
       assert.ok(initial.bodyWidth <= initial.viewport + 2,
         `Overflow horizontal em ${width}px: ${initial.bodyWidth} > ${initial.viewport}`);
