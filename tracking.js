@@ -7,7 +7,8 @@
   // Uma unica politica de consentimento atende ofertas e a pagina Fecha Negocio.
   const peIsOffer=location.pathname.startsWith('/ofertas/');
   const peIsFechaNegocio=location.pathname.startsWith('/fecha-negocio/');
-  const peHasMarketingTags=peIsOffer||peIsFechaNegocio;
+  const peIsDiagnostic=location.pathname.startsWith('/diagnostico-gratuito/');
+  const peHasMarketingTags=peIsOffer||peIsFechaNegocio||peIsDiagnostic;
   const peOfferGaId='G-RR7D4MYJZ8';
   // Pixel da conta proprietaria, sem disparos antes do aceite.
   const peOfferMetaId='1534363811135198';
@@ -53,7 +54,7 @@
     if(document.querySelector('[data-pe-marketing-consent]'))return;
     const box=document.createElement('aside');box.dataset.peMarketingConsent='1';
     box.style.cssText='position:fixed;left:16px;right:16px;bottom:14px;z-index:120;max-width:720px;margin:auto;padding:14px 16px;border:1px solid rgba(130,220,255,.22);border-radius:16px;background:rgba(5,18,43,.97);color:#eef7ff;box-shadow:0 18px 50px rgba(0,0,0,.38);font:13px/1.45 system-ui,sans-serif';
-    const text=document.createElement('div');text.innerHTML='<strong style="display:block;margin-bottom:3px">Medição de marketing</strong><span style="opacity:.78">Com sua permissão, usamos Google Analytics 4 e Meta Pixel para medir visitas e interações com anúncios. Recusar não impede o contato pelo WhatsApp. O registro de pedidos funciona mesmo se você recusar.</span>';
+    const text=document.createElement('div');text.innerHTML='<strong style="display:block;margin-bottom:3px">Medição de marketing</strong><span style="opacity:.78">Com sua permissão, usamos Google Analytics 4 e Meta Pixel para medir visitas e interações com anúncios. Recusar não impede o contato pelo WhatsApp. Você pode continuar o atendimento normalmente.</span>';
     const actions=document.createElement('div');actions.style.cssText='display:flex;gap:8px;flex-wrap:wrap;margin-top:10px';
     const accept=document.createElement('button');accept.type='button';accept.textContent='Aceitar marketing';accept.style.cssText='border:0;border-radius:999px;padding:9px 14px;font-weight:800;cursor:pointer;background:#6fe2ff;color:#06162d';
     const deny=document.createElement('button');deny.type='button';deny.textContent='Agora não';deny.style.cssText='border:1px solid rgba(255,255,255,.22);border-radius:999px;padding:9px 14px;font-weight:700;cursor:pointer;background:transparent;color:#eef7ff';
