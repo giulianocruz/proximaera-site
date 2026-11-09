@@ -244,3 +244,20 @@ a:focus-visible,button:focus-visible,summary:focus-visible{outline:3px solid #61
   .hero-price strong{font-size:40px;line-height:1.1;margin-top:2px}
   .hero-price span{font-size:12px;line-height:1.45;margin:0}
 }
+/* First-contact hero panel: actionable choices, no misleading live-agent claims. */
+.first-contact{margin:21px 0 19px;padding:17px;border:1px solid rgba(116,248,159,.26);border-radius:22px;background:linear-gradient(140deg,rgba(9,35,37,.92),rgba(5,21,27,.85));box-shadow:0 16px 45px rgba(0,0,0,.2)}
+.first-contact-heading{display:grid;grid-template-columns:9px 1fr;gap:3px 10px;align-items:center;margin-bottom:13px;color:#eefdf4}
+.first-contact-live{grid-row:1/3;width:9px;height:9px;border-radius:50%;background:#8bff70;box-shadow:0 0 0 5px rgba(139,255,112,.09)}
+.first-contact-heading strong{font-size:17px;line-height:1.24;letter-spacing:-.025em}
+.first-contact-heading small{font-size:12px;color:#b8c9c5}
+.first-contact-options{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.first-contact-option{display:flex;flex-direction:column;align-items:flex-start;gap:8px;min-height:104px;padding:13px 11px;border:1px solid rgba(150,231,186,.19);border-radius:14px;color:#effff5;background:rgba(13,51,49,.58);text-decoration:none;transition:background .2s,border-color .2s,transform .2s}
+.first-contact-option:hover,.first-contact-option:focus-visible{background:rgba(34,106,78,.55);border-color:#8dff98;transform:translateY(-2px);outline-offset:3px}
+.first-contact-option .contact-option-icon{display:grid;place-items:center;width:27px;height:27px;border-radius:8px;background:rgba(114,245,127,.13);color:#98fa89;font-size:19px;font-weight:800}
+.first-contact-option>span:nth-child(2){font-size:13px;font-weight:800;line-height:1.27}
+.first-contact-option>span:nth-child(2) small{display:block;font-size:10px;font-weight:500;color:#c3d4d0;margin-top:4px}
+.first-contact-option>span:last-child{display:none}
+.first-contact-note{margin:12px 0 0;font-size:11px;color:#b9d3c5}
+@media(max-width:1100px){.first-contact-options{grid-template-columns:1fr}.first-contact-option{min-height:0;flex-direction:row;align-items:center;padding:10px 12px}.first-contact-option .contact-option-icon{flex:none}.first-contact-option>span:nth-child(2){flex:1}.first-contact-option>span:last-child{display:block;color:#90fc8c}}
+@media(max-width:650px){.first-contact{padding:14px;margin:16px 0}.first-contact-heading strong{font-size:16px}.first-contact-option{padding:12px}}
+@media(prefers-reduced-motion:reduce){.first-contact-option{transition:none}.first-contact-option:hover{transform:none}}
