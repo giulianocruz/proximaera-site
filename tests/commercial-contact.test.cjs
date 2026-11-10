@@ -31,3 +31,11 @@ test('landing principal e pagina de contato usam numero comercial atual', () => 
     assert.ok(content.includes('5514998193831'), `Telefone comercial ausente em ${relative}`);
   }
 });
+
+test('home envia visitantes ao diagnostico gratuito com origem rastreavel', () => {
+  const html = fs.readFileSync(path.join(root, 'index.html'), 'utf8');
+  const diagnostic = fs.readFileSync(path.join(root, 'diagnostico-gratuito/index.html'), 'utf8');
+  assert.match(html, /href="diagnostico-gratuito\/\?utm_source=site&amp;utm_medium=organic&amp;utm_campaign=proximaera_home"/);
+  assert.match(html, /data-track="hero-diagnostico-gratuito"/);
+  assert.match(diagnostic, /<title>Diagnóstico digital gratuito/);
+});
