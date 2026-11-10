@@ -26,7 +26,7 @@ test('nenhuma pagina comercial volta ao WhatsApp pessoal antigo', () => {
 });
 
 test('landing principal e pagina de contato usam numero comercial atual', () => {
-  for (const relative of ['index.html', 'fecha-negocio/index.html', 'contato.html', 'vender/app.js']) {
+  for (const relative of ['index.html', 'fecha-negocio/index.html', 'diagnostico-gratuito/index.html', 'contato.html', 'vender/app.js']) {
     const content = fs.readFileSync(path.join(root, relative), 'utf8');
     assert.ok(content.includes('5514998193831'), `Telefone comercial ausente em ${relative}`);
   }
