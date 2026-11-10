@@ -35,7 +35,7 @@ Procedimento padrão: comparar arquivo a arquivo → testes/dry-run → backup v
 ## Conciliação comercial e testes (09/11/2026)
 
 - O conteúdo de produção de `/fecha-negocio/` tem consentimento de marketing antes de GA4 e Meta Pixel; o código-fonte foi conciliado com essa implementação, sem sobrepor personalizações da home em produção.
-- Referências antigas de WhatsApp foram corrigidas no código-fonte da home, contato, soluções e páginas comerciais; todas apontam ao canal comercial `+55 14 99642-8874`.
+- Referências antigas de WhatsApp foram corrigidas no código-fonte da home, contato, soluções e páginas comerciais; todas apontam temporariamente ao WhatsApp definido para o atendimento comercial em 09/11/2026: `+55 14 99819-3831`. O número anterior `+55 14 99642-8874` não deve ser usado nas páginas de campanha.
 - A política de privacidade no código-fonte reflete o modo **assistido** do formulário, sem prometer registro automático no CRM. A revisão foi publicada pontualmente em 09/11/2026, após conferência de hash, com backup em `/opt/proximaera/backups/privacy-assisted-20261109T172837Z/` e verificação HTTP 200.
 - `node --test tests/*.test.cjs` inclui smoke HTTP da landing, modelos e rastreamento dos CTAs; testes em Chrome para desktop/celular e consentimento estão em `tests/fecha-negocio-browser.cjs` e `tests/fecha-negocio-consent-browser.cjs` (requerem `PUPPETEER_MODULE` e `CHROME_PATH`).
 - `node ops/compare-production.cjs` compara os arquivos públicos com o código-fonte e **não** modifica a VPS. Diferenças de produção devem ser analisadas individualmente antes de qualquer deploy.
