@@ -10,6 +10,7 @@ const html=read('fecha-negocio/index.html');
 const css=read('assets/premium/fecha-v2.css');
 const js=read('fecha-negocio/preview.js');
 const names=['hero','processo','planos','beneficios','conversao'];
+const dynamicNames=['servicos'];
 
 test('assets premium WebP válidos e referenciados pela landing',()=>{
   for(const name of names){
@@ -19,6 +20,14 @@ test('assets premium WebP válidos e referenciados pela landing',()=>{
     assert.equal(b.toString('ascii',0,4),'RIFF',name);
     assert.equal(b.toString('ascii',8,12),'WEBP',name);
     assert.match(html,new RegExp('fecha-'+name+'-v2\\.webp'));
+  }
+  for(const name of dynamicNames){
+    const rel='assets/premium/fecha-'+name+'-v2.webp';
+    const b=fs.readFileSync(path.join(root,rel));
+    assert.ok(b.length>20000&&b.length<400000,name);
+    assert.equal(b.toString('ascii',0,4),'RIFF');
+    assert.equal(b.toString('ascii',8,12),'WEBP');
+    assert.ok(js.includes('fecha-'+name+'-v2.webp'),name+' dinâmico');
   }
 });
 
