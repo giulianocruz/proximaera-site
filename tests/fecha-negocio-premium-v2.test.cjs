@@ -23,19 +23,19 @@ test('assets premium WebP válidos e referenciados pela landing',()=>{
 });
 
 test('CTA de contato e valores continuam disponíveis como HTML real',()=>{
-  assert.match(html,/R\\$ 79,90/);
-  assert.match(html,/R\\$ 367/);
+  assert.match(html,/R\$ 79,90/);
+  assert.match(html,/R\$ 367/);
   assert.match(html,/data-track="whatsapp-hero-profissional"/);
-  assert.match(html,/wa\\.me\\/5514998193831/);
+  assert.match(html,/wa\.me\/5514998193831/);
   assert.match(html,/data-demo-full/);
   assert.match(html,/data-showcase="beauty"/);
-  assert.ok((html.match(/wa\\.me\\/5514998193831/g)||[]).length>=10);
+  assert.ok((html.match(/wa\.me\/5514998193831/g)||[]).length>=10);
 });
 
-test('alternância do demonstrador preserva as outras duas modalidades e UTMs',()=>{
-  assert.match(js,/target\\.dataset\\.showcase=name/);
+test('alternância preserva os outros modelos e os parâmetros UTM',()=>{
+  assert.match(js,/target\.dataset\.showcase=name/);
   assert.match(js,/data-template/);
   assert.match(js,/utm_source/);
   assert.match(css,/data-showcase="beauty"/);
-  assert.match(css,/not\\(\\[data-showcase="beauty"\\]\\)/);
+  assert.match(css,/not\(\[data-showcase="beauty"\]\)/);
 });
