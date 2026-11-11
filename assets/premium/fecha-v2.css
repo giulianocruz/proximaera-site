@@ -82,3 +82,14 @@
   .fecha-negocio-page .premium-showcase-image,
   .fecha-negocio-page .premium-benefits-visual img{transition:none!important;animation:none!important}
 }
+
+/* O CTA ilustrado não substitui o botão acessível: ambos acionam o mesmo canal. */
+.fecha-negocio-page .premium-final-cta .premium-closing-link{
+  display:block;min-width:0;max-width:100%;border-radius:18px;
+}
+.fecha-negocio-page .premium-final-cta .premium-closing-link:focus-visible{
+  outline:3px solid #61f58b;outline-offset:5px;
+}
+@media(max-width:740px){
+  .fecha-negocio-page .premium-final-cta .premium-closing-link{order:2}
+}
