@@ -46,5 +46,8 @@ test('alternância preserva os outros modelos e os parâmetros UTM',()=>{
   assert.match(js,/data-template/);
   assert.match(js,/utm_source/);
   assert.match(css,/data-showcase="beauty"/);
-  assert.match(css,/not\(\[data-showcase="beauty"\]\)/);
+  assert.match(css,/\.hero-demo:is\(\[data-showcase="beauty"\],\[data-showcase="service"\]\) \.browser/);
+  assert.match(css,/data-showcase="consult"\] \.premium-showcase\{display:none\}/);
+  assert.match(html,/<body class="fecha-negocio-page">/);
+  assert.match(html,/class="premium-showcase-image"[^>]+fetchpriority="high"/);
 });
