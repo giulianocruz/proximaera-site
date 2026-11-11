@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
 # Testa merge de produção personalizado e conflito real sem tocar na VPS.
 set -Eeuo pipefail
+# O staging deve usar nome exclusivo no mesmo diretório do destino,
+# permitindo renomeação atômica sem colisão entre execuções.
+grep -Fq 'stage="$(mktemp "${dest}.pe-v2-new-XXXXXXXX")"' ops/deploy-fecha-premium-v2.sh
+grep -Fq 'mv -f -- "$stage" "$dest"' ops/deploy-fecha-premium-v2.sh
 TMP="$(mktemp -d /tmp/fecha-deploy-check.XXXXXXXX)"
 trap 'rm -rf "$TMP"' EXIT
 BASE="https://raw.githubusercontent.com/giulianocruz/proximaera-site/d974e2a196ca6f43d6658bdf85d6a3070ad93f0d"
