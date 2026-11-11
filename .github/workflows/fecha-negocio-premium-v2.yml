@@ -1,0 +1,30 @@
+name: Fecha Negocio Premium V2
+on:
+  pull_request:
+    paths:
+      - 'fecha-negocio/**'
+      - 'assets/premium/**'
+      - 'tests/fecha-negocio-premium-v2.test.cjs'
+      - '.github/workflows/fecha-negocio-premium-v2.yml'
+  push:
+    branches: [main, 'feature/fecha-negocio-assets-premium-20261111']
+    paths:
+      - 'fecha-negocio/**'
+      - 'assets/premium/**'
+      - 'tests/fecha-negocio-premium-v2.test.cjs'
+      - '.github/workflows/fecha-negocio-premium-v2.yml'
+permissions:
+  contents: read
+jobs:
+  premium-v2:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar JavaScript
+        run: node --check fecha-negocio/preview.js
+      - name: Validar artes, integridade, CTA e modelos
+        run: node --test tests/fecha-negocio-premium-v2.test.cjs
