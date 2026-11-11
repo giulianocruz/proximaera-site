@@ -52,6 +52,8 @@
     }
     for(let i=0;i<3;i++)if(cells.items[i])cells.items[i].textContent=s.items[i];
     canvas.setAttribute('data-template-theme',s.theme);
+    // A arte premium é o destaque inicial; os demais segmentos mantêm a prévia HTML acessível.
+    target.dataset.showcase=name;
     const complete=document.querySelector("[data-demo-full]");
     if(complete){
       const slug=name==='service'?'servicos':name==='consult'?'consultoria':'beleza';
