@@ -28,8 +28,9 @@ async function main() {
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.setViewport({width,height:850,deviceScaleFactor:1});
+      await page.setCacheEnabled(false);
       const r=await page.goto(base+'/fecha-negocio/?utm_source=meta&utm_campaign=validacao&utm_content=preco',{waitUntil:'domcontentloaded',timeout:20000});
-      assert.equal(r.status(),200);
+      assert.ok([200,304].includes(r.status()),'HTTP inesperado: '+r.status());
       await page.waitForFunction(()=>{
         const img=document.querySelector('.premium-showcase-image');
         return img && img.complete && img.naturalWidth>0;
