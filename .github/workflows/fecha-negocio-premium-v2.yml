@@ -5,6 +5,7 @@ on:
       - 'fecha-negocio/**'
       - 'assets/premium/**'
       - 'ops/deploy-fecha-premium-v2.sh'
+      - 'ops/check-fecha-premium-live.sh'
       - 'ops/FECHA-NEGOCIO-V2-RELEASE.md'
       - 'tests/fecha-negocio-deploy-preflight.sh'
       - 'tests/fecha-negocio-premium*.cjs'
@@ -15,6 +16,7 @@ on:
       - 'fecha-negocio/**'
       - 'assets/premium/**'
       - 'ops/deploy-fecha-premium-v2.sh'
+      - 'ops/check-fecha-premium-live.sh'
       - 'ops/FECHA-NEGOCIO-V2-RELEASE.md'
       - 'tests/fecha-negocio-deploy-preflight.sh'
       - 'tests/fecha-negocio-premium*.cjs'
@@ -38,6 +40,8 @@ jobs:
         run: bash tests/fecha-negocio-deploy-preflight.sh
       - name: Validar artes, integridade, CTA e modelos
         run: node --test tests/fecha-negocio-premium-v2.test.cjs
+      - name: Diagnóstico público somente leitura (informativo)
+        run: bash ops/check-fecha-premium-live.sh
       - name: Validar layout no navegador (390px e 1366px)
         run: |
           npm install --no-save --no-package-lock puppeteer-core@24
