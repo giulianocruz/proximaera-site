@@ -1,0 +1,107 @@
+name: Publicar Fecha Negocio V2 na VPS (manual)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/fecha-negocio-publicar-vps.yml'
+  workflow_dispatch:
+    inputs:
+      confirmacao:
+        description: 'Digite PUBLICAR_FECHA_V2 para autorizar a publicacao'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: proximaera-fecha-negocio-v2-release
+  cancel-in-progress: false
+
+jobs:
+  validar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verificar sintaxe do pacote e scripts
+        run: |
+          bash -n ops/deploy-fecha-premium-v2.sh
+          bash -n ops/check-fecha-premium-live.sh
+          node --check fecha-negocio/preview.js
+          node --test tests/fecha-negocio-premium-v2.test.cjs
+      - name: Confirmar que a publicacao nao e automatica
+        run: echo 'Validacao concluida; nenhuma alteracao foi feita na VPS.'
+
+  publicar:
+    needs: validar
+    if: "github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main' && inputs.confirmacao == 'PUBLICAR_FECHA_V2'"
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment: production
+    env:
+      DEPLOY_HOST: ${{ secrets.PROXIMAERA_DEPLOY_HOST }}
+      DEPLOY_USER: ${{ secrets.PROXIMAERA_DEPLOY_USER }}
+      DEPLOY_SSH_KEY: ${{ secrets.PROXIMAERA_DEPLOY_SSH_KEY }}
+      DEPLOY_KNOWN_HOSTS: ${{ secrets.PROXIMAERA_DEPLOY_KNOWN_HOSTS }}
+      DEPLOY_PORT: ${{ secrets.PROXIMAERA_DEPLOY_PORT }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validar configuracao e preparar SSH com host autenticado
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          for name in DEPLOY_HOST DEPLOY_USER DEPLOY_SSH_KEY DEPLOY_KNOWN_HOSTS; do
+            if [[ -z "${!name:-}" ]]; then
+              echo "::error::Segredo $name ausente. Configure no GitHub em Secrets and variables > Actions."
+              exit 1
+            fi
+          done
+          SSH_PORT="${DEPLOY_PORT:-22}"
+          [[ "$SSH_PORT" =~ ^[0-9]{1,5}$ ]] || { echo '::error::Porta SSH invalida'; exit 1; }
+          umask 077
+          mkdir -p "$HOME/.ssh"
+          printf '%s\n' "$DEPLOY_SSH_KEY" > "$HOME/.ssh/fecha_v2_deploy_key"
+          printf '%s\n' "$DEPLOY_KNOWN_HOSTS" > "$HOME/.ssh/known_hosts"
+          ssh-keygen -y -f "$HOME/.ssh/fecha_v2_deploy_key" >/dev/null
+          echo "SSH_PORT=$SSH_PORT" >> "$GITHUB_ENV"
+      - name: Preflight somente leitura e publicacao cirurgica com backup
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          SSH=(ssh -o BatchMode=yes -o StrictHostKeyChecking=yes -o UserKnownHostsFile="$HOME/.ssh/known_hosts" -o ConnectTimeout=12 -o ConnectionAttempts=2 -i "$HOME/.ssh/fecha_v2_deploy_key" -p "$SSH_PORT")
+          echo 'Executando --check na VPS (sem escrita na producao)'
+          "${SSH[@]}" "$DEPLOY_USER@$DEPLOY_HOST" 'bash -s -- --check' < ops/deploy-fecha-premium-v2.sh
+          echo 'Preflight aprovado; executando publicacao com backup automatico'
+          "${SSH[@]}" "$DEPLOY_USER@$DEPLOY_HOST" 'sudo -n bash -s -- --apply' < ops/deploy-fecha-premium-v2.sh
+      - name: Confirmar disponibilidade publica dos assets premium
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          BASE='https://proximaera.com.br'
+          paths=(
+            'fecha-negocio/'
+            'fecha-negocio/preview.js'
+            'assets/premium/fecha-v2.css'
+            'assets/premium/fecha-hero-v2.webp'
+            'assets/premium/fecha-servicos-v2.webp'
+            'assets/premium/fecha-processo-v2.webp'
+            'assets/premium/fecha-planos-v2.webp'
+            'assets/premium/fecha-beneficios-v2.webp'
+            'assets/premium/fecha-conversao-v2.webp'
+          )
+          for p in "${paths[@]}"; do
+            curl --fail --silent --show-error --location --retry 4 --retry-delay 2 --max-time 25 "$BASE/$p" -o /dev/null
+            echo "OK HTTP $p"
+          done
+          html=$(curl --fail --silent --show-error --location "$BASE/fecha-negocio/")
+          grep -Fq 'fecha-hero-v2.webp' <<< "$html"
+          grep -Fq 'wa.me/5514998193831' <<< "$html"
+          echo 'Arquivos premium online; QA visual e consentimento ainda devem ser verificados antes de anuncios.'
+      - name: Apagar chave temporaria
+        if: always()
+        shell: bash
+        run: rm -f "$HOME/.ssh/fecha_v2_deploy_key" "$HOME/.ssh/known_hosts"
