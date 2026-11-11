@@ -21,11 +21,12 @@
   <link rel="stylesheet" href="responsive.css" />
   <link rel="stylesheet" href="conversion.css" />
   <link rel="stylesheet" href="../assets/premium/premium.css" />
+  <link rel="stylesheet" href="../assets/premium/fecha-v2.css" />
   <script defer src="experiment.js"></script>
   <script defer src="preview.js"></script>
   <script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Página Fecha Negócio","provider":{"@type":"Organization","name":"Próxima Era","url":"https://proximaera.com.br/"},"areaServed":"BR","description":"Páginas comerciais responsivas para pequenos negócios e profissionais autônomos.","offers":{"@type":"AggregateOffer","lowPrice":"0","highPrice":"367","priceCurrency":"BRL","offerCount":"3"}}</script>
 <script defer src="/tracking.js"></script></head>
-<body>
+<body class="fecha-negocio-page">
   <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
   <header class="site-header">
     <a class="brand" href="../" aria-label="Próxima Era — início"><img src="../assets/logo-horizontal.svg" width="250" height="56" alt="Próxima Era" /></a>
@@ -51,13 +52,17 @@
         <div class="trust-row"><span>✓ Prévia antes de pagar</span><span>✓ Adaptada para celular</span><span>✓ WhatsApp em destaque</span></div>
         <div class="trust-strip"><span>Próxima Era • Botucatu/SP</span><span>CNPJ 68.964.484/0001-22</span><span id="regionBadge">Atendemos em todo o Brasil</span></div>
       </div>
-      <div class="hero-demo" id="demonstracao" aria-label="Demonstração interativa de uma página comercial">
+      <div class="hero-demo" id="demonstracao" data-showcase="beauty" aria-label="Demonstração interativa de uma página comercial">
         <div class="demo-heading"><div><span class="demo-eyebrow">VISUALIZE ANTES DE DECIDIR</span><strong>Assim sua empresa pode se apresentar.</strong></div><span class="demo-live"><i></i> DEMONSTRAÇÃO</span></div>
         <div class="preview-switcher" role="group" aria-label="Escolha um tipo de negócio">
           <button type="button" data-template="beauty" data-track="demo-seletor-beleza" class="is-active" aria-pressed="true">Beleza</button>
           <button type="button" data-template="service" data-track="demo-seletor-servicos" aria-pressed="false">Serviços</button>
           <button type="button" data-template="consult" data-track="demo-seletor-consultoria" aria-pressed="false">Consultoria</button>
         </div>
+        <figure class="premium-showcase">
+          <img class="premium-showcase-image" src="../assets/premium/fecha-hero-v2.webp" width="1280" height="960" alt="Conceito ilustrativo de uma página profissional Studio Aurora, com serviços, fotografia, identidade visual e WhatsApp" fetchpriority="high" decoding="async" />
+          <figcaption>Conceito visual ilustrativo. A prévia personalizada é aprovada antes da contratação.</figcaption>
+        </figure>
         <div class="browser" data-template-theme="beauty">
           <div class="browser-top"><i></i><i></i><i></i><span data-demo-url>studioaurora.exemplo</span><span class="demo-device">PRÉVIA DE SITE</span></div>
           <div class="demo-page">
@@ -102,6 +107,9 @@
 
     <section class="plans light" id="planos" aria-labelledby="titulo-planos">
       <div class="section-head"><p class="eyebrow">ESCOLHA COMO COMEÇAR</p><h2 id="titulo-planos">Escolha o ponto de partida ideal para seu negócio.</h2><p>Comece sem custo, contrate uma página pronta ou acelere sua presença digital com uma estrutura premium.</p></div>
+      <div class="premium-pricing-overview">
+        <img src="../assets/premium/fecha-planos-v2.webp" width="1280" height="960" loading="lazy" decoding="async" alt="" aria-hidden="true" />
+      </div>
       <div class="plan-grid">
         <article class="plan-card"><span class="plan-label">FREE</span><h3>Comece agora</h3><div class="plan-price"><strong>R$ 0</strong><small>para sempre</small></div><p>Para validar sua presença digital e reunir as informações essenciais.</p><ul><li>Modelo de página responsiva</li><li>Link compartilhável</li><li>Serviços, contatos e redes</li><li>Botão para WhatsApp</li><li>Marca discreta da Próxima Era</li></ul><a class="button plan-button" href="https://wa.me/5514998193831?text=Ol%C3%A1%21%20Quero%20come%C3%A7ar%20com%20a%20P%C3%A1gina%20Fecha%20Neg%C3%B3cio%20Free." target="_blank" rel="noopener" data-track="cta-plano-free">Quero começar grátis</a></article>
         <article class="plan-card featured"><span class="plan-badge">FEITO POR NÓS</span><span class="plan-label">PROFISSIONAL</span><h3>Nós fazemos para você</h3><div class="plan-price"><strong>R$ 79,90</strong><small>pagamento único</small></div><p>Para quem quer uma página profissional pronta sem perder tempo com tecnologia.</p><ul><li>Tudo do plano Free</li><li>Design adaptado ao negócio</li><li>Conteúdo organizado pela equipe</li><li>SEO local essencial</li><li>Métricas de acesso</li><li>Você aprova antes de pagar</li></ul><a class="button primary" href="https://wa.me/5514998193831?text=Ol%C3%A1%21%20Quero%20o%20plano%20Profissional%20da%20P%C3%A1gina%20Fecha%20Neg%C3%B3cio%20por%20R%24%2079%2C90." target="_blank" rel="noopener" data-track="cta-plano-profissional">Escolher Profissional →</a></article>
@@ -119,7 +127,7 @@
     <section class="process light" id="processo">
       <div class="premium-process-layout">
         <div class="section-head"><p class="eyebrow">SEM RISCO DE COMPRAR NO ESCURO</p><h2>Você acompanha cada etapa. E aprova antes de pagar.</h2><p>Envie as informações do seu negócio, receba uma prévia e avalie o resultado. A publicação acontece depois da aprovação e confirmação do pagamento.</p></div>
-        <img class="premium-process-art" src="../assets/premium/fecha-processo.webp" width="1100" height="825" alt="Ilustração das etapas de solicitação, prévia para aprovação e publicação da página" loading="lazy" decoding="async" />
+        <img class="premium-process-art" src="../assets/premium/fecha-processo-v2.webp" width="1100" height="825" alt="Ilustração das etapas de solicitação, prévia para aprovação e publicação da página" loading="lazy" decoding="async" />
       </div>
       <div class="steps">
         <article><span>1</span><h3>Você envia as informações</h3><p>Nome, serviços, WhatsApp, redes sociais, fotos e o que já tiver do negócio.</p></article>
@@ -132,6 +140,7 @@
 
     <section class="deliverables">
       <div class="section-head inverse"><p class="eyebrow">O QUE VOCÊ RECEBE</p><h2>Uma página pequena no tamanho.<br>Grande na apresentação.</h2></div>
+      <div class="premium-benefits-visual"><img src="../assets/premium/fecha-beneficios-v2.webp" width="1280" height="960" loading="lazy" decoding="async" alt="Exemplo de como uma página profissional se adapta ao computador e ao celular, com serviços, WhatsApp e localização" /><span>Exemplo ilustrativo de apresentação.</span></div>
       <div class="feature-grid">
         <article><b>01</b><h3>Design profissional</h3><p>Visual adaptado à identidade, segmento e informações do seu negócio.</p></article>
         <article><b>02</b><h3>Feita para celular</h3><p>Leitura e navegação pensadas primeiro para quem chega pelo smartphone.</p></article>
@@ -200,7 +209,7 @@
 
     <div class="mobile-buy" aria-label="Contato comercial"><div><small>Plano profissional</small><strong>R$ 79,90 <em>único</em></strong></div><a href="https://wa.me/5514998193831?text=Ol%C3%A1%21%20Quero%20uma%20P%C3%A1gina%20Fecha%20Neg%C3%B3cio%20Profissional%20por%20R%24%2079%2C90.%20Vi%20o%20exemplo%20no%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer" data-track="whatsapp-mobile-sticky">Pedir pelo WhatsApp ↗</a></div>
 
-    <section class="final-cta premium-final-cta"><img class="premium-closing-art" src="../assets/premium/fecha-conversao.webp" alt="Ilustração de página profissional, contato com clientes pelo WhatsApp e presença digital" width="1100" height="825" loading="lazy" decoding="async" /><div><p class="eyebrow">PRÓXIMA ERA</p><h2>Uma página que apresenta seu negócio de verdade.</h2><a class="button primary" href="https://wa.me/5514998193831?text=Ol%C3%A1%21%20Quero%20uma%20P%C3%A1gina%20Fecha%20Neg%C3%B3cio%20Profissional%20por%20R%24%2079%2C90.%20Vi%20o%20exemplo%20no%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer" data-track="whatsapp-cta-final">Falar sobre minha página ↗</a><small>Plano Profissional: R$ 79,90. Você vê a prévia antes de pagar.</small></div></section>
+    <section class="final-cta premium-final-cta"><img class="premium-closing-art" src="../assets/premium/fecha-conversao-v2.webp" alt="Ilustração de página profissional, contato com clientes pelo WhatsApp e presença digital" width="1100" height="825" loading="lazy" decoding="async" /><div><p class="eyebrow">PRÓXIMA ERA</p><h2>Uma página que apresenta seu negócio de verdade.</h2><a class="button primary" href="https://wa.me/5514998193831?text=Ol%C3%A1%21%20Quero%20uma%20P%C3%A1gina%20Fecha%20Neg%C3%B3cio%20Profissional%20por%20R%24%2079%2C90.%20Vi%20o%20exemplo%20no%20site%20e%20gostaria%20de%20conversar." target="_blank" rel="noopener noreferrer" data-track="whatsapp-cta-final">Falar sobre minha página ↗</a><small>Plano Profissional: R$ 79,90. Você vê a prévia antes de pagar.</small></div></section>
   </main>
 
   <footer class="footer"><div><img src="../assets/logo-horizontal.svg" width="210" height="48" alt="Próxima Era" /><p>Criando o que vem depois.</p></div><div><strong>Próxima Era</strong><a href="../">Site institucional</a><a href="../vender/">Soluções comerciais</a><a href="../contato.html">Contato</a><a href="../privacidade.html">Privacidade</a><a href="../termos.html">Termos de uso</a></div><div><strong>Empresa</strong><span>Botucatu/SP</span><span>CNPJ 68.964.484/0001-22</span><a href="mailto:contato@proximaera.com.br">contato@proximaera.com.br</a><a href="https://wa.me/5514998193831?text=Ol%C3%A1%21%20Quero%20minha%20P%C3%A1gina%20Fecha%20Neg%C3%B3cio%20por%20R%24%2079%2C90.%20Quero%20come%C3%A7ar%20agora." target="_blank" rel="noopener">WhatsApp comercial</a></div></footer>
