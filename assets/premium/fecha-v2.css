@@ -94,3 +94,32 @@
 @media(max-width:740px){
   .fecha-negocio-page .premium-final-cta .premium-closing-link{order:2}
 }
+
+/* Consultoria mantém o demonstrador editável, agora com tratamento visual escuro. */
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .browser{
+  background:#071719;border:1px solid rgba(135,244,178,.35);
+  box-shadow:0 30px 70px rgba(0,0,0,.42),0 0 44px rgba(97,245,139,.08);
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .browser-top,
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-nav{
+  background:#081820;color:#d9f3ea;border-color:rgba(171,248,199,.13);
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-nav span{color:#a4b6ad}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-page{
+  background:linear-gradient(145deg,#071b21,#0c2727);color:#f5fff9;
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-main{
+  background:radial-gradient(circle at 94% 18%,rgba(235,196,118,.16),transparent 36%),
+    linear-gradient(120deg,#0a2228,#102c2b 65%,#07171a);
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-main h2{color:#f8fff9}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-main p{color:#b8cbc4}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-cta-mock{
+  background:#61f58b;color:#061811!important;
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-cards{
+  background:#081b20;
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-cards span{
+  background:#102d2a;color:#bdf4d3;border-color:rgba(97,245,139,.2);
+}
