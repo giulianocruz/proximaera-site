@@ -35,7 +35,7 @@ Procedimento padrão: comparar arquivo a arquivo → testes/dry-run → backup v
 ## Conciliação comercial e testes (09/11/2026)
 
 - O conteúdo de produção de `/fecha-negocio/` tem consentimento de marketing antes de GA4 e Meta Pixel; o código-fonte foi conciliado com essa implementação, sem sobrepor personalizações da home em produção.
-- Referências antigas de WhatsApp foram corrigidas no código-fonte da home, contato, soluções e páginas comerciais; todas apontam ao canal comercial `+55 14 99642-8874`.
+- Em 09/11, as páginas institucionais foram conciliadas para o número comercial `+55 14 99642-8874`. A landing `/fecha-negocio/` utiliza o contato provisório `+55 14 99819-3831`, conforme decisão comercial posterior. Não uniformizar sem validar os canais e a produção.
 - A política de privacidade no código-fonte reflete o modo **assistido** do formulário, sem prometer registro automático no CRM. A revisão foi publicada pontualmente em 09/11/2026, após conferência de hash, com backup em `/opt/proximaera/backups/privacy-assisted-20261109T172837Z/` e verificação HTTP 200.
 - `node --test tests/*.test.cjs` inclui smoke HTTP da landing, modelos e rastreamento dos CTAs; testes em Chrome para desktop/celular e consentimento estão em `tests/fecha-negocio-browser.cjs` e `tests/fecha-negocio-consent-browser.cjs` (requerem `PUPPETEER_MODULE` e `CHROME_PATH`).
 - `node ops/compare-production.cjs` compara os arquivos públicos com o código-fonte e **não** modifica a VPS. Diferenças de produção devem ser analisadas individualmente antes de qualquer deploy.
@@ -50,3 +50,10 @@ Procedimento padrão: comparar arquivo a arquivo → testes/dry-run → backup v
 3. **Antes de grandes publicações futuras:** conciliar diferenças de rota, telefone e conteúdo entre produção e GitHub, preservando personalizações do servidor.
 
 **Fora do escopo:** Sistema Imagem (já entregue), Keli Hofbauer (pausada até pagamento) e demais sites de clientes. Próxima Era Commander é um projeto separado.
+
+## Página Fecha Negócio V2 (branch de release em 11/11/2026)
+
+- PR #25: `feature/fecha-negocio-assets-premium-20261111`, com seis WebP em `assets/premium/fecha-*-v2.webp`, CSS isolado `assets/premium/fecha-v2.css`, nova hero visual e melhorias de conversão.
+- `node --test tests/fecha-negocio-premium-v2.test.cjs` verifica assets, links e alternância. Execute também os testes existentes e QA de navegador **antes de publicar**.
+- **Não está automaticamente publicado na VPS**: confira diferenças do HTML público com `node ops/compare-production.cjs fecha-negocio/index.html fecha-negocio/preview.js`, faça backup e publique apenas os arquivos relevantes, nunca a raiz inteira do repositório.
+- Depois do deploy, valide imagens (HTTP 200), responsividade 390/1366 px, todos os links `wa.me/5514998193831`, modelos Beleza/Serviços/Consultoria e consentimento de anúncios.

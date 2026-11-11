@@ -1,0 +1,125 @@
+/* Fecha Negócio V2 — arte editorial premium.
+   Isolado da home; HTML e links reais continuam as fontes de verdade. */
+.fecha-negocio-page .hero{
+  grid-template-columns:minmax(0,.96fr) minmax(0,1.04fr);
+  gap:clamp(22px,3vw,50px);
+  padding-top:56px;padding-bottom:64px;
+}
+.fecha-negocio-page .hero h1{font-size:clamp(42px,4.55vw,62px);line-height:1.01;letter-spacing:-.053em}
+.fecha-negocio-page .hero-demo{max-width:760px}
+.fecha-negocio-page .premium-showcase{
+  margin:8px -5% 0;position:relative;max-width:110%;
+  isolation:isolate;
+}
+.fecha-negocio-page .premium-showcase::before{
+  content:"";position:absolute;inset:13% 8%;z-index:-1;
+  background:radial-gradient(ellipse,rgba(73,245,149,.22),transparent 66%);
+  filter:blur(30px);pointer-events:none;
+}
+.fecha-negocio-page .premium-showcase-image{
+  display:block;width:100%;height:auto;max-width:none;
+  filter:drop-shadow(0 23px 34px rgba(0,0,0,.36));
+}
+.fecha-negocio-page .premium-showcase figcaption{
+  margin:-4px auto 6px;text-align:center;color:#9fc1b6;
+  font-size:11px;line-height:1.45;max-width:460px;
+}
+.fecha-negocio-page .hero-demo:is([data-showcase="beauty"],[data-showcase="service"]) .browser{display:none}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .premium-showcase{display:none}
+.fecha-negocio-page .hero-demo[data-showcase="beauty"] .demo-heading{margin-bottom:8px}
+.fecha-negocio-page .hero-demo[data-showcase="beauty"] .full-preview-bar{margin-top:6px}
+.fecha-negocio-page .premium-pricing-overview{
+  display:flex;justify-content:center;align-items:center;
+  margin:-25px auto 12px;max-width:900px;overflow:visible;
+}
+.fecha-negocio-page .premium-pricing-overview img{
+  display:block;width:min(100%,760px);height:auto;max-width:100%;
+  filter:drop-shadow(0 18px 28px rgba(3,20,16,.12));
+  pointer-events:none;user-select:none;
+}
+.fecha-negocio-page .premium-benefits-visual{
+  display:flex;flex-direction:column;align-items:center;
+  max-width:1100px;margin:-12px auto 36px;
+}
+.fecha-negocio-page .premium-benefits-visual img{
+  display:block;width:min(100%,910px);height:auto;max-width:100%;
+  filter:drop-shadow(0 24px 34px rgba(0,0,0,.17));
+}
+.fecha-negocio-page .premium-benefits-visual span{
+  color:#8ba49c;text-align:center;font-size:11px;
+}
+.fecha-negocio-page .premium-process-art{max-width:100%;height:auto}
+.fecha-negocio-page .premium-final-cta .premium-closing-art{
+  max-height:none;max-width:100%;height:auto;
+}
+@media(max-width:1120px){
+  .fecha-negocio-page .hero{gap:18px}
+  .fecha-negocio-page .hero h1{font-size:clamp(40px,5.2vw,59px)}
+  .fecha-negocio-page .premium-showcase{margin-inline:-3%}
+}
+@media(max-width:950px){
+  .fecha-negocio-page .hero{
+    grid-template-columns:minmax(0,1fr);
+    padding-top:50px;padding-bottom:50px;gap:38px;
+  }
+  .fecha-negocio-page .hero h1{font-size:clamp(45px,7.4vw,65px)}
+  .fecha-negocio-page .hero-demo{max-width:730px;margin-inline:auto}
+  .fecha-negocio-page .premium-showcase{max-width:100%;margin-inline:0}
+  .fecha-negocio-page .premium-pricing-overview{margin:0 auto 12px}
+  .fecha-negocio-page .premium-benefits-visual{margin:0 auto 28px}
+}
+@media(max-width:640px){
+  .fecha-negocio-page .hero{padding:43px 20px 56px;gap:36px}
+  .fecha-negocio-page .hero h1{font-size:clamp(38px,10.4vw,48px);line-height:1.03}
+  .fecha-negocio-page .premium-showcase figcaption{font-size:10px}
+  .fecha-negocio-page .premium-showcase-image{width:106%;margin-left:-3%}
+  .fecha-negocio-page .premium-pricing-overview img{width:100%}
+  .fecha-negocio-page .premium-benefits-visual img{width:106%;max-width:none}
+  .fecha-negocio-page .premium-benefits-visual{overflow:hidden}
+  .fecha-negocio-page .premium-final-cta .premium-closing-art{max-height:360px}
+  .fecha-negocio-page .premium-showcase figcaption{padding:0 8px}
+}
+@media(prefers-reduced-motion:reduce){
+  .fecha-negocio-page .premium-showcase-image,
+  .fecha-negocio-page .premium-benefits-visual img{transition:none!important;animation:none!important}
+}
+
+/* O CTA ilustrado não substitui o botão acessível: ambos acionam o mesmo canal. */
+.fecha-negocio-page .premium-final-cta .premium-closing-link{
+  display:block;min-width:0;max-width:100%;border-radius:18px;
+}
+.fecha-negocio-page .premium-final-cta .premium-closing-link:focus-visible{
+  outline:3px solid #61f58b;outline-offset:5px;
+}
+@media(max-width:740px){
+  .fecha-negocio-page .premium-final-cta .premium-closing-link{order:2}
+}
+
+/* Consultoria mantém o demonstrador editável, agora com tratamento visual escuro. */
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .browser{
+  background:#071719;border:1px solid rgba(135,244,178,.35);
+  box-shadow:0 30px 70px rgba(0,0,0,.42),0 0 44px rgba(97,245,139,.08);
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .browser-top,
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-nav{
+  background:#081820;color:#d9f3ea;border-color:rgba(171,248,199,.13);
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-nav span{color:#a4b6ad}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-page{
+  background:linear-gradient(145deg,#071b21,#0c2727);color:#f5fff9;
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-main{
+  background:radial-gradient(circle at 94% 18%,rgba(235,196,118,.16),transparent 36%),
+    linear-gradient(120deg,#0a2228,#102c2b 65%,#07171a);
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-main h2{color:#f8fff9}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-main p{color:#b8cbc4}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-cta-mock{
+  background:#61f58b;color:#061811!important;
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-cards{
+  background:#081b20;
+}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-cards span{
+  background:#102d2a;color:#bdf4d3;border-color:rgba(97,245,139,.2);
+}
