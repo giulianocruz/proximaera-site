@@ -53,7 +53,7 @@ Procedimento padrão: comparar arquivo a arquivo → testes/dry-run → backup v
 
 ## Página Fecha Negócio V2 (branch de release em 11/11/2026)
 
-- PR #25: `feature/fecha-negocio-assets-premium-20261111`, com cinco WebP em `assets/premium/fecha-*-v2.webp`, CSS isolado `assets/premium/fecha-v2.css`, nova hero visual e melhorias de conversão.
+- PR #25: `feature/fecha-negocio-assets-premium-20261111`, com seis WebP em `assets/premium/fecha-*-v2.webp`, CSS isolado `assets/premium/fecha-v2.css`, nova hero visual e melhorias de conversão.
 - `node --test tests/fecha-negocio-premium-v2.test.cjs` verifica assets, links e alternância. Execute também os testes existentes e QA de navegador **antes de publicar**.
 - **Não está automaticamente publicado na VPS**: confira diferenças do HTML público com `node ops/compare-production.cjs fecha-negocio/index.html fecha-negocio/preview.js`, faça backup e publique apenas os arquivos relevantes, nunca a raiz inteira do repositório.
 - Depois do deploy, valide imagens (HTTP 200), responsividade 390/1366 px, todos os links `wa.me/5514998193831`, modelos Beleza/Serviços/Consultoria e consentimento de anúncios.
