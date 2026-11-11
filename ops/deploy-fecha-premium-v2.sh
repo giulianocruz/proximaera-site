@@ -160,7 +160,7 @@ for file in "${FILES[@]}"; do
     continue
   fi
   mkdir -p "$(dirname "$dest")"
-  stage="$dest.pe-v2-new-$"
+  stage="${dest}.pe-v2-new-$"
   cp -- "$candidate" "$stage"
   if [[ -f "$dest" ]]; then
     chmod --reference="$dest" "$stage"
