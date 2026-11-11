@@ -24,8 +24,8 @@
   margin:-4px auto 6px;text-align:center;color:#9fc1b6;
   font-size:11px;line-height:1.45;max-width:460px;
 }
-.fecha-negocio-page .hero-demo[data-showcase="beauty"] .browser{display:none}
-.fecha-negocio-page .hero-demo:not([data-showcase="beauty"]) .premium-showcase{display:none}
+.fecha-negocio-page .hero-demo:is([data-showcase="beauty"],[data-showcase="service"]) .browser{display:none}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .premium-showcase{display:none}
 .fecha-negocio-page .hero-demo[data-showcase="beauty"] .demo-heading{margin-bottom:8px}
 .fecha-negocio-page .hero-demo[data-showcase="beauty"] .full-preview-bar{margin-top:6px}
 .fecha-negocio-page .premium-pricing-overview{
