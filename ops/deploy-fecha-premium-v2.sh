@@ -12,7 +12,7 @@ fi
 
 ROOT="${PROXIMAERA_SITE_ROOT:-/opt/proximaera/site}"
 BASE_SHA="d974e2a196ca6f43d6658bdf85d6a3070ad93f0d"
-TARGET_SHA="89bdf28e76d27f820b09e01f635c6c818e2dce8e"
+TARGET_SHA="b3f9d95fd167a62b804cfb1936eca211d9a1bfbc"
 SOURCE="https://raw.githubusercontent.com/giulianocruz/proximaera-site"
 FILES=(
   assets/premium/fecha-hero-v2.webp
@@ -30,6 +30,7 @@ OLD_TEXT=(fecha-negocio/index.html fecha-negocio/preview.js)
 command -v curl >/dev/null
 command -v tar >/dev/null
 command -v sha256sum >/dev/null
+command -v git >/dev/null
 TMP="$(mktemp -d /tmp/fecha-premium-v2.XXXXXXXX)"
 BACKUP=""
 DONE=0
@@ -74,19 +75,38 @@ grep -Fq 'fecha-hero-v2.webp' "$TMP/new/fecha-negocio/index.html"
 grep -Fq 'fecha-v2.css' "$TMP/new/fecha-negocio/index.html"
 grep -Fq 'wa.me/5514998193831' "$TMP/new/fecha-negocio/index.html"
 
+# Constrói em uma pasta temporária a versão que será aplicada. Se houver
+# personalizações da produção, faz merge de 3 vias com a base aprovada.
+# Conflito = abortar sem modificar o servidor; jamais forçar --ours/--theirs.
 for file in "${OLD_TEXT[@]}"; do
   if [[ ! -f "$ROOT/$file" ]]; then
     echo "Arquivo existente obrigatorio ausente: $file" >&2
     exit 1
   fi
-  if ! cmp -s "$ROOT/$file" "$TMP/new/$file"; then
-    fetch_at "$BASE_SHA" "$file" "$TMP/baseline/$file"
-    if ! cmp -s "$ROOT/$file" "$TMP/baseline/$file"; then
-      echo "DRIFT EM PRODUCAO: $file difere da base auditada. Nao sobrescrever." >&2
+  mkdir -p "$TMP/staged/$(dirname "$file")"
+  if cmp -s "$ROOT/$file" "$TMP/new/$file"; then
+    cp -- "$ROOT/$file" "$TMP/staged/$file"
+    echo "TEXTO_ATUAL $file"
+    continue
+  fi
+  fetch_at "$BASE_SHA" "$file" "$TMP/baseline/$file"
+  if cmp -s "$ROOT/$file" "$TMP/baseline/$file"; then
+    cp -- "$TMP/new/$file" "$TMP/staged/$file"
+    echo "BASE_EXATA $file"
+  else
+    if git merge-file -p "$ROOT/$file" "$TMP/baseline/$file" "$TMP/new/$file" > "$TMP/staged/$file"; then
+      echo "MERGE_SEM_CONFLITO $file (personalizacoes preservadas)"
+    else
+      echo "CONFLITO_DE_PRODUCAO: $file. Nao publicar; requer revisao manual." >&2
       exit 1
     fi
   fi
 done
+# Exigir que a versão mesclada realmente contenha as alterações essenciais.
+grep -Fq 'fecha-hero-v2.webp' "$TMP/staged/fecha-negocio/index.html"
+grep -Fq 'fecha-v2.css' "$TMP/staged/fecha-negocio/index.html"
+grep -Fq 'class="fecha-negocio-page"' "$TMP/staged/fecha-negocio/index.html"
+grep -Fq 'target.dataset.showcase=name' "$TMP/staged/fecha-negocio/preview.js"
 
 for file in "${FILES[@]}"; do
   if [[ -e "$ROOT/$file" && "$file" != "fecha-negocio/index.html" && "$file" != "fecha-negocio/preview.js" ]]; then
@@ -95,7 +115,11 @@ for file in "${FILES[@]}"; do
       exit 1
     fi
   fi
-  if [[ -f "$ROOT/$file" ]] && cmp -s "$ROOT/$file" "$TMP/new/$file"; then
+  candidate="$TMP/new/$file"
+  if [[ "$file" == "fecha-negocio/index.html" || "$file" == "fecha-negocio/preview.js" ]]; then
+    candidate="$TMP/staged/$file"
+  fi
+  if [[ -f "$ROOT/$file" ]] && cmp -s "$ROOT/$file" "$candidate"; then
     echo "ATUAL $file"
   else
     echo "PENDENTE $file"
@@ -128,12 +152,16 @@ printf '%s\n' "$TARGET_SHA" > "$BACKUP/target-sha.txt"
 # A ordem publica imagens, CSS e JS primeiro; HTML por ultimo.
 for file in "${FILES[@]}"; do
   dest="$ROOT/$file"
-  if [[ -f "$dest" ]] && cmp -s "$dest" "$TMP/new/$file"; then
+  candidate="$TMP/new/$file"
+  if [[ "$file" == "fecha-negocio/index.html" || "$file" == "fecha-negocio/preview.js" ]]; then
+    candidate="$TMP/staged/$file"
+  fi
+  if [[ -f "$dest" ]] && cmp -s "$dest" "$candidate"; then
     continue
   fi
   mkdir -p "$(dirname "$dest")"
-  stage="$dest.pe-v2-new-$$"
-  cp -- "$TMP/new/$file" "$stage"
+  stage="$dest.pe-v2-new-$"
+  cp -- "$candidate" "$stage"
   if [[ -f "$dest" ]]; then
     chmod --reference="$dest" "$stage"
     chown --reference="$dest" "$stage"
@@ -141,7 +169,7 @@ for file in "${FILES[@]}"; do
     chmod 0644 "$stage"
   fi
   mv -f -- "$stage" "$dest"
-  cmp -s "$dest" "$TMP/new/$file"
+  cmp -s "$dest" "$candidate"
 done
 
 DONE=1
