@@ -33,6 +33,20 @@ test('assets premium WebP válidos e referenciados pela landing',()=>{
   }
 });
 
+test('Ramos e Vértice têm imagens premium WebP próprias e selecionáveis',()=>{
+  for(const [name,slug] of [['ramos','service'],['vertice','consult']]){
+    const filename='assets/premium/fecha-'+name+'-premium-v3.webp';
+    const bytes=fs.readFileSync(path.join(root,filename));
+    assert.ok(bytes.length>30000 && bytes.length<350000,filename+' otimizado');
+    assert.equal(bytes.toString('ascii',0,4),'RIFF');
+    assert.equal(bytes.toString('ascii',8,12),'WEBP');
+    assert.ok(js.includes('fecha-'+name+'-premium-v3.webp'));
+  }
+  assert.ok(!js.includes("document.createElement('iframe')"),'modelo deve usar asset estático');
+  assert.match(css,/premium-showcase-image/);
+  assert.match(css,/data-showcase="consult"/);
+});
+
 test('CTA de contato e valores continuam disponíveis como HTML real',()=>{
   assert.match(html,/R\$ 79,90/);
   assert.match(html,/R\$ 367/);
