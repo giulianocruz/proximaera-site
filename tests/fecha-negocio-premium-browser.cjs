@@ -28,6 +28,7 @@ async function main() {
       const errors=[];
       page.on('pageerror',e=>errors.push(e.message));
       await page.setViewport({width,height:850,deviceScaleFactor:1});
+      await page.emulateMediaFeatures([{name:'prefers-reduced-motion',value:'reduce'}]);
       await page.setCacheEnabled(false);
       const r=await page.goto(base+'/fecha-negocio/?utm_source=meta&utm_campaign=validacao&utm_content=preco',{waitUntil:'domcontentloaded',timeout:20000});
       assert.ok([200,304].includes(r.status()),'HTTP inesperado: '+r.status());
@@ -85,7 +86,12 @@ async function main() {
         const frameElement=await page.$('.demo-live-site-frame');
         const child=await frameElement.contentFrame();
         assert.ok(child,'iframe do modelo não foi anexado');
-        await child.waitForSelector('.v-hero h1',{timeout:15000});
+        // Ao alternar o mesmo iframe, aguardar a navegação terminar.
+        // waitForSelector sozinho pode ler o H1 do modelo anterior.
+        await child.waitForFunction(
+          expected=>document.querySelector('.v-hero h1')?.textContent?.includes(expected),
+          {timeout:15000},headline
+        );
         assert.match(await child.$eval('.v-hero h1',el=>el.textContent),new RegExp(headline));
       }
       await page.click('[data-template="beauty"]');
@@ -97,6 +103,25 @@ async function main() {
       assert.equal(back.beauty,'beauty');
       assert.notEqual(back.art,'none');
       assert.equal(back.frame,'none');
+      for(const model of ['service','consult']){
+        await page.click('[data-preview="'+model+'"]');
+        await page.waitForFunction(name=>document.querySelector('.hero-demo')?.dataset.showcase===name,{timeout:15000},model);
+        await page.waitForFunction(()=>{
+          const node=document.getElementById('demonstracao');
+          const header=document.querySelector('.site-header');
+          if(!node||!header)return false;
+          const top=node.getBoundingClientRect().top;
+          const y=header.getBoundingClientRect().height;
+          return top>=y-20&&top<=y+125;
+        },{timeout:15000});
+        const landing=await page.evaluate(()=>({
+          top:Math.round(document.getElementById('demonstracao').getBoundingClientRect().top),
+          overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+          frame:document.querySelector('.demo-live-site-frame')?.getAttribute('src')
+        }));
+        assert.ok(landing.overflow<=2,'Overflow clicando no cartão de '+model);
+        assert.match(landing.frame,new RegExp(model==='service'?'modelos/servicos/':'modelos/consultoria/'));
+      }
       assert.deepEqual(errors,[],`Erros JS no viewport ${width}`);
       console.log(`OK navegador ${width}px: 3 previews visuais, modelos reais, UTMs, CTA e layout`);
       await page.close();
