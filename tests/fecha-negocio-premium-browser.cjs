@@ -66,7 +66,7 @@ async function main() {
       }));
       assert.equal(service.theme,'service');
       assert.equal(service.pressed,'true');
-      assert.match(service.link,/segment=servicos/);
+      assert.match(service.link,/modelos\/servicos\//);
       assert.match(service.link,/utm_source=meta/);
       await page.click('[data-template="consult"]');
       const consult=await page.evaluate(()=>({
@@ -80,6 +80,31 @@ async function main() {
       assert.deepEqual(errors,[],`Erros JS no viewport ${width}`);
       console.log(`OK navegador ${width}px: imagens, alternancia, UTMs, CTA e layout`);
       await page.close();
+      for(const [slug,brand] of [['servicos','Ramos'],['consultoria','Vértice']]){
+        const sample=await browser.newPage();
+        const demoErrors=[];
+        sample.on('pageerror',e=>demoErrors.push(e.message));
+        await sample.setViewport({width,height:850});
+        await sample.setCacheEnabled(false);
+        const response=await sample.goto(base+'/fecha-negocio/modelos/'+slug+'/?utm_source=meta',{waitUntil:'networkidle0'});
+        assert.ok([200,304].includes(response.status()),'HTTP da demonstração: '+response.status());
+        const info=await sample.evaluate(()=>({
+          viewport:document.documentElement.clientWidth,
+          width:document.documentElement.scrollWidth,
+          title:document.title,
+          cta:document.querySelector('[data-demo-convert]')?.href,
+          back:document.querySelector('[data-demo-return]')?.href,
+          sections:document.querySelectorAll('main section[id]').length
+        }));
+        assert.ok(info.width<=info.viewport+2,'Overflow em '+slug+': '+info.width);
+        assert.ok(info.title.includes(brand));
+        assert.ok(info.sections>=5);
+        assert.ok(info.cta.startsWith('https://wa.me/5514998193831'));
+        assert.match(info.back,/utm_source=meta/);
+        assert.deepEqual(demoErrors,[]);
+        console.log('OK demo',slug,width,'px');
+        await sample.close();
+      }
     }
   } finally {
     if(browser)await browser.close();

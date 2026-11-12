@@ -65,6 +65,16 @@
   const params=new URLSearchParams(location.search);
   const value=(params.get('segment')||'beleza').trim().toLowerCase();
   const seg=Object.hasOwn(portfolio,value)?value:'beleza';
+  // Links antigos com ?segment= continuam válidos, mas os dois exemplos
+  // agora têm páginas próprias. Preservar a origem da campanha.
+  if(seg==='servicos'||seg==='consultoria'){
+    const url=new URL(seg+'/',location.href);
+    for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']){
+      if(params.has(key))url.searchParams.set(key,params.get(key));
+    }
+    location.replace(url.href);
+    return;
+  }
   const s=portfolio[seg];
   document.documentElement.dataset.segment=seg;
   document.title=s.brand+' — Exemplo ilustrativo | Próxima Era';
