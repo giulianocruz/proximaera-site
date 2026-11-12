@@ -44,6 +44,53 @@
     items:[1,2,3].map(n=>canvas.querySelector('[data-demo-service-'+n+']')),
     action:canvas.querySelector('.demo-cta-mock')
   };
+  // As duas páginas completas aparecem dentro da própria landing:
+  // iframe visual de mesma origem, isolado e SEM execução de scripts,
+  // evitando contagem duplicada de tracking e cliques acidentais.
+  const premiumFigure=target.querySelector('.premium-showcase');
+  const livePreview=document.createElement('div');
+  livePreview.className='demo-live-site';
+  livePreview.setAttribute('aria-label','Prévia visual do site selecionado');
+  const liveToolbar=document.createElement('div');
+  liveToolbar.className='demo-live-site-toolbar';
+  const liveDots=document.createElement('span');
+  liveDots.className='demo-live-site-dots';
+  liveDots.setAttribute('aria-hidden','true');
+  liveDots.textContent='● ● ●';
+  const liveTitle=document.createElement('strong');
+  liveTitle.className='demo-live-site-title';
+  liveToolbar.append(liveDots,liveTitle);
+  const liveStage=document.createElement('div');
+  liveStage.className='demo-live-site-stage';
+  const liveFrame=document.createElement('iframe');
+  liveFrame.className='demo-live-site-frame';
+  liveFrame.setAttribute('sandbox','');
+  liveFrame.setAttribute('tabindex','-1');
+  liveFrame.setAttribute('aria-hidden','true');
+  liveFrame.setAttribute('title','Visualização não interativa do site demonstrativo');
+  liveFrame.setAttribute('loading','lazy');
+  liveStage.append(liveFrame);
+  const liveCaption=document.createElement('p');
+  liveCaption.className='demo-live-site-caption';
+  liveCaption.textContent='Prévia do site real de demonstração. Use o botão abaixo para navegar pelo modelo completo.';
+  livePreview.append(liveToolbar,liveStage,liveCaption);
+  if(premiumFigure)premiumFigure.insertAdjacentElement('afterend',livePreview);
+
+  let activeTemplate='beauty';
+  function fitLivePreview(){
+    if(activeTemplate==='beauty')return;
+    const isMobile=matchMedia('(max-width:740px)').matches;
+    const virtualWidth=isMobile?390:1120;
+    const virtualHeight=isMobile?790:755;
+    const available=liveStage.clientWidth;
+    if(!available)return;
+    const scale=Math.min(1,available/virtualWidth);
+    liveFrame.style.width=virtualWidth+'px';
+    liveFrame.style.height=virtualHeight+'px';
+    liveFrame.style.transform='scale('+scale+')';
+    liveStage.style.height=Math.ceil(virtualHeight*scale)+'px';
+  }
+  window.addEventListener('resize',fitLivePreview,{passive:true});
   function select(name,scroll){
     const s=samples[name];
     if(!s)return;
@@ -52,15 +99,27 @@
     }
     for(let i=0;i<3;i++)if(cells.items[i])cells.items[i].textContent=s.items[i];
     canvas.setAttribute('data-template-theme',s.theme);
-    // A arte premium é o destaque inicial; os demais segmentos mantêm a prévia HTML acessível.
+    // Studio Aurora mantém a arte ilustrativa; Serviços e Consultoria
+    // mostram uma prévia fiel das páginas completas, dentro da landing.
+    activeTemplate=name;
     target.dataset.showcase=name;
     const visual=target.querySelector('.premium-showcase-image');
     if(visual&&name==='beauty'){
       visual.src='../assets/premium/fecha-hero-v2.webp';
       visual.alt='Modelo ilustrativo Studio Aurora: página profissional para beleza e autocuidado';
-    }else if(visual&&name==='service'){
-      visual.src='../assets/premium/fecha-servicos-v2.webp';
-      visual.alt='Modelo ilustrativo Ramos Elétrica: página profissional para instalações e manutenção';
+    }
+    if(name==='service'||name==='consult'){
+      liveTitle.textContent=name==='service'?'Ramos Elétrica · demonstração':'Vértice Consultoria · demonstração';
+      const route=name==='service'?'modelos/servicos/':'modelos/consultoria/';
+      const source=new URL(route,location.href).href;
+      if(liveFrame.dataset.model!==name){
+        liveFrame.src=source;
+        liveFrame.dataset.model=name;
+      }
+      requestAnimationFrame(fitLivePreview);
+    }else if(liveFrame.dataset.model){
+      liveFrame.removeAttribute('src');
+      delete liveFrame.dataset.model;
     }
 
     const complete=document.querySelector("[data-demo-full]");
@@ -84,6 +143,8 @@
     btn.addEventListener('click',()=>select(btn.dataset.template,false));
   });
   document.querySelectorAll('[data-preview]').forEach(btn=>{
+    const label=btn.querySelector('.example-view');
+    if(label)label.textContent='Ver prévia nesta página ↓';
     btn.addEventListener('click',()=>select(btn.dataset.preview,true));
   });
   // O CTA fixo só aparece depois que o CTA principal deixa a área visível.
