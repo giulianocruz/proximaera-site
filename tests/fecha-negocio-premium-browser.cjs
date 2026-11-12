@@ -55,54 +55,50 @@ async function main() {
       assert.ok(initial.checkout.startsWith('https://wa.me/5514998193831'));
       assert.match(initial.planText,/79,90/);
       assert.match(initial.planText,/367/);
-      for(const [type,route,headline] of [
-        ['service','/modelos/servicos/','Energia segura'],
-        ['consult','/modelos/consultoria/','Toda boa decisão']
+      for(const [type,route,asset] of [
+        ['service','/modelos/servicos/','fecha-ramos-premium-v3.webp'],
+        ['consult','/modelos/consultoria/','fecha-vertice-premium-v3.webp']
       ]){
         await page.click('[data-template="'+type+'"]');
-        await page.waitForFunction(name=>document.querySelector('.hero-demo')?.dataset.showcase===name,{timeout:15000},type);
+        await page.waitForFunction((name,file)=>{
+          const img=document.querySelector('.premium-showcase-image');
+          return document.querySelector('.hero-demo')?.dataset.showcase===name &&
+            img?.getAttribute('src')?.includes(file) && img.complete && img.naturalWidth>0;
+        },{timeout:15000},type,asset);
         const state=await page.evaluate(()=>({
           theme:document.querySelector('.hero-demo').dataset.showcase,
-          active:document.querySelector('[data-template].is-active')?.dataset.template,
-          frame:document.querySelector('.demo-live-site-frame')?.getAttribute('src'),
-          sandbox:document.querySelector('.demo-live-site-frame')?.getAttribute('sandbox'),
-          width:document.querySelector('.demo-live-site-stage')?.clientWidth,
-          height:document.querySelector('.demo-live-site-stage')?.clientHeight,
-          visible:getComputedStyle(document.querySelector('.demo-live-site')).display,
+          selected:document.querySelector('[data-template].is-active')?.dataset.template,
+          image:document.querySelector('.premium-showcase-image').currentSrc,
+          width:document.querySelector('.premium-showcase-image').getBoundingClientRect().width,
+          height:document.querySelector('.premium-showcase-image').getBoundingClientRect().height,
+          visible:getComputedStyle(document.querySelector('.premium-showcase')).display,
           browser:getComputedStyle(document.querySelector('.hero-demo .browser')).display,
           link:document.querySelector('[data-demo-full]').href,
-          overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+          overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
+          hasIframe:!!document.querySelector('.demo-live-site-frame')
         }));
         assert.equal(state.theme,type);
-        assert.equal(state.active,type);
-        assert.ok(state.frame.includes(route));
-        assert.equal(state.sandbox,'','previsões não devem executar scripts/rastreio em duplicidade');
+        assert.equal(state.selected,type);
+        assert.ok(state.image.includes(asset));
         assert.notEqual(state.visible,'none');
-        assert.equal(state.browser,'none','mockup antigo não pode sobrepor modelo real');
-        assert.ok(state.width>200 && state.height>200,'prévia não ocupa área visível');
+        assert.equal(state.browser,'none');
+        assert.ok(state.width>200 && state.height>150,'arte premium não aparece');
         assert.ok(state.overflow<=2,'overflow ao selecionar '+type+' no viewport '+width);
+        assert.equal(state.hasIframe,false);
         assert.ok(state.link.includes(route));
         assert.match(state.link,/utm_source=meta/);
-        const frameElement=await page.$('.demo-live-site-frame');
-        const child=await frameElement.contentFrame();
-        assert.ok(child,'iframe do modelo não foi anexado');
-        // Ao alternar o mesmo iframe, aguardar a navegação terminar.
-        // waitForSelector sozinho pode ler o H1 do modelo anterior.
-        await child.waitForFunction(
-          expected=>document.querySelector('.v-hero h1')?.textContent?.includes(expected),
-          {timeout:15000},headline
-        );
-        assert.match(await child.$eval('.v-hero h1',el=>el.textContent),new RegExp(headline));
       }
       await page.click('[data-template="beauty"]');
+      await page.waitForFunction(()=>{
+        const img=document.querySelector('.premium-showcase-image');
+        return img?.currentSrc.includes('fecha-hero-v2.webp') && img.complete && img.naturalWidth>0;
+      },{timeout:15000});
       const back=await page.evaluate(()=>({
         beauty:document.querySelector('.hero-demo').dataset.showcase,
-        art:getComputedStyle(document.querySelector('.premium-showcase')).display,
-        frame:getComputedStyle(document.querySelector('.demo-live-site')).display
+        art:getComputedStyle(document.querySelector('.premium-showcase')).display
       }));
       assert.equal(back.beauty,'beauty');
       assert.notEqual(back.art,'none');
-      assert.equal(back.frame,'none');
       for(const model of ['service','consult']){
         await page.click('[data-preview="'+model+'"]');
         await page.waitForFunction(name=>document.querySelector('.hero-demo')?.dataset.showcase===name,{timeout:15000},model);
@@ -117,10 +113,10 @@ async function main() {
         const landing=await page.evaluate(()=>({
           top:Math.round(document.getElementById('demonstracao').getBoundingClientRect().top),
           overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth,
-          frame:document.querySelector('.demo-live-site-frame')?.getAttribute('src')
+          image:document.querySelector('.premium-showcase-image')?.getAttribute('src')
         }));
         assert.ok(landing.overflow<=2,'Overflow clicando no cartão de '+model);
-        assert.match(landing.frame,new RegExp(model==='service'?'modelos/servicos/':'modelos/consultoria/'));
+        assert.match(landing.image,new RegExp(model==='service'?'fecha-ramos-premium-v3.webp':'fecha-vertice-premium-v3.webp'));
       }
       assert.deepEqual(errors,[],`Erros JS no viewport ${width}`);
       console.log(`OK navegador ${width}px: 3 previews visuais, modelos reais, UTMs, CTA e layout`);
