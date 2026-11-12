@@ -25,7 +25,7 @@
   font-size:11px;line-height:1.45;max-width:460px;
 }
 .fecha-negocio-page .hero-demo:is([data-showcase="beauty"],[data-showcase="service"]) .browser{display:none}
-.fecha-negocio-page .hero-demo[data-showcase="consult"] .premium-showcase{display:none}
+.fecha-negocio-page .hero-demo[data-showcase="consult"] .browser{display:none}
 .fecha-negocio-page .hero-demo[data-showcase="beauty"] .demo-heading{margin-bottom:8px}
 .fecha-negocio-page .hero-demo[data-showcase="beauty"] .full-preview-bar{margin-top:6px}
 .fecha-negocio-page .premium-pricing-overview{
@@ -124,43 +124,11 @@
   background:#102d2a;color:#bdf4d3;border-color:rgba(97,245,139,.2);
 }
 
-/* Prévia fiel, na própria landing, dos modelos Ramos Elétrica e Vértice.
-   O iframe é somente visual: sandbox sem scripts evita tracking duplicado. */
-.fecha-negocio-page .hero-demo:is([data-showcase="service"],[data-showcase="consult"]) .premium-showcase,
-.fecha-negocio-page .hero-demo:is([data-showcase="service"],[data-showcase="consult"]) .browser{display:none}
-.fecha-negocio-page .demo-live-site{
-  display:none;overflow:hidden;margin:16px 0 12px;
-  background:#091a22;border:1px solid rgba(150,218,199,.36);
-  border-radius:18px;box-shadow:0 22px 48px rgba(0,0,0,.28);
-}
-.fecha-negocio-page .hero-demo:is([data-showcase="service"],[data-showcase="consult"]) .demo-live-site{display:block}
-.fecha-negocio-page .hero-demo[data-showcase="service"] .demo-live-site{border-color:rgba(133,197,237,.6)}
-.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-live-site{border-color:rgba(219,197,151,.65)}
-.fecha-negocio-page .demo-live-site-toolbar{
-  display:flex;align-items:center;gap:16px;min-height:39px;padding:9px 14px;
-  background:#0c222d;color:#e2f7ed;border-bottom:1px solid rgba(255,255,255,.12);
-}
-.fecha-negocio-page .demo-live-site-dots{color:#8ce3ba;font-size:11px;white-space:nowrap;letter-spacing:3px}
-.fecha-negocio-page .demo-live-site-title{font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.fecha-negocio-page .hero-demo[data-showcase="service"] .demo-live-site-title{color:#f9ce8a}
-.fecha-negocio-page .hero-demo[data-showcase="consult"] .demo-live-site-title{color:#e8d7b8}
-.fecha-negocio-page .demo-live-site-stage{position:relative;width:100%;overflow:hidden;background:#f4f3ee;isolation:isolate}
-.fecha-negocio-page .demo-live-site-frame{
-  position:absolute;left:0;top:0;border:0;display:block;background:#f4f3ee;
-  transform-origin:top left;pointer-events:none;user-select:none;
-}
-.fecha-negocio-page .demo-live-site-caption{
-  font-size:11px;line-height:1.5;text-align:center;color:#c7d7d1;
-  padding:12px 20px 13px;margin:0;background:#10242c;
-}
-.fecha-negocio-page .hero-demo:is([data-showcase="service"],[data-showcase="consult"]) .full-preview-bar{margin-top:10px}
-@media(max-width:740px){
-  .fecha-negocio-page .demo-live-site{margin:12px 0 10px;border-radius:13px}
-  .fecha-negocio-page .demo-live-site-toolbar{min-height:35px;padding:8px 10px;gap:9px}
-  .fecha-negocio-page .demo-live-site-title{font-size:10px}
-  .fecha-negocio-page .demo-live-site-caption{font-size:10px;padding:10px 12px}
-}
-
+/* Serviços e Consultoria mostram assets estáticos, como Studio Aurora.
+   Não carregar iframe nem submeter rastreamento duplicado. */
+.fecha-negocio-page .hero-demo:is([data-showcase="beauty"],[data-showcase="service"],[data-showcase="consult"]) .premium-showcase{display:block}
+.fecha-negocio-page .hero-demo:is([data-showcase="beauty"],[data-showcase="service"],[data-showcase="consult"]) .browser{display:none}
+.fecha-negocio-page .premium-showcase-image{aspect-ratio:4/3;object-fit:contain}
 /* Ao selecionar um cartão inferior, o cabeçalho fixo não encobre a prévia. */
 .fecha-negocio-page .hero-demo{scroll-margin-top:94px}
 @media(max-width:740px){.fecha-negocio-page .hero-demo{scroll-margin-top:78px}}
