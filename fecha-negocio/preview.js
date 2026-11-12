@@ -137,7 +137,18 @@
       btn.classList.toggle('is-active',chosen);
       btn.setAttribute('aria-pressed',String(chosen));
     });
-    if(scroll)target.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'start'});
+    if(scroll)requestAnimationFrame(()=>{
+      // A altura da prévia muda conforme o modelo. Calcular a rolagem
+      // depois do layout evita esconder o seletor atrás do header fixo.
+      fitLivePreview();
+      const header=document.querySelector('.site-header');
+      const headerHeight=header?Math.ceil(header.getBoundingClientRect().height):76;
+      const top=target.getBoundingClientRect().top+window.scrollY-headerHeight-16;
+      window.scrollTo({
+        top:Math.max(0,Math.round(top)),
+        behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'
+      });
+    });
   }
   document.querySelectorAll('.preview-switcher [data-template]').forEach(btn=>{
     btn.addEventListener('click',()=>select(btn.dataset.template,false));
