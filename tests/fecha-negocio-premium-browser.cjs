@@ -86,7 +86,12 @@ async function main() {
         const frameElement=await page.$('.demo-live-site-frame');
         const child=await frameElement.contentFrame();
         assert.ok(child,'iframe do modelo não foi anexado');
-        await child.waitForSelector('.v-hero h1',{timeout:15000});
+        // Ao alternar o mesmo iframe, aguardar a navegação terminar.
+        // waitForSelector sozinho pode ler o H1 do modelo anterior.
+        await child.waitForFunction(
+          expected=>document.querySelector('.v-hero h1')?.textContent?.includes(expected),
+          {timeout:15000},headline
+        );
         assert.match(await child.$eval('.v-hero h1',el=>el.textContent),new RegExp(headline));
       }
       await page.click('[data-template="beauty"]');
