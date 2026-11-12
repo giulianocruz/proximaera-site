@@ -160,3 +160,7 @@
   .fecha-negocio-page .demo-live-site-title{font-size:10px}
   .fecha-negocio-page .demo-live-site-caption{font-size:10px;padding:10px 12px}
 }
+
+/* Ao selecionar um cartão inferior, o cabeçalho fixo não encobre a prévia. */
+.fecha-negocio-page .hero-demo{scroll-margin-top:94px}
+@media(max-width:740px){.fecha-negocio-page .hero-demo{scroll-margin-top:78px}}
