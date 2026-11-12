@@ -39,7 +39,7 @@ jobs:
       - name: Testar preflight sem escrita e rejeição de conflitos
         run: bash tests/fecha-negocio-deploy-preflight.sh
       - name: Validar artes, integridade, CTA e modelos
-        run: node --test tests/fecha-negocio-premium-v2.test.cjs
+        run: node --test tests/fecha-negocio-premium-v2.test.cjs tests/fecha-negocio-premium-demos.test.cjs
       - name: Diagnóstico público somente leitura (informativo)
         run: bash ops/check-fecha-premium-live.sh
       - name: Validar layout no navegador (390px e 1366px)

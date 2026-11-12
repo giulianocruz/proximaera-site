@@ -65,8 +65,8 @@
 
     const complete=document.querySelector("[data-demo-full]");
     if(complete){
-      const slug=name==='service'?'servicos':name==='consult'?'consultoria':'beleza';
-      const dest=new URL('modelos/?segment='+slug,location.href);
+      const route=name==='service'?'modelos/servicos/':name==='consult'?'modelos/consultoria/':'modelos/?segment=beleza';
+      const dest=new URL(route,location.href);
       const qp=new URLSearchParams(location.search);
       for(const key of ['utm_source','utm_medium','utm_campaign','utm_content','utm_term']){
         if(qp.has(key))dest.searchParams.set(key,qp.get(key));
