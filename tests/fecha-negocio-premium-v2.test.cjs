@@ -27,7 +27,9 @@ test('assets premium WebP válidos e referenciados pela landing',()=>{
     assert.ok(b.length>20000&&b.length<400000,name);
     assert.equal(b.toString('ascii',0,4),'RIFF');
     assert.equal(b.toString('ascii',8,12),'WEBP');
-    assert.ok(js.includes('fecha-'+name+'-v2.webp'),name+' dinâmico');
+    // O arquivo legado permanece íntegro, enquanto a landing agora exibe
+    // o próprio site demonstrativo com sandbox em vez de uma arte estática.
+    assert.ok(js.includes('modelos/servicos/'),name+' demonstracao completa');
   }
 });
 

@@ -54,31 +54,51 @@ async function main() {
       assert.ok(initial.checkout.startsWith('https://wa.me/5514998193831'));
       assert.match(initial.planText,/79,90/);
       assert.match(initial.planText,/367/);
-      await page.click('[data-template="service"]');
-      await page.waitForFunction(()=>{
-        const v=document.querySelector('.premium-showcase-image');
-        return v.complete && v.naturalWidth>0 && v.currentSrc.includes('fecha-servicos-v2.webp');
-      },{timeout:15000});
-      const service=await page.evaluate(()=>({
-        theme:document.querySelector('.hero-demo').dataset.showcase,
-        pressed:document.querySelector('[data-template="service"]').getAttribute('aria-pressed'),
-        link:document.querySelector('[data-demo-full]').href
+      for(const [type,route,headline] of [
+        ['service','/modelos/servicos/','Energia segura'],
+        ['consult','/modelos/consultoria/','Toda boa decisão']
+      ]){
+        await page.click('[data-template="'+type+'"]');
+        await page.waitForFunction(name=>document.querySelector('.hero-demo')?.dataset.showcase===name,{timeout:15000},type);
+        const state=await page.evaluate(()=>({
+          theme:document.querySelector('.hero-demo').dataset.showcase,
+          active:document.querySelector('[data-template].is-active')?.dataset.template,
+          frame:document.querySelector('.demo-live-site-frame')?.getAttribute('src'),
+          sandbox:document.querySelector('.demo-live-site-frame')?.getAttribute('sandbox'),
+          width:document.querySelector('.demo-live-site-stage')?.clientWidth,
+          height:document.querySelector('.demo-live-site-stage')?.clientHeight,
+          visible:getComputedStyle(document.querySelector('.demo-live-site')).display,
+          browser:getComputedStyle(document.querySelector('.hero-demo .browser')).display,
+          link:document.querySelector('[data-demo-full]').href,
+          overflow:document.documentElement.scrollWidth-document.documentElement.clientWidth
+        }));
+        assert.equal(state.theme,type);
+        assert.equal(state.active,type);
+        assert.ok(state.frame.includes(route));
+        assert.equal(state.sandbox,'','previsões não devem executar scripts/rastreio em duplicidade');
+        assert.notEqual(state.visible,'none');
+        assert.equal(state.browser,'none','mockup antigo não pode sobrepor modelo real');
+        assert.ok(state.width>200 && state.height>200,'prévia não ocupa área visível');
+        assert.ok(state.overflow<=2,'overflow ao selecionar '+type+' no viewport '+width);
+        assert.ok(state.link.includes(route));
+        assert.match(state.link,/utm_source=meta/);
+        const frameElement=await page.$('.demo-live-site-frame');
+        const child=await frameElement.contentFrame();
+        assert.ok(child,'iframe do modelo não foi anexado');
+        await child.waitForSelector('.v-hero h1',{timeout:15000});
+        assert.match(await child.$eval('.v-hero h1',el=>el.textContent),new RegExp(headline));
+      }
+      await page.click('[data-template="beauty"]');
+      const back=await page.evaluate(()=>({
+        beauty:document.querySelector('.hero-demo').dataset.showcase,
+        art:getComputedStyle(document.querySelector('.premium-showcase')).display,
+        frame:getComputedStyle(document.querySelector('.demo-live-site')).display
       }));
-      assert.equal(service.theme,'service');
-      assert.equal(service.pressed,'true');
-      assert.match(service.link,/modelos\/servicos\//);
-      assert.match(service.link,/utm_source=meta/);
-      await page.click('[data-template="consult"]');
-      const consult=await page.evaluate(()=>({
-        theme:document.querySelector('.hero-demo').dataset.showcase,
-        fallback:getComputedStyle(document.querySelector('.hero-demo .browser')).display,
-        premium:getComputedStyle(document.querySelector('.premium-showcase')).display
-      }));
-      assert.equal(consult.theme,'consult');
-      assert.notEqual(consult.fallback,'none');
-      assert.equal(consult.premium,'none');
+      assert.equal(back.beauty,'beauty');
+      assert.notEqual(back.art,'none');
+      assert.equal(back.frame,'none');
       assert.deepEqual(errors,[],`Erros JS no viewport ${width}`);
-      console.log(`OK navegador ${width}px: imagens, alternancia, UTMs, CTA e layout`);
+      console.log(`OK navegador ${width}px: 3 previews visuais, modelos reais, UTMs, CTA e layout`);
       await page.close();
       for(const [slug,brand] of [['servicos','Ramos'],['consultoria','Vértice']]){
         const sample=await browser.newPage();
