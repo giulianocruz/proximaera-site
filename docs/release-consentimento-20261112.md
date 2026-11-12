@@ -33,3 +33,12 @@
 ## Código rastreável
 
 Esta ramificação sincroniza o `tracking.js` publicado, o script de migração idempotente por guarda de hashes e as asserções atualizadas.
+
+## Segunda etapa: contato institucional com registro compatível com a API
+
+- Em `/contato.html`, formulário `#peIntakeForm` solicita nome, WhatsApp, interesse, consentimento, e campos opcionais. O formulário assistido `#contactForm` permanece disponível para mensagens detalhadas.
+- O frontend `contact-intake-v1.js` envia ao backend existente `POST /api/contact` com campos aceitos na rota implantada: `name`, `phone`, `interest`, `privacyAccepted`, `marketingOptIn=false`, `acquisition` e `details.challenge`. Falhas oferecem link ao WhatsApp pessoal.
+- Política de Privacidade atualizada para informar as duas formas de atendimento e o consentimento de analytics.
+- Backup e hashes na VPS: `/opt/proximaera/backups/institutional-lead-20261112T170433Z/`.
+- QA Chrome com intercetação do POST **sem gravar contatos fictícios**: sucesso simulado (201) em 390 px e erro simulado (503) em 1366 px, ambos com payload compatível, sem overflow nem erros JS.
+- A validação de persistência de um lead real no banco da Central ainda depende de uma solicitação verdadeira; não declarar sucesso fim a fim baseado em HTTP 400 de teste ou resposta simulada.

@@ -10,7 +10,8 @@ assert.match(html,/data-track="whatsapp-hero-profissional"/);
 assert.match(html,/href="\.\.\/privacidade\.html"/);
 assert.match(privacy,/id="marketingConsentRevoke"/);
 assert.match(privacy,/id="marketingConsentReset"/);
-assert.match(privacy,/Google Analytics 4 e Meta Pixel/);
+assert.match(privacy,/Google Analytics 4/);
+assert.match(privacy,/Meta Pixel/);
 function run(consent){
   const local=new Map(),session=new Map(),network=[],banners=[],scripts=[],timers=[];
   if(consent)local.set('pe_marketing_consent',consent);

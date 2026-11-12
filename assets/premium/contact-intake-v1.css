@@ -1,0 +1,30 @@
+.pe-intake{max-width:1160px;margin:38px auto 52px;padding:0 22px;display:grid;grid-template-columns:minmax(0,.86fr) minmax(0,1.14fr);gap:42px;align-items:center}
+.pe-intake__intro{padding:20px 8px}
+.pe-intake__intro .section-kicker{color:#66fb8c}
+.pe-intake__intro h2{font-size:clamp(32px,3.2vw,48px);line-height:1.12;letter-spacing:-.035em;color:#f5fff8;margin:10px 0 16px}
+.pe-intake__intro p{color:#c6dcd8;font-size:17px;line-height:1.65}
+.pe-intake__features{margin:22px 0 0;padding:0;list-style:none;display:grid;gap:11px}
+.pe-intake__features li{color:#d9f2e4;font-size:15px}
+.pe-intake__features li:before{content:'✓';color:#7bfc8d;font-weight:800;margin-right:10px}
+.pe-intake__form{background:linear-gradient(150deg,#0e2630,#06161d);border:1px solid rgba(128,255,164,.30);box-shadow:0 22px 65px rgba(0,0,0,.2);padding:30px;border-radius:24px}
+.pe-intake__form .pe-intake__fields{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.pe-intake__form label{display:grid;gap:7px;color:#f1fff4;font-weight:700;font-size:13px}
+.pe-intake__form label.pe-intake__full{grid-column:1/-1}
+.pe-intake__form input:not([type=checkbox]),.pe-intake__form select,.pe-intake__form textarea{width:100%;box-sizing:border-box;min-height:46px;border-radius:11px;border:1px solid #3c6a60;background:#f6fffb;color:#0a1a21;padding:10px 13px;font:500 15px/1.35 system-ui,sans-serif}
+.pe-intake__form textarea{min-height:68px;resize:vertical}
+.pe-intake__form input:focus-visible,.pe-intake__form select:focus-visible,.pe-intake__form textarea:focus-visible{outline:3px solid #62fa9e;outline-offset:2px}
+.pe-intake__form .pe-intake__privacy{display:flex;align-items:flex-start;gap:11px;margin-top:20px;font-weight:400;font-size:13px;line-height:1.5;color:#d1e5de}
+.pe-intake__form .pe-intake__privacy input{margin-top:3px;accent-color:#45e778;min-width:17px;min-height:17px}
+.pe-intake__form .pe-intake__privacy a{color:#9affa9;text-decoration:underline}
+.pe-intake__form button[type=submit]{margin-top:19px;min-height:54px;width:100%;border:0;border-radius:999px;background:#5cf38c;color:#061b19;font:800 16px system-ui,sans-serif;cursor:pointer;box-shadow:0 8px 26px rgba(70,243,137,.16)}
+.pe-intake__form button[type=submit]:disabled{opacity:.65;cursor:wait}
+.pe-intake__form .pe-intake__notice{font-size:12px;color:#bfd2cd;line-height:1.5;margin:14px 0 0}
+.pe-intake__form #peIntakeStatus{margin:12px 0 0;min-height:1.2em;font-size:14px;line-height:1.5;color:#dcebe6}
+.pe-intake__form #peIntakeStatus[data-kind=success]{color:#9dffc4}
+.pe-intake__form #peIntakeStatus[data-kind=error]{color:#ffc9aa}
+.pe-intake__form #peIntakeStatus a{color:#9dffc4;text-decoration:underline;font-weight:800}
+.pe-contact-divider{max-width:1160px;margin:15px auto 0;padding:0 26px;color:#dae6e5}
+.pe-contact-divider h2{font-size:25px;margin-bottom:8px}
+.pe-contact-divider p{color:#b4ccc8;margin-top:0}
+@media(max-width:850px){.pe-intake{grid-template-columns:1fr;gap:18px;margin-top:28px}.pe-intake__intro{padding:0}.pe-intake__form{padding:24px}}
+@media(max-width:540px){.pe-intake{padding:0 16px}.pe-intake__form .pe-intake__fields{grid-template-columns:1fr}.pe-intake__form{padding:20px 16px}.pe-intake__intro h2{font-size:31px}.pe-intake__intro p{font-size:15px}.pe-contact-divider{padding:0 20px}}
