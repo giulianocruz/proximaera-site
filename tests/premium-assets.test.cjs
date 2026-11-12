@@ -9,8 +9,8 @@ const landing=read('fecha-negocio/index.html');
 const css=read('assets/premium/premium.css');
 const assets=[
   'assets/premium/proximaera-hero.webp',
-  'assets/premium/fecha-processo.webp',
-  'assets/premium/fecha-conversao.webp'
+  'assets/premium/fecha-processo-v2.webp',
+  'assets/premium/fecha-conversao-v2.webp'
 ];
 for(const file of assets){
   const data=fs.readFileSync(path.join(root,file));
@@ -22,8 +22,8 @@ assert.match(home,/assets\/premium\/premium\.css/);
 assert.match(home,/assets\/premium\/proximaera-hero\.webp/);
 assert.match(home,/fetchpriority="high" decoding="async"/);
 assert.match(home,/data-track="whatsapp-hero"/);
-assert.match(landing,/assets\/premium\/fecha-processo\.webp/);
-assert.match(landing,/assets\/premium\/fecha-conversao\.webp/);
+assert.match(landing,/assets\/premium\/fecha-processo-v2\.webp/);
+assert.match(landing,/assets\/premium\/fecha-conversao-v2\.webp/);
 assert.match(landing,/assets\/premium\/premium\.css/);
 assert.match(landing,/id="demonstracao"/);
 assert.match(landing,/data-demo-full/);

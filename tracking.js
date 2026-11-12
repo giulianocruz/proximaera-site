@@ -8,7 +8,7 @@
   const peIsOffer=location.pathname.startsWith('/ofertas/');
   const peIsFechaNegocio=location.pathname.startsWith('/fecha-negocio/');
   const peIsDiagnostic=location.pathname.startsWith('/diagnostico-gratuito/');
-  const peHasMarketingTags=peIsOffer||peIsFechaNegocio||peIsDiagnostic;
+  const peHasMarketingTags=true; // Consentimento GA4 unificado no institucional e nas ofertas.
   const peOfferGaId='G-RR7D4MYJZ8';
   // Pixel da conta proprietaria, sem disparos antes do aceite.
   const peOfferMetaId='1534363811135198';
@@ -76,7 +76,7 @@
     if(choice==='denied')return;
     peConsentBanner(hasPixel?id:'');
   };
-  setTimeout(()=>window.PEConfigureMetaPixel?.(window.PE_OFFER?.metaPixelId||window.PE_META_PIXEL_ID||(peHasMarketingTags?peOfferMetaId:'')),0);
+  setTimeout(()=>window.PEConfigureMetaPixel?.(window.PE_OFFER?.metaPixelId||window.PE_META_PIXEL_ID||((peIsOffer||peIsFechaNegocio||peIsDiagnostic)?peOfferMetaId:'')),0);
   const q=new URLSearchParams(location.search);
   const keys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
   const read=(key)=>{try{return sessionStorage.getItem(key)||''}catch{return ''}};

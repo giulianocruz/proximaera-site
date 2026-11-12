@@ -83,5 +83,6 @@ test('o sitemap lista a nova landing e o rastreamento controla consentimento',()
   const tracker=fs.readFileSync(path.join(root,'tracking.js'),'utf8');
   assert.match(sitemap,/https:\/\/proximaera\.com\.br\/diagnostico-gratuito\//);
   assert.match(tracker,/peIsDiagnostic=location\.pathname\.startsWith\('\/diagnostico-gratuito\/'\)/);
-  assert.match(tracker,/peHasMarketingTags=peIsOffer\|\|peIsFechaNegocio\|\|peIsDiagnostic/);
+  assert.match(tracker,/peHasMarketingTags=true/,'unified site-wide GA4 consent');
+  assert.match(tracker,/peIsOffer\|\|peIsFechaNegocio\|\|peIsDiagnostic\)\?peOfferMetaId/,'default Meta Pixel remains scoped to campaign landing pages');
 });
