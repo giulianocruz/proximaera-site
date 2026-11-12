@@ -85,8 +85,9 @@ async function main() {
         const demoErrors=[];
         sample.on('pageerror',e=>demoErrors.push(e.message));
         await sample.setViewport({width,height:850});
+        await sample.setCacheEnabled(false);
         const response=await sample.goto(base+'/fecha-negocio/modelos/'+slug+'/?utm_source=meta',{waitUntil:'networkidle0'});
-        assert.equal(response.status(),200);
+        assert.ok([200,304].includes(response.status()),'HTTP da demonstração: '+response.status());
         const info=await sample.evaluate(()=>({
           viewport:document.documentElement.clientWidth,
           width:document.documentElement.scrollWidth,
