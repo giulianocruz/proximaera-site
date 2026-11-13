@@ -11,6 +11,11 @@ nav{display:flex;gap:20px;flex-wrap:wrap;font-size:14px;font-weight:700}nav a{te
 h1{font-size:clamp(36px,6vw,70px);line-height:1.06;letter-spacing:-.045em;margin:0 0 19px}
 .hero p:last-child{color:var(--muted);font-size:18px;max-width:750px;margin:0}
 .grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:23px;margin-bottom:75px}
+.grid--portfolio{grid-template-columns:repeat(2,minmax(0,1fr))}
+.grid--portfolio .side{grid-column:1/-1}
+.card-retro .body{display:flex;flex-direction:column}
+.card-retro .links{margin-top:auto;padding-top:14px}
+.card-retro .status{color:#8fe5ff}
 .card,.side,.policy{background:linear-gradient(150deg,#172d40,#0c1b2a);border:1px solid #31536a;border-radius:22px;overflow:hidden}
 .card>img{width:100%;aspect-ratio:1024/500;object-fit:cover;display:block}
 .body,.side{padding:26px}
@@ -34,5 +39,5 @@ footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .policy h2:first-of-type{margin-top:18px}
 .policy p{margin:0 0 14px}.policy li{margin:8px 0}.policy ul{padding-left:22px}
 .policy a{color:#83f0e3;overflow-wrap:anywhere}
-@media(max-width:750px){header{align-items:flex-start;flex-direction:column}nav{gap:13px}.hero{padding-top:42px}.grid{grid-template-columns:1fr}.body,.side{padding:23px}}
+@media(max-width:750px){header{align-items:flex-start;flex-direction:column}nav{gap:13px}.hero{padding-top:42px}.grid,.grid--portfolio{grid-template-columns:1fr}.body,.side{padding:23px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
