@@ -38,9 +38,9 @@ async function main(){
       assert.equal(result.featured,3,'Três projetos com páginas de teste');
       assert.equal(result.development,3,'Três projetos ainda em desenvolvimento');
       assert.ok(result.retroRight<=width+1 && result.retroLeft>=-1,'Retro dentro da tela '+width);
-      assert.ok(result.links.some(l=>l.href==='../retro/'),'Portal oficial acessível na página');
+      assert.ok(result.links.some(l=>l.href.startsWith('../retro/?utm_source=proximaera&')),'Portal oficial acessível na página');
       assert.ok(result.links.some(l=>l.href==='../retro/status.html'),'Status oficial acessível na página');
-      await page.screenshot({path:path.join(output,'catalogo-'+width+'.png'),fullPage:true});
+      await page.screenshot({path:path.join(output,'catalogo-'+width+'.png'),fullPage:false});
       console.log('PASS '+width+'px: 3 betas, 3 em desenvolvimento; sem rolagem horizontal; destaque Retro visível.');
     }
   }finally{await browser.close()}

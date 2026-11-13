@@ -35,3 +35,24 @@ git diff --check
 **Ainda não publicada.** A branch `feature/catalogo-apps-20261113` deriva da branch de finalização institucional `feature/site-finalizacao-institucional-20261112`. Não implantar a branch inteira na produção sem reconciliação com o site publicado: há commits de contato/consentimento nesta linha ainda não presentes na `main`.
 
 Para publicação segura: revisão de PR, backup da página anterior, deploy isolado apenas de `aplicativos/index.html`, `aplicativos/apps.css` e, se necessário, da página pai que linka o catálogo; smoke por HTTP, mobile 390px, navegação teclado e rollback disponível. Não rodar sincronização com exclusão de conteúdo legado `/apps/`.
+
+
+## Reconciliação com produção — 13/11/2026, 15h43 (BRT)
+
+A página pública `/aplicativos/` foi atualizada por outra publicação independente enquanto esta PR permanecia draft:
+- O site de produção já exibe Boleto Rush e Próxima Era Retro, com **botão real para o portal beta**, laboratório e política de privacidade, mas não lista Crônicas do Abismo como cartão.
+- O novo catálogo desenvolvido nesta branch inclui Crônicas e os três projetos em desenvolvimento e foi atualizado para **preservar os quatro caminhos do Retro já no ar**.
+- A etiqueta de versão do Retro passa a consultar `/retro/version.json` no navegador, **somente via GET, sem cookies nem identificação do visitante**. Se a API estiver fora do ar ou retornar dados inválidos, mantém-se o texto estático; downloads continuam no portal.
+- O sitemap público já indexa `/retro/`; a alteração local do sitemap foi **retirada** para evitar sobrescrever trabalho de outros deploys.
+
+### Guarda de conflito com publicação simultânea
+Execute `node ops/check-apps-live-baseline.cjs` imediatamente antes de qualquer publicação. Este comando é **somente leitura** e compara hashes SHA-256 do HTML e do CSS atualmente publicados contra o snapshot de 13/11. Se houve alteração, **parar e revisar o diff real**, sem sobrescrever a página.
+
+A confirmação dos hashes **não autoriza deploy nem substitui backup**. A publicação deve modificar somente `aplicativos/index.html`, `aplicativos/apps.css` e `aplicativos/apps-hub.js`, com backup e rollback; não atualizar o sitemap, apagar `/apps/`, interromper os sites ativos nem alterar contato/ads. O acesso SSH do computador Insano não foi autenticado como root; nenhum acesso alternativo ou segredo foi usado.
+
+### Verificações adicionais
+- `node --test tests/apps-catalog.test.cjs`: também valida CTA com UTMs, políticas reais e manifesto beta.
+- `node tests/apps-catalog-browser.cjs`: layout testado em 375px, 768px e 1440px no Insano (Puppeteer disponível localmente).
+- `node ops/check-apps-live-baseline.cjs`: guarda de concorrência validada, sem escrita na produção.
+
+A PR #35 continua em rascunho: não significa que esta versão do código está no ar.
