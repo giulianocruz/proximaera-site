@@ -18,21 +18,22 @@ test('apps catalog features Retro with honest beta messaging',()=>{
  assert.ok(apps.includes('href="../retro/?utm_source=proximaera&amp;utm_medium=site&amp;utm_campaign=retro_beta&amp;utm_content=apps#download"'));
  assert.match(apps,/href="\.\.\/retro\/testes\.html"/);
  assert.match(apps,/href="\.\.\/retro\/privacidade\.html"/);
- assert.match(apps,/organização por capas, favoritos e busca/);
- assert.match(apps,/Não inclui ROMs, BIOS nem jogos comerciais/);
- assert.match(apps,/não significa emulação nativa de todos os consoles/);
+ assert.match(apps,/explore capas e favoritos/);
+ assert.match(apps,/Não inclui ROMs, BIOS nem emuladores/);
+ assert.match(apps,/sincronização de saves entre plataformas ainda não está homologada/);
  assert.match(apps,/href="boleto-rush\/privacidade\.html"/);
- assert.equal((apps.match(/class="card card-retro"/g)||[]).length,1);
+ assert.equal((apps.match(/class="card feature-card retro-feature"/g)||[]).length,1);
  assert.ok(!/0\.3\.21/.test(apps),'Do not hardcode beta version, portal handles it');
 });
 test('logo, demo screenshot and responsive catalog styling',()=>{
  assert.match(svg,/^<svg[\s\S]*<\/svg>\s*$/);
- assert.match(apps,/src="\.\.\/assets\/projects\/proxima-era-retro\.svg"/);
+ assert.match(apps,/id="retro-release"/);
+ assert.match(apps,/src="\.\/apps-hub\.js" defer/);
  assert.match(apps,/src="\.\.\/retro\/assets\/biblioteca-demo\.jpg"/);
- assert.match(css,/\.grid--portfolio\{grid-template-columns:repeat\(2,minmax\(0,1fr\)\)\}/);
- assert.match(css,/\.grid--portfolio \.side\{grid-column:1\/-1\}/);
+ assert.match(css,/\.featured-grid\{display:grid;grid-template-columns:repeat\(2,minmax\(0,1fr\)\)/);
+ assert.match(css,/\.retro-feature\{grid-column:1\/-1;display:grid/);
  assert.match(css,/max-width:750px/);
- assert.match(css,/\.grid,\.grid--portfolio\{grid-template-columns:1fr\}/);
+ assert.match(css,/\.featured-grid,\.project-grid,\.next-stage,\.retro-feature\{grid-template-columns:1fr\}/);
 });
 test('public SEO, contact and project links remain unchanged',()=>{
  assert.match(home,/name="robots" content="index,follow/);
