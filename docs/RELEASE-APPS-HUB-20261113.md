@@ -32,7 +32,7 @@ git diff --check
 12 testes locais aprovaram em 13/11/2026, incluindo proteção do WhatsApp comercial, demos, captação de leads e catálogo. A suíte de navegador com Puppeteer (`node tests/apps-catalog-browser.cjs`, executada manualmente no Insano) também passou em **375, 768 e 1440 px**, sem rolagem horizontal e com o destaque Retro visível. Capturas de QA ficam no computador em `qa/apps-catalog/` e não são artefatos publicados.
 
 ## Publicação
-**Ainda não publicada.** A branch `feature/catalogo-apps-20261113` deriva da branch de finalização institucional `feature/site-finalizacao-institucional-20261112`. Não implantar a branch inteira na produção sem reconciliação com o site publicado: há commits de contato/consentimento nesta linha ainda não presentes na `main`.
+**Ainda não publicada.** O procedimento de publicação com backup, guarda contra alterações concorrentes, rollback e comandos de homologação está em [`ops/APPS-CATALOGO-RELEASE-20261113.md`](../ops/APPS-CATALOGO-RELEASE-20261113.md). A branch `feature/catalogo-apps-20261113` deriva da branch de finalização institucional `feature/site-finalizacao-institucional-20261112`. Não implantar a branch inteira na produção sem reconciliação com o site publicado: há commits de contato/consentimento nesta linha ainda não presentes na `main`.
 
 Para publicação segura: revisão de PR, backup da página anterior, deploy isolado apenas de `aplicativos/index.html`, `aplicativos/apps.css` e, se necessário, da página pai que linka o catálogo; smoke por HTTP, mobile 390px, navegação teclado e rollback disponível. Não rodar sincronização com exclusão de conteúdo legado `/apps/`.
 
