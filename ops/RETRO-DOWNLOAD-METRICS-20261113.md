@@ -59,3 +59,16 @@ A versão do manifesto no momento da inspeção era **0.3.21** (Android 4.261.70
 - Não persistir IPs, user-agents ou URLs individuais; se for implementada persistência futura, guardar **somente incrementos agregados**, sem identificadores.
 - A medição atual **não possui histórico durável**: a rotação/substituição do contêiner pode perder logs antigos. Um relatório de totais históricos exigirá persistência agregada e testes de reinicialização antes de qualquer dashboard de números.
 - Não ativar serviços, cron de escrita, marketing ou alterações no Nginx sem nova revisão do mecanismo de retenção/precisão.
+
+## Implantação privada confirmada na VPS
+
+Em 13/11/2026 a ferramenta foi instalada, separadamente do site público, em `/opt/proximaera/tools/retro-download-report.py` com permissões **750** e propriedade root. O hash SHA-256 do arquivo instalado é `bf3bb031737fbb9cc46ec36c8f79bdc82d133980f7078128a9739074e52b3342`; corresponde ao script aprovado na PR #40. A URL pública `https://proximaera.com.br/tools/retro-download-report.py` respondeu **404**, confirmando que o script não foi exposto pelo site.
+
+A consulta administrativa pode ser feita por SSH autorizado sem copiar o código novamente:
+
+```bash
+python3 /opt/proximaera/tools/retro-download-report.py --since 24h
+python3 /opt/proximaera/tools/retro-download-report.py --since 7d
+```
+
+O comando de instalação em si retornou um aviso residual de fim de linha da transmissão PowerShell **depois** de instalar e executar o script; uma verificação SSH independente confirmou depois a existência do arquivo, o hash esperado e a execução bem-sucedida com código de saída zero. **Nenhum agendamento automático, banco de dados ou contador público foi ativado.**
