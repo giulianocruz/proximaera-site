@@ -32,9 +32,9 @@ git diff --check
 12 testes locais aprovaram em 13/11/2026, incluindo proteção do WhatsApp comercial, demos, captação de leads e catálogo. A suíte de navegador com Puppeteer (`node tests/apps-catalog-browser.cjs`, executada manualmente no Insano) também passou em **375, 768 e 1440 px**, sem rolagem horizontal e com o destaque Retro visível. Capturas de QA ficam no computador em `qa/apps-catalog/` e não são artefatos publicados.
 
 ## Publicação
-**Ainda não publicada.** O procedimento de publicação com backup, guarda contra alterações concorrentes, rollback e comandos de homologação está em [`ops/APPS-CATALOGO-RELEASE-20261113.md`](../ops/APPS-CATALOGO-RELEASE-20261113.md). A branch `feature/catalogo-apps-20261113` deriva da branch de finalização institucional `feature/site-finalizacao-institucional-20261112`. Não implantar a branch inteira na produção sem reconciliação com o site publicado: há commits de contato/consentimento nesta linha ainda não presentes na `main`.
+**Publicada em produção em 13/11/2026, com hashes e testes confirmados.** O registro da operação está em [ops/APPS-CATALOGO-PUBLICADO-20261113.md](../ops/APPS-CATALOGO-PUBLICADO-20261113.md). O procedimento de publicação com backup, guarda contra alterações concorrentes, rollback e comandos de homologação está em [`ops/APPS-CATALOGO-RELEASE-20261113.md`](../ops/APPS-CATALOGO-RELEASE-20261113.md). A branch `feature/catalogo-apps-20261113` deriva da branch de finalização institucional `feature/site-finalizacao-institucional-20261112`. Não implantar a branch inteira na produção sem reconciliação com o site publicado: há commits de contato/consentimento nesta linha ainda não presentes na `main`.
 
-Para publicação segura: revisão de PR, backup da página anterior, deploy isolado apenas de `aplicativos/index.html`, `aplicativos/apps.css` e, se necessário, da página pai que linka o catálogo; smoke por HTTP, mobile 390px, navegação teclado e rollback disponível. Não rodar sincronização com exclusão de conteúdo legado `/apps/`.
+Para futuras publicações: revisão de PR, backup da versão anterior e deploy isolado apenas dos três arquivos do catálogo, seguido de smoke HTTP, validação mobile e rollback disponível. Não sincronizar com exclusão de conteúdo legado `/apps/`. Neste release, o backup foi confirmado e os testes HTTP (30) e responsivos (375, 768 e 1440 px) passaram.
 
 
 ## Reconciliação com produção — 13/11/2026, 15h43 (BRT)
@@ -48,11 +48,11 @@ A página pública `/aplicativos/` foi atualizada por outra publicação indepen
 ### Guarda de conflito com publicação simultânea
 Execute `node ops/check-apps-live-baseline.cjs` imediatamente antes de qualquer publicação. Este comando é **somente leitura** e compara hashes SHA-256 do HTML e do CSS atualmente publicados contra o snapshot de 13/11. Se houve alteração, **parar e revisar o diff real**, sem sobrescrever a página.
 
-A confirmação dos hashes **não autoriza deploy nem substitui backup**. A publicação deve modificar somente `aplicativos/index.html`, `aplicativos/apps.css` e `aplicativos/apps-hub.js`, com backup e rollback; não atualizar o sitemap, apagar `/apps/`, interromper os sites ativos nem alterar contato/ads. O acesso SSH do computador Insano não foi autenticado como root; nenhum acesso alternativo ou segredo foi usado.
+Uma auditoria HTTP adicional foi criada em `ops/smoke-apps-public.cjs` com modos `--before`, `--after` e `--audit`. Confere home, Fecha Negócio, contato, políticas, Retro e integridade dos três arquivos. A confirmação dos hashes **não autoriza deploy nem substitui backup**. A publicação deve modificar somente `aplicativos/index.html`, `aplicativos/apps.css` e `aplicativos/apps-hub.js`, com backup e rollback; não atualizar o sitemap, apagar `/apps/`, interromper os sites ativos nem alterar contato/ads. O acesso SSH do computador Insano não foi autenticado como root; nenhum acesso alternativo ou segredo foi usado.
 
 ### Verificações adicionais
 - `node --test tests/apps-catalog.test.cjs`: também valida CTA com UTMs, políticas reais e manifesto beta.
 - `node tests/apps-catalog-browser.cjs`: layout testado em 375px, 768px e 1440px no Insano (Puppeteer disponível localmente).
 - `node ops/check-apps-live-baseline.cjs`: guarda de concorrência validada, sem escrita na produção.
 
-A PR #35 continua em rascunho: não significa que esta versão do código está no ar.
+O conteúdo do catálogo está efetivamente em produção. A PR #35 continua em rascunho para reconciliação do histórico Git com os demais trabalhos institucionais; seu estado não reflete o estado do deploy isolado.

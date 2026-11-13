@@ -1,6 +1,6 @@
 # Próxima Era · catálogo de aplicativos — publicação conservadora
 
-**Data:** 13/11/2026 · **PR:** #35 · **Situação:** scripts preparados; **nenhum deploy realizado**.
+**Data:** 13/11/2026 · **PR:** #35 · **Situação:** publicado e validado na VPS. Consulte [o registro da instalação real](./APPS-CATALOGO-PUBLICADO-20261113.md); este arquivo permanece como runbook para futuros procedimentos.
 
 ## Motivação
 
@@ -37,7 +37,7 @@ ssh -o BatchMode=yes -o StrictHostKeyChecking=yes USUARIO_AUTORIZADO@HOST_AUTORI
 
 Os nomes de SSH são **placeholders**, não uma instrução para descobrir usuários por tentativa. Use somente credenciais existentes e autorizadas. O algoritmo falha se os hashes no servidor não forem exatamente os do snapshot confirmado, se o JS já existir, se houver symlink inesperado ou se o pacote remoto não corresponder ao commit fixado.
 
-O modo `--apply` exige privilégios de administração, usa lock em `/run/lock/proximaera-apps-catalog.lock`, cria backup privado em `/opt/proximaera/backups/apps-catalog-<data>-<pid>`, instala os arquivos individualmente por rename e restaura os originais automaticamente em falhas detectadas antes da conclusão.
+O modo `--apply` exige privilégios de administração, instala **JS → CSS → HTML** nessa ordem para evitar que o HTML aponte temporariamente para um JS ausente, usa lock em `/run/lock/proximaera-apps-catalog.lock`, cria backup privado em `/opt/proximaera/backups/apps-catalog-<data>-<pid>`, instala os arquivos individualmente por rename e restaura os originais automaticamente em falhas detectadas antes da conclusão.
 
 ## QA após a implantação
 
@@ -47,6 +47,14 @@ curl -fsS https://proximaera.com.br/aplicativos/apps-hub.js | grep -F '../retro/
 curl -fsS -o /dev/null https://proximaera.com.br/retro/
 curl -fsS -o /dev/null https://proximaera.com.br/apps/cronicas-do-abismo/
 curl -fsS -o /dev/null https://proximaera.com.br/fecha-negocio/
+```
+
+Executar também os comandos de auditoria HTTP, **somente leitura**:
+
+```bash
+node ops/smoke-apps-public.cjs --before    # ANTES do deploy: hashes do HTML e CSS atuais
+node ops/smoke-apps-public.cjs --after     # DEPOIS do deploy: hashes dos três arquivos novos
+node ops/smoke-apps-public.cjs --audit     # A qualquer momento: rotas essenciais e versão beta
 ```
 
 Também inspecionar visualmente em celular e desktop, navegação pelo teclado, versão beta dinâmica, formulário de contato e vínculos de privacidade. O `--check` do script de deploy passa a indicar **JA PUBLICADO** se os três arquivos forem idênticos ao commit alvo; o guard de baseline HTTPS deve acusar drift após a publicação (comportamento esperado).

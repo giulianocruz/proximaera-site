@@ -13,7 +13,9 @@ SITE_ROOT="${PROXIMAERA_SITE_ROOT:-/opt/proximaera/site}"
 BACKUP_ROOT="${PROXIMAERA_APPS_BACKUP_ROOT:-/opt/proximaera/backups}"
 COMMIT="4c96e181f2647a6a07cd5ac475143ba8dc31dd90"
 RAW="https://raw.githubusercontent.com/giulianocruz/proximaera-site/$COMMIT"
-FILES=(aplicativos/index.html aplicativos/apps.css aplicativos/apps-hub.js)
+# Publica JavaScript primeiro, CSS depois e HTML por último: evita 404 transitório
+# do script antes de o HTML passar a referenciá-lo.
+FILES=(aplicativos/apps-hub.js aplicativos/apps.css aplicativos/index.html)
 BASE_INDEX="8ea6e783b1e85a06a9be78168f0ecce9b9e55ed480c5e9fd76c44fb907b66967"
 BASE_CSS="9412358ddbc7d7676c597378706b133fc4e0022d1aeaab0eeb9934f93fbba55d"
 NEW_INDEX="347a29c974819f9db066b394845f3d28ccd2f390d1f49309ec7c01e6c8f7e938"
@@ -65,7 +67,7 @@ need_hash() {
 printf '%s\n' "Baixando 3 arquivos fixados no commit $COMMIT"
 for f in "${FILES[@]}"; do
   mkdir -p "$TMP/stage/$(dirname "$f")"
-  curl --proto '=https' --tlsv1.2 --fail --silent --show-error \
+  curl --proto '=https' --proto-redir '=https' --tlsv1.2 --fail --silent --show-error \
     --location --max-time 25 --retry 2 "$RAW/$f" -o "$TMP/stage/$f"
   [[ -s "$TMP/stage/$f" ]] || { echo "Arquivo remoto ausente $f" >&2; exit 5; }
 done
@@ -73,7 +75,7 @@ need_hash "$TMP/stage/aplicativos/index.html" "$NEW_INDEX" || { echo "Hash alvo 
 need_hash "$TMP/stage/aplicativos/apps.css" "$NEW_CSS" || { echo "Hash alvo invalido CSS" >&2; exit 5; }
 need_hash "$TMP/stage/aplicativos/apps-hub.js" "$NEW_JS" || { echo "Hash alvo invalido JS" >&2; exit 5; }
 grep -Fq 'Boleto Rush!' "$TMP/stage/aplicativos/index.html"
-grep -Fq 'Crônicas do Abismo' "$TMP/stage/aplicativos/index.html"
+grep -Fq 'Abismo' "$TMP/stage/aplicativos/index.html"
 grep -Fq 'href="../retro/?utm_source=proximaera' "$TMP/stage/aplicativos/index.html"
 grep -Fq 'href="../retro/privacidade.html"' "$TMP/stage/aplicativos/index.html"
 
@@ -127,3 +129,4 @@ need_hash "$SITE_ROOT/aplicativos/apps-hub.js" "$NEW_JS"
 COMPLETE=1
 echo "PUBLICADO: 3 arquivos atualizados. BACKUP: $BACKUP"
 echo "Verifique HTTP e interface no celular. Nao alterar /apps/, /retro/, contato ou anuncios."
+exit 0

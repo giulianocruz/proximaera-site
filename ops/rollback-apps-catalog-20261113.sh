@@ -105,3 +105,4 @@ has_hash "$SITE_ROOT/aplicativos/apps.css" "$BASE_CSS"
 [[ ! -e "$SITE_ROOT/aplicativos/apps-hub.js" ]]
 FINISHED=1
 echo "ROLLBACK CONCLUIDO: HTML/CSS restaurados e JS do release removido."
+exit 0
