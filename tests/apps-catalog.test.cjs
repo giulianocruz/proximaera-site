@@ -11,6 +11,10 @@ test('catalogo cobre os seis produtos conhecidos sem publicacao ficticia',()=>{
     assert.ok(html.includes(s),'produto: '+s);
   }
   assert.equal((html.match(/<article\b/g)||[]).length,6);
+  assert.ok(html.includes('href="../retro/"'),'Retro aponta ao portal beta oficial');
+  assert.ok(html.includes('href="../retro/status.html"'),'Retro possui página de status e versões');
+  assert.ok(html.includes('src="../retro/assets/biblioteca-demo.jpg"'),'Retro reutiliza arte pública confirmada');
+  assert.ok(html.includes('sincronização de saves entre plataformas ainda não está homologada'),'não promete sincronização pronta');
   assert.ok(!/href="[^"]*(?:\.apk|\.exe|play\.google\.com)/i.test(html),'sem download nao homologado');
 });
 test('politicas e destinos relevantes sao reais',()=>{

@@ -46,6 +46,10 @@ footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .section-heading h2{margin:0;font-size:clamp(30px,4vw,44px)}
 .section-heading>p{max-width:440px;color:var(--muted);font-size:14px;margin:0}
 .featured-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.retro-feature{grid-column:1/-1;display:grid;grid-template-columns:minmax(0,1.04fr) minmax(0,.96fr)}
+.retro-feature .cover{height:100%;aspect-ratio:auto;object-fit:cover;min-height:305px}
+.retro-feature .body{padding:clamp(24px,3vw,37px)}
+.retro-feature .retro-disclaimer{font-size:13px;line-height:1.65;color:#a5becb;margin-top:4px}
 .feature-card{display:flex;flex-direction:column}.feature-card .body{flex:1;display:flex;flex-direction:column}
 .feature-card h3,.project-card h3{font-size:clamp(23px,3vw,30px);letter-spacing:-.04em;line-height:1.15;margin:6px 0 13px}
 .feature-card p,.project-card p{color:var(--muted);margin:0 0 15px}
@@ -69,5 +73,5 @@ footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
 .stage-list{display:grid;gap:9px}.stage-list span{padding:13px 18px;border-radius:13px;background:#173242;border:1px solid #39616a;font-weight:700}
 .contact-cta{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:35px 32px;margin:4px 0 70px;border:1px solid #4b9f9c;border-radius:22px;background:radial-gradient(circle at 100% 0,#25616f 0,transparent 40%),#0f2a37}
 .contact-cta>div{max-width:630px}.contact-cta .btn{flex:none}
-@media(max-width:850px){.featured-grid,.project-grid,.next-stage{grid-template-columns:1fr}.contact-cta{flex-direction:column;align-items:start}.section-heading{display:block}.section-heading>p{margin-top:12px}}
+@media(max-width:850px){.featured-grid,.project-grid,.next-stage,.retro-feature{grid-template-columns:1fr}.retro-feature .cover{min-height:0;aspect-ratio:1024/500}.contact-cta{flex-direction:column;align-items:start}.section-heading{display:block}.section-heading>p{margin-top:12px}}
 @media(max-width:500px){.wrap{padding-left:17px;padding-right:17px}.hero{padding-top:40px}.hero-actions .btn{flex:1;text-align:center}.project-card{grid-template-columns:56px 1fr;padding:18px;gap:12px}.project-icon{width:54px;height:54px;font-size:27px}.contact-cta{padding:24px}.feature-card .links .btn{width:100%;text-align:center}.section-heading h2{font-size:32px}}
