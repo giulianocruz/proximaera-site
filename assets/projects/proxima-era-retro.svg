@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" role="img" aria-labelledby="title desc">
+<title id="title">Próxima Era Retro</title>
+<desc id="desc">Controle retrô estilizado em tons de ciano e violeta</desc>
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#20264d"/><stop offset="1" stop-color="#0a2438"/></linearGradient>
+  <linearGradient id="stroke" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#65f2da"/><stop offset="1" stop-color="#b5a1ff"/></linearGradient>
+</defs>
+<rect x="1" y="1" width="78" height="78" rx="19" fill="url(#bg)" stroke="#6376b0" stroke-opacity=".55" stroke-width="2"/>
+<path d="M19 29c-3 1-6 5-7 10l-3 11c-1 6 2 10 7 10 3 0 6-2 9-6l5-6h20l5 6c3 4 6 6 9 6 5 0 8-4 7-10l-3-11c-1-5-4-9-7-10-5-3-15-5-21-5s-16 2-21 5Z" fill="#132b4a" stroke="url(#stroke)" stroke-width="3" stroke-linejoin="round"/>
+<path d="M27 36v16M19 44h16" stroke="#77f3de" stroke-width="5" stroke-linecap="round"/>
+<circle cx="52" cy="40" r="3.7" fill="#b9a6ff"/><circle cx="60" cy="46" r="3.7" fill="#b9a6ff"/>
+<path d="M37 34h6" stroke="#e4f4ff" stroke-width="2.5" stroke-linecap="round"/>
+<circle cx="16" cy="17" r="2" fill="#7aeadd" opacity=".9"/><circle cx="65" cy="16" r="1.5" fill="#b5a1ff" opacity=".8"/>
+</svg>
