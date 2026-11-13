@@ -8,14 +8,14 @@ const home=read('index.html'),apps=read('aplicativos/index.html'),css=read('apli
 const svg=read('assets/projects/proxima-era-retro.svg');
 test('home links Próxima Era Retro in highlighted project grid',()=>{
  assert.match(home,/<section class="section universe" id="projetos">/);
- assert.ok(home.includes('<a class="project-card reveal project-link" href="retro/" data-track="projeto-retro-home">'));
+ assert.ok(home.includes('<a class="project-card reveal project-link" href="retro/?utm_source=proximaera&amp;utm_medium=site&amp;utm_campaign=retro_beta&amp;utm_content=home" data-track="projeto-retro-home">'));
  assert.match(home,/<h3>Próxima Era Retro<\/h3>/);
  assert.match(home,/Beta disponível/);
  assert.equal((home.match(/data-track="projeto-retro-home"/g)||[]).length,1);
  assert.match(home,/href="aplicativos\/"/);
 });
 test('apps catalog features Retro with honest beta messaging',()=>{
- assert.match(apps,/href="\.\.\/retro\/#download"/);
+ assert.ok(apps.includes('href="../retro/?utm_source=proximaera&amp;utm_medium=site&amp;utm_campaign=retro_beta&amp;utm_content=apps#download"'));
  assert.match(apps,/href="\.\.\/retro\/testes\.html"/);
  assert.match(apps,/href="\.\.\/retro\/privacidade\.html"/);
  assert.match(apps,/organização por capas, favoritos e busca/);
@@ -41,6 +41,12 @@ test('public SEO, contact and project links remain unchanged',()=>{
  assert.match(home,/href="contato\.html"/);
  assert.match(apps,/href="\.\.\/contato\.html"/);
  assert.match(apps,/rel="canonical" href="https:\/\/proximaera\.com\.br\/aplicativos\/"/);
+});
+test('sitemap lists public Retro landing, not individual downloads',()=>{
+ const xml=read('sitemap.xml');
+ assert.ok(xml.includes('<loc>https://proximaera.com.br/retro/</loc>'));
+ assert.ok(!xml.includes('/retro/downloads/'));
+ assert.equal((xml.match(/<loc>https:\/\/proximaera\.com\.br\/retro\/<\/loc>/g)||[]).length,1);
 });
 test('Retro live portal and referenced artwork respond with 200',async()=>{
  for(const u of ['https://proximaera.com.br/retro/',
