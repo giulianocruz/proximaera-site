@@ -105,6 +105,26 @@ class DashboardTests(unittest.TestCase):
   with self.assertRaisesRegex(ValueError,'1000 linhas'):
    mod.render(data)
 
+ def test_export_script_escapes_and_compiles(self):
+  # PAGE must preserve JS escapes; the generated script cannot contain literal
+  # newlines inside quoted CSV field delimiters or regular expressions.
+  import re
+  import shutil
+  import subprocess
+  page=mod.render(BASE)
+  match=re.search(r'<script>\s*(\(function\(\)\{[\s\S]*?\}\)\(\);)\s*</script>',page)
+  self.assertIsNotNone(match,'inline dashboard JavaScript not found')
+  js=match.group(1)
+  self.assertIn("lines.join('\\r\\n')",js)
+  self.assertNotIn("lines.join('\r\n')",js)
+  self.assertIn("numeric:true",js)
+  self.assertIn("function csvField(value)",js)
+  self.assertIn("String(value??'').replace",js)
+  node=shutil.which('node')
+  if node:
+   result=subprocess.run([node,'--check'],input=js,text=True,capture_output=True,timeout=8)
+   self.assertEqual(result.returncode,0,result.stderr)
+
  def test_source_must_be_persistent_aggregates(self):
   with self.assertRaises(ValueError):
    mod.render({'source':'docker_logs','downloads':{'complete':2}})

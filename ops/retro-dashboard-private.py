@@ -19,7 +19,7 @@ HERE = Path(__file__).resolve().parent
 DEFAULT_PRIVATE = Path('/opt/proximaera/tools/private-reports')
 REPORT_SOURCE = HERE / 'retro-download-report.py'
 
-PAGE = """<!doctype html>
+PAGE = r"""<!doctype html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
@@ -123,6 +123,7 @@ const nf=new Intl.NumberFormat('pt-BR');
 const last=data.period.last_calendar_day;
 const state={days:7,platform:'all'};
 const nums=['started','complete','partial','bytes'];
+const versionCollator=new Intl.Collator('pt-BR',{numeric:true,sensitivity:'base'});
 function datePlus(s,n){const x=new Date(s+'T12:00:00Z');x.setUTCDate(x.getUTCDate()+n);return x.toISOString().slice(0,10)}
 function fromDay(){return datePlus(last,1-state.days)}
 function relevant(){return data.versions.filter(r=>r.day>=fromDay() && r.day<=last && (state.platform==='all'||r.platform===state.platform))}
@@ -157,7 +158,7 @@ function render(){
  const grouped=new Map();
  rows.forEach(r=>{const key=r.version+'|'+r.platform;const record=grouped.get(key)||{version:r.version,platform:r.platform,started:0,complete:0,partial:0};for(const k of ['started','complete','partial'])record[k]+=Number(r[k])||0;grouped.set(key,record)});
  const body=document.getElementById('versions');body.replaceChildren();
- const values=Array.from(grouped.values()).sort((a,b)=>b.version.localeCompare(a.version)||a.platform.localeCompare(b.platform));
+ const values=Array.from(grouped.values()).sort((a,b)=>versionCollator.compare(b.version,a.version)||a.platform.localeCompare(b.platform));
  if(!values.length){const tr=el('tr');const td=el('td','empty','Sem registros de transferência neste filtro.');td.colSpan=5;tr.append(td);body.append(tr)}
  else values.forEach(r=>{const tr=el('tr');tr.append(el('td','',r.version));const td=el('td');td.append(el('span','platform',r.platform==='android'?'Android':'Windows'));tr.append(td);['started','complete','partial'].forEach(k=>tr.append(el('td','num',nf.format(r[k]))));body.append(tr)});
 }
@@ -165,9 +166,14 @@ document.querySelectorAll('[data-days]').forEach(b=>b.addEventListener('click',(
 document.querySelectorAll('[data-platform]').forEach(b=>b.addEventListener('click',()=>{state.platform=b.dataset.platform;render()}));
 const sources=document.getElementById('sources');
 [['home','Home institucional'],['apps','Catálogo de apps'],['other','Outros / legado']].forEach(([key,name])=>{const line=el('div','attribution-line');line.append(el('span','muted',name));line.append(el('strong','',nf.format(data.sources[key]?.complete||0)+' completos'));sources.append(line)});
+function csvField(value){
+ let text=String(value??'').replace(/[\u0000-\u001f\u007f]/g,' ');
+ if(/^\s*[=+\-@]/.test(text)) text="'"+text;
+ return '"'+text.replace(/"/g,'""')+'"';
+}
 document.getElementById('csv').addEventListener('click',()=>{
- const lines=[['data','versao','plataforma','iniciados','completos','parciais','bytes'].join(';')];
- relevant().forEach(r=>lines.push([r.day,r.version,r.platform,r.started,r.complete,r.partial,r.bytes].map(x=>String(x).replace(/[;\r\n]/g,'')).join(';')));
+ const lines=[['data','versao','plataforma','iniciados','completos','parciais','bytes'].map(csvField).join(';')];
+ relevant().forEach(r=>lines.push([r.day,r.version,r.platform,r.started,r.complete,r.partial,r.bytes].map(csvField).join(';')));
  const blob=new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'});
  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='retro-downloads-'+state.days+'dias-'+state.platform+'.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)
 });
