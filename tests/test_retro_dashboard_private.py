@@ -81,6 +81,30 @@ class DashboardTests(unittest.TestCase):
   self.assertIn('.columns>section{min-width:0}',mod.PAGE)
   self.assertIn('.columns{grid-template-columns:minmax(0,1fr)}',mod.PAGE)
 
+ def test_prevent_incomplete_histories_from_underreporting(self):
+  # A limit in the SQLite detail report must not silently lower chart or CSV
+  # values relative to the separately calculated database summary.
+  data=json.loads(json.dumps(BASE))
+  data['versions'][0]['complete']+=1
+  with self.assertRaisesRegex(ValueError,'divergem'):
+   mod.render(data)
+  data=json.loads(json.dumps(BASE))
+  data['versions'][0]['started']+=1
+  with self.assertRaisesRegex(ValueError,'divergem'):
+   mod.render(data)
+  data=json.loads(json.dumps(BASE))
+  data['versions'][0]['platform']='ios'
+  with self.assertRaisesRegex(ValueError,'plataforma inválida'):
+   mod.render(data)
+  data=json.loads(json.dumps(BASE))
+  data['versions'][0]['day']='2035-01-01'
+  with self.assertRaisesRegex(ValueError,'fora do período'):
+   mod.render(data)
+  data=json.loads(json.dumps(BASE))
+  data['versions']=data['versions']*500
+  with self.assertRaisesRegex(ValueError,'1000 linhas'):
+   mod.render(data)
+
  def test_source_must_be_persistent_aggregates(self):
   with self.assertRaises(ValueError):
    mod.render({'source':'docker_logs','downloads':{'complete':2}})
