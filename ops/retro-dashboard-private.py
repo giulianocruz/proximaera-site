@@ -216,12 +216,13 @@ def render(data):
     return result
 
 def private_save(content,output,private_root=DEFAULT_PRIVATE):
-    root=Path(private_root).resolve()
+    declared=Path(private_root).absolute()
+    if declared.is_symlink():
+        raise ValueError('Diretório privado não pode ser symlink')
+    root=declared.resolve()
     dest=Path(output).resolve()
     if dest.parent!=root or dest.suffix.lower()!='.html':
         raise ValueError('Relatório só pode ser salvo no diretório privado autorizado')
-    if root.exists() and root.is_symlink():
-        raise ValueError('Diretório privado é symlink')
     root.mkdir(parents=True,exist_ok=True,mode=0o700)
     os.chmod(root,0o700)
     name=None
