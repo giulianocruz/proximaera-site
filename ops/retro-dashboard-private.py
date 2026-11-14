@@ -70,7 +70,7 @@ h2{font-size:20px;letter-spacing:-.02em;margin:0}
 .legend{display:flex;gap:18px;font-size:12px;color:var(--muted);align-items:center}
 .dot{width:10px;height:10px;display:inline-block;border-radius:2px;margin-right:6px;background:var(--teal)}
 .dot.windows{background:var(--violet)}
-.columns{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:18px}
+.columns{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:18px}.columns>section{min-width:0}
 table{width:100%;border-collapse:collapse;font-size:13px}
 th,td{text-align:left;padding:12px 8px;border-bottom:1px solid #27414a}
 th{font-size:11px;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.05em}
@@ -83,7 +83,7 @@ td .platform{border:1px solid #31565d;border-radius:7px;padding:3px 7px;font-siz
 footer{border-top:1px solid var(--line);margin-top:36px;padding-top:18px;color:var(--muted);font-size:12px}
 .muted{color:var(--muted)}
 .empty{color:var(--muted);padding:24px;text-align:center}
-@media(max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.columns{grid-template-columns:1fr}}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.columns{grid-template-columns:minmax(0,1fr)}}
 @media(max-width:480px){.cards{grid-template-columns:1fr 1fr;gap:9px}.card{padding:15px}.panel{padding:14px}.chart{height:190px}.options button{padding:8px 10px}.wrap{padding:18px 12px 42px}th,td{padding:9px 5px;font-size:11px}}
 @media print{body{background:white!important;color:black}.privacy{color:black}.toolbar,.download{display:none!important}.card,.panel{border:1px solid #999;background:white;color:black}.card .value{color:black!important}}
 </style>
