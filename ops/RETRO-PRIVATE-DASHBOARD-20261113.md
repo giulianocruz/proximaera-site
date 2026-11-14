@@ -32,3 +32,15 @@ O script atualiza a fotografia na VPS e a copia pelo SSH autorizado em Base64, s
     python3 -m unittest discover -s tests -p test_retro_dashboard_private.py -v
 
 Os testes verificam geração offline, segurança do JSON embutido, quatro filtros relevantes, escrita atômica, permissões, rejeição de diretórios externos e bloqueio de symlink. A renderização real do SQLite foi testada na VPS antes da implantação.
+
+## Instalador V2 versionado (sem acesso remoto automático)
+
+O instalador completo está no repositório como `ops/Instalar_e_Abrir_Painel_Retro_v2.ps1`. Ele usa apenas o alias SSH já autorizado (`proximaera-vps`), autenticação em lote e verificação estrita da chave de host. Baixa o gerador de um **commit Git fixo `07fe9083c93fe2ffee4e886972558469cbe750dd`**, confere o blob Git `a9336cfbccdf91c7b7b9edde35075ac45a0fcaac`, não substitui instalação divergente, gera o HTML fora do webroot e copia a fotografia para o Insano sem SCP. O gerador não está comprovadamente instalado até a execução desse script e verificação de seu resultado.
+
+Para executar a partir da pasta do checkout:
+
+    powershell.exe -NoProfile -ExecutionPolicy Bypass -File .\ops\Instalar_e_Abrir_Painel_Retro_v2.ps1
+
+Para instalar/atualizar sem abrir automaticamente o navegador, acrescente `-NaoAbrir`. O script não gera números de produção fictícios, não modifica os dados do SQLite e não inicia serviços de terceiros.
+
+Uma prévia HTML demonstrativa foi criada e testada em Chromium/Playwright nas larguras **375, 768 e 1440 px**, incluindo filtros 7/30 dias, Android/Windows, exportação CSV e overflow. Essa prévia usa **números fictícios** e não é evidência de instalação real na VPS.
