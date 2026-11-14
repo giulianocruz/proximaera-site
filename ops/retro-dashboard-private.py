@@ -186,9 +186,47 @@ def load_report(path):
     spec.loader.exec_module(module)
     return module
 
+def validate_aggregates(data):
+    """Fail closed when detailed rows do not match persistent SQLite totals.
+
+    The private report currently caps its version detail at 1000 rows.
+    Never let charts or CSV silently omit rows while summary cards still
+    contain the complete database total.
+    """
+    rows = data.get('versions')
+    if not isinstance(rows, list):
+        raise ValueError('Relatório sem histórico detalhado por versão')
+    if len(rows) >= 1000:
+        raise ValueError('Histórico atingiu limite de 1000 linhas; reduzir período ou ampliar exportação')
+    metrics = ('started', 'complete', 'partial', 'bytes')
+    platforms = ('android', 'windows')
+    by_platform = {p: {k: 0 for k in metrics} for p in platforms}
+    aggregate = {k: 0 for k in metrics}
+    first = data['period']['first_calendar_day']
+    last = data['period']['last_calendar_day']
+    for row in rows:
+        platform = row.get('platform')
+        day = row.get('day')
+        if platform not in platforms or not isinstance(day, str) or not first <= day <= last:
+            raise ValueError('Registro de versão fora do período ou plataforma inválida')
+        for key in metrics:
+            val = row.get(key)
+            if not isinstance(val, int) or isinstance(val, bool) or val < 0:
+                raise ValueError('Registro de versão com métrica inválida: ' + key)
+            aggregate[key] += val
+            by_platform[platform][key] += val
+    for key in metrics:
+        if aggregate[key] != data['downloads'].get(key):
+            raise ValueError('Resumo e histórico de versões divergem: ' + key)
+        for platform in platforms:
+            if by_platform[platform][key] != data['platforms'][platform].get(key):
+                raise ValueError('Resumo por plataforma e versões divergem: ' + platform + '/' + key)
+
+
 def render(data):
     if data.get('source') != 'persistent_sqlite_read_only':
         raise ValueError('Dashboard requer somente agregados do SQLite persistente')
+    validate_aggregates(data)
     payload=json.dumps(data,ensure_ascii=False,separators=(',',':'))
     # The embedded JSON can never escape its inert script tag via </script>.
     payload=(payload.replace('&','\\u0026').replace('<','\\u003c')
