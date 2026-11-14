@@ -44,3 +44,11 @@ Para executar a partir da pasta do checkout:
 Para instalar/atualizar sem abrir automaticamente o navegador, acrescente `-NaoAbrir`. O script não gera números de produção fictícios, não modifica os dados do SQLite e não inicia serviços de terceiros.
 
 Uma prévia HTML demonstrativa foi criada e testada em Chromium/Playwright nas larguras **375, 768 e 1440 px**, incluindo filtros 7/30 dias, Android/Windows, exportação CSV e overflow. Essa prévia usa **números fictícios** e não é evidência de instalação real na VPS.
+
+## Revisão de integridade — PR #45
+
+Em 13/11/2026, a PR #45 adicionou validação cruzada das métricas na geração do painel. O gerador recusa totais divergentes dos registros diários por plataforma e recusa períodos que atinjam o limite de 1.000 linhas detalhadas; isso impede que gráfico ou CSV silenciosamente subestimem downloads. O código aprovado corresponde ao blob Git `c2a627479cc627928313bd6b30b1abcecdb1d34e`, disponível no commit imutável `926ae8f4053a1ed6c2f289dda2c24a4b53322f6a`.
+
+O instalador privado V3 deste release, disponibilizado separadamente na conversa, utiliza esse commit/blob fixo, permite `-Verificar` sem alteração permanente, atualiza apenas a versão V2 previamente conhecida com backup e restauração automática em caso de falha. A transmissão ao SSH é UTF-8 e stdout/stderr são lidos em paralelo para evitar travamento do PowerShell. A cópia local fica em `%LOCALAPPDATA%/ProximaEra/RetroDashboard/retro-dashboard.html`, reduzindo o risco de sincronização acidental com pastas compartilhadas.
+
+Cinco cenários isolados da rotina Bash foram aprovados: pré-teste, instalação inicial, bloqueio de versão desconhecida, atualização a partir da versão aprovada e rollback após falha simulada. **Esses testes não equivalem à instalação na VPS**. A instalação real continua pendente até a execução autorizada no computador Insano; o Desktop Commander estava no limite mensal quando essa revisão foi elaborada.
