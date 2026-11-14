@@ -138,15 +138,16 @@ function render(){
  document.getElementById('table-period').textContent=fromDay()+' a '+last;
  const series=new Map();rows.forEach(r=>{const current=series.get(r.day)||{android:0,windows:0};current[r.platform]=(current[r.platform]||0)+(Number(r.complete)||0);series.set(r.day,current)});
  const bars=Array.from({length:state.days},(_,i)=>{const day=datePlus(last,i-state.days+1);return {day,...(series.get(day)||{android:0,windows:0})}});
- const max=Math.max(1,...bars.map(b=>b.android+b.windows));
+ const max=Math.max(1,...bars.map(b=>state.platform==='android'?b.android:state.platform==='windows'?b.windows:b.android+b.windows));
  const chart=document.getElementById('daily-chart');chart.replaceChildren();
+ chart.setAttribute('aria-label','Transferências completas por dia de '+(state.platform==='all'?'Android e Windows':state.platform==='android'?'Android':'Windows')+', '+state.days+' dias-calendário.');
  bars.forEach((b,i)=>{
    const col=el('div','chart-day');const track=el('div','track');const stack=el('div','stack');
    const visible=(state.platform==='android'?b.android:state.platform==='windows'?b.windows:b.android+b.windows);
-   stack.style.height=Math.max(2,Math.round((visible/max)*100))+'%';
-   if(b.android>0){const a=el('div','android-segment');a.style.flex=String(b.android);stack.append(a)}
-   if(b.windows>0){const w=el('div','windows-segment');w.style.flex=String(b.windows);stack.append(w)}
-   col.title=b.day+' · Android '+b.android+' · Windows '+b.windows;
+   stack.style.height=visible>0?Math.max(2,Math.round((visible/max)*100))+'%':'0%';
+   if(state.platform!=='windows' && b.android>0){const a=el('div','android-segment');a.style.flex=String(b.android);stack.append(a)}
+   if(state.platform!=='android' && b.windows>0){const w=el('div','windows-segment');w.style.flex=String(b.windows);stack.append(w)}
+   col.title=b.day+' · '+(state.platform==='all'?'Android '+b.android+' · Windows '+b.windows:state.platform==='android'?'Android '+b.android:'Windows '+b.windows);
    col.setAttribute('aria-label',col.title);
    track.append(stack);col.append(track);
    col.append(el('div','chart-label',(i===0||i===state.days-1||i%Math.max(1,Math.ceil(state.days/8))===0)?b.day.slice(8,10):''));
