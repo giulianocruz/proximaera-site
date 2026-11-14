@@ -54,7 +54,6 @@ class DashboardTests(unittest.TestCase):
   self.assertIn('data-platform="android"',page)
   self.assertIn('data-platform="windows"',page)
   self.assertIn('Exportar CSV',page)
-  self.assertIn('Aplicativo',page.replace('aplicativo','Aplicativo') if False else page) if False else None
   self.assertNotIn('https://www.',page)
   self.assertNotIn('http://',page)
   self.assertNotIn('fetch(',page)
@@ -90,6 +89,11 @@ class DashboardTests(unittest.TestCase):
    self.assertFalse((Path(directory)/'outside.html').exists())
    with self.assertRaises(ValueError):
     mod.private_save('x',root/'bad.json',root)
+   if hasattr(os,'symlink'):
+    link=Path(directory)/'link-to-private'
+    link.symlink_to(root,target_is_directory=True)
+    with self.assertRaises(ValueError):
+     mod.private_save('x',link/'malicious.html',link)
 
 if __name__=='__main__':
  unittest.main()
