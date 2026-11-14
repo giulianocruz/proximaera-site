@@ -52,3 +52,36 @@ Em 13/11/2026, a PR #45 adicionou validação cruzada das métricas na geração
 O instalador privado V3 deste release, disponibilizado separadamente na conversa, utiliza esse commit/blob fixo, permite `-Verificar` sem alteração permanente, atualiza apenas a versão V2 previamente conhecida com backup e restauração automática em caso de falha. A transmissão ao SSH é UTF-8 e stdout/stderr são lidos em paralelo para evitar travamento do PowerShell. A cópia local fica em `%LOCALAPPDATA%/ProximaEra/RetroDashboard/retro-dashboard.html`, reduzindo o risco de sincronização acidental com pastas compartilhadas.
 
 Cinco cenários isolados da rotina Bash foram aprovados: pré-teste, instalação inicial, bloqueio de versão desconhecida, atualização a partir da versão aprovada e rollback após falha simulada. **Esses testes não equivalem à instalação na VPS**. A instalação real continua pendente até a execução autorizada no computador Insano; o Desktop Commander estava no limite mensal quando essa revisão foi elaborada.
+
+## Instalador V4 — atualização operacional sem alterar o site
+
+Fonte versionada: `ops/Instalar_e_Abrir_Painel_Retro_v4.ps1`. Esta versão fixa a origem do gerador no commit imutável `926ae8f4053a1ed6c2f289dda2c24a4b53322f6a` e exige blob Git `c2a627479cc627928313bd6b30b1abcecdb1d34e`, correspondente à validação de agregados integrada na PR #45.
+
+Melhorias em relação ao V3:
+
+- Verifica a integridade do **SQLite persistente em modo somente leitura** antes de instalar.
+- Permite `-Verificar` (preflight) sem substituir o gerador ou snapshot aprovado.
+- Recusa geradores desconhecidos e symlinks; preserva um backup privado da versão V2 antes de atualizar, com nome único por execução.
+- Em vez de substituir o HTML atual antes de conferir, **gera um arquivo temporário reservado na pasta privada**, valida CSP, marcadores, JSON agregado e permissões, e só então usa `mv` atômico no mesmo sistema de arquivos.
+- Se a geração falhar, restaura a versão anterior do gerador e preserva o painel existente.
+- Copia o HTML para `%LOCALAPPDATA%\ProximaEra\RetroDashboard\retro-dashboard.html` por SSH autenticado; confere SHA-256 da cópia e preserva um backup local `retro-dashboard-anterior.html.bak` quando já existir painel anterior.
+- Não altera o Nginx, o contador SQLite, os crons, o webroot, downloads APK/ZIP ou pixels de anúncios.
+
+### Comandos no PC Insano
+
+Com o arquivo salvo em Downloads e o alias SSH `proximaera-vps` configurado:
+
+```powershell
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:USERPROFILE\Downloads\Instalar_e_Abrir_Painel_Retro_v4.ps1" -Verificar
+powershell.exe -NoProfile -ExecutionPolicy Bypass -File "$env:USERPROFILE\Downloads\Instalar_e_Abrir_Painel_Retro_v4.ps1"
+```
+
+Se desejar atualizar sem abrir o navegador, acrescente `-NaoAbrir`.
+
+### QA independente
+
+```bash
+python3 tests/test_retro_dashboard_installer_v4.py
+```
+
+**9/9 cenários isolados passaram** em ambiente local: preflight, instalação inicial, atualização V2, execução idempotente, gerador desconhecido, falha com rollback, HTML inválido, SQLite inválido e symlink. A suíte extrai o Bash embutido diretamente do PowerShell versionado; substitui apenas a origem do arquivo por um fixture local e usa arquivos SQLite descartáveis. Os Git blobs dos arquivos da PR correspondem exatamente aos arquivos aprovados localmente. **Não foi possível executar o PowerShell no Insano ou instalar no servidor real devido ao limite mensal do Desktop Commander.** A homologação efetiva depende da execução do V4 no Windows e da conferência do resultado.
