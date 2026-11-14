@@ -57,3 +57,13 @@ No dia **13/11/2026** o SQLite tinha **2 respostas completas Android** e **2 Win
 Os testes usam bancos SQLite temporários e cobrem somente leitura, agregados, janelas diárias, offsets, backups e privacidade. O coletor mantém os dados persistentes, mas não existe histórico anterior à ativação da instrumentação. Não instalar outra coleta, outro cron ou contador público.
 
 **Histórico:** PR #40 introduziu o primeiro relatório. Esta revisão corrige sua fonte de dados após auditar o coletor persistente já ativo.
+
+## Implantação privada concluída e verificada
+
+Em 13/11/2026 às 22h46 (horário de São Paulo), a versão corrigida foi instalada em **/opt/proximaera/tools/retro-download-report.py**. Permissões: **750**, propriedade root. SHA-256: **637e3a3b029217553ab522a1db75e0407d3d5e42ae9ec8bf680bc0e774a07981**. A versão anterior foi preservada em **/opt/proximaera/tools/backups/retro-download-report-before-sqlite-20261113.py**.
+
+A execução real em modo somente leitura passou. A consulta de 13/11/2026 retornou quatro respostas completas (duas Android e duas Windows), 27 requisições à página e dois eventos opt-in de abertura Android. Todos os números continuam sujeitos à ressalva de testes internos e não representam instalações nem visitantes únicos. Havia 165 bytes pendentes de downloads.log e 38 de visits.log, aguardando o coletor quinquenal.
+
+Foram confirmados **cinco testes Python** com bancos temporários e os cron jobs existentes: agregação a cada 5 minutos e backup às **03h10 UTC**, mantendo até 30 cópias diárias. O portal Retro, a página de versão e o catálogo responderam HTTP 200. O utilitário administrativo não foi exposto pela web (HTTP 404). **Nenhum novo cron, contador, API ou alteração na distribuição foi realizado.**
+
+Para acesso rápido no Insano, em PowerShell: ssh proximaera-vps "python3 /opt/proximaera/tools/retro-download-report.py --days 1". Para sete dias, substituir por --days 7.
