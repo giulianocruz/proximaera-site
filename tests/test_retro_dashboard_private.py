@@ -69,6 +69,18 @@ class DashboardTests(unittest.TestCase):
   self.assertIn('type="application/json"',page)
   self.assertEqual(page.count('</script>'),2)
 
+ def test_platform_filter_displays_only_selected_series(self):
+  # Ensure the local chart uses the selected metric for scaling and its segments,
+  # so Android mode never shows Windows bars (and vice versa).
+  js=mod.PAGE.split('<script>')[-1]
+  self.assertIn("state.platform==='android'?b.android:state.platform==='windows'?b.windows:b.android+b.windows",js)
+  self.assertIn("state.platform!=='windows' && b.android>0",js)
+  self.assertIn("state.platform!=='android' && b.windows>0",js)
+  self.assertIn("stack.style.height=visible>0?",js)
+  self.assertIn("chart.setAttribute('aria-label'",js)
+  self.assertIn('.columns>section{min-width:0}',mod.PAGE)
+  self.assertIn('.columns{grid-template-columns:minmax(0,1fr)}',mod.PAGE)
+
  def test_source_must_be_persistent_aggregates(self):
   with self.assertRaises(ValueError):
    mod.render({'source':'docker_logs','downloads':{'complete':2}})
