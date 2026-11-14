@@ -1,83 +1,102 @@
-"""Testes offline para relatório privado de downloads; sem acessar logs reais."""
+"""Offline tests for the private, read-only SQLite report."""
+import argparse
+import datetime as dt
 import importlib.util
 import json
+import sqlite3
+import tempfile
 from pathlib import Path
 import unittest
+from zoneinfo import ZoneInfo
 
-ROOT = Path(__file__).resolve().parents[1]
-SCRIPT = ROOT / "ops" / "retro-download-report.py"
-spec = importlib.util.spec_from_file_location("retro_download_report", SCRIPT)
-report = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(report)
+ROOT=Path(__file__).resolve().parents[1]
+spec=importlib.util.spec_from_file_location('report',ROOT/'ops'/'retro-download-report.py')
+m=importlib.util.module_from_spec(spec)
+spec.loader.exec_module(m)
+TZ=ZoneInfo('America/Sao_Paulo')
+NOW=dt.datetime(2026,11,14,0,12,tzinfo=TZ)
 
-MANIFEST = {
-    "version": "0.3.21", "channel": "beta",
-    "files": {
-        "android": {"name": "ProximaEraRetro-v0.3.21-debug.apk", "size_bytes": 4261704},
-        "windows": {"name": "ProximaEraRetro-Windows-Portable-v0.3.21.zip", "size_bytes": 121020402}
-    }
-}
-A = "ProximaEraRetro-v0.3.21-debug.apk"
-W = "ProximaEraRetro-Windows-Portable-v0.3.21.zip"
-
-
-def nginx(method, route, status, size):
-    # IP/referer são dados no input de teste, mas NUNCA retornam no relatório.
-    return (f'192.0.2.123 - - [13/Nov/2026:17:30:00 +0000] '
-            f'"{method} {route} HTTP/1.1" {status} {size} '
-            '"https://exemplo.test/?email=privado@exemplo.test" "Browser-X"')
-
-
-class RetroDownloadReportTest(unittest.TestCase):
+class Tests(unittest.TestCase):
     def setUp(self):
-        self.expected = report.latest_files(MANIFEST)
+        self.temp=tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.root=Path(self.temp.name)
+        self.db=self.root/'counters.sqlite3'
+        c=sqlite3.connect(self.db)
+        c.executescript('''
+        CREATE TABLE totals(day TEXT,version TEXT,platform TEXT,started INTEGER,complete INTEGER,partial INTEGER,bytes INTEGER);
+        CREATE TABLE source_totals(day TEXT,version TEXT,platform TEXT,source TEXT,started INTEGER,complete INTEGER,partial INTEGER,bytes INTEGER);
+        CREATE TABLE visits(day TEXT,requests INTEGER);
+        CREATE TABLE app_usage(day TEXT,platform TEXT,version TEXT,event TEXT,requests INTEGER);
+        CREATE TABLE offsets(source TEXT,position INTEGER);
+        ''')
+        c.execute('INSERT INTO totals VALUES (?,?,?,?,?,?,?)',('2026-11-13','0.3.21','android',3,2,1,90000))
+        c.execute('INSERT INTO totals VALUES (?,?,?,?,?,?,?)',('2026-11-13','0.3.21','windows',2,2,0,200000))
+        c.execute('INSERT INTO totals VALUES (?,?,?,?,?,?,?)',('2026-11-01','0.3.19','android',8,8,0,800000))
+        c.execute('INSERT INTO source_totals VALUES (?,?,?,?,?,?,?,?)',('2026-11-13','0.3.21','android','apps',3,2,1,90000))
+        c.execute('INSERT INTO visits VALUES (?,?)',('2026-11-13',27))
+        c.execute('INSERT INTO app_usage VALUES (?,?,?,?,?)',('2026-11-13','android','0.3.21','launch',2))
+        c.commit()
+        c.close()
+        self.args=argparse.Namespace(day=None,days=2,since=None)
 
-    def test_complete_android_windows_and_partial(self):
-        lines = [
-            nginx("GET", "/downloads/"+A+"?src=catalogo", 200, 4261704),
-            nginx("GET", "/downloads/"+W, 200, 121020402),
-            nginx("GET", "/downloads/"+W, 206, 1048576),
-            nginx("GET", "/downloads/"+A, 200, 1000),
-            nginx("HEAD", "/downloads/"+A, 200, 4261704),
-            nginx("GET", "/assets/site.css", 200, 1234),
-            nginx("GET", "/downloads/missing.txt", 200, 100)
-        ]
-        output = report.scan("\n".join(lines), self.expected)
-        self.assertEqual(output["http_requests_parsed"], 7)
-        self.assertEqual(output["binary_gets_observed"], 4)
-        self.assertEqual(output["counts"]["android/complete_response_probable"], 1)
-        self.assertEqual(output["counts"]["windows/complete_response_probable"], 1)
-        self.assertEqual(output["counts"]["windows/partial_range"], 1)
-        self.assertEqual(output["counts"]["android/incomplete_or_interrupted"], 1)
-        serialized = json.dumps(output)
-        self.assertNotIn("192.0.2.123", serialized)
-        self.assertNotIn("privado@exemplo.test", serialized)
-        self.assertNotIn("Browser-X", serialized)
+    def test_persistent_aggregate_not_generic_docker_log(self):
+        data=m.report(self.db,self.root,self.args,NOW)
+        self.assertEqual(data['source'],'persistent_sqlite_read_only')
+        self.assertEqual(data['downloads']['started'],5)
+        self.assertEqual(data['downloads']['complete'],4)
+        self.assertEqual(data['platforms']['android']['partial'],1)
+        self.assertEqual(data['sources']['apps']['complete'],2)
+        self.assertEqual(data['portal_page_requests'],27)
+        self.assertEqual(data['opt_in_app_launch_events'],2)
+        self.assertEqual(data['days'][0]['day'],'2026-11-13')
+        self.assertEqual(len(data['versions']),2)
+        self.assertEqual(data['health']['backup_snapshots_found'],0)
+        self.assertNotIn('username',json.dumps(data))
 
-    def test_old_version_separate_unknown_and_query_stripped(self):
-        text = nginx("GET", "/downloads/ProximaEraRetro-v0.3.20-debug.apk?src=teste", 200, 4261704)
-        output = report.scan(text, self.expected)
-        self.assertEqual(output["counts"]["android/older_or_unknown_http_200"], 1)
-        self.assertNotIn("android/complete_response_probable", output["counts"])
+    def test_readonly_no_mutation_or_db_creation(self):
+        before=self.db.read_bytes()
+        m.report(self.db,self.root,self.args,NOW)
+        self.assertEqual(before,self.db.read_bytes())
+        with self.assertRaises(FileNotFoundError):
+            m.report(self.root/'absent.sqlite3',self.root,self.args,NOW)
+        self.assertFalse((self.root/'absent.sqlite3').exists())
 
-    def test_manifest_must_have_expected_safe_files_and_sizes(self):
-        expected = report.latest_files(MANIFEST)
-        self.assertEqual(expected[A], ("android", 4261704))
-        bad = {"files": {"android":{"name":"../../bad.apk","size_bytes":4261704},
-                         "windows":MANIFEST["files"]["windows"]}}
+    def test_periods_are_honestly_labeled(self):
+        data=m.report(self.db,self.root,argparse.Namespace(day=None,days=None,since='24h'),NOW)
+        self.assertFalse(data['period']['exact_for_requested_window'])
+        self.assertEqual(data['period']['first_calendar_day'],'2026-11-13')
+        self.assertTrue(any('dias-calendário' in x for x in data['warnings']))
+        exact=m.report(self.db,self.root,argparse.Namespace(day='2026-11-13',days=None,since=None),NOW)
+        self.assertTrue(exact['period']['exact_for_requested_window'])
+        self.assertEqual(exact['downloads']['complete'],4)
         with self.assertRaises(ValueError):
-            report.latest_files(bad)
-        bad2 = {"files": {"android":{"name":A,"size_bytes":0},
-                          "windows":MANIFEST["files"]["windows"]}}
-        with self.assertRaises(ValueError):
-            report.latest_files(bad2)
+            m.period_for(argparse.Namespace(day=None,days=366,since=None),NOW)
 
-    def test_no_log_data_means_no_claims(self):
-        empty = report.scan("",self.expected)
-        self.assertEqual(empty["http_requests_parsed"],0)
-        self.assertEqual(empty["binary_gets_observed"],0)
-        self.assertEqual(empty["counts"],{})
+    def test_offsets_lag_and_backups(self):
+        file=self.root/'downloads.log'
+        file.write_bytes(b'1234567890')
+        st=file.stat()
+        c=sqlite3.connect(self.db)
+        c.execute('INSERT INTO offsets VALUES (?,?)',(f'{st.st_dev}:{st.st_ino}',4))
+        c.commit()
+        c.close()
+        backup_dir=self.root/'backups'
+        backup_dir.mkdir()
+        (backup_dir/'retro-metrics-2026-11-13.sqlite3').write_bytes(b'test')
+        data=m.report(self.db,self.root,self.args,NOW)
+        self.assertEqual(data['health']['unprocessed_log_bytes']['downloads.log'],6)
+        self.assertEqual(data['health']['backup_snapshots_found'],1)
 
+    def test_no_user_identifiers_from_sources(self):
+        c=sqlite3.connect(self.db)
+        c.execute('INSERT INTO source_totals VALUES (?,?,?,?,?,?,?,?)',
+                  ('2026-11-13','0.3.21','android','private_email@example.com',50,50,0,5000))
+        c.commit()
+        c.close()
+        data=m.report(self.db,self.root,self.args,NOW)
+        self.assertNotIn('private_email@example.com',json.dumps(data))
+        self.assertEqual(data['sources']['apps']['started'],3)
 
-if __name__ == "__main__":
+if __name__=='__main__':
     unittest.main()
