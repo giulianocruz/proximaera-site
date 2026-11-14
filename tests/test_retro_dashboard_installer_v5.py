@@ -52,6 +52,8 @@ class InstallerV5Tests(unittest.TestCase):
             report.write_text('# Simulated read-only reporter\n', encoding='utf-8')
             old = root / 'approved.py'
             old.write_text('print("previous approved version")\n', encoding='utf-8')
+            old_v4 = root / 'approved_v4.py'
+            old_v4.write_text('print("previous approved V4 version")\n', encoding='utf-8')
             candidate = root / 'new.py'
             private = root / 'private-reports'
             if fail:
@@ -69,6 +71,8 @@ os.chmod(p,0o600)
             target = root / 'retro-dashboard-private.py'
             if existing == 'approved':
                 target.write_bytes(old.read_bytes())
+            if existing == 'approved_v4':
+                target.write_bytes(old_v4.read_bytes())
             if existing == 'new':
                 target.write_bytes(candidate.read_bytes())
             if existing == 'unknown':
@@ -87,7 +91,7 @@ os.chmod(p,0o600)
             source = source.replace('approved_v2=a9336cfbccdf91c7b7b9edde35075ac45a0fcaac',
                                     'approved_v2=' + blob(old))
             source = source.replace('approved_v4=c2a627479cc627928313bd6b30b1abcecdb1d34e',
-                                    'approved_v4=' + blob(old))
+                                    'approved_v4=' + blob(old_v4))
             curl = 'curl --proto \'=https\' --proto-redir \'=https\' --tlsv1.2 --fail --location --silent --show-error --max-time 30 "$url" -o "$staging"'
             self.assertIn(curl, source)
             source = source.replace(curl, f'cp "{candidate}" "$staging"')
@@ -106,6 +110,8 @@ os.chmod(p,0o600)
             elif failure:
                 if existing == 'approved':
                     self.assertEqual(target.read_bytes(), old.read_bytes())
+                elif existing == 'approved_v4':
+                    self.assertEqual(target.read_bytes(), old_v4.read_bytes())
                 elif existing == 'unknown':
                     self.assertEqual(target.read_text(), 'print("unapproved version")\n')
                 elif symlink:
@@ -122,7 +128,7 @@ os.chmod(p,0o600)
                 self.assertIn('Retro Analytics', html.read_text())
                 self.assertEqual(stat.S_IMODE(html.stat().st_mode), 0o600)
                 self.assertEqual(stat.S_IMODE(private.stat().st_mode), 0o700)
-                if existing == 'approved':
+                if existing in ('approved','approved_v4'):
                     self.assertEqual(len(list((root / 'backups').glob('retro-dashboard-before-v5.*.py'))), 1)
             self.assertFalse(list(root.glob('.retro-dashboard-install.*.py')))
             if private.exists():
@@ -137,6 +143,12 @@ os.chmod(p,0o600)
 
     def test_approved_upgrade(self):
         self.simulate('Approved V2/V4 upgrade', existing='approved')
+
+    def test_upgrade_from_v4(self):
+        self.simulate('Approved V4 upgrade', existing='approved_v4')
+
+    def test_rollback_v4_after_failure(self):
+        self.simulate('Generator failure restores V4', existing='approved_v4', fail=True, old_snapshot=True)
 
     def test_already_installed(self):
         self.simulate('Already installed V5', existing='new')
