@@ -78,6 +78,8 @@ class DashboardTests(unittest.TestCase):
   self.assertIn("state.platform!=='android' && b.windows>0",js)
   self.assertIn("stack.style.height=visible>0?",js)
   self.assertIn("chart.setAttribute('aria-label'",js)
+  self.assertIn('.columns>section{min-width:0}',mod.PAGE)
+  self.assertIn('.columns{grid-template-columns:minmax(0,1fr)}',mod.PAGE)
 
  def test_source_must_be_persistent_aggregates(self):
   with self.assertRaises(ValueError):
